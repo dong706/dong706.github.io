@@ -4,16 +4,43 @@
   
     
     <entry>
-      <title>【Hexo教程-从零开始搭建个人博客】4、Hexo安装主题</title>
-      <link href="/posts/2022/01/e89dcf68.html"/>
-      <url>/posts/2022/01/e89dcf68.html</url>
+      <title>安装electron失败：npm ERR! electron@16.0.5 postinstall: `node install.js`</title>
+      <link href="/posts/2022/01/undefined.html"/>
+      <url>/posts/2022/01/undefined.html</url>
       
-        <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>初步使用了Hexo后，你是否对Hexo的默认主题不满意呢？本篇文章将教你如何安装及美化hexo主题。<br>如果你还没安装和使用Hexo，请参考<a href="https://www.yeluohuakai.com/posts/2022/01/71127ac7.html">Hexo博客搭建指南</a>。</p><p>通过查看Hexo安装目录的_config.yml配置文件，我们可以了解到Hexo的默认主题是landscape。</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># Extensions</span><br><span class="line">## Plugins: https://hexo.io/plugins/</span><br><span class="line">## Themes: https://hexo.io/themes/</span><br><span class="line">theme: landscape</span><br></pre></td></tr></table></figure><p>更多的主题可以去 <a href="https://hexo.io/themes/">https://hexo.io/themes/</a>了解，诸位可以根据自己的喜好选择合适的主题，这里我推荐几个。</p><span id="more"></span> <h3 id="Hexo主题推荐"><a href="#Hexo主题推荐" class="headerlink" title="Hexo主题推荐"></a>Hexo主题推荐</h3><h4 id="Hexo-NexT"><a href="#Hexo-NexT" class="headerlink" title="Hexo NexT"></a>Hexo NexT</h4><p><a href="https://github.com/next-theme/hexo-theme-next">hexo-theme-next</a>是目前最广泛使用的Hexo主题了，优点是简洁，定制度高，因为代码是开源的，所以有很多开发者维护。由于前任管理员不提供权限，故开发了一个新的分支，详情。最新版本为8.0也是我在使用的版本，8.0及前版本请使用github搜索功能。</p><h4 id="Hexo-Butterfly"><a href="#Hexo-Butterfly" class="headerlink" title="Hexo Butterfly"></a>Hexo Butterfly</h4><p><a href="https://github.com/jerryc127/hexo-theme-butterfly">hexo-theme-butterfly</a> 动态效果比较丰富，用了很多圆角元素。原生支持的插件很多，比如说绝大部分评论系统、给搜索引擎提交网站和站点地图、页面动效、页内搜索等。</p><p>我个人用的是 <code>Butterfly</code> ，支持功能够多，能节省很多自定义配置，我个人比较喜欢。</p><h3 id="安装Butterfly主题插件"><a href="#安装Butterfly主题插件" class="headerlink" title="安装Butterfly主题插件"></a>安装Butterfly主题插件</h3><p>安装Butterfly之前记得先安装pug和stylus依赖：  </p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm install hexo-renderer-pug hexo-renderer-stylus</span><br></pre></td></tr></table></figure><p>在Hexo博客根目录通过git指令下载Butterfly最新的主题文件。</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git clone --depth 1 https://github.com/jerryc127/hexo-theme-butterfly themes/butterfly</span><br></pre></td></tr></table></figure><p>或者，直接从<a href="https://github.com/jerryc127/hexo-theme-butterfly">hexo-theme-butterfly</a>页面下载<a href="https://github.com/jerryc127/hexo-theme-butterfly/archive/refs/heads/dev.zip">源代码</a> ，解压到博客目录/themes目录下。<br>最终目录结构如下：</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">├─_config.yml</span><br><span class="line">├─public</span><br><span class="line">├─scaffolds</span><br><span class="line">├─source</span><br><span class="line">└─themes</span><br><span class="line">    ├─butterfly</span><br><span class="line">       ├─lanuage</span><br><span class="line">         ├─source</span><br><span class="line">         ├─layout</span><br><span class="line">         ├─_config.yml</span><br></pre></td></tr></table></figure><h3 id="尝试其他主题"><a href="#尝试其他主题" class="headerlink" title="尝试其他主题"></a>尝试其他主题</h3><p>安装NexT主题：</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git clone --depth 1 https://github.com/next-theme/hexo-theme-next themes/next</span><br></pre></td></tr></table></figure><p>安装Light主题：</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git clone --depth 1 https://github.com/hexojs/hexo-theme-light themes/light</span><br></pre></td></tr></table></figure>]]></content>
+        <content type="html"><![CDATA[<p>安装Electron时报如下错误：</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm ERR! code ELIFECYCLE</span><br><span class="line">npm ERR! errno 1</span><br><span class="line">npm ERR! electron@16.0.5 postinstall: `node install.js`</span><br><span class="line">npm ERR! Exit status 1</span><br><span class="line">npm ERR!</span><br><span class="line">npm ERR! Failed at the electron@16.0.5 postinstall script.</span><br><span class="line">npm ERR! This is probably not a problem with npm. There is likely additional logging output above.</span><br></pre></td></tr></table></figure><p>如图所示：</p><span id="more"></span> <img alt="npm" src="http://cdn.xiaoxinrobot.com/static/images/pasted-15.png"><p>解决方法：将electron下载地址指向taobao镜像即可。</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm config set electron_mirror &quot;https://npm.taobao.org/mirrors/electron/&quot;</span><br></pre></td></tr></table></figure>]]></content>
       
       
       <categories>
           
-          <category> Web开发技术 </category>
+          <category> Web技术 </category>
+          
+          <category> Electron </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Electron </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>【Hexo教程-从零开始搭建个人博客】4、Hexo安装主题</title>
+      <link href="/posts/2022/01/e89dcf68.html"/>
+      <url>/posts/2022/01/e89dcf68.html</url>
+      
+        <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>初步使用了Hexo后，你是否对Hexo的默认主题不满意呢？本篇文章将教你如何安装及美化hexo主题。<br>如果你还没安装和使用Hexo，请参考<a href="https://www.yeluohuakai.com/posts/2022/01/71127ac7.html">Hexo博客搭建指南</a>。</p><p>通过查看Hexo安装目录的_config.yml配置文件，我们可以了解到Hexo的默认主题是landscape。<br><code>theme: landscape</code><br>更多的主题可以去 <a href="https://hexo.io/themes/">https://hexo.io/themes/</a>了解，诸位可以根据自己的喜好选择合适的主题，这里我推荐几个。</p><span id="more"></span> <h3 id="Hexo主题推荐"><a href="#Hexo主题推荐" class="headerlink" title="Hexo主题推荐"></a>Hexo主题推荐</h3><h4 id="Hexo-NexT"><a href="#Hexo-NexT" class="headerlink" title="Hexo NexT"></a>Hexo NexT</h4><p><a href="https://github.com/next-theme/hexo-theme-next">hexo-theme-next</a>是目前最广泛使用的Hexo主题了，优点是简洁，定制度高，因为代码是开源的，所以有很多开发者维护。由于前任管理员不提供权限，故开发了一个新的分支，详情。最新版本为8.0也是我在使用的版本，8.0及前版本请使用github搜索功能。</p><h4 id="Hexo-Butterfly"><a href="#Hexo-Butterfly" class="headerlink" title="Hexo Butterfly"></a>Hexo Butterfly</h4><p><a href="https://github.com/jerryc127/hexo-theme-butterfly">hexo-theme-butterfly</a> 动态效果比较丰富，用了很多圆角元素。原生支持的插件很多，比如说绝大部分评论系统、给搜索引擎提交网站和站点地图、页面动效、页内搜索等。</p><p>我个人用的是 <code>Butterfly</code> ，支持功能够多，能节省很多自定义配置，我个人比较喜欢。</p><h3 id="安装Butterfly主题插件"><a href="#安装Butterfly主题插件" class="headerlink" title="安装Butterfly主题插件"></a>安装Butterfly主题插件</h3><p>安装Butterfly之前记得先安装pug和stylus依赖：  </p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm install hexo-renderer-pug hexo-renderer-stylus</span><br></pre></td></tr></table></figure><p>在Hexo博客根目录通过git指令下载Butterfly最新的主题文件。</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git clone --depth 1 https://github.com/jerryc127/hexo-theme-butterfly themes/butterfly</span><br></pre></td></tr></table></figure><p>或者，直接从<a href="https://github.com/jerryc127/hexo-theme-butterfly">hexo-theme-butterfly</a>页面下载<a href="https://github.com/jerryc127/hexo-theme-butterfly/archive/refs/heads/dev.zip">源代码</a> ，解压到博客目录/themes目录下。<br>最终目录结构如下：</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">├─_config.yml</span><br><span class="line">├─public</span><br><span class="line">├─scaffolds</span><br><span class="line">├─source</span><br><span class="line">└─themes</span><br><span class="line">    ├─butterfly</span><br><span class="line">       ├─lanuage</span><br><span class="line">         ├─source</span><br><span class="line">         ├─layout</span><br><span class="line">         ├─_config.yml</span><br></pre></td></tr></table></figure><h3 id="尝试其他主题"><a href="#尝试其他主题" class="headerlink" title="尝试其他主题"></a>尝试其他主题</h3><p>安装NexT主题：</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git clone --depth 1 https://github.com/next-theme/hexo-theme-next themes/next</span><br></pre></td></tr></table></figure><p>安装Light主题：</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git clone --depth 1 https://github.com/hexojs/hexo-theme-light themes/light</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> Web技术 </category>
           
           <category> Hexo搭建博客教程 </category>
           
@@ -35,12 +62,12 @@
       <link href="/posts/2022/01/ac4a4b5a.html"/>
       <url>/posts/2022/01/ac4a4b5a.html</url>
       
-        <content type="html"><![CDATA[<h3 id="1、安装Hexo"><a href="#1、安装Hexo" class="headerlink" title="1、安装Hexo"></a>1、安装Hexo</h3><p>Hexo就是我们的个人博客网站的框架， 这里需要自己在电脑常里创建一个文件夹，可以命名为MyBlog，Hexo框架与以后你自己发布的网页都在这个文件夹中。</p><p>这里以在D:/Code/MyBlog目录下安装Hexo为例,首先在命令行中进入目录：</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">d:</span><br><span class="line">cd D:/Code/MyBlog</span><br></pre></td></tr></table></figure><p>使用npm命令安装Hexo，输入：</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm install -g hexo-cli </span><br></pre></td></tr></table></figure><span id="more"></span> <p>安装完成后，初始化我们的博客，输入：</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hexo init </span><br></pre></td></tr></table></figure><p>初始化完成后，目录结构如下：  </p><img src="http://cdn.xiaoxinrobot.com/static/images/pasted-10.png">  <p>_config.yml<br>用来配置博客相关的参数，初始化时自动创建。具体参数设置，可参照 <a href="https://hexo.io/zh-cn/docs/configuration">Hexo配置</a> 文档。</p><h3 id="2、启动Hexo"><a href="#2、启动Hexo" class="headerlink" title="2、启动Hexo"></a>2、启动Hexo</h3><p>输入<code>hexo s</code>启动Hexo服务：</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hexo s</span><br></pre></td></tr></table></figure><img src="http://cdn.xiaoxinrobot.com/static/images/pasted-11.png"><p>根据启动提示，在浏览器中输入 <a href="http://localhost:4000/">http://localhost:4000</a> 即可访问博客。</p><img src="http://cdn.xiaoxinrobot.com/static/images/pasted-12.png"><p>hexo命令详解：</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hexo n &quot;我的博客&quot; == hexo new &quot;我的博客&quot; #新建一篇文章</span><br><span class="line">hexo g == hexo generate #生成html</span><br><span class="line">hexo s == hexo server #启动服务预览</span><br><span class="line">hexo d == hexo deploy #部署</span><br><span class="line"></span><br><span class="line">hexo server -s #静态模式</span><br><span class="line">hexo server -p 5000 #更改端口</span><br><span class="line">hexo server -i 192.168.1.1 #自定义 IP,一般用不到</span><br><span class="line">hexo clean #清除缓存，若是网页正常情况下可以忽略这条命令</span><br></pre></td></tr></table></figure><h3 id="3、编辑并发布第一篇文章"><a href="#3、编辑并发布第一篇文章" class="headerlink" title="3、编辑并发布第一篇文章"></a>3、编辑并发布第一篇文章</h3><p>根据上文，新建博客命令为 <code>hexo n</code>, 新建一篇名为 HelloWorld！的博客：</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hexo n &quot;HelloWorld!&quot;</span><br></pre></td></tr></table></figure><p>命令行中会提示:</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">D:\Code\MyBlog&gt;hexo n &quot;HelloWorld!&quot;</span><br><span class="line">INFO  Validating config</span><br><span class="line">INFO  Created: D:\Code\MyBlog\source\_posts\HelloWorld.md</span><br></pre></td></tr></table></figure><p>我们会看到Hexo会在 \source_posts\ 目录下新建一个HelloWorld.md 文件，md文件也就是 Markdown 文件,它会被编译成 html 文件，放到 public 文件夹下。</p><p>md同样也支持中文命名，文件名也就是博客的标题，如下：  </p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">D:\Code\MyBlog&gt;hexo n &quot;第一篇博客&quot;</span><br><span class="line">INFO  Validating config</span><br><span class="line">INFO  Created: D:\Code\MyBlog\source\_posts\第一篇博客.md</span><br></pre></td></tr></table></figure><p>编辑完博客后，即可执行<code>hexo g</code>命令生成html文件</p><img src="http://cdn.xiaoxinrobot.com/static/images/pasted-13.png"><p>然后再启动Hexo服务即可。</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hexo s</span><br></pre></td></tr></table></figure><p>再次在浏览器中访问博客页面，新建的博客已经出现在首页博客列表中。  </p><img src="http://cdn.xiaoxinrobot.com/static/images/pasted-14.png"><p>至此，Hexo的安装和初步使用已完成。</p>]]></content>
+        <content type="html"><![CDATA[<h3 id="1、安装Hexo"><a href="#1、安装Hexo" class="headerlink" title="1、安装Hexo"></a>1、安装Hexo</h3><p>Hexo就是我们的个人博客网站的框架， 这里需要自己在电脑常里创建一个文件夹，可以命名为MyBlog，Hexo框架与以后你自己发布的网页都在这个文件夹中。</p><p>这里以在D:/Code/MyBlog目录下安装Hexo为例,首先在命令行中进入目录：</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">d: &amp; cd D:/Code/MyBlog</span><br></pre></td></tr></table></figure><p>使用npm命令安装Hexo，输入：</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm install -g hexo-cli </span><br></pre></td></tr></table></figure><span id="more"></span> <p>安装完成后，初始化我们的博客，输入：</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hexo init </span><br></pre></td></tr></table></figure><p>初始化完成后，目录结构如下：  </p><img src="http://cdn.xiaoxinrobot.com/static/images/pasted-10.png">  <p>_config.yml<br>用来配置博客相关的参数，初始化时自动创建。具体参数设置，可参照 <a href="https://hexo.io/zh-cn/docs/configuration">Hexo配置</a> 文档。</p><h3 id="2、启动Hexo"><a href="#2、启动Hexo" class="headerlink" title="2、启动Hexo"></a>2、启动Hexo</h3><p>输入<code>hexo s</code>启动Hexo服务：</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hexo s</span><br></pre></td></tr></table></figure><img src="http://cdn.xiaoxinrobot.com/static/images/pasted-11.png"><p>根据启动提示，在浏览器中输入 <a href="http://localhost:4000/">http://localhost:4000</a> 即可访问博客。</p><img src="http://cdn.xiaoxinrobot.com/static/images/pasted-12.png"><p>hexo命令详解：</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hexo n &quot;我的博客&quot; == hexo new &quot;我的博客&quot; #新建一篇文章</span><br><span class="line">hexo g == hexo generate #生成html</span><br><span class="line">hexo s == hexo server #启动服务预览</span><br><span class="line">hexo d == hexo deploy #部署</span><br><span class="line"></span><br><span class="line">hexo server -s #静态模式</span><br><span class="line">hexo server -p 5000 #更改端口</span><br><span class="line">hexo server -i 192.168.1.1 #自定义 IP,一般用不到</span><br><span class="line">hexo clean #清除缓存，若是网页正常情况下可以忽略这条命令</span><br></pre></td></tr></table></figure><h3 id="3、编辑并发布第一篇文章"><a href="#3、编辑并发布第一篇文章" class="headerlink" title="3、编辑并发布第一篇文章"></a>3、编辑并发布第一篇文章</h3><p>根据上文，新建博客命令为 <code>hexo n</code>, 新建一篇名为 HelloWorld！的博客：</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hexo n &quot;HelloWorld!&quot;</span><br></pre></td></tr></table></figure><p>命令行中会提示:</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">D:\Code\MyBlog&gt;hexo n &quot;HelloWorld!&quot;</span><br><span class="line">INFO  Validating config</span><br><span class="line">INFO  Created: D:\Code\MyBlog\source\_posts\HelloWorld.md</span><br></pre></td></tr></table></figure><p>我们会看到Hexo会在 \source_posts\ 目录下新建一个HelloWorld.md 文件，md文件也就是 Markdown 文件,它会被编译成 html 文件，放到 public 文件夹下。</p><p>md同样也支持中文命名，文件名也就是博客的标题，如下：  </p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">D:\Code\MyBlog&gt;hexo n &quot;第一篇博客&quot;</span><br><span class="line">INFO  Validating config</span><br><span class="line">INFO  Created: D:\Code\MyBlog\source\_posts\第一篇博客.md</span><br></pre></td></tr></table></figure><p>编辑完博客后，即可执行<code>hexo g</code>命令生成html文件</p><img src="http://cdn.xiaoxinrobot.com/static/images/pasted-13.png"><p>然后再启动Hexo服务即可。</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hexo s</span><br></pre></td></tr></table></figure><p>再次在浏览器中访问博客页面，新建的博客已经出现在首页博客列表中。  </p><img src="http://cdn.xiaoxinrobot.com/static/images/pasted-14.png"><p>至此，Hexo的安装和初步使用已完成。</p>]]></content>
       
       
       <categories>
           
-          <category> Web开发技术 </category>
+          <category> Web技术 </category>
           
           <category> Hexo搭建博客教程 </category>
           
@@ -67,7 +94,7 @@
       
       <categories>
           
-          <category> Web开发技术 </category>
+          <category> Web技术 </category>
           
           <category> Hexo搭建博客教程 </category>
           
@@ -93,12 +120,12 @@
       <link href="/posts/2022/01/71127ac7.html"/>
       <url>/posts/2022/01/71127ac7.html</url>
       
-        <content type="html"><![CDATA[<p>怎么搭建一个免费的个人博客，个人采用了Hexo博客框架，下面是我搭建Hexo个人博客的经验总结。 </p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">至于为什么选择Hexo，因为Hexo主题多，漂亮主题更是不少，Huge在这点上差太多了。</span><br><span class="line"></span><br><span class="line">而使用Wordpress搞个人博客，就必须要有虚拟主机或者云服务器才可以。国内的虚拟主机或云服务器，新用户活动价便宜，但是续费的话会非常贵。而利用GitHub pages服务搭建Hexo博客是免费的。</span><br><span class="line"></span><br><span class="line">所以虽然Hexo生成html的速度慢了点，但是依然是我认为的最佳选择。</span><br></pre></td></tr></table></figure><h3 id="什么是-Hexo？"><a href="#什么是-Hexo？" class="headerlink" title="什么是 Hexo？"></a>什么是 Hexo？</h3><p>Hexo 是一个快速、简洁且高效的博客框架。Hexo 使用 Markdown（或其他渲染引擎）解析文章，在几秒内，即可利用靓丽的主题生成静态网页。Hexo拥有丰富的插件系统，常与GitHub等代码托管平台一起构建个人博客网站。</p><p>Hexo可以让你快速拥有自己的博客网站，写文章记录生活，享受这种从0到1的过程。</p><p>下面正式从零开始搭建年轻人的第一个免费个人博客。</p><h3 id="Hexo博客搭建指南"><a href="#Hexo博客搭建指南" class="headerlink" title="Hexo博客搭建指南"></a>Hexo博客搭建指南</h3><ul><li><a href="/posts/2022/01/10e17c07.html">Hexo配置基础环境(GitHub Pages、Git、Node)</a></li><li><a href="/posts/2022/01/ac4a4b5a.html">Hexo安装和使用</a></li><li>Hexo部署到GitHub</li><li>Hexo绑定个人域名<span id="more"></span> </li><li>Hexo选择主题</li><li>Hexo怎么写文章(hexo-amdin插件)</li><li>Hexo设置首页文章只显示部分摘要</li><li>Hexo生成永久文章链接</li><li>Hexo设置文章分享</li><li>Hexo设置分页</li><li>Hexo给文章添加版权声明</li><li>Hexo初级SEO优化（增加description和keywords）</li><li>Hexo增加分类页和标签云</li><li>Hexo增加百度统计和Google统计</li><li>Hexo搜索引擎收录（百度、Google、头条、Bing等）</li><li>Hexo图片上传到图床（七牛云）</li><li>Hexo增加评论模块（remark42）</li><li>Hexo页面美化</li><li>Hexo增加站内静态搜索</li><li>Hexo增加RSS订阅</li><li>Hexo加入Google广告联盟</li></ul>]]></content>
+        <content type="html"><![CDATA[<p>怎么搭建一个免费的个人博客，个人采用了Hexo博客框架，下面是我搭建Hexo个人博客的经验总结。 </p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">至于为什么选择Hexo，因为Hexo主题多，漂亮主题更是不少，Huge在这点上差太多了。</span><br><span class="line"></span><br><span class="line">而使用Wordpress搞个人博客，就必须要有虚拟主机或者云服务器才可以。国内的虚拟主机或云服务器，新用户活动价便宜，但是续费的话会非常贵。而利用GitHub pages服务搭建Hexo博客是免费的。</span><br><span class="line"></span><br><span class="line">所以虽然Hexo生成html的速度慢了点，但是依然是我认为的最佳选择。</span><br></pre></td></tr></table></figure><h3 id="什么是-Hexo？"><a href="#什么是-Hexo？" class="headerlink" title="什么是 Hexo？"></a>什么是 Hexo？</h3><p>Hexo 是一个快速、简洁且高效的博客框架。Hexo 使用 Markdown（或其他渲染引擎）解析文章，在几秒内，即可利用靓丽的主题生成静态网页。Hexo拥有丰富的插件系统，常与GitHub等代码托管平台一起构建个人博客网站。</p><p>Hexo可以让你快速拥有自己的博客网站，写文章记录生活，享受这种从0到1的过程。</p><p>下面正式从零开始搭建年轻人的第一个免费个人博客。</p><h3 id="Hexo博客搭建指南"><a href="#Hexo博客搭建指南" class="headerlink" title="Hexo博客搭建指南"></a>Hexo博客搭建指南</h3><ul><li><a href="/posts/2022/01/10e17c07.html">Hexo配置基础环境(GitHub Pages、Git、Node)</a></li><li><a href="/posts/2022/01/ac4a4b5a.html">Hexo安装和使用</a></li><li><a href="/posts/2022/01/e89dcf68.html">Hexo使用主题</a></li><li>Hexo部署到GitHub</li><li>Hexo绑定个人域名<span id="more"></span> </li><li>Hexo选择主题</li><li>Hexo怎么写文章(hexo-amdin插件)</li><li>Hexo设置首页文章只显示部分摘要</li><li>Hexo生成永久文章链接</li><li>Hexo设置文章分享</li><li>Hexo设置分页</li><li>Hexo给文章添加版权声明</li><li>Hexo初级SEO优化（增加description和keywords）</li><li>Hexo增加分类页和标签云</li><li>Hexo增加百度统计和Google统计</li><li>Hexo搜索引擎收录（百度、Google、头条、Bing等）</li><li>Hexo图片上传到图床（七牛云）</li><li>Hexo增加评论模块（remark42）</li><li>Hexo页面美化</li><li>Hexo增加站内静态搜索</li><li>Hexo增加RSS订阅</li><li>Hexo加入Google广告联盟</li></ul>]]></content>
       
       
       <categories>
           
-          <category> Web开发技术 </category>
+          <category> Web技术 </category>
           
           <category> Hexo搭建博客教程 </category>
           
@@ -132,9 +159,9 @@
       
         <tags>
             
-            <tag> 七牛云 </tag>
+            <tag> Hexo </tag>
             
-            <tag> hexo </tag>
+            <tag> 七牛云 </tag>
             
         </tags>
       
@@ -152,7 +179,7 @@
       
       <categories>
           
-          <category> Web开发技术 </category>
+          <category> Web技术 </category>
           
           <category> Hexo搭建博客教程 </category>
           
@@ -188,11 +215,9 @@
       
         <tags>
             
-            <tag> hexo </tag>
+            <tag> Hexo </tag>
             
             <tag> seo </tag>
-            
-            <tag> web </tag>
             
         </tags>
       
