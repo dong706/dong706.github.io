@@ -4,9 +4,9 @@
   
     
     <entry>
-      <title>安装electron失败：npm ERR! electron@16.0.5 postinstall: `node install.js`</title>
-      <link href="/posts/2022/01/undefined.html"/>
-      <url>/posts/2022/01/undefined.html</url>
+      <title>安装electron失败：npm ERR electron@16.0.5 postinstall: node install.js</title>
+      <link href="/posts/2022/01/npmerrelectron.html"/>
+      <url>/posts/2022/01/npmerrelectron.html</url>
       
         <content type="html"><![CDATA[<p>安装Electron时报如下错误：</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm ERR! code ELIFECYCLE</span><br><span class="line">npm ERR! errno 1</span><br><span class="line">npm ERR! electron@16.0.5 postinstall: `node install.js`</span><br><span class="line">npm ERR! Exit status 1</span><br><span class="line">npm ERR!</span><br><span class="line">npm ERR! Failed at the electron@16.0.5 postinstall script.</span><br><span class="line">npm ERR! This is probably not a problem with npm. There is likely additional logging output above.</span><br></pre></td></tr></table></figure><p>如图所示：</p><span id="more"></span> <img alt="npm" src="http://cdn.xiaoxinrobot.com/static/images/pasted-15.png"><p>解决方法：将electron下载地址指向taobao镜像即可。</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm config set electron_mirror &quot;https://npm.taobao.org/mirrors/electron/&quot;</span><br></pre></td></tr></table></figure>]]></content>
       
