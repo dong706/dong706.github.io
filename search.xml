@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>解决electron打包时下载nsis等依赖慢的问题</title>
+      <link href="/posts/2022/01/undefined.html"/>
+      <url>/posts/2022/01/undefined.html</url>
+      
+        <content type="html"><![CDATA[<p>初次学习使用Electron，在打包第一个入门应用时就出现了老大难的问题，<code>npm run package</code>命令在运行时会去下载github的资源（如nsis、winCodeSign等），但是这个速度可就太感人。慢就不说了，最后还赤果果的用一大串红字告诉我打包失败。<br>报错信息如下：</p><span id="more"></span> <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[0] npm run build:main exited with code 0</span><br><span class="line">[1] npm run build:renderer exited with code 0</span><br><span class="line">  • electron-builder  version=22.13.1 os=10.0.19043</span><br><span class="line">  • loaded configuration  file=package.json (&quot;build&quot; field)</span><br><span class="line">  • writing effective config  file=release\build\builder-effective-config.yaml</span><br><span class="line">  • installing production dependencies  platform=win32 arch=x64 appDir=D:\Code\Electron\test\release\app</span><br><span class="line">  • packaging       platform=win32 arch=x64 electron=16.0.5 appOutDir=release\build\win-unpacked</span><br><span class="line">  • building        target=nsis file=release\build\ElectronReact Setup 4.5.0.exe archs=x64 oneClick=true perMachine=false</span><br><span class="line">  • downloading     url=https://github.com/electron-userland/electron-builder-binaries/releases/download/nsis-3.0.4.2/nsis-3.0.4.2.7z size=1.4 MB parts=1</span><br><span class="line">  • retrying        attempt=1</span><br><span class="line">  • retrying        attempt=2</span><br><span class="line">  • retrying        attempt=3</span><br><span class="line">  ⨯ part download request failed with status code 401</span><br><span class="line">github.com/develar/app-builder/pkg/download.(*Part).doRequest</span><br><span class="line">        /Volumes/data/Documents/app-builder/pkg/download/Part.go:126</span><br><span class="line">github.com/develar/app-builder/pkg/download.(*Part).download</span><br><span class="line">        /Volumes/data/Documents/app-builder/pkg/download/Part.go:67</span><br><span class="line">github.com/develar/app-builder/pkg/download.(*Downloader).DownloadResolved.func1.1</span><br><span class="line">        /Volumes/data/Documents/app-builder/pkg/download/downloader.go:155</span><br><span class="line">github.com/develar/app-builder/pkg/util.MapAsyncConcurrency.func2</span><br><span class="line">        /Volumes/data/Documents/app-builder/pkg/util/async.go:68</span><br><span class="line">runtime.goexit</span><br><span class="line">        /usr/local/Cellar/go/1.16.5/libexec/src/runtime/asm_amd64.s:1371</span><br><span class="line">  ⨯ D:\Code\Electron\test\node_modules\app-builder-bin\win\x64\app-builder.exe exited with code ERR_ELECTRON_BUILDER_CANNOT_EXECUTE  failedTask=build stackTrace=Error: D:\Code\Electron\test\node_modules\app-builder-bin\win\x64\app-builder.exe exited with code ERR_ELECTRON_BUILDER_CANNOT_EXECUTE</span><br></pre></td></tr></table></figure><p>问题就出在下载github资源太慢了，而cnpm是提供了对应的镜像源的，所以解决办法也挺简单，设置ELECTRON_BUILDER_BINARIES_MIRROR镜像源地址就行了，即修改 <code>C:\Users\你的用户名\.npmrc</code> 文件（如果没有该文件就直接创建）,加入如下代码：</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">registry=https://registry.npm.taobao.org/</span><br><span class="line">electron_mirror=https://npm.taobao.org/mirrors/electron/</span><br><span class="line">isturl=https://npm.taobao.org/mirrors/node</span><br><span class="line">ELECTRON_BUILDER_BINARIES_MIRROR=http://npm.taobao.org/mirrors/electron-builder-binaries/</span><br><span class="line">ELECTRON_MIRROR=https://npm.taobao.org/mirrors/electron/</span><br><span class="line"></span><br></pre></td></tr></table></figure><p>注:<code>ELECTRON_BUILDER_BINARIES_MIRROR</code>的地址可以改成https的试试。</p><p>然后再去运行<code>npm run package</code>，你会发现download部分很快就过去了，程序包也打好了，喜极而泣。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Web技术 </category>
+          
+          <category> Electron </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Electron </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>安装electron失败：npm ERR electron@16.0.5 postinstall: node install.js</title>
       <link href="/posts/2022/01/npmerrelectron.html"/>
       <url>/posts/2022/01/npmerrelectron.html</url>
