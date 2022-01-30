@@ -4,6 +4,25 @@
   
     
     <entry>
+      <title>CentOS使用yum安装ffmpeg</title>
+      <link href="/posts/2022/01/3f63c42c.html"/>
+      <url>/posts/2022/01/3f63c42c.html</url>
+      
+        <content type="html"><![CDATA[<blockquote><p>摘要<br>本文主要解决如下问题：<br>（1）CentOS 7 怎么使用yum安装ffmpeg；<br>（2）CentOS 6 怎么使用yum安装ffmpeg。  </p></blockquote><p>1.安装epel并update yum</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo yum install epel-release -y</span><br><span class="line">sudo yum update -y</span><br></pre></td></tr></table></figure><p>2.安装Nux Dextop Yum 源</p><p>由于CentOS没有官方FFmpeg rpm软件包。但是，我们可以使用第三方YUM源（Nux Dextop）完成此工作。</p><span id="more"></span> <ol><li>CentOS 7<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo rpm --import http://li.nux.ro/download/nux/RPM-GPG-KEY-nux.ro</span><br><span class="line">sudo rpm -Uvh http://li.nux.ro/download/nux/dextop/el7/x86_64/nux-dextop-release-0-5.el7.nux.noarch.rpm</span><br></pre></td></tr></table></figure></li><li>CentOS 6<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo rpm --import http://li.nux.ro/download/nux/RPM-GPG-KEY-nux.ro</span><br><span class="line">sudo rpm -Uvh http://li.nux.ro/download/nux/dextop/el6/x86_64/nux-dextop-release-0-2.el6.nux.noarch.rpm</span><br></pre></td></tr></table></figure></li></ol><p>3.安装FFmpeg 和 FFmpeg开发包</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo yum install ffmpeg ffmpeg-devel -y</span><br></pre></td></tr></table></figure><p>4.测试是否安装成功</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ffmpeg</span><br></pre></td></tr></table></figure><p>5.如果你想了解更多关于FFmpeg使用方面的资料，可以输入：</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ffmpeg -h</span><br></pre></td></tr></table></figure><p>例子：<br>使用FFmpeg将mp3转为ogg</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ffmpeg -i MLKDream_64kb.mp3 -c:a libvorbis -q:a 4 MLKDream_64kb.ogg</span><br></pre></td></tr></table></figure><p>使用FFmpeg将flv转为mp4</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ffmpeg -i beeen.flv -y -vcodec copy -acodec copy beeen.mp4</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> Linux </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Selenium获取元素的HTML和子元素的方法</title>
       <link href="/posts/2022/01/20e46e56.html"/>
       <url>/posts/2022/01/20e46e56.html</url>
@@ -228,7 +247,7 @@
       <link href="/posts/2022/01/71127ac7.html"/>
       <url>/posts/2022/01/71127ac7.html</url>
       
-        <content type="html"><![CDATA[<p>怎么搭建一个免费的个人博客，个人采用了Hexo博客框架，下面是我搭建Hexo个人博客的经验总结。 </p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">至于为什么选择Hexo，因为Hexo主题多，漂亮主题更是不少，Huge在这点上差太多了。</span><br><span class="line"></span><br><span class="line">而使用Wordpress搞个人博客，就必须要有虚拟主机或者云服务器才可以。国内的虚拟主机或云服务器，新用户活动价便宜，但是续费的话会非常贵。而利用GitHub pages服务搭建Hexo博客是免费的。</span><br><span class="line"></span><br><span class="line">所以虽然Hexo生成html的速度慢了点，但是依然是我认为的最佳选择。</span><br></pre></td></tr></table></figure><h3 id="什么是-Hexo？"><a href="#什么是-Hexo？" class="headerlink" title="什么是 Hexo？"></a>什么是 Hexo？</h3><p>Hexo 是一个快速、简洁且高效的博客框架。Hexo 使用 Markdown（或其他渲染引擎）解析文章，在几秒内，即可利用靓丽的主题生成静态网页。Hexo拥有丰富的插件系统，常与GitHub等代码托管平台一起构建个人博客网站。</p><p>Hexo可以让你快速拥有自己的博客网站，写文章记录生活，享受这种从0到1的过程。</p><p>下面正式从零开始搭建年轻人的第一个免费个人博客。</p><h3 id="Hexo博客搭建指南"><a href="#Hexo博客搭建指南" class="headerlink" title="Hexo博客搭建指南"></a>Hexo博客搭建指南</h3><ul><li><a href="/posts/2022/01/10e17c07.html">Hexo配置基础环境(GitHub Pages、Git、Node)</a></li><li><a href="/posts/2022/01/ac4a4b5a.html">Hexo安装和使用</a></li><li><a href="/posts/2022/01/e89dcf68.html">Hexo使用主题</a></li><li><a href="/posts/2022/01/face4142.html">Hexo部署到GitHub</a></li><li>Hexo绑定个人域名<span id="more"></span> </li><li>Hexo选择主题</li><li>Hexo怎么写文章(hexo-amdin插件)</li><li>Hexo设置首页文章只显示部分摘要</li><li>Hexo生成永久文章链接</li><li>Hexo设置文章分享</li><li>Hexo设置分页</li><li>Hexo给文章添加版权声明</li><li>Hexo初级SEO优化（增加description和keywords）</li><li>Hexo增加分类页和标签云</li><li>Hexo增加百度统计和Google统计</li><li>Hexo搜索引擎收录（百度、Google、头条、Bing等）</li><li>Hexo图片上传到图床（七牛云）</li><li>Hexo增加评论模块（remark42）</li><li>Hexo页面美化</li><li>Hexo增加站内静态搜索</li><li>Hexo增加RSS订阅</li><li>Hexo加入Google广告联盟</li></ul>]]></content>
+        <content type="html"><![CDATA[<p>怎么搭建一个免费的个人博客，个人采用了Hexo博客框架，下面是我搭建Hexo个人博客的经验总结。 </p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">至于为什么选择Hexo，因为Hexo主题多，漂亮主题更是不少，Huge在这点上差太多了。</span><br><span class="line"></span><br><span class="line">而使用Wordpress搞个人博客，就必须要有虚拟主机或者云服务器才可以。国内的虚拟主机或云服务器，新用户活动价便宜，但是续费的话会非常贵。而利用GitHub pages服务搭建Hexo博客是免费的。</span><br><span class="line"></span><br><span class="line">所以虽然Hexo生成html的速度慢了点，但是依然是我认为的最佳选择。</span><br></pre></td></tr></table></figure><h3 id="什么是-Hexo？"><a href="#什么是-Hexo？" class="headerlink" title="什么是 Hexo？"></a>什么是 Hexo？</h3><p>Hexo 是一个快速、简洁且高效的博客框架。Hexo 使用 Markdown（或其他渲染引擎）解析文章，在几秒内，即可利用靓丽的主题生成静态网页。Hexo拥有丰富的插件系统，常与GitHub等代码托管平台一起构建个人博客网站。</p><p>Hexo可以让你快速拥有自己的博客网站，写文章记录生活，享受这种从0到1的过程。</p><p>下面正式从零开始搭建年轻人的第一个免费个人博客。</p><h3 id="Hexo博客搭建指南"><a href="#Hexo博客搭建指南" class="headerlink" title="Hexo博客搭建指南"></a>Hexo博客搭建指南</h3><ul><li><a href="/posts/2022/01/10e17c07.html">Hexo配置基础环境(GitHub Pages、Git、Node)</a></li><li><a href="/posts/2022/01/ac4a4b5a.html">Hexo安装和使用</a></li><li><a href="/posts/2022/01/e89dcf68.html">Hexo使用主题</a></li><li><a href="/posts/2022/01/face4142.html">Hexo部署到GitHub</a></li><li>Hexo绑定个人域名<span id="more"></span> </li><li>Hexo怎么写文章(hexo-amdin插件)</li><li>Hexo设置首页文章只显示部分摘要</li><li>Hexo生成永久文章链接</li><li>Hexo设置文章分享</li><li>Hexo设置分页</li><li>Hexo给文章添加版权声明</li><li>Hexo初级SEO优化（增加description和keywords）</li><li>Hexo增加分类页和标签云</li><li>Hexo增加百度统计和Google统计</li><li>Hexo搜索引擎收录（百度、Google、头条、Bing等）</li><li>Hexo图片上传到图床（七牛云）</li><li>Hexo增加评论模块（remark42）</li><li>Hexo页面美化</li><li>Hexo增加站内静态搜索</li><li>Hexo增加RSS订阅</li><li>Hexo加入Google广告联盟</li></ul>]]></content>
       
       
       <categories>
