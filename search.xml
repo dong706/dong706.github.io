@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>微信小程序出错 TypeError: _typeof3 is not a function</title>
+      <link href="/posts/2022/02/c3bd5b44.html"/>
+      <url>/posts/2022/02/c3bd5b44.html</url>
+      
+        <content type="html"><![CDATA[<p>升级微信开发者工具后，小程序启动报如下错误：<br>TypeError: _typeof3 is not a function at _typeof (typeof.js? [sm]:2)</p><p>@babel\runtime\helpers文件夹下面的typeof.js报错，因为本地装过这个包npm install –save @babel/runtime，直接进去拷一份typeof.js覆盖就好了，新typeof.js如下：</p><span id="more"></span> <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">function _typeof(obj) &#123;</span><br><span class="line">  &quot;@babel/helpers - typeof&quot;;</span><br><span class="line"></span><br><span class="line">  if (typeof Symbol === &quot;function&quot; &amp;&amp; typeof Symbol.iterator === &quot;symbol&quot;) &#123;</span><br><span class="line">    module.exports = _typeof = function _typeof(obj) &#123;</span><br><span class="line">      return typeof obj;</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    module.exports[&quot;default&quot;] = module.exports, module.exports.__esModule = true;</span><br><span class="line">  &#125; else &#123;</span><br><span class="line">    module.exports = _typeof = function _typeof(obj) &#123;</span><br><span class="line">      return obj &amp;&amp; typeof Symbol === &quot;function&quot; &amp;&amp; obj.constructor === Symbol &amp;&amp; obj !== Symbol.prototype ? &quot;symbol&quot; : typeof obj;</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    module.exports[&quot;default&quot;] = module.exports, module.exports.__esModule = true;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  return _typeof(obj);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">module.exports = _typeof;</span><br><span class="line">module.exports[&quot;default&quot;] = module.exports, module.exports.__esModule = true;</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> Web技术 </category>
+          
+          <category> 小程序开发 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 小程序 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>CentOS使用yum安装ffmpeg</title>
       <link href="/posts/2022/01/3f63c42c.html"/>
       <url>/posts/2022/01/3f63c42c.html</url>
@@ -41,9 +68,9 @@
             
             <tag> Java </tag>
             
-            <tag> 爬虫 </tag>
-            
             <tag> Selenium </tag>
+            
+            <tag> 爬虫 </tag>
             
         </tags>
       
