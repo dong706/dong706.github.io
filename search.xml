@@ -4,6 +4,58 @@
   
     
     <entry>
+      <title>mac osx 自带拼音输入法卡顿问题解决</title>
+      <link href="/posts/2022/02/e36dea63.html"/>
+      <url>/posts/2022/02/e36dea63.html</url>
+      
+        <content type="html"><![CDATA[<p>为什么 mac osx 自带拼音输入法，总是出现卡顿现象？</p><p>这个问题，知乎上回答最多，好像也无法彻底解决。</p><p>如果你用百度，更是无法解决的。</p><p>问题在于什么呢？</p><p>很多，很多，但核心问题，就是 苹果自带的拼音输入法想要处理的问题太多了。</p><span id="more"></span> <p>我们来看看默认的苹果电脑输入法要解决多少问题!<br>1、首先切换到 拼音输入法 然后右键点击 右上角的 拼 字图标</p><img src="http://cdn.xiaoxinrobot.com/static/images/pasted-28.png"><p>2、点击 打开简体拼音偏好设置，然后切换到 文本，可以看到几乎所有的都勾选了</p><img src="http://cdn.xiaoxinrobot.com/static/images/pasted-29.png"><p>这些功能我们都需要吗？</p><p>其实不是的，除了第一个 自动纠正拼写 外，其它都是垃圾功能。 都全部取消勾选。</p><p>如果你日常不输入英文等，其实连 自动纠正拼写 都不需要。<br>3、全部取消勾选后的效果图如下</p><img src="http://cdn.xiaoxinrobot.com/static/images/pasted-30.png"><p>然后，世界瞬间清净了…</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> IT技术 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Mac </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>No goals have been specified for this build，maven报错解决</title>
+      <link href="/posts/2022/02/87ad95bb.html"/>
+      <url>/posts/2022/02/87ad95bb.html</url>
+      
+        <content type="html"><![CDATA[<p>在对Maven项目进行Build的时候，可能会出现下图这种情况：</p><img src="http://cdn.xiaoxinrobot.com/static/images/pasted-27.png"><p>出现这种情况的原因是，缺少了一个指定的goal，需要在项目的pom.xml文件中添加一项goal数据。添加的位置在<build>标签当中，添加如下配置：</p><span id="more"></span>  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;defaultGoal&gt;compile&lt;/defaultGoal&gt;</span><br></pre></td></tr></table></figure><p>添加后如下所示：</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;build&gt;</span><br><span class="line">&lt;defaultGoal&gt;compile&lt;/defaultGoal&gt;</span><br><span class="line">&lt;!-- 打包目录 --&gt;</span><br><span class="line">&lt;directory&gt;target&lt;/directory&gt;</span><br><span class="line">&lt;!-- 打包名称 --&gt;</span><br><span class="line">&lt;finalName&gt;$&#123;project.artifactId&#125;&lt;/finalName&gt;</span><br><span class="line">   ...</span><br><span class="line">&lt;/build&gt;   </span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> 服务端开发 </category>
+          
+          <category> Java </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Maven </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>微信小程序 TabBar怎么设置默认选中</title>
       <link href="/posts/2022/02/3b9d274e.html"/>
       <url>/posts/2022/02/3b9d274e.html</url>
