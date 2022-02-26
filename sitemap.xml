@@ -2,6 +2,24 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://www.yeluohuakai.com/bszs1/index.html</loc>
+    
+    <lastmod>2022-02-26</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.yeluohuakai.com/bszs/index.html</loc>
+    
+    <lastmod>2022-02-26</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://www.yeluohuakai.com/posts/2022/02/e36dea63.html</loc>
     
     <lastmod>2022-02-26</lastmod>
@@ -56,15 +74,6 @@
   </url>
   
   <url>
-    <loc>https://www.yeluohuakai.com/bszs/index.html</loc>
-    
-    <lastmod>2022-01-30</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://www.yeluohuakai.com/posts/2022/01/71127ac7.html</loc>
     
     <lastmod>2022-01-29</lastmod>
@@ -75,15 +84,6 @@
   
   <url>
     <loc>https://www.yeluohuakai.com/posts/2022/01/e89dcf68.html</loc>
-    
-    <lastmod>2022-01-29</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.yeluohuakai.com/bszs1/index.html</loc>
     
     <lastmod>2022-01-29</lastmod>
     
