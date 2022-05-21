@@ -4,6 +4,56 @@
   
     
     <entry>
+      <title>程序员下一个项目的灵感来源</title>
+      <link href="/posts/2022/05/3427750e.html"/>
+      <url>/posts/2022/05/3427750e.html</url>
+      
+        <content type="html"><![CDATA[<p>这个网站收集很多从不同应用商店收集到的那些人们愿意付费，但是评分很低的软件 / 插件 / 扩展。你可以在这里找到下一个项目的灵感。</p><p>这些 APP 都是经过市场检验的有真正用户需求，人们有付费意愿的，只是现在的 APP 做的不够好，你可以从中选取你感兴趣的，做一个复刻和升级。</p><span id="more"></span> <p><a href="https://ideasfilter.com/">https://ideasfilter.com/</a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 随笔 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 随笔 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>如何升级nodejs版本</title>
+      <link href="/posts/2022/05/4feb9d30.html"/>
+      <url>/posts/2022/05/4feb9d30.html</url>
+      
+        <content type="html"><![CDATA[<p>方法一： 用n升级nodejs</p><span id="more"></span> <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 查看当前node版本</span><br><span class="line">$ node -v</span><br><span class="line"></span><br><span class="line"># 清除npm缓存</span><br><span class="line">$ npm cache clean -f</span><br><span class="line"></span><br><span class="line"># 全局安装n</span><br><span class="line">$ npm install -g n</span><br><span class="line"></span><br><span class="line"># 升级到最新稳定版</span><br><span class="line">$ n stable</span><br><span class="line"></span><br><span class="line"># 升级到最新版</span><br><span class="line">$ n latest</span><br><span class="line"></span><br><span class="line"># 升级到定制版</span><br><span class="line">$ n v14.6.0</span><br><span class="line"></span><br><span class="line"># 切换使用版本</span><br><span class="line">$ n 13.10.0 (ENTER)</span><br><span class="line"></span><br><span class="line"># 删除制定版本</span><br><span class="line">$ n rm 13.10.0</span><br><span class="line"></span><br><span class="line"># 用制定的版本执行脚本</span><br><span class="line">$ n use 13.10.0 some.js</span><br><span class="line"></span><br><span class="line"># 升级完成查看 node版本</span><br><span class="line">$ node -v</span><br><span class="line"></span><br></pre></td></tr></table></figure><p>方法二：官网下载<br>去官网 <a href="http://nodejs.cn/">http://nodejs.cn/</a> 下载指定版本安装即可。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Web技术 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Node </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>小程序周日历滑动组件</title>
       <link href="/posts/2022/03/b3b460b2.html"/>
       <url>/posts/2022/03/b3b460b2.html</url>
