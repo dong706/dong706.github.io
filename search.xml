@@ -58,7 +58,7 @@
       <link href="/posts/2022/03/b3b460b2.html"/>
       <url>/posts/2022/03/b3b460b2.html</url>
       
-        <content type="html"><![CDATA[<p>最近在做一个小程序的过程中，需要使用到日历的周滑动切换组件，经过查询，找到以下组件满足需求，留着备用。</p><p>实现的功能：  </p><ul><li>可滑动切换上一周和下一周；</li><li>点击年月可跳转到指定日期；</li><li>修复了iOS手机年和日出现NaN的问题。<span id="more"></span> 效果图：</li></ul><img src="https://fastly.jsdelivr.net/gh/dong706/dong706.github.io@latest/images/pasted-31.png" alt="">在components组件文件夹下新建calendarWeek文件夹，创建calendarWeek组件。  <p>在需要使用的页面导入使用。</p><p>小程序代码片段，可在微信开发者工具导入使用：<a href="https://developers.weixin.qq.com/s/a4y1NCmP7Anv">https://developers.weixin.qq.com/s/a4y1NCmP7Anv</a></p><p>GitHub源码地址：<a href="https://github.com/Lemon-Yan/calendarWeek">小程序周日历滑动组件</a></p>]]></content>
+        <content type="html"><![CDATA[<p>最近在做一个小程序的过程中，需要使用到日历的周滑动切换组件，经过查询，找到以下组件满足需求，留着备用。</p><p>实现的功能：  </p><ul><li>可滑动切换上一周和下一周；</li><li>点击年月可跳转到指定日期；</li><li>修复了iOS手机年和日出现NaN的问题。<span id="more"></span> 效果图：</li></ul><img src="https://fastly.jsdelivr.net/gh/dong706/dong706.github.io@latest/images/pasted-31.png" alt=""><p>在components组件文件夹下新建calendarWeek文件夹，创建calendarWeek组件。  </p><p>在需要使用的页面导入使用。</p><p>小程序代码片段，可在微信开发者工具导入使用：<a href="https://developers.weixin.qq.com/s/a4y1NCmP7Anv">https://developers.weixin.qq.com/s/a4y1NCmP7Anv</a></p><p>GitHub源码地址：<a href="https://github.com/Lemon-Yan/calendarWeek">小程序周日历滑动组件</a></p>]]></content>
       
       
       <categories>
