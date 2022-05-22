@@ -4,6 +4,37 @@
   
     
     <entry>
+      <title>使用脚本快速安装docker和k8s</title>
+      <link href="/posts/2022/05/4feefd57.html"/>
+      <url>/posts/2022/05/4feefd57.html</url>
+      
+        <content type="html"><![CDATA[<h2 id="使用脚本快速安装docker"><a href="#使用脚本快速安装docker" class="headerlink" title="使用脚本快速安装docker"></a>使用脚本快速安装docker</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">环境要求：</span><br><span class="line"></span><br><span class="line">Docker 需要安装在 64 位的 x86 平台或 ARM 平台上（如树莓派） ，并且要求内核 版本不低于 3.10。  </span><br><span class="line">但实际上内核越新越好，过低的内核版本可能会出现部分功能无 法使用，或者不稳定。</span><br></pre></td></tr></table></figure><p>执行如下命令即可：</p><span id="more"></span> <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">curl -sSL https://get.daocloud.io/docker | sh</span><br></pre></td></tr></table></figure><h2 id="使用脚本快速安装k8s"><a href="#使用脚本快速安装k8s" class="headerlink" title="使用脚本快速安装k8s**"></a>使用脚本快速安装k8s**</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">环境要求：</span><br><span class="line">一台或多台机器，操作系统CentOS7.x-86_x64</span><br><span class="line">硬件配置：内存2GB或2G+，CPU 2核或CPU 2核+</span><br><span class="line">集群内各个机器之间能相互通信</span><br><span class="line">集群内各个机器可以访问外网，需要拉取镜像</span><br><span class="line">禁止swap分区</span><br></pre></td></tr></table></figure><p>下载安装脚本 <a href="https://link.juejin.cn/?target=https://www.aliyundrive.com/s/3yzGyfRjhLu">install_k8s.sh</a><br>上传到待安装机器，并分配执行权限chmod +x install_k8s.sh<br>执行脚本sh install_k8s.sh </p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">chmod +x ./install_k8s.sh  </span><br><span class="line">./install_k8s.sh </span><br></pre></td></tr></table></figure><p>安装步骤就是这么简单，so easy ^_^  </p><p>注：如果指定k8s版本号，可直接修改脚本。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 服务端开发 </category>
+          
+          <category> 容器技术 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Docker </tag>
+            
+            <tag> Kubernetes </tag>
+            
+            <tag> K8s </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>程序员下一个项目的灵感来源</title>
       <link href="/posts/2022/05/3427750e.html"/>
       <url>/posts/2022/05/3427750e.html</url>
