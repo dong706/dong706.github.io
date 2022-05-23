@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://www.yeluohuakai.com/posts/2022/05/8ce9d753.html</loc>
+    
+    <lastmod>2022-05-23</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://www.yeluohuakai.com/posts/2022/05/741c30b.html</loc>
     
     <lastmod>2022-05-23</lastmod>
@@ -858,6 +867,20 @@
     <priority>0.2</priority>
   </url>
   
+  <url>
+    <loc>https://www.yeluohuakai.com/tags/containerd/</loc>
+    <lastmod>2022-05-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.yeluohuakai.com/tags/%E5%AE%B9%E5%99%A8%E6%8A%80%E6%9C%AF/</loc>
+    <lastmod>2022-05-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
 
   
   <url>
@@ -939,6 +962,20 @@
   
   <url>
     <loc>https://www.yeluohuakai.com/categories/Web%E6%8A%80%E6%9C%AF/Electron/</loc>
+    <lastmod>2022-05-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.yeluohuakai.com/categories/%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%BC%80%E5%8F%91/</loc>
+    <lastmod>2022-05-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.yeluohuakai.com/categories/%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%BC%80%E5%8F%91/%E5%AE%B9%E5%99%A8%E6%8A%80%E6%9C%AF/</loc>
     <lastmod>2022-05-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>

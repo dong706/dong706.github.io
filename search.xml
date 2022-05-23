@@ -4,6 +4,37 @@
   
     
     <entry>
+      <title>msg=”getting status of runtime: rpc error: code = Unimplemented desc = unknown service runtime.v1alpha2.RuntimeService”问题解决</title>
+      <link href="/posts/2022/05/8ce9d753.html"/>
+      <url>/posts/2022/05/8ce9d753.html</url>
+      
+        <content type="html"><![CDATA[<p>搭建k8s集群（v1.24.0版本）过程中碰到如下报错：</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[preflight] Running pre-flight checks</span><br><span class="line">    [WARNING FileExisting-ethtool]: ethtool not found in system path</span><br><span class="line">    [WARNING FileExisting-socat]: socat not found in system path</span><br><span class="line">error execution phase preflight: [preflight] Some fatal errors occurred:</span><br><span class="line">    [ERROR CRI]: container runtime is not running: output: time=&quot;2022-05-23T15:43:15+08:00&quot; level=fatal msg=&quot;getting status of runtime: rpc error: code = Unimplemented desc = unknown service runtime.v1alpha2.RuntimeService&quot;</span><br><span class="line">, error: exit status 1</span><br><span class="line">[preflight] If you know what you are doing, you can make a check non-fatal with `--ignore-preflight-errors=...`</span><br><span class="line">To see the stack trace of this error execute with --v=5 or higher</span><br></pre></td></tr></table></figure><p>解决办法很简单：</p><span id="more"></span> <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">rm /etc/containerd/config.toml</span><br><span class="line">systemctl restart containerd</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> 服务器开发 </category>
+          
+          <category> 容器技术 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> k8s </tag>
+            
+            <tag> containerd </tag>
+            
+            <tag> 容器技术 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>k8s v1.24.0搭建高可用(k8s)Kubernetes集群教程</title>
       <link href="/posts/2022/05/741c30b.html"/>
       <url>/posts/2022/05/741c30b.html</url>
