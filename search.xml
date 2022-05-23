@@ -8,14 +8,14 @@
       <link href="/posts/2022/05/e0ba2ad4.html"/>
       <url>/posts/2022/05/e0ba2ad4.html</url>
       
-        <content type="html"><![CDATA[<p>Autosub是一个字幕自动生成工具。它能使用Auditok来自动检测语音区域，通过ffmpeg根据语音区域来切割音频，通过多个API将语音转为文字，以及通过py-googletrans将字幕文本翻译。</p><h3 id="autosub"><a href="#autosub" class="headerlink" title="autosub"></a>autosub</h3><p>autosub 原本使用 python 2.X 开发，仅支持 linux 和 macos 系统，现已停止维护</p><p>其原理是对音视频文件进行语音活动检测以查找说话的区域，然后并行调用 Google Web Speech API 进行转录，（可选）翻译成目标语言，并将结果存储下来。</p><h3 id="autosub3"><a href="#autosub3" class="headerlink" title="autosub3"></a>autosub3</h3><p>基于 autosub，升级到 python 3.X 版本，并添加了对 windows 系统的支持。</p><p>源码库：<a href="https://github.com/BingLingGroup/autosub">Github</a></p><span id="more"></span> <h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p>依赖 ffmpeg 进行音频提取，需要自己手动安装，并添加到系统环境变量中。</p><p>autosub3 的安装非常简单，执行以下命令即可：</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">pip3 install autosub3</span><br></pre></td></tr></table></figure><p>注意<br>由于要调用 google speech 的 API，请自行翻墙。</p><h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">autosub abc.mp4</span><br></pre></td></tr></table></figure><p>即可在 abc.mp4 同目录下生成 abc.srt 的字幕文件。  </p><p>指定语言为中文：</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">autosub -S zh-CN -D zh-CN videoplayback.mp4 </span><br><span class="line">~~~  </span><br><span class="line"></span><br><span class="line">  </span><br><span class="line">查看参数说明:  </span><br></pre></td></tr></table></figure><p>autosub –help</p><pre><code>### 使用说明请参见Github autosub库的[使用说明](https://github.com/BingLingGroup/autosub/blob/dev/docs/README.zh-Hans.md)</code></pre>]]></content>
+        <content type="html"><![CDATA[<p>Autosub是一个字幕自动生成工具。它能使用Auditok来自动检测语音区域，通过ffmpeg根据语音区域来切割音频，通过多个API将语音转为文字，以及通过py-googletrans将字幕文本翻译。</p><h3 id="autosub"><a href="#autosub" class="headerlink" title="autosub"></a>autosub</h3><p>autosub 原本使用 python 2.X 开发，仅支持 linux 和 macos 系统，现已停止维护</p><p>其原理是对音视频文件进行语音活动检测以查找说话的区域，然后并行调用 Google Web Speech API 进行转录，（可选）翻译成目标语言，并将结果存储下来。</p><h3 id="autosub3"><a href="#autosub3" class="headerlink" title="autosub3"></a>autosub3</h3><p>基于 autosub，升级到 python 3.X 版本，并添加了对 windows 系统的支持。</p><p>源码库：<a href="https://github.com/BingLingGroup/autosub">Github</a></p><span id="more"></span> <h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p>依赖 ffmpeg 进行音频提取，需要自己手动安装，并添加到系统环境变量中。</p><p>autosub3 的安装非常简单，执行以下命令即可：</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">pip3 install autosub3</span><br></pre></td></tr></table></figure><p>注意<br>由于要调用 google speech 的 API，请自行翻墙。</p><h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">autosub abc.mp4</span><br></pre></td></tr></table></figure><p>即可在 abc.mp4 同目录下生成 abc.srt 的字幕文件。  </p><p>指定语言为中文：</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">autosub -S zh-CN -D zh-CN videoplayback.mp4 </span><br></pre></td></tr></table></figure><p>查看参数说明:  </p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">autosub --help</span><br></pre></td></tr></table></figure><h3 id="使用说明"><a href="#使用说明" class="headerlink" title="使用说明"></a>使用说明</h3><p>请参见Github autosub库的<br><a href="https://github.com/BingLingGroup/autosub/blob/dev/docs/README.zh-Hans.md">使用说明</a></p>]]></content>
       
       
       <categories>
           
-          <category> IT技术 </category>
+          <category> 服务端开发 </category>
           
-          <category> 视频剪辑 </category>
+          <category> Python </category>
           
       </categories>
       
@@ -23,6 +23,8 @@
         <tags>
             
             <tag> 视频剪辑 </tag>
+            
+            <tag> 字幕 </tag>
             
         </tags>
       
