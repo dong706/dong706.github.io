@@ -4,6 +4,37 @@
   
     
     <entry>
+      <title>利用moviepy提取视频中的音频</title>
+      <link href="/posts/2022/05/2ad0cdc4.html"/>
+      <url>/posts/2022/05/2ad0cdc4.html</url>
+      
+        <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>MoviePy是一个用于视频编辑的Python模块，它可被用于一些基本操作（如剪切、拼接、插入标题）、视频合成（即非线性编辑）、视频处理和创建高级特效。它可对大多数常见视频格式进行读写，包括GIF。</p><h2 id="安装moviepy"><a href="#安装moviepy" class="headerlink" title="安装moviepy"></a>安装moviepy</h2><blockquote><p>环境要求:Python2.7以上及Python3</p></blockquote><p>安装其实比较简单了，执行如下命令：</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">pip3 install moviepy</span><br></pre></td></tr></table></figure><span id="more"></span> <blockquote><p>MoviePy依赖 Numpy 、 imageio 、 Decorator 和 tqdm ，他们将在安装MoviePy的同时自动安装。运行平台为Windows/Mac/Linux，并使用Python2.7以上的版本和Python3。</p></blockquote><blockquote><p>MoviePy依赖FFMPEG软件对视频进行读写，可以自行安装。在你第一次使用MoviePy的时候，FFMPEG将会自动由ImageIO下载和安装（不过需要花一些时间）。如果你想使用FFMPEG的特定版本，你可以设置FFMPEG_BINARY环境变量。  </p></blockquote><h2 id="提取音频"><a href="#提取音频" class="headerlink" title="提取音频"></a>提取音频</h2><p>三行代码搞定</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 1、使用moviepy模块 提取视频中的音频文件</span><br><span class="line">from moviepy.editor import AudioFileClip</span><br><span class="line"></span><br><span class="line">my_audio_clip = AudioFileClip(&quot;test.mp4&quot;)</span><br><span class="line"></span><br><span class="line">#  提取视频中的音频文件  m4v,mp3等音频格式也是支持的</span><br><span class="line">my_audio_clip.write_audiofile(&quot;test.mp3&quot;)</span><br></pre></td></tr></table></figure><h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>后续将提供从文件夹下的所有视频中批量提取音频的相关代码。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 服务端开发 </category>
+          
+          <category> Python </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 视频剪辑 </tag>
+            
+            <tag> 音频提取 </tag>
+            
+            <tag> Moviepy </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Centos7 k8s 1.23.3 安装部署</title>
       <link href="/posts/2022/05/eec2f1a3.html"/>
       <url>/posts/2022/05/eec2f1a3.html</url>
@@ -272,6 +303,8 @@
       
       <categories>
           
+          <category> IT技术 </category>
+          
           <category> Linux </category>
           
       </categories>
@@ -325,6 +358,8 @@
       <categories>
           
           <category> IT技术 </category>
+          
+          <category> Mac </category>
           
       </categories>
       
@@ -425,6 +460,14 @@
       
         <content type="html"><![CDATA[<blockquote><p>摘要<br>本文主要解决如下问题：<br>（1）CentOS 7 怎么使用yum安装ffmpeg；<br>（2）CentOS 6 怎么使用yum安装ffmpeg。  </p></blockquote><p>1.安装epel并update yum</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo yum install epel-release -y</span><br><span class="line">sudo yum update -y</span><br></pre></td></tr></table></figure><p>2.安装Nux Dextop Yum 源</p><p>由于CentOS没有官方FFmpeg rpm软件包。但是，我们可以使用第三方YUM源（Nux Dextop）完成此工作。</p><span id="more"></span> <ol><li>CentOS 7<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo rpm --import http://li.nux.ro/download/nux/RPM-GPG-KEY-nux.ro</span><br><span class="line">sudo rpm -Uvh http://li.nux.ro/download/nux/dextop/el7/x86_64/nux-dextop-release-0-5.el7.nux.noarch.rpm</span><br></pre></td></tr></table></figure></li><li>CentOS 6<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo rpm --import http://li.nux.ro/download/nux/RPM-GPG-KEY-nux.ro</span><br><span class="line">sudo rpm -Uvh http://li.nux.ro/download/nux/dextop/el6/x86_64/nux-dextop-release-0-2.el6.nux.noarch.rpm</span><br></pre></td></tr></table></figure></li></ol><p>3.安装FFmpeg 和 FFmpeg开发包</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo yum install ffmpeg ffmpeg-devel -y</span><br></pre></td></tr></table></figure><p>4.测试是否安装成功</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ffmpeg</span><br></pre></td></tr></table></figure><p>5.如果你想了解更多关于FFmpeg使用方面的资料，可以输入：</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ffmpeg -h</span><br></pre></td></tr></table></figure><p>例子：<br>使用FFmpeg将mp3转为ogg</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ffmpeg -i MLKDream_64kb.mp3 -c:a libvorbis -q:a 4 MLKDream_64kb.ogg</span><br></pre></td></tr></table></figure><p>使用FFmpeg将flv转为mp4</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ffmpeg -i beeen.flv -y -vcodec copy -acodec copy beeen.mp4</span><br></pre></td></tr></table></figure>]]></content>
       
+      
+      <categories>
+          
+          <category> IT技术 </category>
+          
+          <category> Linux </category>
+          
+      </categories>
       
       
         <tags>
@@ -777,6 +820,8 @@
       
       <categories>
           
+          <category> IT技术 </category>
+          
           <category> Linux </category>
           
       </categories>
@@ -849,6 +894,8 @@
       
       
       <categories>
+          
+          <category> IT技术 </category>
           
           <category> Linux </category>
           
@@ -1193,6 +1240,8 @@
       
       <categories>
           
+          <category> 服务端开发 </category>
+          
           <category> Corba开发 </category>
           
       </categories>
@@ -1200,7 +1249,11 @@
       
         <tags>
             
+            <tag> Java </tag>
+            
             <tag> Corba </tag>
+            
+            <tag> JacORB </tag>
             
         </tags>
       
@@ -1217,6 +1270,8 @@
       
       
       <categories>
+          
+          <category> 服务端开发 </category>
           
           <category> Corba开发 </category>
           
@@ -1247,6 +1302,8 @@
       
       <categories>
           
+          <category> 服务端开发 </category>
+          
           <category> Corba开发 </category>
           
       </categories>
@@ -1275,6 +1332,8 @@
       
       
       <categories>
+          
+          <category> 服务端开发 </category>
           
           <category> Corba开发 </category>
           
@@ -1305,6 +1364,8 @@
       
       <categories>
           
+          <category> 服务端开发 </category>
+          
           <category> Corba开发 </category>
           
       </categories>
@@ -1333,6 +1394,8 @@
       
       
       <categories>
+          
+          <category> 服务端开发 </category>
           
           <category> Corba开发 </category>
           
