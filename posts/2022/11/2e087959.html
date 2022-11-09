@@ -167,10 +167,10 @@ s.parentNode.insertBefore(el, s);
 
 <p>但是为了安全，在进入/admin时，增加一层账户密码的校验逻辑，插件也提供了安全验证 。 </p>
 <h4 id="设置后台密码"><a href="#设置后台密码" class="headerlink" title="设置后台密码"></a>设置后台密码</h4><p>1 得到你的password_hash，进入Settings &gt; Setup authentification，如下图所示：</p>
-<img src="/img/loading.gif" data-original="https://fastly.jsdelivr.net/gh/dong706/dong706.github.io@latest/images/pasted-41.png" alt>
+<img src="/img/loading.gif" data-original="https://fastly.jsdelivr.net/gh/dong706/dong706.github.io@latest/images/pasted-41.png" alt="">
  
 <p>得到如下图所示内容：</p>
-<img src="/img/loading.gif" data-original="https://fastly.jsdelivr.net/gh/dong706/dong706.github.io@latest/images/pasted-42.png" alt>
+<img src="/img/loading.gif" data-original="https://fastly.jsdelivr.net/gh/dong706/dong706.github.io@latest/images/pasted-42.png" alt="">
 
 <p>修改站点配置文件_config.yml，将上面得到的内容粘贴进去:</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># admin</span><br><span class="line">admin:</span><br><span class="line">  username: ****</span><br><span class="line">  password_hash: ZwrRbx0gZl8myLbI9/oA4T4TxgSxE.</span><br><span class="line">  secret: *****</span><br></pre></td></tr></table></figure>
