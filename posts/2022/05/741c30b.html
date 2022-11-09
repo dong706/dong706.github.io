@@ -419,10 +419,10 @@ s.parentNode.insertBefore(el, s);
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[root@k8s-01 ~]#  kubeadm init --config kubeadm-init.yaml  --upload-certs</span><br></pre></td></tr></table></figure>
 
 <p>初始化过程</p>
-<img src="/img/loading.gif" data-original="https://fastly.jsdelivr.net/gh/dong706/dong706.github.io@latest/post-assets/搭建高可用-k8s-Kubernetes集群-k8s-v1-24-0/pasted-34.png" alt>
+<img src="/img/loading.gif" data-original="https://fastly.jsdelivr.net/gh/dong706/dong706.github.io@latest/images/pasted-34.png" alt>
 
 <p>初始化完成</p>
-<img src="/img/loading.gif" data-original="https://fastly.jsdelivr.net/gh/dong706/dong706.github.io@latest/post-assets/搭建高可用-k8s-Kubernetes集群-k8s-v1-24-0/pasted-35.png" alt>
+<img src="/img/loading.gif" data-original="https://fastly.jsdelivr.net/gh/dong706/dong706.github.io@latest/images/pasted-35.png" alt>
 
 <p>记住init后打印的token，复制kubectl的kubeconfig，kubectl的kubeconfig路径默认是~/.kube/config</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mkdir -p $HOME/.kube</span><br><span class="line">cp -i /etc/kubernetes/admin.conf $HOME/.kube/config</span><br><span class="line">chown $(id -u):$(id -g) $HOME/.kube/config</span><br></pre></td></tr></table></figure>
@@ -510,7 +510,7 @@ s.parentNode.insertBefore(el, s);
 </ul>
 </li>
 </ul>
-<img src="/img/loading.gif" data-original="https://fastly.jsdelivr.net/gh/dong706/dong706.github.io@latest/post-assets/搭建高可用-k8s-Kubernetes集群-k8s-v1-24-0/pasted-37.png" alt>
+<img src="/img/loading.gif" data-original="https://fastly.jsdelivr.net/gh/dong706/dong706.github.io@latest/images/pasted-37.png" alt>
 
 <p>使用nslookup查看是否能返回地址</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[root@k8s-01 ~]# kubectl exec -ti busybox -- nslookup kubernetes</span><br><span class="line">Server:         10.96.0.10</span><br><span class="line">Address:        10.96.0.10#53</span><br><span class="line">Name:   kubernetes.default.svc.cluster.local</span><br><span class="line">Address: 10.96.0.1</span><br></pre></td></tr></table></figure>
@@ -519,7 +519,7 @@ s.parentNode.insertBefore(el, s);
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">for i in k8s-01 k8s-02 k8s-03 k8s-04 k8s-05</span><br><span class="line">do</span><br><span class="line">   ssh root@$i curl -s 10.99.209.220   #nginx svc ip</span><br><span class="line">   ssh root@$i curl -s 10.244.3.4   #pod ip</span><br><span class="line">done</span><br></pre></td></tr></table></figure>
 
 <p>访问宿主机nodePort端口</p>
-<img src="/img/loading.gif" data-original="https://fastly.jsdelivr.net/gh/dong706/dong706.github.io@latest/post-assets/搭建高可用-k8s-Kubernetes集群-k8s-v1-24-0/pasted-38.png" alt>
+<img src="/img/loading.gif" data-original="https://fastly.jsdelivr.net/gh/dong706/dong706.github.io@latest/images/pasted-38.png" alt>
 
 <blockquote>
 <p>转载自 <a target="_blank" rel="noopener" href="https://i4t.com/5451.html">https://i4t.com/5451.html</a> ，进行了一些勘误。如侵权，请联系删除。</p>

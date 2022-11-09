@@ -173,17 +173,17 @@ s.parentNode.insertBefore(el, s);
 </ol>
 <h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><ol>
 <li><p>点击你的GitHub主页的”New”，准备创建一个新的仓库；</p>
-<img src="/img/loading.gif" data-original="https://fastly.jsdelivr.net/gh/dong706/dong706.github.io@latest/post-assets/【Hexo教程-从零开始搭建个人博客】5、Hexo博客发布到GitHub/pasted-16.png" alt></li>
+<img src="/img/loading.gif" data-original="https://fastly.jsdelivr.net/gh/dong706/dong706.github.io@latest/images/pasted-16.png" alt></li>
 <li><p>创建仓库有两点要注意：<br><code>仓库类型一定是**public**</code><br><code>仓库名一定是 **你的用户名.github.io**</code><br>以我的测试github账户的用户名yeluohua为例,  仓库名就是 <code>yeluohua.github.io</code>，如图所示:  </p>
-<img src="/img/loading.gif" data-original="https://fastly.jsdelivr.net/gh/dong706/dong706.github.io@latest/post-assets/【Hexo教程-从零开始搭建个人博客】5、Hexo博客发布到GitHub/pasted-17.png" alt></li>
+<img src="/img/loading.gif" data-original="https://fastly.jsdelivr.net/gh/dong706/dong706.github.io@latest/images/pasted-17.png" alt></li>
 <li><p>仓库创建完成之后，进入仓库主页。</p>
 </li>
 </ol>
-<img src="/img/loading.gif" data-original="https://fastly.jsdelivr.net/gh/dong706/dong706.github.io@latest/post-assets/【Hexo教程-从零开始搭建个人博客】5、Hexo博客发布到GitHub/pasted-18.png" alt>
+<img src="/img/loading.gif" data-original="https://fastly.jsdelivr.net/gh/dong706/dong706.github.io@latest/images/pasted-18.png" alt>
 
 <p>点击<code>Settings</code>–&gt;<code>Pages</code>，可以看到</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Your site is published at https://yeluohua.github.io/</span><br></pre></td></tr></table></figure>
-<p>这就意味着可以用这个链接访问你的网站了。<br><img src="/img/loading.gif" data-original="https://fastly.jsdelivr.net/gh/dong706/dong706.github.io@latest/post-assets/【Hexo教程-从零开始搭建个人博客】5、Hexo博客发布到GitHub/pasted-21.png" alt><br>4. 在浏览器中访问 <a target="_blank" rel="noopener" href="https://yeluohua.github.io/">https://yeluohua.github.io/</a><br><img src="/img/loading.gif" data-original="https://fastly.jsdelivr.net/gh/dong706/dong706.github.io@latest/post-assets/【Hexo教程-从零开始搭建个人博客】5、Hexo博客发布到GitHub/pasted-20.png" alt></p>
+<p>这就意味着可以用这个链接访问你的网站了。<br><img src="/img/loading.gif" data-original="https://fastly.jsdelivr.net/gh/dong706/dong706.github.io@latest/images/pasted-21.png" alt><br>4. 在浏览器中访问 <a target="_blank" rel="noopener" href="https://yeluohua.github.io/">https://yeluohua.github.io/</a><br><img src="/img/loading.gif" data-original="https://fastly.jsdelivr.net/gh/dong706/dong706.github.io@latest/images/pasted-20.png" alt></p>
 <ol start="5">
 <li>至此，个人GitHub Pages个人仓库已经创建完毕，可以开始部署Hexo博客到仓库了。</li>
 </ol>
@@ -213,16 +213,16 @@ s.parentNode.insertBefore(el, s);
 <li>进入 <a target="_blank" rel="noopener" href="https://github.com/settings/apps">https://github.com/settings/apps</a></li>
 <li> 点击“Personal access tokens”</li>
 </ol>
-<img src="/img/loading.gif" data-original="https://fastly.jsdelivr.net/gh/dong706/dong706.github.io@latest/post-assets/【Hexo教程-从零开始搭建个人博客】5、Hexo博客发布到GitHub/pasted-22.png" alt> 
+<img src="/img/loading.gif" data-original="https://fastly.jsdelivr.net/gh/dong706/dong706.github.io@latest/images/pasted-22.png" alt> 
 3. 点击右上角的“generate new token”,
     - 填入Note（access token的标识，随意填）
     - 选择access token期限（最好不选永久），
     - 权限只需要选择`repo`即可
 
-<img src="/img/loading.gif" data-original="https://fastly.jsdelivr.net/gh/dong706/dong706.github.io@latest/post-assets/【Hexo教程-从零开始搭建个人博客】5、Hexo博客发布到GitHub/pasted-23.png" alt> 
+<img src="/img/loading.gif" data-original="https://fastly.jsdelivr.net/gh/dong706/dong706.github.io@latest/images/pasted-23.png" alt> 
 4. 点击“Generate token”生成access token,记录生成的access token
 
-<img src="/img/loading.gif" data-original="https://fastly.jsdelivr.net/gh/dong706/dong706.github.io@latest/post-assets/【Hexo教程-从零开始搭建个人博客】5、Hexo博客发布到GitHub/pasted-24.png" alt> 
+<img src="/img/loading.gif" data-original="https://fastly.jsdelivr.net/gh/dong706/dong706.github.io@latest/images/pasted-24.png" alt> 
 5. 删除之前的git用户密码缓存。这一步很关键，一定要删除之前的缓存，不然还是提示上述错误。
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 运行一下命令缓存</span><br><span class="line">git config --global credential.helper wincred</span><br><span class="line"># 清除掉缓存在git中的用户名和密码</span><br><span class="line">git credential-manager uninstall</span><br></pre></td></tr></table></figure>
 6. 重新执行推送到 GitHub 远程仓库，在弹出的GitHub登陆框的密码区域填入刚才生成的access token即可。
