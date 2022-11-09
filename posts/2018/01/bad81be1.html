@@ -1,0 +1,227 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>java使用zxing识别二维码 | 叶落花开的博客</title><meta name="keywords" content="Java,zxing,二维码"><meta name="author" content="叶落花开"><meta name="copyright" content="叶落花开"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="最近公司要求扫描二维码和生成二维码的功能。而群里部分网友也提到了。我这里就写了一个demo，和大家分享。代码很简介，希望大家能够喜欢。 网友表示在网上搜索了很多，发现不是代码不全，就是jar不匹配。 我这里共享了一个zxing的2.2版本（支持JDK6）的例子，也提供了下载地址。实现代码如下：">
+<meta property="og:type" content="article">
+<meta property="og:title" content="java使用zxing识别二维码">
+<meta property="og:url" content="https://www.yeluohuakai.com/posts/2018/01/bad81be1.html">
+<meta property="og:site_name" content="叶落花开的博客">
+<meta property="og:description" content="最近公司要求扫描二维码和生成二维码的功能。而群里部分网友也提到了。我这里就写了一个demo，和大家分享。代码很简介，希望大家能够喜欢。 网友表示在网上搜索了很多，发现不是代码不全，就是jar不匹配。 我这里共享了一个zxing的2.2版本（支持JDK6）的例子，也提供了下载地址。实现代码如下：">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2018-01-17T13:02:00.000Z">
+<meta property="article:modified_time" content="2022-11-09T12:40:54.293Z">
+<meta property="article:author" content="叶落花开">
+<meta property="article:tag" content="Java">
+<meta property="article:tag" content="zxing">
+<meta property="article:tag" content="二维码">
+<meta name="twitter:card" content="summary"><link rel="shortcut icon" href="/favicon.png"><link rel="canonical" href="https://www.yeluohuakai.com/posts/2018/01/bad81be1"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//www.google-analytics.com" crossorigin=""/><link rel="preconnect" href="//hm.baidu.com"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?2f8a615b51582cf280e790200f3527e6";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script><script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-LB2ZMBR4ZN"></script><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-LB2ZMBR4ZN');
+</script><script>(function(){
+var el = document.createElement("script");
+el.src = "https://lf1-cdn-tos.bytegoofy.com/goofy/ttzz/push.js?18da2b25537eeea1b5c8819ad9a03fc2279abb7e5ff9fdb01a2409cbd77b8f1db3e414cba65c376eba389ba56d9ee0846cad2206506a6529fe6ee21a7373effb434c445cf6444b10ea9756ea44e128a6";
+el.id = "ttzz";
+var s = document.getElementsByTagName("script")[0];
+s.parentNode.insertBefore(el, s);
+})(window)
+</script><script async="async" crossorigin="anonymous" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6673854567363222"></script><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":false,"highlightLang":false,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://fastly.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.js',
+      css: 'https://fastly.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'java使用zxing识别二维码',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2022-11-09 20:40:54'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/index_code.css"><meta name="generator" content="Hexo 6.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/loading.gif" data-original="/img/ava.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data is-center"><div class="data-item"><a href="/archives/"><div class="headline">文章</div><div class="length-num">60</div></a></div><div class="data-item"><a href="/tags/"><div class="headline">标签</div><div class="length-num">52</div></a></div><div class="data-item"><a href="/categories/"><div class="headline">分类</div><div class="length-num">13</div></a></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" target="_blank" rel="noopener" href="https://support.qq.com/product/377343"><i class="fa-fw fa fa-paper-plane"></i><span> 反馈</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">叶落花开的博客</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" target="_blank" rel="noopener" href="https://support.qq.com/product/377343"><i class="fa-fw fa fa-paper-plane"></i><span> 反馈</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">java使用zxing识别二维码</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2018-01-17T13:02:00.000Z" title="发表于 2018-01-17 21:02:00">2018-01-17</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-11-09T12:40:54.293Z" title="更新于 2022-11-09 20:40:54">2022-11-09</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%9C%8D%E5%8A%A1%E7%AB%AF%E5%BC%80%E5%8F%91/">服务端开发</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span id="" data-flag-title="java使用zxing识别二维码"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="twikoo_visitors"></span></span></div></div></div><article class="post-content" id="article-container"><p>最近公司要求扫描二维码和生成二维码的功能。而群里部分网友也提到了。我这里就写了一个demo，和大家分享。代码很简介，希望大家能够喜欢。</p>
+<p>网友表示在网上搜索了很多，发现不是代码不全，就是jar不匹配。</p>
+<p>我这里共享了一个zxing的2.2版本（支持JDK6）的例子，也提供了下载地址。实现代码如下：</p>
+<span id="more"></span> 
+<p>Zxing2.2（支持JDK6） 下载地址：<a target="_blank" rel="noopener" href="http://download.csdn.net/download/dong707/10210016">http://download.csdn.net/download/dong707/10210016</a></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.herman.test;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.File;</span><br><span class="line"><span class="keyword">import</span> java.io.FileInputStream;</span><br><span class="line"><span class="keyword">import</span> java.io.FileNotFoundException;</span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"><span class="keyword">import</span> java.util.HashMap;</span><br><span class="line"><span class="keyword">import</span> java.util.Map;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> javax.imageio.ImageIO;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.google.zxing.BarcodeFormat;</span><br><span class="line"><span class="keyword">import</span> com.google.zxing.BinaryBitmap;</span><br><span class="line"><span class="keyword">import</span> com.google.zxing.DecodeHintType;</span><br><span class="line"><span class="keyword">import</span> com.google.zxing.EncodeHintType;</span><br><span class="line"><span class="keyword">import</span> com.google.zxing.MultiFormatReader;</span><br><span class="line"><span class="keyword">import</span> com.google.zxing.MultiFormatWriter;</span><br><span class="line"><span class="keyword">import</span> com.google.zxing.NotFoundException;</span><br><span class="line"><span class="keyword">import</span> com.google.zxing.WriterException;</span><br><span class="line"><span class="keyword">import</span> com.google.zxing.client.j2se.BufferedImageLuminanceSource;</span><br><span class="line"><span class="keyword">import</span> com.google.zxing.client.j2se.MatrixToImageWriter;</span><br><span class="line"><span class="keyword">import</span> com.google.zxing.common.HybridBinarizer;</span><br><span class="line"><span class="keyword">import</span> com.google.zxing.qrcode.decoder.ErrorCorrectionLevel;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 二维码工具类</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> Herman.Xiong</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@date</span> 2015-7-10 上午10:52:15</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@version</span> V3.0</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@since</span> jdk 1.6,tomcat 6.0</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ZxingUtil</span> &#123;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Map&lt;EncodeHintType, ErrorCorrectionLevel&gt; encodeMap = <span class="keyword">new</span> <span class="title class_">HashMap</span>&lt;EncodeHintType, ErrorCorrectionLevel&gt;();</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Map&lt;DecodeHintType, ErrorCorrectionLevel&gt; decodeMap=<span class="keyword">new</span> <span class="title class_">HashMap</span>&lt;DecodeHintType, ErrorCorrectionLevel&gt;();</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String charset=<span class="string">&quot;UTF-8&quot;</span>,format=<span class="string">&quot;png&quot;</span>;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">int</span> size=<span class="number">150</span>;</span><br><span class="line">	<span class="keyword">private</span> <span class="title function_">ZxingUtil</span><span class="params">()</span> &#123;&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">/**</span></span><br><span class="line"><span class="comment">	 * 生成二维码图片</span></span><br><span class="line"><span class="comment">	 * <span class="doctag">@author</span> Herman.Xiong</span></span><br><span class="line"><span class="comment">	 * <span class="doctag">@date</span> 2015-7-10 上午10:26:33</span></span><br><span class="line"><span class="comment">	 * <span class="doctag">@param</span> file</span></span><br><span class="line"><span class="comment">	 * <span class="doctag">@throws</span> WriterException</span></span><br><span class="line"><span class="comment">	 * <span class="doctag">@throws</span> IOException</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">createQRCode</span><span class="params">(String data, File file)</span></span><br><span class="line">			<span class="keyword">throws</span> WriterException, IOException &#123;</span><br><span class="line">		MatrixToImageWriter.writeToFile(<span class="keyword">new</span> <span class="title class_">MultiFormatWriter</span>().encode(</span><br><span class="line">				<span class="keyword">new</span> <span class="title class_">String</span>(data.getBytes(charset), charset),</span><br><span class="line">				BarcodeFormat.QR_CODE, size, size, encodeMap), format, file);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">/**</span></span><br><span class="line"><span class="comment">	 * 读取二维码信息</span></span><br><span class="line"><span class="comment">	 * <span class="doctag">@author</span> Herman.Xiong</span></span><br><span class="line"><span class="comment">	 * <span class="doctag">@date</span> 2015-7-10 上午10:25:58</span></span><br><span class="line"><span class="comment">	 * <span class="doctag">@param</span> filePath 二维码图片路径</span></span><br><span class="line"><span class="comment">	 * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">	 * <span class="doctag">@throws</span> FileNotFoundException</span></span><br><span class="line"><span class="comment">	 * <span class="doctag">@throws</span> IOException</span></span><br><span class="line"><span class="comment">	 * <span class="doctag">@throws</span> NotFoundException</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> String <span class="title function_">readQRCode</span><span class="params">(String filePath)</span></span><br><span class="line">			<span class="keyword">throws</span> FileNotFoundException, IOException, NotFoundException &#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">MultiFormatReader</span>().decode(<span class="keyword">new</span> <span class="title class_">BinaryBitmap</span>(<span class="keyword">new</span> <span class="title class_">HybridBinarizer</span>(<span class="keyword">new</span> <span class="title class_">BufferedImageLuminanceSource</span>(ImageIO.read(<span class="keyword">new</span> <span class="title class_">FileInputStream</span>(filePath))))),decodeMap).getText();</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String [] arg)</span>&#123;</span><br><span class="line">		<span class="keyword">try</span>&#123;</span><br><span class="line">			createQRCode(<span class="string">&quot;http://blog.csdn.net/xmtblog&quot;</span>, <span class="keyword">new</span> <span class="title class_">File</span>(<span class="string">&quot;D:\\111.png&quot;</span>));</span><br><span class="line">			System.out.println(readQRCode(<span class="string">&quot;D:\\111.png&quot;</span>));</span><br><span class="line">			<span class="comment">//源码下载地址：http://download.csdn.net/detail/xmt1139057136/8886473</span></span><br><span class="line">			<span class="comment">//欢迎大家关注我的博客！如有疑问,请加QQ群：454796847共同学习！</span></span><br><span class="line">		&#125;<span class="keyword">catch</span>(Exception e)&#123;</span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">叶落花开</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://www.yeluohuakai.com/posts/2018/01/bad81be1.html">https://www.yeluohuakai.com/posts/2018/01/bad81be1.html</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://www.yeluohuakai.com" target="_blank">叶落花开的博客</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Java/">Java</a><a class="post-meta__tags" href="/tags/zxing/">zxing</a><a class="post-meta__tags" href="/tags/%E4%BA%8C%E7%BB%B4%E7%A0%81/">二维码</a></div><div class="post_share"><div class="social-share" data-image="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://fastly.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/posts/2018/03/30490.html"><img class="prev-cover" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">Corba开发总结(一)---JacORB的安装与编译</div></div></a></div><div class="next-post pull-right"><a href="/posts/2012/08/fefafa71.html"><img class="next-cover" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">JAVA类初始化顺序</div></div></a></div></nav><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/loading.gif" data-original="/img/ava.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">叶落花开</div><div class="author-info__description">持续学习，记录后端技术、web技术，以及对认知、技术变现的思考。</div></div><div class="card-info-data is-center"><div class="card-info-data-item"><a href="/archives/"><div class="headline">文章</div><div class="length-num">60</div></a></div><div class="card-info-data-item"><a href="/tags/"><div class="headline">标签</div><div class="length-num">52</div></a></div><div class="card-info-data-item"><a href="/categories/"><div class="headline">分类</div><div class="length-num">13</div></a></div></div></div><div class="card-widget user-map" id="user-map"><div class="item-headline"><i class="fas fa-link"></i><span>友情链接</span></div><div class="item-content"><ul class="entry"><li><a href="/bszs" title="各大高校博士招生信息">各大高校博士招生信息</a></li><li><a target="_blank" rel="noopener" href="https://xiyou4you.us/r/?s=20079253" title="如何科学上网">如何科学上网</a></li></ul></div></div><div class="sticky_layout"></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By 叶落花开</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">本地搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://fastly.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>(()=>{
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'freecloud-0gzubvbebcf38cf6',
+      region: '',
+      onCommentLoaded: function () {
+        btf.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.vemoji)'))
+      }
+    }, null))
+  }
+
+  const getCount = () => {
+    twikoo.getCommentsCount({
+      envId: 'freecloud-0gzubvbebcf38cf6',
+      region: '',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(function (res) {
+      document.getElementById('twikoo-count').innerText = res[0].count
+    }).catch(function (err) {
+      console.error(err);
+    });
+  }
+
+  const runFn = () => {
+    init()
+    
+  }
+
+  const loadTwikoo = () => {
+    if (typeof twikoo === 'object') {
+      setTimeout(runFn,0)
+      return
+    } 
+    getScript('https://fastly.jsdelivr.net/npm/twikoo/dist/twikoo.all.min.js').then(runFn)
+  }
+
+  if ('Twikoo' === 'Twikoo' || !false) {
+    if (false) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo()
+  } else {
+    window.loadOtherComment = () => {
+      loadTwikoo()
+    }
+  }
+})()</script></div><script id="canvas_nest" defer="defer" color="0,0,255" opacity="0.7" zIndex="-1" count="99" mobile="false" src="https://fastly.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-nest.min.js"></script></div>
+        <style>
+            [bg-lazy] {
+                background-image: none !important;
+                background-color: #eee !important;
+            }
+        </style>
+        <script>
+            window.imageLazyLoadSetting = {
+                isSPA: false,
+                preloadRatio: 1,
+                processImages: null,
+            };
+        </script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script><script>!function(r){r.imageLazyLoadSetting.processImages=t;var e=r.imageLazyLoadSetting.isSPA,n=r.imageLazyLoadSetting.preloadRatio||1,c=a();function a(){var t=Array.prototype.slice.call(document.querySelectorAll("img[data-original]")),e=Array.prototype.slice.call(document.querySelectorAll("[bg-lazy]"));return t.concat(e)}function t(){e&&(c=a());for(var t,o=0;o<c.length;o++)0<=(t=(t=c[o]).getBoundingClientRect()).bottom&&0<=t.left&&t.top<=(r.innerHeight*n||document.documentElement.clientHeight*n)&&function(){var t,e,n,a,i=c[o];e=function(){c=c.filter(function(t){return i!==t}),r.imageLazyLoadSetting.onImageLoaded&&r.imageLazyLoadSetting.onImageLoaded(i)},(t=i).hasAttribute("bg-lazy")?(t.removeAttribute("bg-lazy"),e&&e()):(n=new Image,a=t.getAttribute("data-original"),n.onload=function(){t.src=a,t.removeAttribute("data-original"),e&&e()},t.src!==a&&(n.src=a))}()}function i(){clearTimeout(t.tId),t.tId=setTimeout(t,500)}t(),document.addEventListener("scroll",i),r.addEventListener("resize",i),r.addEventListener("orientationchange",i)}(this);</script></body></html>

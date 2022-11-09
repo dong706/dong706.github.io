@@ -1,0 +1,274 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>Java中使用xmlbeans解析xml开发总结 | 叶落花开的博客</title><meta name="keywords" content="Java,xml,xmlbeans"><meta name="author" content="叶落花开"><meta name="copyright" content="叶落花开"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="最近在工作中用到了webservice，需要解析webservice接口返回的各种xml格式报文。xml的解析一向是很伤脑筋的，而Java语言里解析xml的传统方式：dom解析和sax解析，对我而言实在是太过于死板僵硬望之却步，多方研究后在本项目中采用了apache提供的xml解析解决方案：xmlbeans，特在此总结xmlbeans的使用方法。 一、关于xmlbeans    xmlbea">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java中使用xmlbeans解析xml开发总结">
+<meta property="og:url" content="https://www.yeluohuakai.com/posts/2018/04/472be5ab.html">
+<meta property="og:site_name" content="叶落花开的博客">
+<meta property="og:description" content="最近在工作中用到了webservice，需要解析webservice接口返回的各种xml格式报文。xml的解析一向是很伤脑筋的，而Java语言里解析xml的传统方式：dom解析和sax解析，对我而言实在是太过于死板僵硬望之却步，多方研究后在本项目中采用了apache提供的xml解析解决方案：xmlbeans，特在此总结xmlbeans的使用方法。 一、关于xmlbeans    xmlbea">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2018-04-17T12:16:00.000Z">
+<meta property="article:modified_time" content="2022-11-09T12:40:54.351Z">
+<meta property="article:author" content="叶落花开">
+<meta property="article:tag" content="Java">
+<meta property="article:tag" content="xml">
+<meta property="article:tag" content="xmlbeans">
+<meta name="twitter:card" content="summary"><link rel="shortcut icon" href="/favicon.png"><link rel="canonical" href="https://www.yeluohuakai.com/posts/2018/04/472be5ab"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//www.google-analytics.com" crossorigin=""/><link rel="preconnect" href="//hm.baidu.com"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?2f8a615b51582cf280e790200f3527e6";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script><script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-LB2ZMBR4ZN"></script><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-LB2ZMBR4ZN');
+</script><script>(function(){
+var el = document.createElement("script");
+el.src = "https://lf1-cdn-tos.bytegoofy.com/goofy/ttzz/push.js?18da2b25537eeea1b5c8819ad9a03fc2279abb7e5ff9fdb01a2409cbd77b8f1db3e414cba65c376eba389ba56d9ee0846cad2206506a6529fe6ee21a7373effb434c445cf6444b10ea9756ea44e128a6";
+el.id = "ttzz";
+var s = document.getElementsByTagName("script")[0];
+s.parentNode.insertBefore(el, s);
+})(window)
+</script><script async="async" crossorigin="anonymous" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6673854567363222"></script><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":false,"highlightLang":false,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://fastly.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.js',
+      css: 'https://fastly.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Java中使用xmlbeans解析xml开发总结',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2022-11-09 20:40:54'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/index_code.css"><meta name="generator" content="Hexo 6.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/loading.gif" data-original="/img/ava.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data is-center"><div class="data-item"><a href="/archives/"><div class="headline">文章</div><div class="length-num">60</div></a></div><div class="data-item"><a href="/tags/"><div class="headline">标签</div><div class="length-num">52</div></a></div><div class="data-item"><a href="/categories/"><div class="headline">分类</div><div class="length-num">13</div></a></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" target="_blank" rel="noopener" href="https://support.qq.com/product/377343"><i class="fa-fw fa fa-paper-plane"></i><span> 反馈</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">叶落花开的博客</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" target="_blank" rel="noopener" href="https://support.qq.com/product/377343"><i class="fa-fw fa fa-paper-plane"></i><span> 反馈</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">Java中使用xmlbeans解析xml开发总结</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2018-04-17T12:16:00.000Z" title="发表于 2018-04-17 20:16:00">2018-04-17</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-11-09T12:40:54.351Z" title="更新于 2022-11-09 20:40:54">2022-11-09</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%9C%8D%E5%8A%A1%E7%AB%AF%E5%BC%80%E5%8F%91/">服务端开发</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span id="" data-flag-title="Java中使用xmlbeans解析xml开发总结"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="twikoo_visitors"></span></span></div></div></div><article class="post-content" id="article-container"><p>   最近在工作中用到了webservice，需要解析webservice接口返回的各种xml格式报文。xml的解析一向是很伤脑筋的，而Java语言里解析xml的传统方式：dom解析和sax解析，对我而言实在是太过于死板僵硬望之却步，多方研究后在本项目中采用了apache提供的xml解析解决方案：xmlbeans，特在此总结xmlbeans的使用方法。</p>
+<p><strong>一、关于xmlbeans</strong></p>
+<p>   xmlbeans通过利用XML Schema的功能来提供结构化和约束性数据类型，开发者可以像Java对象那样直接访问XML文档。通过使用XMLBeans，Java开发者不需要花时间来编写导入/导出和有效性检验代码。<br>   <span id="more"></span></p>
+<p><strong>二、下载配置xmlbeans</strong></p>
+<p>这里我选择的是xmlbeans-2.4.0</p>
+<p>a. 下载xmlbeans，从apache xmlbeans官网 <a target="_blank" rel="noopener" href="http://xmlbeans.apache.org/">http://xmlbeans.apache.org/</a>  或者 csdn链接：<a target="_blank" rel="noopener" href="https://download.csdn.net/download/dong707/10379022">下载xmlbeans-2.4.0</a>。假定下载到C:\xmlbeans-2.4.0<br>b. 设置环境变量XMLBEANS_HOME= C:\xmlbeans-2.4.0<br>c. 在path中加入%XMLBEANS_HOME%\bin</p>
+<p><strong>三、生成XML Schema文件</strong></p>
+<p>   什么是XML Schema文件? 正常情况下,每个XML文件都有一个Schema文件,XML Schema文件是一个XML的约束文件,它定义了 XML文件的结构和元素.以及对元素和结构的约束. 通俗地讲,如果说XML文件是数据库里的记录,那么Schema就是表结构定义.  <br>  <br>   为什么需要这个文件? xmlbeans需要通过这个文件知道一个XML文件的结构以及约束,比如数据类型等. 利用这个Schema文 件,xmlbeans将会产生一系列相关的Java Classes来实现对XML的操作。</p>
+<p>   虽然有工具可以通过xml直接生成XML Schema文件，但是这种直接生成的通常不能直接使用，需要修改后才能使用。推荐在理解xml结构的基础上用Eclipse图形化界面操作直接生成XML Schema文件，方便快捷。</p>
+<p>   以登录接口返回xml为例：</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=<span class="string">&quot;1.0&quot;</span> encoding=<span class="string">&quot;utf-8&quot;</span>?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">LoginResponse</span> <span class="attr">xmlns</span>=<span class="string">&quot;http://tempuri.org/&quot;</span>&gt;</span>  </span><br><span class="line">  <span class="tag">&lt;<span class="name">LoginResult</span>&gt;</span> </span><br><span class="line">    <span class="tag">&lt;<span class="name">SHINE</span>&gt;</span> </span><br><span class="line">      <span class="tag">&lt;<span class="name">RESULT</span>&gt;</span> </span><br><span class="line">        <span class="tag">&lt;<span class="name">RESULTCODE</span>&gt;</span>0<span class="tag">&lt;/<span class="name">RESULTCODE</span>&gt;</span>  </span><br><span class="line">        <span class="tag">&lt;<span class="name">RESULTMSG</span>&gt;</span>操作成功<span class="tag">&lt;/<span class="name">RESULTMSG</span>&gt;</span> </span><br><span class="line">      <span class="tag">&lt;/<span class="name">RESULT</span>&gt;</span>  </span><br><span class="line">      <span class="tag">&lt;<span class="name">QUEUETYPELIST</span>&gt;</span> </span><br><span class="line">        <span class="tag">&lt;<span class="name">QUEUE_TYPE</span>&gt;</span> </span><br><span class="line">          <span class="tag">&lt;<span class="name">SOURCE_ID</span>&gt;</span>001001<span class="tag">&lt;/<span class="name">SOURCE_ID</span>&gt;</span>  </span><br><span class="line">          <span class="tag">&lt;<span class="name">DISPLAY_NAME</span>&gt;</span>第五房间<span class="tag">&lt;/<span class="name">DISPLAY_NAME</span>&gt;</span>  </span><br><span class="line">          <span class="tag">&lt;<span class="name">NAME</span>&gt;</span>第五房间<span class="tag">&lt;/<span class="name">NAME</span>&gt;</span>  </span><br><span class="line">          <span class="tag">&lt;<span class="name">QUEUE_TYPE_ID</span>&gt;</span>7<span class="tag">&lt;/<span class="name">QUEUE_TYPE_ID</span>&gt;</span> </span><br><span class="line">        <span class="tag">&lt;/<span class="name">QUEUE_TYPE</span>&gt;</span> </span><br><span class="line">      <span class="tag">&lt;/<span class="name">QUEUETYPELIST</span>&gt;</span> </span><br><span class="line">    <span class="tag">&lt;/<span class="name">SHINE</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">LoginResult</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">LoginResponse</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>根据上述xml，写出如下XML Schema文件：</p>
+<img src="/img/loading.gif" data-original="https://fastly.jsdelivr.net/gh/dong706/dong706.github.io@latest/post-assets/Java中使用xmlbeans解析xml开发总结/hexo7.png" alt>
+
+<p>LoginResponse是根节点，其中最关键的SHINEConfig的配置如下：</p>
+<img src="/img/loading.gif" data-original="https://fastly.jsdelivr.net/gh/dong706/dong706.github.io@latest/post-assets/Java中使用xmlbeans解析xml开发总结/hexo8.png" alt>
+
+<p>这里定义的数据约束如下：RESULTConfig的约束是[1..1],QUEUETYPELISTConfig的约束是[0..1]，QUEUE_TYPEConfig的约束是[1…*]。这里是由于在这个xml结构里RESULT元素只会出现一次，QUEUETYPELIST元素在有QUENE_TYPE数据时才会出现否则不出现，QUENE_TYPE元素至少出现一次。</p>
+<p>CallLogin.xsd文件内容如下:</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=<span class="string">&quot;1.0&quot;</span> encoding=<span class="string">&quot;UTF-8&quot;</span>?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">schema</span> <span class="attr">xmlns</span>=<span class="string">&quot;http://www.w3.org/2001/XMLSchema&quot;</span> <span class="attr">targetNamespace</span>=<span class="string">&quot;http://webservice.test.com/CallLogin&quot;</span> <span class="attr">xmlns:tns</span>=<span class="string">&quot;http://webservice.test.com/CallLogin&quot;</span> <span class="attr">elementFormDefault</span>=<span class="string">&quot;qualified&quot;</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">complexType</span> <span class="attr">name</span>=<span class="string">&quot;SHINEConfig&quot;</span>&gt;</span></span><br><span class="line">    	<span class="tag">&lt;<span class="name">sequence</span>&gt;</span></span><br><span class="line">    		<span class="tag">&lt;<span class="name">element</span> <span class="attr">name</span>=<span class="string">&quot;RESULT&quot;</span> <span class="attr">type</span>=<span class="string">&quot;tns:RESULTConfig&quot;</span> <span class="attr">maxOccurs</span>=<span class="string">&quot;1&quot;</span></span></span><br><span class="line"><span class="tag">    			<span class="attr">minOccurs</span>=<span class="string">&quot;1&quot;</span>&gt;</span></span><br><span class="line">    		<span class="tag">&lt;/<span class="name">element</span>&gt;</span></span><br><span class="line">    		<span class="tag">&lt;<span class="name">element</span> <span class="attr">name</span>=<span class="string">&quot;QUEUETYPELIST&quot;</span></span></span><br><span class="line"><span class="tag">    			<span class="attr">type</span>=<span class="string">&quot;tns:QUEUETYPELISTConfig&quot;</span> <span class="attr">maxOccurs</span>=<span class="string">&quot;1&quot;</span> <span class="attr">minOccurs</span>=<span class="string">&quot;0&quot;</span>&gt;</span></span><br><span class="line">    		<span class="tag">&lt;/<span class="name">element</span>&gt;</span></span><br><span class="line">    	<span class="tag">&lt;/<span class="name">sequence</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">complexType</span>&gt;</span></span><br><span class="line">    </span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">complexType</span> <span class="attr">name</span>=<span class="string">&quot;RESULTConfig&quot;</span>&gt;</span></span><br><span class="line">    	<span class="tag">&lt;<span class="name">sequence</span>&gt;</span></span><br><span class="line">    		<span class="tag">&lt;<span class="name">element</span> <span class="attr">name</span>=<span class="string">&quot;RESULTCODE&quot;</span> <span class="attr">type</span>=<span class="string">&quot;string&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">element</span>&gt;</span></span><br><span class="line">    		<span class="tag">&lt;<span class="name">element</span> <span class="attr">name</span>=<span class="string">&quot;RESULTMSG&quot;</span> <span class="attr">type</span>=<span class="string">&quot;string&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">element</span>&gt;</span></span><br><span class="line">    	<span class="tag">&lt;/<span class="name">sequence</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">complexType</span>&gt;</span></span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    <span class="tag">&lt;<span class="name">element</span> <span class="attr">name</span>=<span class="string">&quot;LoginResponse&quot;</span> <span class="attr">type</span>=<span class="string">&quot;tns:LoginResponseConfig&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">element</span>&gt;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">complexType</span> <span class="attr">name</span>=<span class="string">&quot;LoginResultConfig&quot;</span>&gt;</span></span><br><span class="line">    	<span class="tag">&lt;<span class="name">sequence</span>&gt;</span></span><br><span class="line">    		<span class="tag">&lt;<span class="name">element</span> <span class="attr">name</span>=<span class="string">&quot;SHINE&quot;</span> <span class="attr">type</span>=<span class="string">&quot;tns:SHINEConfig&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">element</span>&gt;</span></span><br><span class="line">    	<span class="tag">&lt;/<span class="name">sequence</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">complexType</span>&gt;</span></span><br><span class="line">    </span><br><span class="line">    <span class="tag">&lt;<span class="name">complexType</span> <span class="attr">name</span>=<span class="string">&quot;QUEUETYPELISTConfig&quot;</span>&gt;</span></span><br><span class="line">    	<span class="tag">&lt;<span class="name">sequence</span>&gt;</span></span><br><span class="line">    		<span class="tag">&lt;<span class="name">element</span> <span class="attr">name</span>=<span class="string">&quot;QUEUE_TYPE&quot;</span> <span class="attr">type</span>=<span class="string">&quot;tns:QUEUE_TYPEConfig&quot;</span> <span class="attr">maxOccurs</span>=<span class="string">&quot;unbounded&quot;</span> <span class="attr">minOccurs</span>=<span class="string">&quot;1&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">element</span>&gt;</span></span><br><span class="line">    	<span class="tag">&lt;/<span class="name">sequence</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">complexType</span>&gt;</span></span><br><span class="line">    </span><br><span class="line">    <span class="tag">&lt;<span class="name">complexType</span> <span class="attr">name</span>=<span class="string">&quot;QUEUE_TYPEConfig&quot;</span>&gt;</span></span><br><span class="line">    	<span class="tag">&lt;<span class="name">sequence</span>&gt;</span></span><br><span class="line">    		<span class="tag">&lt;<span class="name">element</span> <span class="attr">name</span>=<span class="string">&quot;SOURCE_ID&quot;</span> <span class="attr">type</span>=<span class="string">&quot;string&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">element</span>&gt;</span></span><br><span class="line">    		<span class="tag">&lt;<span class="name">element</span> <span class="attr">name</span>=<span class="string">&quot;DISPLAY_NAME&quot;</span> <span class="attr">type</span>=<span class="string">&quot;string&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">element</span>&gt;</span></span><br><span class="line">    		<span class="tag">&lt;<span class="name">element</span> <span class="attr">name</span>=<span class="string">&quot;NAME&quot;</span> <span class="attr">type</span>=<span class="string">&quot;string&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">element</span>&gt;</span></span><br><span class="line">    		<span class="tag">&lt;<span class="name">element</span> <span class="attr">name</span>=<span class="string">&quot;QUEUE_TYPE_ID&quot;</span> <span class="attr">type</span>=<span class="string">&quot;string&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">element</span>&gt;</span></span><br><span class="line">    	<span class="tag">&lt;/<span class="name">sequence</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">complexType</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">complexType</span> <span class="attr">name</span>=<span class="string">&quot;LoginResponseConfig&quot;</span>&gt;</span></span><br><span class="line">    	<span class="tag">&lt;<span class="name">sequence</span>&gt;</span></span><br><span class="line">    		<span class="tag">&lt;<span class="name">element</span> <span class="attr">name</span>=<span class="string">&quot;LoginResult&quot;</span> <span class="attr">type</span>=<span class="string">&quot;tns:LoginResultConfig&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">element</span>&gt;</span></span><br><span class="line">    	<span class="tag">&lt;/<span class="name">sequence</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">complexType</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">schema</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>四、利用scomp命令来编译XML Schema文件生成jar</strong></p>
+<p>   scomp是xmlbeans提供的一个编译工具,它在bin的目录下. 通过这个工具,  <br>       我们可以将以上的Schema文件生成Java Classes.  <br>       scomp的语法如下:-    </p>
+<p>       scomp [options] [dirs]* [schemaFile.xsd]* [service.wsdl]* [config.xsdconfig]*  <br>   <br>       主要参数说明:  <br>       -src [dir]                  – 生成的Java Classes存放目录  <br>       -srconly                  – 不编译Java Classes,不产生Jar文件  <br>       -out [jarFileName]  – 生成的Jar文件,缺省是xmltypes.jar  <br>       -compiler                 – Java编译器的路径,即Javac的位置  <br>       schemaFile.xsd    – XML Schema文件位置  <br>       config.xsdconfig   – xsdconfig文件的位置, 这个文件主要用来制定生成的Java Class 的一些文件名规则和Package的名称 </p>
+<p>命令行中运行:   </p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">scomp -out c:\xsd\CallSystem.jar c:\xsd\*.xsd  -compiler <span class="string">&quot;C:\Program Files\Java\jdk1.7.0_80\bin\javac&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>这个命令行的意思是告诉scomp在C:\xsd目录生成CallSystem.jar, 要解析的Schema文件是C:\xsd目录下的所有xsd。</p>
+<p><strong>注：这是一个很实用的批量打包的命令，可以将多个xsd文件生成的java class打包进一个jar里。单独编译某个xsd的话直接在scope命令里指定xsd文件名即可。</strong></p>
+<p>执行结果如下：</p>
+<img src="/img/loading.gif" data-original="https://fastly.jsdelivr.net/gh/dong706/dong706.github.io@latest/post-assets/Java中使用xmlbeans解析xml开发总结/hexo9.png" alt>
+
+<p>scomp命令还可以跟上xsdconfig文件，用于配置生成的class的package。（本例中在xsd中文件中已根据包路径配置了命名空间<a target="_blank" rel="noopener" href="http://webservice.test.com/CallLogin%EF%BC%8C%E9%82%A3%E4%B9%88%E7%94%9F%E6%88%90%E7%9A%84jar%E9%87%8C%E7%9A%84%E5%8C%85%E8%B7%AF%E5%BE%84%E5%B0%B1%E6%98%AFcom.test.webservice.callLogin%EF%BC%8C%E6%89%80%E4%BB%A5%E6%AD%A4%E5%A4%84%E5%BF%BD%E7%95%A5%E4%BA%86xsdconfig%E9%85%8D%E7%BD%AE%E3%80%82%EF%BC%89">http://webservice.test.com/CallLogin，那么生成的jar里的包路径就是com.test.webservice.callLogin，所以此处忽略了xsdconfig配置。）</a>  </p>
+<p>config.xsdconfig内容如下:  </p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">xb:config</span> <span class="attr">xmlns:xb</span>=<span class="string">&quot;http://xml.apache.org/xmlbeans/2004/02/xbean/config&quot;</span>&gt;</span>  </span><br><span class="line">  <span class="tag">&lt;<span class="name">xb:namespace</span>&gt;</span>  </span><br><span class="line">     <span class="tag">&lt;<span class="name">xb:package</span>&gt;</span>com.test<span class="tag">&lt;/<span class="name">xb:package</span>&gt;</span>  </span><br><span class="line">  <span class="tag">&lt;/<span class="name">xb:namespace</span>&gt;</span>  </span><br><span class="line"><span class="tag">&lt;/<span class="name">xb:config</span>&gt;</span> </span><br></pre></td></tr></table></figure>
+
+<p>将xmlbeans/lib下的包和生成的CallSystem.jar包加入到Project的ClassPath中</p>
+<p>pom.xml配置如下：</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.xmlbeans<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>xmlbeans<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.4.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>五、Java程序中读取/构造xml</strong></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.test.webservice.test;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.test.webservice.callLogin.LoginResponseConfig;</span><br><span class="line"><span class="keyword">import</span> com.test.webservice.callLogin.LoginResponseDocument;</span><br><span class="line"><span class="keyword">import</span> com.test.webservice.callLogin.LoginResultConfig;</span><br><span class="line"><span class="keyword">import</span> com.test.webservice.callLogin.QUEUETYPEConfig;</span><br><span class="line"><span class="keyword">import</span> com.test.webservice.callLogin.QUEUETYPELISTConfig;</span><br><span class="line"><span class="keyword">import</span> com.test.webservice.callLogin.RESULTConfig;</span><br><span class="line"><span class="keyword">import</span> com.test.webservice.callLogin.SHINEConfig;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">TestCallLogin</span> &#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">		String xml=<span class="string">&quot;&lt;LoginResponse xmlns=\&quot;http://tempuri.org/\&quot;&gt;&quot;</span></span><br><span class="line">				+<span class="string">&quot;	&lt;LoginResult&gt;&quot;</span></span><br><span class="line">				+<span class="string">&quot;	&lt;SHINE&gt;&quot;</span></span><br><span class="line">				+<span class="string">&quot;  &lt;RESULT&gt;&quot;</span></span><br><span class="line">				+<span class="string">&quot;    &lt;RESULTCODE&gt;0&lt;/RESULTCODE&gt;&quot;</span></span><br><span class="line">				+<span class="string">&quot;    &lt;RESULTMSG&gt;操作成功&lt;/RESULTMSG&gt;&quot;</span></span><br><span class="line">				+<span class="string">&quot;  &lt;/RESULT&gt;&quot;</span></span><br><span class="line">				+<span class="string">&quot;  &lt;QUEUETYPELIST&gt;&quot;</span></span><br><span class="line">				+<span class="string">&quot;    &lt;QUEUE_TYPE&gt;&quot;</span></span><br><span class="line">				+<span class="string">&quot;      &lt;SOURCE_ID&gt;001001&lt;/SOURCE_ID&gt;&quot;</span></span><br><span class="line">				+<span class="string">&quot;      &lt;DISPLAY_NAME&gt; 第五房间&lt;/DISPLAY_NAME&gt;&quot;</span></span><br><span class="line">				+<span class="string">&quot;      &lt;NAME&gt; 第五房间&lt;/NAME&gt;&quot;</span></span><br><span class="line">				+<span class="string">&quot;      &lt;QUEUE_TYPE_ID&gt;7&lt;/QUEUE_TYPE_ID&gt;&quot;</span></span><br><span class="line">				+<span class="string">&quot;    &lt;/QUEUE_TYPE&gt;&quot;</span></span><br><span class="line">				+<span class="string">&quot;    &lt;QUEUE_TYPE&gt;&quot;</span></span><br><span class="line">				+<span class="string">&quot;      &lt;SOURCE_ID&gt;001002&lt;/SOURCE_ID&gt;&quot;</span></span><br><span class="line">				+<span class="string">&quot;      &lt;DISPLAY_NAME&gt; 第六房间&lt;/DISPLAY_NAME&gt;&quot;</span></span><br><span class="line">				+<span class="string">&quot;      &lt;NAME&gt; 第六房间&lt;/NAME&gt;&quot;</span></span><br><span class="line">				+<span class="string">&quot;      &lt;QUEUE_TYPE_ID&gt;8&lt;/QUEUE_TYPE_ID&gt;&quot;</span></span><br><span class="line">				+<span class="string">&quot;    &lt;/QUEUE_TYPE&gt;&quot;</span></span><br><span class="line">				+<span class="string">&quot;  &lt;/QUEUETYPELIST&gt;&quot;</span></span><br><span class="line">				+<span class="string">&quot;&lt;/SHINE&gt;&lt;/LoginResult&gt;&lt;/LoginResponse&gt;&quot;</span>;</span><br><span class="line">		</span><br><span class="line">		<span class="type">LoginResponseDocument</span> <span class="variable">loginResponseDocument</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line">		<span class="keyword">try</span> &#123;</span><br><span class="line">			</span><br><span class="line">			xml=xml.replace(<span class="string">&quot;http://tempuri.org/&quot;</span>, <span class="string">&quot;http://webservice.test.com/CallLogin&quot;</span>);</span><br><span class="line">			</span><br><span class="line">			loginResponseDocument=LoginResponseDocument.Factory.parse(xml);</span><br><span class="line">			</span><br><span class="line">			LoginResponseConfig loginResponseConfig=loginResponseDocument.getLoginResponse();</span><br><span class="line">			</span><br><span class="line">			LoginResultConfig callNextResultConfig=loginResponseConfig.getLoginResult();</span><br><span class="line">			</span><br><span class="line">			SHINEConfig shineConfig=callNextResultConfig.getSHINE();</span><br><span class="line">			</span><br><span class="line">			RESULTConfig resultConfig=shineConfig.getRESULT();</span><br><span class="line">			</span><br><span class="line">			System.out.println(<span class="string">&quot;RESULTCODE():&quot;</span>+resultConfig.getRESULTCODE());</span><br><span class="line">			System.out.println(<span class="string">&quot;RESULTMSG():&quot;</span>+resultConfig.getRESULTMSG());</span><br><span class="line">			</span><br><span class="line">			QUEUETYPELISTConfig queuetypelistConfig=shineConfig.getQUEUETYPELIST();</span><br><span class="line">			<span class="keyword">if</span>(queuetypelistConfig!=<span class="literal">null</span>)&#123;</span><br><span class="line">				QUEUETYPEConfig[] queuetypeConfigs= queuetypelistConfig.getQUEUETYPEArray();</span><br><span class="line">				<span class="keyword">for</span> (QUEUETYPEConfig queuetypeConfig : queuetypeConfigs) &#123;</span><br><span class="line">					System.out.print(queuetypeConfig.getSOURCEID()+<span class="string">&quot;\t&quot;</span>+queuetypeConfig.getDISPLAYNAME()+<span class="string">&quot;\t&quot;</span></span><br><span class="line">							+queuetypeConfig.getNAME()+<span class="string">&quot;\t&quot;</span>+queuetypeConfig.getQUEUETYPEID()+<span class="string">&quot;\r\n&quot;</span>);</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;<span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">			<span class="comment">// TODO 自动生成 catch 块</span></span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>注：其中有xml=xml.replace(“<a target="_blank" rel="noopener" href="http://tempuri.org/&quot;">http://tempuri.org/&quot;</a>, “<a target="_blank" rel="noopener" href="http://webservice.test.com/CallLogin&quot;)%E8%BF%99%E4%B9%88%E4%B8%80%E6%AE%B5%E4%BB%A3%E7%A0%81%EF%BC%8C%E8%BF%99%E6%98%AF%E7%94%B1%E4%BA%8E%E5%A4%9A%E4%B8%AAwebservice%E6%8E%A5%E5%8F%A3%E8%BF%94%E5%9B%9E%E7%9A%84xml%E5%91%BD%E5%90%8D%E7%A9%BA%E9%97%B4%E9%83%BD%E6%98%AF">http://webservice.test.com/CallLogin&quot;)这么一段代码，这是由于多个webservice接口返回的xml命名空间都是</a> <a target="_blank" rel="noopener" href="http://tempuri.org/">http://tempuri.org/</a> ，但是编写xsd时必须为各个xsd指定不同的命名空间防止生成jar包里存在冲突。所以在拿到webservice接口返回的xml时，必须把原始的命名空间<a target="_blank" rel="noopener" href="http://tempuri.org/%E8%BD%AC%E6%8D%A2%E6%88%90xsd%E4%B8%AD%E5%AE%9E%E9%99%85%E7%9A%84%E5%91%BD%E5%90%8D%E7%A9%BA%E9%97%B4http://webservice.test.com/CallLogin%E6%89%8D%E8%83%BD%E8%A2%AB%E6%AD%A3%E5%B8%B8%E8%A7%A3%E6%9E%90%E3%80%82">http://tempuri.org/转换成xsd中实际的命名空间http://webservice.test.com/CallLogin才能被正常解析。</a></p>
+<p>执行结果如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">RESULTCODE():0</span><br><span class="line">RESULTMSG():操作成功</span><br><span class="line">001001	 第五房间	 第五房间	7</span><br><span class="line">001002	 第六房间	 第六房间	8</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>   可以看到引入xmlbeans根据xsd文件生成的jar包后，就能轻轻松松的以访问对象的方式去访问xml了。这里我只写了读xml的操作，写xml操作其实也是一样的简单，后续有时间我会继续更新。</p>
+<p>**五、结束语  **   </p>
+<p>   xmlbeans能帮助我们轻易读写XML,这将有助于我们降低XML的学习和使用,有了这个基础,开发人员将为学习更多地XML相关技术和Web Services,JMS等其他J2EE技术打下良好地基础。</p>
+<p>   欢迎共同探讨。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">叶落花开</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://www.yeluohuakai.com/posts/2018/04/472be5ab.html">https://www.yeluohuakai.com/posts/2018/04/472be5ab.html</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://www.yeluohuakai.com" target="_blank">叶落花开的博客</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Java/">Java</a><a class="post-meta__tags" href="/tags/xml/">xml</a><a class="post-meta__tags" href="/tags/xmlbeans/">xmlbeans</a></div><div class="post_share"><div class="social-share" data-image="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://fastly.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/posts/2018/04/aadd6311.html"><img class="prev-cover" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">SpringMVC整合cxf webservice出现提示No service was found解决办法</div></div></a></div><div class="next-post pull-right"><a href="/posts/2018/03/15547.html"><img class="next-cover" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Corba开发总结(六)---常见问题解决办法</div></div></a></div></nav><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/loading.gif" data-original="/img/ava.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">叶落花开</div><div class="author-info__description">持续学习，记录后端技术、web技术，以及对认知、技术变现的思考。</div></div><div class="card-info-data is-center"><div class="card-info-data-item"><a href="/archives/"><div class="headline">文章</div><div class="length-num">60</div></a></div><div class="card-info-data-item"><a href="/tags/"><div class="headline">标签</div><div class="length-num">52</div></a></div><div class="card-info-data-item"><a href="/categories/"><div class="headline">分类</div><div class="length-num">13</div></a></div></div></div><div class="card-widget user-map" id="user-map"><div class="item-headline"><i class="fas fa-link"></i><span>友情链接</span></div><div class="item-content"><ul class="entry"><li><a href="/bszs" title="各大高校博士招生信息">各大高校博士招生信息</a></li><li><a target="_blank" rel="noopener" href="https://xiyou4you.us/r/?s=20079253" title="如何科学上网">如何科学上网</a></li></ul></div></div><div class="sticky_layout"></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By 叶落花开</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">本地搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://fastly.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>(()=>{
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'freecloud-0gzubvbebcf38cf6',
+      region: '',
+      onCommentLoaded: function () {
+        btf.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.vemoji)'))
+      }
+    }, null))
+  }
+
+  const getCount = () => {
+    twikoo.getCommentsCount({
+      envId: 'freecloud-0gzubvbebcf38cf6',
+      region: '',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(function (res) {
+      document.getElementById('twikoo-count').innerText = res[0].count
+    }).catch(function (err) {
+      console.error(err);
+    });
+  }
+
+  const runFn = () => {
+    init()
+    
+  }
+
+  const loadTwikoo = () => {
+    if (typeof twikoo === 'object') {
+      setTimeout(runFn,0)
+      return
+    } 
+    getScript('https://fastly.jsdelivr.net/npm/twikoo/dist/twikoo.all.min.js').then(runFn)
+  }
+
+  if ('Twikoo' === 'Twikoo' || !false) {
+    if (false) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo()
+  } else {
+    window.loadOtherComment = () => {
+      loadTwikoo()
+    }
+  }
+})()</script></div><script id="canvas_nest" defer="defer" color="0,0,255" opacity="0.7" zIndex="-1" count="99" mobile="false" src="https://fastly.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-nest.min.js"></script></div>
+        <style>
+            [bg-lazy] {
+                background-image: none !important;
+                background-color: #eee !important;
+            }
+        </style>
+        <script>
+            window.imageLazyLoadSetting = {
+                isSPA: false,
+                preloadRatio: 1,
+                processImages: null,
+            };
+        </script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script><script>!function(r){r.imageLazyLoadSetting.processImages=t;var e=r.imageLazyLoadSetting.isSPA,n=r.imageLazyLoadSetting.preloadRatio||1,c=a();function a(){var t=Array.prototype.slice.call(document.querySelectorAll("img[data-original]")),e=Array.prototype.slice.call(document.querySelectorAll("[bg-lazy]"));return t.concat(e)}function t(){e&&(c=a());for(var t,o=0;o<c.length;o++)0<=(t=(t=c[o]).getBoundingClientRect()).bottom&&0<=t.left&&t.top<=(r.innerHeight*n||document.documentElement.clientHeight*n)&&function(){var t,e,n,a,i=c[o];e=function(){c=c.filter(function(t){return i!==t}),r.imageLazyLoadSetting.onImageLoaded&&r.imageLazyLoadSetting.onImageLoaded(i)},(t=i).hasAttribute("bg-lazy")?(t.removeAttribute("bg-lazy"),e&&e()):(n=new Image,a=t.getAttribute("data-original"),n.onload=function(){t.src=a,t.removeAttribute("data-original"),e&&e()},t.src!==a&&(n.src=a))}()}function i(){clearTimeout(t.tId),t.tId=setTimeout(t,500)}t(),document.addEventListener("scroll",i),r.addEventListener("resize",i),r.addEventListener("orientationchange",i)}(this);</script></body></html>
