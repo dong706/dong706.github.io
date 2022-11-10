@@ -4,6 +4,35 @@
   
     
     <entry>
+      <title>Swift - 延时执行的四种方式</title>
+      <link href="/posts/2022/11/6d94e118.html"/>
+      <url>/posts/2022/11/6d94e118.html</url>
+      
+        <content type="html"><![CDATA[<p>Swift - 延时执行的四种方式  </p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// 1.perform(必须在主线程中执行)</span><br><span class="line">self.perform(#selector(delayExecution), with: nil, afterDelay: 3)</span><br><span class="line">// 取消</span><br><span class="line">NSObject.cancelPreviousPerformRequests(withTarget: self)</span><br><span class="line"></span><br><span class="line">// 2.timer(必须在主线程中执行)</span><br><span class="line">Timer.scheduledTimer(timeInterval: 3, target: self, selector: #selector(delayExecution), userInfo: nil, repeats: false)</span><br><span class="line"></span><br><span class="line">// 3.Thread (在主线程会卡主界面)</span><br><span class="line">Thread.sleep(forTimeInterval: 3)</span><br><span class="line">self.delayExecution()</span><br><span class="line"></span><br><span class="line">// 4.GCD 主线程/子线程</span><br><span class="line">DispatchQueue.main.asyncAfter(deadline: .now() + 3) &#123;</span><br><span class="line">    self.delayExecution()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">DispatchQueue.global().asyncAfter(deadline: .now() + 3) &#123;</span><br><span class="line">    self.delayExecution()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><span id="more"></span> ]]></content>
+      
+      
+      <categories>
+          
+          <category> 客户端开发 </category>
+          
+          <category> Swift开发 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Swift </tag>
+            
+            <tag> 线程 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Windows下hexo博客迁移</title>
       <link href="/posts/2022/11/6b073e5.html"/>
       <url>/posts/2022/11/6b073e5.html</url>
@@ -15,7 +44,7 @@
           
           <category> Web技术 </category>
           
-          <category> Hexo博客搭建教程 </category>
+          <category> Hexo搭建博客教程 </category>
           
       </categories>
       
