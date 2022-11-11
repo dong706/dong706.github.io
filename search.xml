@@ -4,6 +4,93 @@
   
     
     <entry>
+      <title>Spring Boot Maven插件打包后，包内没有BOOT-INF目录</title>
+      <link href="/posts/2022/11/e2848ec1.html"/>
+      <url>/posts/2022/11/e2848ec1.html</url>
+      
+        <content type="html"><![CDATA[<p>使用maven插件打包后，发现包很小100来kb，显然是不对，包内缺少BOOT-INF目录，BOOT-INF是用于存放引用的外部lib的，所以缺少，打出来的包根本不能运行 。 </p><p>首先尝试使用maven-assembly-plugin来打包，依赖是成功引入了，但是启动会报如下错误</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Caused by: org.springframework.context.ApplicationContextException: </span><br><span class="line">Unable to start ServletWebServerApplicationContext due to missing ServletWebServerFactory bean</span><br></pre></td></tr></table></figure><span id="more"></span> <h3 id="最终解决办法"><a href="#最终解决办法" class="headerlink" title="最终解决办法"></a>最终解决办法</h3><p>在自己项目的pom中，或者父pom中，在plugin中添加executions节点代码，重新打包即可解决。</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;plugin&gt;</span><br><span class="line">    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;spring-boot-maven-plugin&lt;/artifactId&gt;</span><br><span class="line">    &lt;executions&gt;</span><br><span class="line">        &lt;execution&gt;</span><br><span class="line">            &lt;goals&gt;</span><br><span class="line">                &lt;goal&gt;repackage&lt;/goal&gt;</span><br><span class="line">            &lt;/goals&gt;</span><br><span class="line">        &lt;/execution&gt;</span><br><span class="line">    &lt;/executions&gt;</span><br><span class="line">&lt;/plugin&gt;</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> 服务端开发 </category>
+          
+          <category> Java </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Spring </tag>
+            
+            <tag> Maven </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>K8s创建持久化存储PV和PVC(kubernetes v1.23)</title>
+      <link href="/posts/2022/11/26993213.html"/>
+      <url>/posts/2022/11/26993213.html</url>
+      
+        <content type="html"><![CDATA[<h4 id="一、临时存储"><a href="#一、临时存储" class="headerlink" title="一、临时存储"></a>一、临时存储</h4><p>  当pod的存储方案设定为emptydir的时候，pod启动时就会在pod所在节点的磁盘空间开辟出一块空卷，pod启动后容器产生的数据会存放到那个空卷中，供pod内的容器读取和写入数据，一旦pod容器消失，节点上开辟出的这个临时空间就会随着pod销毁。</p><h4 id="二、半持久化存储"><a href="#二、半持久化存储" class="headerlink" title="二、半持久化存储"></a>二、半持久化存储</h4><p>hostpath类型则是映射node文件系统中的文件或者目录到pod里。因为在k8s中pod会漂移，当pod漂移到其他node节点的时候，pod不会跨节点的去读取目录。所以说是一种半持久化的存储方式</p><h4 id="三、持久化存储"><a href="#三、持久化存储" class="headerlink" title="三、持久化存储"></a>三、持久化存储</h4><p>PV是集群中的一块存储，是集群资源，是持久化存储，对存储资源进行抽象。和普通的 Volume 一样，也是使用卷插件来实现的，只是它们拥有独立于任何使用 PV 的 Pod 的生命周期。</p><span id="more"></span> <p>PVC是用户对存储的请求。概念上与 Pod 类似。 Pod 会耗用节点资源，而 PVC 申领会耗用 PV 资源。Pod 可以请求特定数量的资源（CPU 和内存）；同样 PVC 可以请求特定的大小和访问模式。</p><p>PV、PVC生命周期<br><code>Provisioning ——-&gt; Binding ——–&gt;Using——&gt;Releasing——&gt;Recycling</code></p><p>PV和PVC是最常见的使用存储的方式。</p><h5 id="k8s-PV-是什么？"><a href="#k8s-PV-是什么？" class="headerlink" title="k8s PV 是什么？"></a>k8s PV 是什么？</h5><p>PersistentVolume（PV）是群集中的一块存储，由管理员配置或使用存储类动态配置。 它是集群中的资源，就像 pod 是 k8s 集群资源一样。 PV 是容量插件，如 Volumes，其生命周期独立于使用 PV 的任何单个 pod。</p><h5 id="k8s-PVC-是什么？"><a href="#k8s-PVC-是什么？" class="headerlink" title="k8s PVC 是什么？"></a>k8s PVC 是什么？</h5><p> PersistentVolumeClaim（PVC）是一个持久化存储卷，我们在创建 pod 时可以定义这个类型的存储卷。 它类似于一个 pod。 Pod 消耗节点资源，PVC 消耗 PV 资源。 Pod 可以请求特定级别的资源（CPU 和内存）。 pvc 在申请 pv 的时候也可以请求特定的大小和访问模式（例如，可以一次读写或多次只读）。</p><h5 id="创建一个使用PV和PVC的Pod"><a href="#创建一个使用PV和PVC的Pod" class="headerlink" title="创建一个使用PV和PVC的Pod"></a>创建一个使用PV和PVC的Pod</h5><ul><li>配置nfs服务:</li></ul><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[root@k8s-master ~]# yum install nfs-utils rpcbind –y</span><br><span class="line">[root@k8s-master ~]# mkdir /pv-pvc</span><br><span class="line">[root@k8s-master ~]# vi /etc/exports</span><br><span class="line">[root@k8s-master ~]# cat /etc/exports</span><br><span class="line">/pv-pvc *(rw,sync,no_root_squash)</span><br><span class="line">/cloud-demo *(rw,sync,no_root_squash)</span><br></pre></td></tr></table></figure><p>/etc/exports文件参数：</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">/cloud-demo：共享目录</span><br><span class="line">　　*：所有主机能访问</span><br><span class="line">　　rw：读写权限</span><br><span class="line">　　ro：只读</span><br><span class="line">　　sync：同步</span><br><span class="line">　　no_root_squash：不降低root的权限</span><br></pre></td></tr></table></figure><ul><li>重启nfs服务：<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[root@k8s-master ~]# systemctl restart rpcbind</span><br><span class="line">[root@k8s-master ~]# systemctl restart nfs</span><br><span class="line">[root@k8s-master ~]# systemctl restart nfs-server</span><br></pre></td></tr></table></figure></li><li>查看nfs服务：<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[root@k8s-master ~]# showmount</span><br><span class="line">Hosts on k8s-master:</span><br><span class="line">[root@k8s-master ~]# showmount -e</span><br><span class="line">Export list for k8s-master:</span><br><span class="line">/cloud-demo *</span><br><span class="line">/pv-pvc     *</span><br></pre></td></tr></table></figure></li><li>开放端口：<br>另外，特别注意，开放端口，不然其他主机不能访问<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">tcp    111</span><br><span class="line">udp    111</span><br><span class="line">tcp    2049</span><br><span class="line">udp    4046</span><br></pre></td></tr></table></figure></li><li>进入挂载目录创建 pv1 目录 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[root@master ~]# cd /pv-pvc/</span><br><span class="line">[root@master pv-pvc]# mkdir pv1</span><br><span class="line">[root@master pv-pvc]# ls</span><br><span class="line">pv1</span><br></pre></td></tr></table></figure></li><li>创建PV<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[root@master tmp]# vi pv1.yaml</span><br><span class="line">[root@master tmp]# kubectl apply -f pv1.yaml</span><br><span class="line">persistentvolume/mypv created</span><br><span class="line">[root@master tmp]# cat pv1.yaml</span><br><span class="line">apiVersion: v1</span><br><span class="line">kind: PersistentVolume   #注意类型</span><br><span class="line">metadata:</span><br><span class="line">  name: mypv    #PVC要调用</span><br><span class="line">spec:</span><br><span class="line">  capacity:     #指定PV容量</span><br><span class="line">    storage: 1Gi</span><br><span class="line">  accessModes:     #指定访问模式</span><br><span class="line">    - ReadWriteMany</span><br><span class="line">  persistentVolumeReclaimPolicy: Recycle    #指定回收策略</span><br><span class="line">  nfs:           #配置nfs服务器信息</span><br><span class="line">    path: /cloud-demo/data1</span><br><span class="line">    server: 10.100.57.178</span><br></pre></td></tr></table></figure>————————————————————————————————————————————————<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">accessModes</span><br><span class="line">    ReadWriteOnce: 该卷能够以读写模式被加载到一个节点上。</span><br><span class="line">    ReadOnlyMany： 该卷能够以只读模式加载到多个节点上。</span><br><span class="line">    ReadWriteMany: 改卷能够以读写模式加载到多个节点上。</span><br><span class="line">persistentVolumeReclaimPolicy</span><br><span class="line">    Retain（保留） ：不删除，需手动回收</span><br><span class="line">    Recycle（回收）：基本擦除，类似rm -rf ,使它可供其他PVC申请。</span><br><span class="line">    Delete（删除） ：关联存储将被删除。</span><br></pre></td></tr></table></figure></li><li>查看PV</li></ul><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[root@master tmp]# kubectl get pv</span><br><span class="line">NAME   CAPACITY   ACCESS MODES   RECLAIM POLICY   STATUS      CLAIM   STORAGECLASS   REASON   AGE</span><br><span class="line">mypv   1Gi        RWX            Recycle          Available                                   22s</span><br></pre></td></tr></table></figure><ul><li>创建 PVC<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[root@master tmp]# vi pvc1.yaml</span><br><span class="line">[root@master tmp]# kubectl apply -f pvc1.yaml</span><br><span class="line">persistentvolumeclaim/mypvc created</span><br><span class="line">[root@master tmp]# cat pvc1.yaml</span><br><span class="line">apiVersion: v1</span><br><span class="line">kind: PersistentVolumeClaim</span><br><span class="line">metadata:</span><br><span class="line">  name: mypvc</span><br><span class="line">spec:</span><br><span class="line">  accessModes:</span><br><span class="line">   - ReadWriteMany</span><br><span class="line">  volumeName: mypv</span><br><span class="line">  resources:</span><br><span class="line">    requests:</span><br><span class="line">      storage: 1Gi</span><br></pre></td></tr></table></figure></li><li>对比查看PV的状态从Avilable变为Bound,pvc的状态也是Bound。  </li></ul><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[root@master tmp]# kubectl get pvc</span><br><span class="line">NAME    STATUS   VOLUME   CAPACITY   ACCESS MODES   STORAGECLASS   AGE</span><br><span class="line">mypvc   Bound    mypv     1Gi        RWX                           47s</span><br><span class="line">[root@master tmp]# kubectl get pv</span><br><span class="line">NAME   CAPACITY   ACCESS MODES   RECLAIM POLICY   STATUS   CLAIM           STORAGECLASS   REASON   AGE</span><br><span class="line">mypv   1Gi        RWX            Recycle          Bound    default/mypvc                           30m</span><br></pre></td></tr></table></figure><ul><li>创建Pod，使用该PVC<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[root@master tmp]# vi testpod.yaml</span><br><span class="line">[root@master tmp]# kubectl apply -f testpod.yaml</span><br><span class="line">pod/pvc-pod created</span><br><span class="line">[root@master tmp]# cat testpod.yaml</span><br><span class="line">apiVersion: v1</span><br><span class="line">kind: Pod</span><br><span class="line">metadata:</span><br><span class="line">  name: pvc-pod</span><br><span class="line">spec:</span><br><span class="line">  containers:</span><br><span class="line">  - name: pvc-pod</span><br><span class="line">    args:</span><br><span class="line">    - /bin/sh</span><br><span class="line">    - -c</span><br><span class="line">    - sleep 30000;</span><br><span class="line">    image: centos</span><br><span class="line">    volumeMounts:</span><br><span class="line">    - mountPath: /pv-pvc</span><br><span class="line">      name: pvc-volume</span><br><span class="line">  volumes:</span><br><span class="line">    - name: pvc-volume</span><br><span class="line">      persistentVolumeClaim:</span><br><span class="line">        claimName: mypvc</span><br></pre></td></tr></table></figure></li><li>另一个使用PVC示例：<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">apiVersion: apps/v1</span><br><span class="line">kind: Deployment</span><br><span class="line">metadata:</span><br><span class="line">  name: newshomebg</span><br><span class="line">  namespace: mod</span><br><span class="line">  labels:</span><br><span class="line">    app: newshomebg</span><br><span class="line">spec:</span><br><span class="line">  replicas: 1</span><br><span class="line">  selector:</span><br><span class="line">    matchLabels:</span><br><span class="line">      app: newshomebg</span><br><span class="line">  template:</span><br><span class="line">    metadata:</span><br><span class="line">      labels:</span><br><span class="line">        app: newshomebg</span><br><span class="line">    spec:</span><br><span class="line">      containers:</span><br><span class="line">      - name: newshomebg</span><br><span class="line">        image: xxx</span><br><span class="line">        ports:</span><br><span class="line">        - containerPort: 8080</span><br><span class="line">        env:</span><br><span class="line">        - name: SPRING_DATASOURCE_USERNAME</span><br><span class="line">          value: &#x27;root&#x27;</span><br><span class="line">        volumeMounts:</span><br><span class="line">        - name: nfs-volume            #设置的名称，和下面的name要一样的</span><br><span class="line">          mountPath: /home/uploads    #需要挂载的目录</span><br><span class="line">          subPath: newshomebg         #卷的子目录，也就是在nfs服务目录里生成这个子目录</span><br><span class="line">      volumes:</span><br><span class="line">      - name: nfs-volume              #这个卷的名称，和上面的name要一样的</span><br><span class="line">        nfs:                          #这里是nfs挂载</span><br><span class="line">          server: 192.168.1.2         #nfs服务器的ip或者域名</span><br><span class="line">          path: &quot;/data&quot;               #nfs服务配置的挂载目录</span><br><span class="line">      imagePullSecrets:</span><br><span class="line">      - name: xxx</span><br></pre></td></tr></table></figure></li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> 服务端开发 </category>
+          
+          <category> 容器技术 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> K8s </tag>
+            
+            <tag> 存储卷 </tag>
+            
+            <tag> PVC </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>K8s的各种命令(v1.23)</title>
+      <link href="/posts/2022/11/8c1fadce.html"/>
+      <url>/posts/2022/11/8c1fadce.html</url>
+      
+        <content type="html"><![CDATA[<ul><li><p><strong>列出所有运行的Pod信息</strong><br><code> kubectl get pods</code></p></li><li><p><strong>列出Pod以及运行Pod节点信息。（#加-o可以把node列出来，也就是pod在哪个节点上能列出来）</strong><br><code>kubectl get pods -o wide</code></p></li><li><p><strong>列出指定NAME的 replication controller信息</strong><br><code>kubectl get replicationcontroller web</code></p></li><li><p><strong>以JSON格式输出一个pod信息</strong><br><code>kubectl get -o json pod web-pod-13je7</code></p><span id="more"></span></li><li><p><strong>以“pod.yaml”配置文件中指定资源对象和名称输出JSON格式的Pod信息</strong><br><code>kubectl get -f pod.yaml -o json</code></p></li><li><p><strong>返回指定pod的相位值</strong><br><code>kubectl get -o template pod/web-pod-13je7 --template=&#123;&#123;.status.phase&#125;&#125;</code></p></li><li><p><strong>列出所有replication controllers和service信息</strong><br><code>kubectl get rc,services</code></p></li><li><p><strong>按其资源和名称列出相应信息</strong><br><code>kubectl get rc/web service/frontend pods/web-pod-13je7</code></p></li><li><p><strong>列出所有不同的资源对象</strong><br><code>kubectl get all</code></p></li><li><p><strong>查看ip和端口，也叫端点</strong><br><code>kubectl get ep　　　　 #获取service的endpoint信息</code></p></li><li><p><strong>进入POD内部命令行</strong>： </p></li></ul><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># nacos-0为pod名称</span><br><span class="line">kubectl exec -it nacos-0 bash</span><br></pre></td></tr></table></figure><p>会提示：  </p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">kubectl exec [POD] [COMMAND] is DEPRECATED and will be removed in a future version. Use kubectl exec [POD] -- [COMMAND] instead.</span><br></pre></td></tr></table></figure><p>用新版本的命令代替即可:</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">kubectl exec --stdin --tty nacos-0 -- /bin/bash</span><br></pre></td></tr></table></figure><ul><li><strong>查看 kube-dns 的服务详情</strong>  </li></ul><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">kubectl get svc kube-dns -n kube-system</span><br></pre></td></tr></table></figure><p>Kubernetes 集群中部署了一套 DNS 服务，通过 kube-dns 的服务名暴露 DNS 服务。<br>服务后端是两个名为 coredns（下文会介绍 CoreDNS 解析原理） 的 Pod。您可执行以下命令查看 coredns 的 Pod 详情。  </p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">kubectl get deployment coredns -n kube-system</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> 服务端开发 </category>
+          
+          <category> 容器技术 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> K8s </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Swift - 延时执行的四种方式</title>
       <link href="/posts/2022/11/6d94e118.html"/>
       <url>/posts/2022/11/6d94e118.html</url>
