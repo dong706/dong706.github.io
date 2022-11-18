@@ -4,6 +4,60 @@
   
     
     <entry>
+      <title>iOS开发 - Swift实现检测网络连接状态及网络类型</title>
+      <link href="/posts/2022/11/3e32d1cc.html"/>
+      <url>/posts/2022/11/3e32d1cc.html</url>
+      
+        <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>在移动开发中，检测网络的连接状态尤其检测网络的类型尤为重要。本文将介绍在iOS开发中，如何使用Swift检测网络连接状态及网络类型（移动网络、Wifi）。</p><h2 id="如何实现"><a href="#如何实现" class="headerlink" title="如何实现"></a>如何实现</h2><p>Reachability.swift 是一个使用Swift写的第三方网络检测类，可以用来检测网络连接状态及网络类型（移动网络、Wifi）功能。</p><h2 id="如何使用"><a href="#如何使用" class="headerlink" title="如何使用"></a>如何使用</h2><ol><li>使用Cocopod安装Reachability.swift<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">use_frameworks!</span><br><span class="line">pod &#x27;ReachabilitySwift&#x27;</span><br></pre></td></tr></table></figure><span id="more"></span></li><li>基本使用代码示例</li></ol><p>使用前记得导入ReachabilitySwift类，下面代码放在viewDidLoad()方法中即可。</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">var reachability: Reachability!</span><br><span class="line"></span><br><span class="line">do &#123;</span><br><span class="line">    reachability = try Reachability.reachabilityForInternetConnection()</span><br><span class="line">&#125; catch &#123;</span><br><span class="line">    print(&quot;Unable to create Reachability&quot;)</span><br><span class="line">    return</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 检测网络连接状态</span><br><span class="line">if reachability.isReachable() &#123;</span><br><span class="line">    print(&quot;网络连接：可用&quot;)</span><br><span class="line">&#125; else &#123;</span><br><span class="line">    print(&quot;网络连接：不可用&quot;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 检测网络类型</span><br><span class="line">if reachability.isReachableViaWiFi() &#123;</span><br><span class="line">    print(&quot;网络类型：Wifi&quot;)</span><br><span class="line">&#125; else if reachability.isReachableViaWWAN() &#123;</span><br><span class="line">    print(&quot;网络类型：移动网络&quot;)</span><br><span class="line">&#125; else &#123;</span><br><span class="line">    print(&quot;网络类型：无网络连接&quot;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><ol start="3"><li>监听网络变化  </li></ol><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// 网络可用或切换网络类型时执行</span><br><span class="line">reachability.whenReachable = &#123; reachability in</span><br><span class="line"></span><br><span class="line">    // 判断网络状态及类型</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 网络不可用时执行</span><br><span class="line">reachability.whenUnreachable = &#123; reachability in</span><br><span class="line"></span><br><span class="line">    // 判断网络状态及类型</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">do &#123;</span><br><span class="line">    // 开始监听</span><br><span class="line">    try reachability.startNotifier()</span><br><span class="line">&#125; catch &#123;</span><br><span class="line">    print(&quot;Unable to start notifier&quot;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>停止监听调用reachability.stopNotifier()即可。</p><h2 id="项目地址"><a href="#项目地址" class="headerlink" title="项目地址"></a>项目地址</h2><p>Github地址：<a href="https://github.com/ashleymills/Reachability.swift">https://github.com/ashleymills/Reachability.swift</a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 客户端开发 </category>
+          
+          <category> Swift开发 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Swift </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>解决ANKI启动时OpenGL的问题</title>
+      <link href="/posts/2022/11/935d04a.html"/>
+      <url>/posts/2022/11/935d04a.html</url>
+      
+        <content type="html"><![CDATA[<p>在Win10上启动了anki 2.1.22版，出现了<code>Install a driver providing OpenGL 2.0 or higher, or, if this is not possible</code>的错误提醒。类似的问题可见   <a href="https://anki.tenderapp.com/discussions/ankidesktop/36598-installation-issue-with-opengl-file">https://anki.tenderapp.com/discussions/ankidesktop/36598-installation-issue-with-opengl-file</a><br>解决方法：<br>官方的指导文件（ <a href="https://changes.ankiweb.net/#/known-issues%EF%BC%89%E4%B8%AD%E7%9A%84Text">https://changes.ankiweb.net/#/known-issues）中的Text</a> size节中给出了解决方法<br>新建文档，输入以下内容:  </p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">set ANKI_WEBSCALE=0.75</span><br><span class="line">start &quot;Anki&quot; &quot;C:\Program Files\Anki\anki&quot;</span><br></pre></td></tr></table></figure><p>最后保存成startanki.bat，发送快捷方式到桌面,以后都用startant.bat启动ant即可</p><span id="more"></span>]]></content>
+      
+      
+      <categories>
+          
+          <category> IT技术 </category>
+          
+          <category> Windows </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Anki </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Spring Boot Maven插件打包后，包内没有BOOT-INF目录</title>
       <link href="/posts/2022/11/e2848ec1.html"/>
       <url>/posts/2022/11/e2848ec1.html</url>
