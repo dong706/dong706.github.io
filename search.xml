@@ -4,6 +4,62 @@
   
     
     <entry>
+      <title>iPad使用UIAlertControllerStyleActionSheet崩溃</title>
+      <link href="/posts/2022/11/deebb41e.html"/>
+      <url>/posts/2022/11/deebb41e.html</url>
+      
+        <content type="html"><![CDATA[<p>【Swift 5】使用UIAlertController弹出一个.actionSheet样式(UIAlertControllerStyleActionSheet)的弹出框，<br>运行设备为iPhone时，正常。<br>运行设备为iPad时，崩溃。<br>报错如下：<br><code>You must provide location information for this popover through the alert controller&#39;s popoverPresentationController</code></p><span id="more"></span> <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#完整报错信息</span><br><span class="line">reason: &#x27;Your application has presented a UIAlertController (&lt;UIAlertController: 0x124638680&gt;) of style UIAlertControllerStyleActionSheet. </span><br><span class="line">The modalPresentationStyle of a UIAlertController with this style is UIModalPresentationPopover. </span><br><span class="line">You must provide location information for this popover through the alert controller&#x27;s popoverPresentationController. </span><br><span class="line">You must provide either a sourceView and sourceRect or a barButtonItem. </span><br><span class="line">If this information is not known when you present the alert controller, </span><br><span class="line">you may provide it in the UIPopoverPresentationControllerDelegate method -prepareForPopoverPresentation.</span><br></pre></td></tr></table></figure><p>解决：  </p><p>iPhone和iPad使用UIAlertController展示ActionSheep时，展示是不一样的。</p><p>所以在iPhone上正常显示的AlertController，在iPad上显示要添加几行代码。</p><p>代码如下：</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//解决ipad 弹出框崩溃问题 start</span><br><span class="line">let popover:UIPopoverPresentationController? = alertController.popoverPresentationController;</span><br><span class="line"></span><br><span class="line">if (popover != nil) &#123;</span><br><span class="line">    popover!.sourceView = self.view;</span><br><span class="line">    popover!.sourceRect = self.view.bounds;</span><br><span class="line">    popover!.permittedArrowDirections = .any;</span><br><span class="line">&#125;</span><br><span class="line">//解决ipad 弹出框崩溃问题 end</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> 客户端开发 </category>
+          
+          <category> Swift开发 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Swift </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>k8s根据端口查找service和删除service</title>
+      <link href="/posts/2022/11/2bfdb078.html"/>
+      <url>/posts/2022/11/2bfdb078.html</url>
+      
+        <content type="html"><![CDATA[<p>根据端口查找对应的service</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">kubectl get service --all-namespaces |grep 31234</span><br></pre></td></tr></table></figure><p>显示所有的service<br> <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">kubectl get svc</span><br></pre></td></tr></table></figure></p><p>删除指定名称的service (在service name前加上svc/)<br> <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">kubectl delete svc/jfinal-demo</span><br></pre></td></tr></table></figure><br> <span id="more"></span> </p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 服务端开发 </category>
+          
+          <category> 容器技术 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> K8s </tag>
+            
+            <tag> Service </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>iOS开发 - Swift实现检测网络连接状态及网络类型</title>
       <link href="/posts/2022/11/3e32d1cc.html"/>
       <url>/posts/2022/11/3e32d1cc.html</url>
