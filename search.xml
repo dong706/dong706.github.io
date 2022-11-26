@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>anki如何设置三个时间间隔？</title>
+      <link href="/posts/2022/11/d3ff87f2.html"/>
+      <url>/posts/2022/11/d3ff87f2.html</url>
+      
+        <content type="html"><![CDATA[<p>底部的三个时间如何设置呢，怎么样的时间间隔才算合理？</p><p><img src="https://pic3.zhimg.com/v2-b7bdd4796870f4d92c372571113b0492_b.jpg"></p><p>这三个时间间隔是由 Anki 的安排算法计算得出的。</p><span id="more"></span><p>关于 Anki 算法的通俗介绍可以看这篇文章：</p><p><a href="https://zhuanlan.zhihu.com/p/42921090">叶峻峣：Anki 算法与术语浅谈</a></p><p>嫌简单？那继续往下看吧！</p><hr><h2 id="Anki-术语"><a href="#Anki-术语" class="headerlink" title="Anki 术语"></a><strong>Anki 术语</strong></h2><h3 id="新卡片"><a href="#新卡片" class="headerlink" title="新卡片"></a><strong>新卡片</strong></h3><p>graduating interval: 新卡片学习以 ‘Good’ 结束后进入复习阶段的第一个间隔</p><p>easy interval: 新卡片学习以 ‘Easy’ 结束后进入复习阶段的第一个间隔</p><p>starting ease: 初始间隔基数，默认 250%</p><h3 id="复习"><a href="#复习" class="headerlink" title="复习"></a><strong>复习</strong></h3><p>easy bonus: 简单奖励系数，默认 130%</p><p>interval modifier: 间隔系数修饰，默认 100%</p><p>maximum interval: 最大间隔</p><p>hard interval: ‘Hard’ 间隔系数，默认为 120%</p><h3 id="遗忘"><a href="#遗忘" class="headerlink" title="遗忘"></a><strong>遗忘</strong></h3><p>new interval: 遗忘间隔系数</p><p>minimum interval: 遗忘最小间隔</p><p>leech threshold: 顽固卡片遗忘次数门槛</p><p>leech action: 对顽固卡片的处理</p><h2 id="Anki-算法"><a href="#Anki-算法" class="headerlink" title="Anki 算法"></a><strong>Anki 算法</strong></h2><h3 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a><strong>初始化</strong></h3><p>间隔系数 = <a href="https://www.zhihu.com/search?q=%E5%88%9D%E5%A7%8B%E9%97%B4%E9%9A%94%E5%9F%BA%E6%95%B0&search_source=Entity&hybrid_search_source=Entity&hybrid_search_extra=%7B%22sourceType%22:%22answer%22,%22sourceId%22:1408959119%7D">初始间隔基数</a>​，默认为 250%</p><h3 id="again-重来"><a href="#again-重来" class="headerlink" title="again/重来"></a><strong>again/重来</strong></h3><p>新间隔 = 上次规划间隔 * 遗忘间隔系数</p><p>间隔系数减少 20%</p><h3 id="hard-困难"><a href="#hard-困难" class="headerlink" title="hard/困难"></a><strong>hard/困难</strong></h3><p>新间隔 = 上次规划间隔 * ‘Hard’ 间隔系数</p><p>间隔系数减少 15%</p><h3 id="good-一般"><a href="#good-一般" class="headerlink" title="good/一般"></a><strong>good/一般</strong></h3><p>新间隔 = (上次规划间隔 + 延迟 ) * 间隔系数</p><p>间隔系数不变</p><h3 id="easy-简单"><a href="#easy-简单" class="headerlink" title="easy/简单"></a><strong>easy/简单</strong></h3><p>新间隔 = (上次规划间隔 + 延迟) * 间隔系数 * 简单奖励系数</p><p>间隔系数增加 15%</p><h3 id="early-提早"><a href="#early-提早" class="headerlink" title="early/提早"></a><strong>early/提早</strong></h3><p>新间隔 = (上次规划间隔 - 提早) * 间隔系数 * 提早奖励系数</p><p><a href="https://www.zhihu.com/search?q=%E6%8F%90%E6%97%A9%E5%A5%96%E5%8A%B1%E7%B3%BB%E6%95%B0&search_source=Entity&hybrid_search_source=Entity&hybrid_search_extra=%7B%22sourceType%22:%22answer%22,%22sourceId%22:1408959119%7D">提早奖励系数</a> = (简单奖励系数 - 100%) / 2 + 100%</p><p>间隔系数由具体选项确定</p><h3 id="通用"><a href="#通用" class="headerlink" title="通用"></a><strong>通用</strong></h3><p><a href="https://www.zhihu.com/search?q=%E8%A7%84%E5%88%92%E9%97%B4%E9%9A%94&search_source=Entity&hybrid_search_source=Entity&hybrid_search_extra=%7B%22sourceType%22:%22answer%22,%22sourceId%22:1408959119%7D">规划间隔</a> = 新间隔 ​* 间隔系数修饰</p><h2 id="code-代码"><a href="#code-代码" class="headerlink" title="code/代码"></a><strong>code/代码</strong></h2><pre><code>    def _rescheduleRev(self, card: Card, ease: int, early: bool) -&gt; None:        # update interval        card.lastIvl = card.ivl        if early:            self._updateEarlyRevIvl(card, ease)        else:            self._updateRevIvl(card, ease)        # then the rest        card.factor = max(1300, card.factor + [-150, 0, 150][ease - 2])        card.due = self.today + card.ivl        # card leaves filtered deck        self._removeFromFiltered(card)            def _nextRevIvl(self, card: Card, ease: int, fuzz: bool) -&gt; int:        &quot;Next review interval for CARD, given EASE.&quot;        delay = self._daysLate(card)        conf = self._revConf(card)        fct = card.factor / 1000        hardFactor = conf.get(&quot;hardFactor&quot;, 1.2)        if hardFactor &gt; 1:            hardMin = card.ivl        else:            hardMin = 0        ivl2 = self._constrainedIvl(card.ivl * hardFactor, conf, hardMin, fuzz)        if ease == BUTTON_TWO:            return ivl2        ivl3 = self._constrainedIvl((card.ivl + delay // 2) * fct, conf, ivl2, fuzz)        if ease == BUTTON_THREE:            return ivl3        ivl4 = self._constrainedIvl(            (card.ivl + delay) * fct * conf[&quot;ease4&quot;], conf, ivl3, fuzz        )        return ivl4</code></pre><p>以上就是 Anki 算法的介绍。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> IT技术 </category>
+          
+          <category> Anki </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Anki </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Anki卡牌数据结构和关键配置</title>
       <link href="/posts/2022/11/284ccda.html"/>
       <url>/posts/2022/11/284ccda.html</url>
@@ -324,7 +351,7 @@
           
           <category> IT技术 </category>
           
-          <category> Windows </category>
+          <category> Anki </category>
           
       </categories>
       
