@@ -1,0 +1,627 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>Anki基础教程 | 叶落花开的博客</title><meta name="keywords" content="Anki"><meta name="author" content="叶落花开"><meta name="copyright" content="叶落花开"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="前言网上缺少足够优秀的、广泛传播的中文教程所带来的 Anki 学习阻力，也是一种保护。真正追求学习的优秀人才 ，不会因为教程原文是英文而放弃阅读。 写这篇教程时，Anki 的 Windows 电脑端版本是 2.1。 在接下来介绍这个软件的时候 ，里面的许多概念 我会使用英文原文，因为这些单词虽然简单，但翻译过来的中文，大体上总觉得有些不合意，所以就按照英文单词来了。使用电脑端的时候，我也建议使用英">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Anki基础教程">
+<meta property="og:url" content="https://www.yeluohuakai.com/posts/2022/11/9362ca3f.html">
+<meta property="og:site_name" content="叶落花开的博客">
+<meta property="og:description" content="前言网上缺少足够优秀的、广泛传播的中文教程所带来的 Anki 学习阻力，也是一种保护。真正追求学习的优秀人才 ，不会因为教程原文是英文而放弃阅读。 写这篇教程时，Anki 的 Windows 电脑端版本是 2.1。 在接下来介绍这个软件的时候 ，里面的许多概念 我会使用英文原文，因为这些单词虽然简单，但翻译过来的中文，大体上总觉得有些不合意，所以就按照英文单词来了。使用电脑端的时候，我也建议使用英">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-11-26T03:20:00.000Z">
+<meta property="article:modified_time" content="2022-11-26T08:48:24.043Z">
+<meta property="article:author" content="叶落花开">
+<meta property="article:tag" content="Anki">
+<meta name="twitter:card" content="summary"><link rel="shortcut icon" href="/favicon.png"><link rel="canonical" href="https://www.yeluohuakai.com/posts/2022/11/9362ca3f"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//www.google-analytics.com" crossorigin=""/><link rel="preconnect" href="//hm.baidu.com"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?2f8a615b51582cf280e790200f3527e6";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script><script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-LB2ZMBR4ZN"></script><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-LB2ZMBR4ZN');
+</script><script>(function(){
+var el = document.createElement("script");
+el.src = "https://lf1-cdn-tos.bytegoofy.com/goofy/ttzz/push.js?18da2b25537eeea1b5c8819ad9a03fc2279abb7e5ff9fdb01a2409cbd77b8f1db3e414cba65c376eba389ba56d9ee0846cad2206506a6529fe6ee21a7373effb434c445cf6444b10ea9756ea44e128a6";
+el.id = "ttzz";
+var s = document.getElementsByTagName("script")[0];
+s.parentNode.insertBefore(el, s);
+})(window)
+</script><script async="async" crossorigin="anonymous" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6673854567363222"></script><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":false,"highlightLang":false,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://fastly.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.js',
+      css: 'https://fastly.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Anki基础教程',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-11-26 16:48:24'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/index_code.css"><meta name="generator" content="Hexo 6.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/loading.gif" data-original="/img/ava.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data is-center"><div class="data-item"><a href="/archives/"><div class="headline">文章</div><div class="length-num">80</div></a></div><div class="data-item"><a href="/tags/"><div class="headline">标签</div><div class="length-num">63</div></a></div><div class="data-item"><a href="/categories/"><div class="headline">分类</div><div class="length-num">18</div></a></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" target="_blank" rel="noopener" href="https://support.qq.com/product/377343"><i class="fa-fw fa fa-paper-plane"></i><span> 反馈</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">叶落花开的博客</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" target="_blank" rel="noopener" href="https://support.qq.com/product/377343"><i class="fa-fw fa fa-paper-plane"></i><span> 反馈</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">Anki基础教程</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-11-26T03:20:00.000Z" title="发表于 2022-11-26 11:20:00">2022-11-26</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-11-26T08:48:24.043Z" title="更新于 2022-11-26 16:48:24">2022-11-26</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/IT%E6%8A%80%E6%9C%AF/">IT技术</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/IT%E6%8A%80%E6%9C%AF/Anki/">Anki</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span id="" data-flag-title="Anki基础教程"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="twikoo_visitors"></span></span></div></div></div><article class="post-content" id="article-container"><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>网上缺少足够优秀的、广泛传播的中文教程所带来的 Anki 学习阻力，也是一种保护。真正追求学习的优秀人才 ，不会因为教程原文是英文而放弃阅读。</p>
+<p>写这篇教程时，Anki 的 Windows 电脑端版本是 2.1。</p>
+<p>在接下来介绍这个软件的时候 ，里面的许多概念 我会使用英文原文，因为这些单词虽然简单，但翻译过来的中文，大体上总觉得有些不合意，所以就按照英文单词来了。使用电脑端的时候，我也建议使用英文作为软件语言设置。</p>
+<p>Anki 的电脑端就叫 Anki，手机端叫 AnkiDroid。目前只有 iOS 端收费 160 元，高价一是为了筛选用户，二是用于支持服务器。</p>
+<p>在阅读这篇教程的同时，最好也打开电脑端 Anki 软件，同步操作，这样才能完全看懂学会。</p>
+<p>另外如果你对电脑操作不熟悉 ，一定要花时间区别下中文符号和英文符号 ，例如“**:<strong>”和“</strong>：**”在计算机中区别是很大的 ，这在自定义卡片模板的时候会用得到 。</p>
+<span id="more"></span>
+
+<h3 id="网站参考："><a href="#网站参考：" class="headerlink" title="网站参考："></a>网站参考：</h3><p><a target="_blank" rel="noopener" href="https://ld246.com/forward?goto=https://apps.ankiweb.net/">https://apps.ankiweb.net/</a> <code>官网</code></p>
+<p><a target="_blank" rel="noopener" href="https://ld246.com/forward?goto=https://apps.ankiweb.net/docs/manual.html">https://apps.ankiweb.net/docs/manual.html</a> <code>官方用户指南</code></p>
+<h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>Anki 是一个强大的记忆工具 ，使用 Anki，你就可以用最小的、必要的付出，记住一切你想记忆的知识。我称它为学习工具界的核武器 ，核武器级别的工具，一定只能少数人掌握。</p>
+<p>Anki 可以帮助记忆的内容有文字、图像、音频、视频。</p>
+<p>一些复杂的文本 ，例如复杂的数学公式和化学方程式等，可以使用图片录入笔记 ，或者使用 科学标记法（LaTex）录入。</p>
+<p>Anki 基于两个科学方法 ，来帮助你记忆 ：主动回忆性的问答、有时间间隔的多次复习。</p>
+<h3 id="主动回忆性的问答"><a href="#主动回忆性的问答" class="headerlink" title="主动回忆性的问答"></a>主动回忆性的问答</h3><p>主动回忆性的问答意思是 ：Anki 给你看一张卡片的正面，正面上可以有提示或者问题 ，你来回忆 卡片背面的信息。</p>
+<p>这是一种与被动学习相反的方法，被动学习就是 ：只翻书、听讲，被动接受课本和老师所讲的内容，我相信你一定 很多次在这样的过程中感到过瞌睡吧，被动学习的缺陷就是 ：学习过程中让人瞌睡无聊，难以长时间集中精力 ，记忆的效率差。</p>
+<h3 id="大脑的不用就忘策略"><a href="#大脑的不用就忘策略" class="headerlink" title="大脑的不用就忘策略"></a>大脑的不用就忘策略</h3><p>我们人的大脑是物质性的，依靠神经突触来存储信息 ，能记忆的量有限，所以不重要的信息会很快被大脑忘却。</p>
+<p>试着想一下你两个礼拜前 周一的晚餐是什么 ？估计你记不得了。因为这是无用信息 。</p>
+<p>但如果你参加了一个派对，玩的非常开心 ，之后经常主动与朋友分享那次经历，你就可能对那次派对的细节记得很牢。</p>
+<h3 id="有间隔的多次复习"><a href="#有间隔的多次复习" class="headerlink" title="有间隔的多次复习"></a>有间隔的多次复习</h3><p>1885 年 一位德国心理学家发表了 篇文章，主题就是关于“有时间间隔的多次复习” 。里面提到 ，与一次性将知识记忆很多遍相比 ，隔一段时间复习记忆一遍并多次复习，效果更要出奇的好。</p>
+<h3 id="SuperMeomo"><a href="#SuperMeomo" class="headerlink" title="SuperMeomo"></a>SuperMeomo</h3><p>SuperMemo 是一款商业软件 ，最早的结合上面两种学习方式的软件 ，使用电子记忆卡片（以后通称<strong>闪卡</strong> FlashCard）辅助用户主动记忆，并能根据使用者的反馈 ，生成再次复习的时间 。</p>
+<p>SuperMemo 的口号是：With spaced repitation, you can forget about forgetting.</p>
+<h3 id="为什么使用-Anki？"><a href="#为什么使用-Anki？" class="headerlink" title="为什么使用 Anki？"></a>为什么使用 Anki？</h3><p>SuperMemo 在学习策略上很成功 ，但是这个软件是有版权的，不开放 ，只能运行在收费的 Windows 平台，而且 Bug 奇多，很难上手使用。</p>
+<p>而 Anki 是一个开源软件 ，源代码对所有人开放 ，能运行在 Windows, Mac OS, Linux, Android, iOS 上，几乎你能用到的平台都支持 。而且受益于开源，许多用户开发了很多优秀插件 ，将 Anki 可以变得更为强大。</p>
+<p>Anki 使用的“复习时间计算”算法是基于 SuperMemo 的一个版本的算法，叫 SM-2。</p>
+<h2 id="基础概念"><a href="#基础概念" class="headerlink" title="基础概念"></a>基础概念</h2><p>使用 Anki，我非常建议同时使用两个设备，一台电脑 和 一部手机 ，电脑最好是轻薄便携长续航的笔记本 ，方便在图书馆、自习室、课间将新知识录入 Note ，而手机用于随时随地复习 。（手机和电脑间可以同步电脑在录入 Note 方面优势很大）</p>
+<h3 id="Cards"><a href="#Cards" class="headerlink" title="Cards"></a>Cards</h3><p>一个 Card 有两面 ，学习的时候先展示正面 ，再展示背面。你可以在正面写下问题 ，在背面展示答案 。</p>
+<p>例如你在正面写下了 ：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Q：氧的化学符号是什么？</span><br></pre></td></tr></table></figure>
+
+<p>你思考一阵后 ，决定答案是 “O”，然后点击显示背面，Anki 将会展示：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Q：氧的化学符号是什么？</span><br><span class="line">A: O</span><br></pre></td></tr></table></figure>
+
+<p>校对答案后 ，你再告诉 Anki 你记得怎么样 ，Anki 会决定下次给你展示这个 Card 的时间。</p>
+<h3 id="Decks"><a href="#Decks" class="headerlink" title="Decks"></a>Decks</h3><p>你可以想象把一堆卡片放在一个盒子里，这个盒子就是一个 Deck，大盒子里还可以放小盒子，也就是 Subdecks。</p>
+<p>Anki 使用“::”表示包含关系，例如 “Chinese::Hanzi” 就表示“Hanzi”这个 Deck 在“Chinese”这个 Deck 里面。</p>
+<p>如果你刚开始使用 还没有添加 Deck，Anki 会默认有一个 Deck 叫 “default” 。</p>
+<p>在使用 Deck 的时候，最好不要分的太细，原因在之后会讲到。</p>
+<h3 id="Notes-和-Fields"><a href="#Notes-和-Fields" class="headerlink" title="Notes 和 Fields"></a>Notes 和 Fields</h3><p>在制作卡片的时候 ，我们经常会想为一个知识点制作多张卡片。</p>
+<p>用纸质卡片时 ，为了制作两张卡片 ，你只能将同样的知识点写两次 。</p>
+<p>而 Anki 解决了这个问题。将笔记的内容分成几条独立的信息，你告诉 Anki 每张卡片需要的信息，Anki 就会为每个笔记自动创建卡片 ，并方便你在未来编辑卡片 。</p>
+<p>例如我们想学英语单词，并且希望在每张卡片背面 附上页码 ，我们期望的卡片是这样的：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">问：Vertex 意思</span><br><span class="line">答：顶点</span><br><span class="line">页码：12</span><br></pre></td></tr></table></figure>
+
+<p>和</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">问：顶点 的英文</span><br><span class="line">答：Vertex</span><br><span class="line">页码：12</span><br></pre></td></tr></table></figure>
+
+<p>在这个例子里 ，有三条相关信息 ，一个英文单词 ，一个中文翻译 ，一个页码 。把他们放在一起 也就是 ：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">单词：Vertex</span><br><span class="line">中文：顶点</span><br><span class="line">页码：12</span><br></pre></td></tr></table></figure>
+
+<p>总共三条信息，这三条信息的合集叫一个 Note ，每条信息的名字叫 Field ，我们就可以说 这条 Note 里面有三个 Field ，分别是“单词”，“中文 ”，“页码”。在录入笔记时，你只需要将“Vertex”，“顶点”，“12” 填入对应的 Field 就可以了。</p>
+<h3 id="Card-Types"><a href="#Card-Types" class="headerlink" title="Card Types"></a>Card Types</h3><p>为了让 Anki 能根据你的 Note 自动创建一定格式的卡片，我们需要为每种卡片制作一个卡片模板 ，这个卡片模板就叫 Card Types 。你每增加一条笔记 ，Anki 就根据每个模板自动创建一张卡片 。</p>
+<p>在上面的例子中 ，我们希望看到的卡片是这样的 ：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">问：Vertex 意思</span><br><span class="line">答：顶点</span><br><span class="line">页码：12</span><br></pre></td></tr></table></figure>
+
+<p>为了达到这个目标 ，我们可以把模板设置成这样的：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">问：&#123;&#123;单词&#125;&#125; 意思&lt;br&gt;</span><br><span class="line">答：&#123;&#123;中文&#125;&#125;&lt;br&gt;</span><br><span class="line">页码：&#123;&#123;页码&#125;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>将 Field 名字填在 两个大括号里面 ，我们告诉 Anki 将括号里的内容替换为 Field 里面实际填写的笔记内容，模板上面 没有被大括号括住的内容 将保持不变 。“<br>” 是一个 HTML 代码，即 break，中文意思换行 。模板是使用 HTML 语言来写的。</p>
+<p>只有 HTML 语言才能 让用户定义丰富的模板 ，显示精美的图片 ，不用担心你不会 html 语言 ，因为设置简单的模板 不需要多复杂，你完全可以看懂 并且应用 。</p>
+<p>当我们创建了上面那个模板，也就是 Card Type 以后，每次我们添加笔记 ，都将创建一个基于该 Card Type 的卡片，这样 可以方便保持卡片格式的一致性 ，减少制作新卡片 所需的精力。</p>
+<p>每次你更改已存在的 Card Type 后，与之相关联的卡片也会更新布局，也就方便了我们在未来批量调整已创建卡片的布局 。</p>
+<p>在主页面点击 “Add” ，会弹出添加笔记的页面 ，在这个页面上点击 “Card”按钮，就会进入编辑 Card Type 页面。关于编辑的更多信息会在后面讲到。</p>
+<h3 id="Note-Types"><a href="#Note-Types" class="headerlink" title="Note Types"></a>Note Types</h3><p>Anki 创建定义多个 Note Types，每个 Note Type 下定义了多个 Field 和 Card Type。</p>
+<p>估计你看到这里已经浑了，我们来举个例子 帮你梳理一下 。比如你正在记忆英语单词 ，你就可以创建一个叫“英语单词 ”的 Note Type，在这个 Note Type 下定义以下的 Field：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#123;&#123;单词&#125;&#125;</span><br><span class="line">&#123;&#123;中文&#125;&#125;</span><br><span class="line">&#123;&#123;同源词&#125;&#125;</span><br><span class="line">&#123;&#123;例句&#125;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>和两种 Card Type，比如第一种 Card Type</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">正面显示单词</span><br><span class="line">背面显示中文 、同源词、例句</span><br></pre></td></tr></table></figure>
+
+<p>第二种 Card Type：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">正面显示中文 </span><br><span class="line">背面显示英文、同源词、例句</span><br></pre></td></tr></table></figure>
+
+<p>这样，当你做英语单词笔记的时候 ，先选择 Note Type，在分别将英语单词、中文意思、同源词、例句 分别填入对应的 Field ，Anki 就会根据该 Note Type 下的两种 Card Type 生成两张卡片，至于生成的这两张卡片会被放入哪个 Deck，你可以在添加时定义。</p>
+<p>Anki 会在同一个 Note Type 下查找和清理 Duplicates（重复卡片 ）。</p>
+<p>Anki 会默认给你几种基本的 Note Type，这些基本的 Note type 下自带已经定义好的 Fields 和 Card Types。现在来介绍下这些 Note Type：</p>
+<p><strong>Basic</strong></p>
+<p>有  和  两个 Field，只有一种 Card Type，也就是只会创建一张卡片，正面显示里的内容 、背面显示 和的内容。</p>
+<p><strong>Basic (and reversed card)</strong></p>
+<p>有  和  两个 Field，有两种 Card Type，也就是会创建两张卡片，一张正面显示里的内容 、背面显示 和的内容；另一张是 reverse 的，正面显示里的内容 、背面显示 和的内容</p>
+<p><strong>Basic (optional reversed card)</strong></p>
+<p><strong>Cloze</strong></p>
+<p>用于创建挖空问题（也就是填空题 ）的卡片，详见后面讲 Cloze 的部分。</p>
+<p>如果要修改或增加 Note Types，在软件主界面点击“Tools” → “Manage Note Types”。</p>
+<blockquote>
+<p>注意：Note Types 在整个 Collection 里面通用，就是说用某种 Note Type 生成的卡片，可以指定存放在任意一个 Deck，你可以在”Add”窗口的右上角选择存放在哪个 Deck。</p>
+</blockquote>
+<h3 id="Collection"><a href="#Collection" class="headerlink" title="Collection"></a>Collection</h3><p>Collection 是指你所有 Material 的合集，包括你的 Cards, Notes, Decks, Deck Options……</p>
+<h2 id="添加-Material"><a href="#添加-Material" class="headerlink" title="添加 Material"></a>添加 Material</h2><h3 id="下载-Shared-Decks"><a href="#下载-Shared-Decks" class="headerlink" title="下载 Shared Decks"></a>下载 Shared Decks</h3><p>有很多人在学习之后 将他们的 Cards 分享在了网上 ，你可以将他们的下载下来导入 。但是下载卡牌学习的效果比不上自己制作卡牌 学习的效果强 ，这一点你一定要清楚 。</p>
+<p>在软件主界面 左下角有一个”Get Shared”按钮 ，点击它就可以进入分享页面 ，在里面找到你想下载的 Deck，下载以后双击文件就可以导入 。</p>
+<h3 id="添加-Note-和-Card"><a href="#添加-Note-和-Card" class="headerlink" title="添加 Note 和 Card"></a>添加 Note 和 Card</h3><p>回想之前所说的 ，我们往 Anki 添加的是 Notes，而 Cards 是自动生成的 。</p>
+<p>在软件主窗口点击 “Add”，会弹出添加笔记窗口，添加笔记窗口左上角显示当前 Note Type，右上角选择卡片放到哪个 Deck。</p>
+<p>接下来有一行按钮，暂且不管 ，在这行按钮下面有几个 输入框 ，输入框的左上角显示了 这个 Field 的名称，输入框里就是要输入 Note 的地方。将你的笔记填入对应的 Field，如果你的 Note Type 是“Basic”，那么你应该会看到两个 Field。分别会在卡片的正面和背面显示。</p>
+<p>在 Field 的下放，还有一个框 ，用于填写 Tags，也就是标签 ，你可以问你的笔记添加标签 ，方便以后查找 ，标签之间用空格分隔 ，就可以为一个笔记添加多个标签 。</p>
+<p>填写完成以后 ，点击下方的 “Add”或者按下键盘的 Ctrl + Enter，就会自动生成卡片了。”History”按钮会显示你最近添加的卡片 ，方便你不小心填错添加以后进行修改 。</p>
+<p>Anki 会检查第一个 Field 的来判断笔记的唯一性，假如你在同一 Note Types 下添加了两份第一个 Field 内容相同的 Note，Anki 会给出警告 。不检查其他 Field 是为了提高软件的效率。</p>
+<p>Note Type 和 Field 之间那些按钮 ，你可以参与后面的_编辑_部分 。</p>
+<h3 id="添加-Note-Types"><a href="#添加-Note-Types" class="headerlink" title="添加 Note Types"></a>添加 Note Types</h3><p>Basic 这个 Note Type 对于一般的记单词短语是够用的 ，但是当你学习其他内容 时候 ，最好将这些信息分到更多的 Field 中。</p>
+<p>你可能会问 ，我为什么就不能把音频图片提示解释都放在 Card 正面的 Field 中呢？如果你喜欢这样做 ，那是最好了 。但这样的缺点是所有的信息都连在了一起 ，当你想批量整理的时候 ，比如希望将一大堆 Card 的音频部分从前面移到后面 ，你就只能 一张卡片 一张卡片的 去修改 ，但当你将你的 Note 分成多个 Field，只需要编辑这个 Card Type，将 音频部分的 Field 放在卡片背面，就可以一次性批量完成修改 。</p>
+<p>你可以在软件主页面点击 “Tools”-&gt;”Manage Note Types”进入 Note Type 编辑页面 ，在这里编辑或添加 Note Types，并修改各个 Note Type 下的 Fields 和 Card Types。</p>
+<p>在 Manage Note Types 页面，点击“Add”，会弹出一个框 ，框内让你选择一个已存在的 Note Type，每个 Note Type 前面有“Add：”或“Clone：”字样，“Add：”表示从 Anki 自带的 Note Type 复制一个 Note Type 便赋予新的名字 ，“Clone：”表示从所有已创建的 Note Type 复制一个 Note Type 并赋予 新的名字 。（其实选哪个都无所谓 ，添加 Note Type 本质上就是先复制一个 Note Type，赋予一个新的名字，再详细修改它的 Fields、Card Types）</p>
+<h3 id="自定义-Fields"><a href="#自定义-Fields" class="headerlink" title="自定义 Fields"></a>自定义 Fields</h3><p>你可以在主页面点击 “Add”-&gt;”Fields”，或者在 上面提到的 Manage Note Type 页面点击“Fields”，就可以编辑所选 Note Type 的 Fields。</p>
+<p>右侧的按钮“Reposition”功能是修改所选 Field 在列表中的位置 。</p>
+<p>下方的”Editing Font” 可以修改该 Field 在添加笔记页面中的内容的字体。（也就是，在软件主页面点击“Add”后，弹出的窗口内输入框中的字体）</p>
+<p>在下方有一个“Sort by this field in the brawser”，选中后有什么效果呢？</p>
+<ul>
+<li>  假设现在“Front”勾选上了这个选项。</li>
+<li>  这时候你回到主页面 ，点击 “Browse”，会进入卡片浏览页面 ，这就是所谓的 “Browser”（浏览器，这里的浏览器和你平常所用的网页浏览器概念不一样 ）。</li>
+<li>  在 Browser 中，最右边的大框框就是你浏览卡片的地方 ，左边那一列显示的就是”Front”这个 Field 的内容。</li>
+</ul>
+<p>下面两个打勾的地方，翻译过来就是 ：</p>
+<ul>
+<li>  添加的时候自动填充上次的输入</li>
+<li>  文字方向为从右到左 （某些语言如阿拉伯语会需要 ）</li>
+</ul>
+<p>自定义了 Field 以后 ，怎么决定他们在卡片的哪个部分显示呢 ？这个请参阅后面的 <strong>Template</strong> 部分。</p>
+<h3 id="正确的使用-Deck"><a href="#正确的使用-Deck" class="headerlink" title="正确的使用 Deck"></a>正确的使用 Deck</h3><p>Deck 本来是用于将你的卡片分大类的 ，但你可能会想创建 许多小的 Decks，例如“我的犯罪心理学第一章”，又或者“食品名字”，但是不推荐这样做 ，原因如下 ：</p>
+<ul>
+<li>  许多小的 Deck，意味着你在复习时 ，卡片会议能被记住的顺序依次展示 （就像你在检查视力时，把视力表最下一行每个图形 的方向记住了），这将使你回答卡片更容易 ，因为你可以根据上一张卡片的内容，记起下一张卡片的内容 。这就导致了比较弱的记忆效果 。当你在 Anki 软件之外的地方需要记起这些内容时 ，就会更困难 。</li>
+<li>  Anki 在设计之初就没有考虑要处理非常多的 Deck，当你的 Decks 很多时 （超过几十个 ），会让软件运行变慢（尤其是在手机端 ） 。</li>
+</ul>
+<p>使用 Tags 和 Fields 来分类筛选内容是更好的办法 。</p>
+<p>如果你喜欢让 Notes 非常条理 ，可以添加 Fields 到你的 Note Type，例如 “出自书名”、“页数”，这些 Fields 可以不在 卡片中显示 ，但会方便以后的筛选查找 。</p>
+<p>Anki 有 Custom Study 和 Filtered Deck，通过一系列搜索条件创建临时 Deck，方便你的自定义学习 。</p>
+<p>#Learning</p>
+<p>当你添加了 Note 或导入了 Shared Deck，就可以开始学习了 ，在主页面点击”Decks”按钮，会列出你所有的 Decks，右侧有两个数字 ，分别是对应”Due”和“New”。</p>
+<ul>
+<li>  “Due”代表应当复习的卡片数</li>
+<li>  “New”代表要新学习的卡片数</li>
+</ul>
+<h3 id="Study-Overview"><a href="#Study-Overview" class="headerlink" title="Study Overview"></a>Study Overview</h3><p>选择一个 Deck 点击后，会看到一个界面：</p>
+<ul>
+<li>  “New” 表示你新建了但从未学习过的 Card 数</li>
+<li>  “Learning” 表示你近期见过一次 但仍需要学习的 Card 数</li>
+<li>  “To Review” 表示之前学习过 ，但今天需要复习的 Card 数</li>
+</ul>
+<p>你可以点击 “Study Now”或按下键盘上的 s 键 ，开始学习 。</p>
+<h3 id="Question"><a href="#Question" class="headerlink" title="Question"></a>Question</h3><p>卡片在展示时 ，先只展示正面 ，也就是 Question，你去思考答案 ，然后点击 “Show Answer” 或者按下键盘上的空格键 ，就会显示卡片的背面 。你可能会花点时间去想答案 ，但如果在十秒内不能想起来 ，最好还是放弃苦思冥想，然后查看答案。</p>
+<p>背面显示后 ，将你所想的答案 和背面内 Answer 进行对照 ，告诉 Anki 你记得怎么样 (下边会有几个按钮供你选择)。如果你不能准确的对照 ，例如单词的拼写之类 ，你可以使用”Checking Your Answer”功能（这个在后面会讲到 ），这个功能会让你输入答案 ，翻转背面后 Anki 会进行对照 。</p>
+<h3 id="Learning"><a href="#Learning" class="headerlink" title="Learning"></a>Learning</h3><p>当你学习 New Card 或已经忘记了的 Card 时，Anki 会向你展示多次 ，帮助你 记住他们 。每次展示 都称为一个 Learning Step，默认有两个 Steps ：1 分钟和 10 分钟 。你可以在 Deck Option 里面更改 Learning Steps 的数量和时间 。</p>
+<p>在学习时有三个评级按钮</p>
+<ul>
+<li>  <strong>“Again”</strong> 会将卡片移到第一个 Step</li>
+<li>  <strong>“Good”</strong> 会移动卡片到下一个 Step，如果卡片已经处在最后一个 Step，那么它就会转变成 “Review Card”（It graduates）。默认情况下 ，如果一个卡片毕业了 ，在第二天还会再显示 一次 。之后显示的间隔时间会逐渐增加 。</li>
+<li>  <strong>“Easy”</strong> 立刻将该卡片转变成 “Review Card”，默认情况下 该卡片会在四天后再次显示 。在**“Again”**模式 不会出现 “Easy”按钮。</li>
+</ul>
+<p>当卡片第一次显示时 ，处在第一阶梯 ，当你回答“Good”时，它会在十分钟内再次展示 。</p>
+<p>你可以用键盘上的 1、2、3 来选择这三个按钮 ，键盘上的空格键会选择 “Good”。</p>
+<h3 id="Reviewing"><a href="#Reviewing" class="headerlink" title="Reviewing"></a>Reviewing</h3><p>当卡片被学习过 ，要复习时 ，有四个按钮来评估你的复习 。</p>
+<ul>
+<li>  “Again” 将你的答案标记为错误 ，也就是失误了 （This card is said to have <strong>lapsed</strong>），未来会增加展示这张卡片的频率 。</li>
+<li>  “Hard” 会在比上次间隔稍微长一点的时间后 再次展示该卡片，并且告诉 Anki 增加在未来显示这张卡片的频率 。</li>
+<li>  “Good” 告诉 Anki 上次的间隔刚好合适 。默认情况下 ，卡片会在之前时间的大约 2.5 倍之后复习。比如你在十天前见过该卡片 ，下一次间隔大约 25 天 。</li>
+<li>  “Easy” 告诉 Anki 间隔太短了，问题太容易回答 。将来的间隔时间会加大 。记住 ，这个只适用于极其简单的卡片，慎选！</li>
+</ul>
+<p>你也可以用键盘上的 1 到 4 来选择这四个按键</p>
+<h3 id="Due-Counts-and-Time-Estimates（待学计数和时间估计）"><a href="#Due-Counts-and-Time-Estimates（待学计数和时间估计）" class="headerlink" title="Due Counts and Time Estimates（待学计数和时间估计）"></a><strong>Due Counts</strong> and <strong>Time Estimates</strong>（待学计数和时间估计）</h3><p>当 Card 正面展示的时候 ，屏幕下方会展示 像 12+34+56 这样的数字 ，这些数字分别代表 ：new cards、cards in learning、cards to review。你可以在 Preference（首选项 ）里关掉这些数字的显示 。</p>
+<p>显示 Card 背面时 ，按钮上会显示下次出现该卡片的预估时间 ，同样可以在首选项里关闭显示 。</p>
+<h3 id="Editing-and-More（编辑和更多-）"><a href="#Editing-and-More（编辑和更多-）" class="headerlink" title="Editing and More（编辑和更多 ）"></a>Editing and More（编辑和更多 ）</h3><p>你可以点击左下角的 “<strong>Edit</strong>“按钮，编辑当前卡片，编辑完成后，返回继续学习 。Editing 界面和 Add Notes 界面很像 。</p>
+<p>在 Review 界面 右下角有一个按钮 “<strong>More</strong>”，可以提供一些额外的操作：</p>
+<ul>
+<li>  <strong>Mark Notes</strong> 添加一个”marked” 标签（Tag）给这个卡片，方便在浏览器中找到 。同时在复习时 ，已标记的 Cards 在右上角会显示一个小星星。</li>
+<li>  <strong>Bury Card / Note</strong> 让这张卡片或笔记在今天的复习过程中不再显示 。这个”Bury”挺形象的，就像是你把这张卡片埋到了明天需要复习的卡片中一样 。你可以在该 Deck 的概览界面点击“<strong>Unbury</strong>”来取消搁置。</li>
+<li>  <strong>Suspend Card / Note</strong> 字面意思挂起该卡片 ，就是永久的挂起来 ，在你手动把它取下来之前 ， 不会在复习列表里再次出现。</li>
+<li>  <strong>Delete Note</strong> 删除 Note 和其对应生成的 Cards</li>
+<li>  <strong>Options</strong> 编辑该 Deck 的选项</li>
+<li>  <strong>Replay Audio</strong> 如果这张卡片有音频 ，就再次播放</li>
+<li>  <strong>Record Own Voice</strong> 录制一段声音 ，用于检查你的发音 ，这段录音不会永久保存 ，再次复习时会被删掉 。如果想永久保存录音 ，请进入 Edit 页面录制。</li>
+<li>  <strong>Replay Own Voice</strong> 重新播放 你录制的声音 。</li>
+</ul>
+<h3 id="Display-Order（显示顺序-）"><a href="#Display-Order（显示顺序-）" class="headerlink" title="Display Order（显示顺序 ）"></a>Display Order（显示顺序 ）</h3><p>在选定一个 Deck 学习时 ，会显示该 Deck 下的 Cards 和 SubDecks 内的 Cards。比如你选择了 “<strong>French</strong>“这个 Deck 进行学习，“<strong>French::Vocab</strong>”和“<strong>French::MyTextBook::Lesson 1</strong>”内的 Cards 也会显示。</p>
+<p>对于 <strong>New</strong> 和 <strong>Reviewing</strong> 的 Cards，Akin 会以字母顺序从 SubDecks 里面选取 Cards。在上述例子中 ，你会先获得“<strong>French</strong>”里面的 Cards，然后是“<strong>MyTextBook</strong>”，接着是“<strong>Vocab</strong>”。你可以借此控制卡片出现的次序 。</p>
+<p>而 <strong>Learning</strong> 的 Cards，也就是刚学了，但还没有 graduate 的卡片，对时间会比较敏感 ，有更高的优先级 ，会从所有的 Deck 里立即获取并展示。</p>
+<h3 id="Siblings-and-Burying（相关卡片和搁置-）"><a href="#Siblings-and-Burying（相关卡片和搁置-）" class="headerlink" title="Siblings and Burying（相关卡片和搁置 ）"></a>Siblings and Burying（相关卡片和搁置 ）</h3><p>之前曾经提到 ，一份 Note 可以生成多张 Note，这些 Notes 互称 Siblings，中文可以叫相关卡片、同胞卡片等等 。Anki 会尽可能保证这些相关卡片 在学习时不会紧挨着显示 。</p>
+<p>Anki 只会自动 Bury <strong>New</strong> 或 <strong>Rewiewing</strong> 的卡片，将更高的优先级给 <strong>Learning</strong> 的卡片，因为时间对它们更重要 。</p>
+<h3 id="键盘快捷键"><a href="#键盘快捷键" class="headerlink" title="键盘快捷键"></a>键盘快捷键</h3><p>当你把鼠标移到一个按钮上悬停 ，会出现关于这个按钮的快捷方式的提示。</p>
+<p>一般学习时用空格回答大多数卡片是很方便的 。</p>
+<p>##Falling Behind（落后、落下复习）</p>
+<p>如果你的复习落后了 ，Anki 会优先显示等待最长的 Cards ，这将确保没有 Cards 会无限的 等下去 。</p>
+<p>那些超过应有复习时间的卡片 称为 Overdue Cards。</p>
+<p>当你在回答一张 Card 时 delay 了过长时间，会影响接下来卡片的显示顺序 。</p>
+<h2 id="Editing（编辑-）"><a href="#Editing（编辑-）" class="headerlink" title="Editing（编辑 ）"></a>Editing（编辑 ）</h2><h3 id="Features（特性）"><a href="#Features（特性）" class="headerlink" title="Features（特性）"></a>Features（特性）</h3><p>在软件主页点击 <strong>Add</strong> ，会打开 Editor （编辑器）。（当然还有几个地方也可以打开编辑器 ）</p>
+<p>现在介绍 Field 区域 右上角的几个按钮的功能 ：</p>
+<p><strong>B</strong> 粗体</p>
+<p><em><strong>I</strong></em> 斜体</p>
+<p><strong>U</strong> 下划线</p>
+<p><strong>S²</strong> 上标</p>
+<p><strong>S₂</strong> 下标</p>
+<p><strong>Fx</strong>(F 右下角一个错号) 清除所选文本的格式</p>
+<p>接下来两个方块按钮是改变字体颜色的</p>
+<p><strong>[…]</strong> 将选中的文本变成 Cloze 格式，要使用这个功能 ，必须切换 <strong>Note Types</strong> 到 <strong>Cloze</strong>（详述见下一小节）</p>
+<p><strong>回形针图标</strong> 添加音频、图片、视频文件</p>
+<p>**麦克风图标 ** 录音</p>
+<p><strong>三条横杠图标</strong> 假如更多高级格式（需要额外学习），这些高级格式可以方便输入数学公式和化学方程式，在学术性论文中很常用。</p>
+<p>这些按钮大部分都有快捷键 ，鼠标悬停在上面就可以看到 。</p>
+<p>当你从外边例如浏览器复制上文本 ，粘贴到 Anki 中，默认会<strong>清除所有格式</strong>（例如大小、颜色、加粗等等 ），如果在粘贴的时候按 住 <strong>Shift</strong>，就可以保留格式 。</p>
+<h3 id="Cloze-Deletion-（挖空）"><a href="#Cloze-Deletion-（挖空）" class="headerlink" title="Cloze Deletion （挖空）"></a>Cloze Deletion （挖空）</h3><p>例如你在“Front” Field 填入了：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Canberra was founded in 1913.</span><br></pre></td></tr></table></figure>
+
+<p>接着选中“1913”，点击右上角的**[…]**，框内 这个句子就会变成</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Canberra was founded in &#123;&#123;c1::1913&#125;&#125;.</span><br></pre></td></tr></table></figure>
+
+<p>这样的话，这个 Field 在生成的卡片正面就会显示为：</p>
+<blockquote>
+<p>Canberra was founded in ____.</p>
+</blockquote>
+<p>而在背面会显示：</p>
+<blockquote>
+<p>Canberra was founded in 1913.</p>
+</blockquote>
+<p>假如你又把“Caberra”选中，单击**[…]**，这时候句子会变成：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#123;&#123;c2::Canberra&#125;&#125; was founded in &#123;&#123;c1::1913&#125;&#125;.</span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#123;&#123;c1::Canberra&#125;&#125; was founded in &#123;&#123;c1::1913&#125;&#125;.</span><br></pre></td></tr></table></figure>
+
+<p>其实你还可以给这个挖控设置一个提示 ，如下所示：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#123;&#123;c1::Canberra::City&#125;&#125; was founded in 1913.</span><br></pre></td></tr></table></figure>
+
+<p>这样的话，这个 Field 在 Card 正面显示的就是：</p>
+<blockquote>
+<p>( City ) was founded in 1913.</p>
+</blockquote>
+<p>当然这样的挖空不能让你输入文本，如果你想要实打实的填空，来测试你的拼写能力 ，请看后面“<strong>Typing Answers</strong>”部分。</p>
+<p>Anki 将 <strong>Cloze</strong> 看做特殊的笔记类型，在一般的 Note Type 里无法使用 Cloze Deletion 功能，如果要使用自定义的 Note Type ，确保原样复制已有的 <strong>Cloze</strong> Type 。</p>
+<h2 id="Cards-and-Templates-（卡片和模板）"><a href="#Cards-and-Templates-（卡片和模板）" class="headerlink" title="Cards and Templates （卡片和模板）"></a>Cards and Templates （卡片和模板）</h2><p>之前曾提到了，用户选择 Note Type ，填写 Note 到 Fields ，Anki 根据该笔记类型下的 Card Types 自动创建 Cards 。</p>
+<p>在添加 Note 页面（也就是 Editor 页面），或 Manage Note Types 页面，都可以点击 “<strong>Cards…<strong>” 按钮，来编辑该笔记类型下的 Card Types ，在新打开的卡片类型编辑页面中 ，中间上方的下拉框可以看到有几种卡片类型，每种卡片类型一般都会生成一张卡片。你可以通过右边的 “</strong>Options</strong>” 按钮来添加、删除卡片类型。另外“<strong>Option</strong>”中的 “<strong>Deck Override</strong>“ 可以额外自定义这种 Card Type 生成的新卡片放在哪个 Deck 里面。</p>
+<p>左边上方是该 Card Type 下的 Front Template （正面模板），左边下方是 Back Template （背面模板 ）。使用 html 语言描述，不用担心你不会，只需要下面三个基本的代码，你就可以写出简单的模板。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;br&gt;    表示换行（break）</span><br><span class="line">&lt;hr&gt;&lt;br&gt;    可以画一条水平分割平线</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+ 表示 Field 的名称，最终会被替换成相应 Field 的内容
+</blockquote>
+<p>左边中间是 Styling （控制正反两面的样式 ），使用 CSS 描述，不用学 css，我相信普通人也能看懂那几行代码 并且进行简单修改 ，无外乎是改变字体的名称 、字体大小 、颜色 、背景颜色 。</p>
+<p>想要定义更漂亮的模板，还是最好学下 html 和 css，电脑上很多和排版有关的地方 ，几乎都会用到它们 。</p>
+<h3 id="Reverse-Cards-创建反转卡片"><a href="#Reverse-Cards-创建反转卡片" class="headerlink" title="Reverse Cards (创建反转卡片)"></a>Reverse Cards (创建反转卡片)</h3><p>如果你想创建 有两个方向的卡片 （例如“省名” -&gt; “省城名字”和“省城名字” -&gt; “省名”），直接使用 <strong>Basic (and reversed card)</strong> Note Type 就可以。</p>
+<p>也可以选择 <strong>Basic (optional reversed card)</strong> Note Type，在这种笔记类型中，只有当第三个 Field （即”Add Reverse”）中象征性的填入一些内容 ，才会生成两张互为反转的卡片 。</p>
+<p>如果稍后决定不需要添加反转卡片，将 “Add Reverse” 中的内容清除即可。</p>
+<p>如果在一开始没有选择 <strong>Basic (optional reversed card)</strong> Note Type，可以在 Browser 中改变某 Note 的 Note Type 。</p>
+<blockquote>
+<p>为了防止丢失数据，在用户清除了 “Add Reverse” field 的内容后，并不会自动删除卡片。为了完成删除操作，需要手动在软件主页面点击 “<strong>Tools</strong>“ -&gt; “<strong>Empty Cards…</strong>“ 。</p>
+</blockquote>
+<p>如果要使用更复杂的 Note Types， 例如希望在某些特定条件下生成特定的 Cards，参阅后面的 “<strong>Conditional Replacement</strong>” 章节。</p>
+<h3 id="Basic-Templates-基础模板"><a href="#Basic-Templates-基础模板" class="headerlink" title="Basic Templates (基础模板)"></a>Basic Templates (基础模板)</h3><p>最简单的模板就是像这样的 ：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#123;&#123;Front&#125;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>把 Field 名字放进两个大括号里面，Anki 会查找该 Field 的内容，并进行替换。</p>
+<p><em>要注意模板对大小写是敏感的</em></p>
+<p>模板可以添加任何文本 ，例如你在学习各国的首都 ，创建了一个包含 “国家”、“首都” 两个 Field 的 Note Type，你就可以创建这样的模板，正面是：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#123;&#123;国家&#125;&#125;的首都叫什么？</span><br></pre></td></tr></table></figure>
+
+<p>背面是：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#123;&#123;FrontSide&#125;&#125;&lt;br&gt;</span><br><span class="line">&lt;hr id=answer&gt;</span><br><span class="line">&#123;&#123;首都&#125;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>代码的意思是：先显示正面的文本 ，再画一条分割线 ，再显示  Field 的内容。</p>
+<blockquote>
+<p><strong>id=answer</strong> 告诉 Anki 问题和答案之间的分界处，当你的正面文本较长时，显示背面后，可以快速自动滚动到答案开头 。</p>
+</blockquote>
+<h3 id="Checking-Your-Answer-（输入比对模式）"><a href="#Checking-Your-Answer-（输入比对模式）" class="headerlink" title="Checking Your Answer （输入比对模式）"></a>Checking Your Answer （输入比对模式）</h3><p>如果你在脑海里回忆还不够 ，希望将脑海里的答案写下来，与标准答案进行比较，核查拼写错误，那你就可以用到这个。</p>
+<p>假设你有的一张 Card Type ，它的模板是这样的：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#123;&#123;中文&#125;&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#123;&#123;FrontSide&#125;&#125;</span><br><span class="line">&lt;hr id=answer&gt;</span><br><span class="line">&#123;&#123;英文&#125;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>你需要将它的正面改成这样：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#123;&#123;中文&#125;&#125;</span><br><span class="line">&#123;&#123;type:英文&#125;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>我们在这里添加了一个 “**type:**” ，于是就会在卡片的正面添加一个输入框，学习时，在输入框内填入你所想的答案 ，点击显示答案 ，Anki 就会核对你所输入的文字和  Field 的内容，正确部分用绿色表示 ，错误部分用红色表示 。</p>
+<p>答案正确与否并不会影响这个卡片下次复习的时间 ，这仍然取决于用户是否觉得记住了。</p>
+<blockquote>
+<p>注意 ：一张卡片只能用一个输入对比，也只支持单行文字。</p>
+</blockquote>
+<p>高级用户可以定义 css 的 class: <strong>typeGood</strong> 、 <strong>typeBad</strong> 、 <strong>typeMissed</strong> 来改变比对结果显示的颜色。</p>
+<p>也可以在 Cloze 卡片中使用 Type Answer 功能，为此需要在卡片的正面背面都添加上</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#123;&#123;type:cloze:Text_Field_Name&#125;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>因此背面的模板是这样的：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#123;&#123;cloze:Text_Field_Name&#125;&#125;</span><br><span class="line">&#123;&#123;type:cloze:Text_Field_Name&#125;&#125;</span><br><span class="line">&#123;&#123;Extra&#125;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这个只能在 Cloze 类型的 Note Type 里面添加 。</p>
+<blockquote>
+<p>提醒：输入答案的文本框，在 Browser 的 Preview 中不会出现，只有在学习时才会出现。</p>
+</blockquote>
+<p>##换行</p>
+<p>由于模板使用 HTML 语言书写 ，所以需要特殊的换行，如果你在模板中写下了 ：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">One</span><br><span class="line">Two</span><br></pre></td></tr></table></figure>
+
+<p>在实际预览时，你会发现它变成了：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">One Two</span><br></pre></td></tr></table></figure>
+
+<p>为了换行，我们就需要在每一行末尾加</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;br&gt;</span><br></pre></td></tr></table></figure>
+
+<p>就像这样：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">One&lt;br&gt;</span><br><span class="line">Two</span><br></pre></td></tr></table></figure>
+
+<p>这样换行也同样适用于有多个 Field 时：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#123;&#123;Field_One&#125;&#125;&lt;br&gt;</span><br><span class="line">&lt;br&gt;</span><br><span class="line">&#123;&#123;Field_Two&#125;&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Card-Styling-卡片样式"><a href="#Card-Styling-卡片样式" class="headerlink" title="Card Styling (卡片样式 )"></a>Card Styling (卡片样式 )</h3><p>编辑出更复杂和精美的卡片样式需要使用 css 知识，这个在网上可以轻易搜到很多资料。这里就不再赘述。</p>
+<p>但是你可以在 <strong>Front Template</strong> 和 <strong>Back Template</strong> 之间的 <strong>Styling</strong> 区域简单地定义文本字体、大小、颜色。</p>
+<h3 id="Special-Fields"><a href="#Special-Fields" class="headerlink" title="Special Fields"></a>Special Fields</h3><p>Anki 有一些保留 Field 可以直接使用，现在列在下面：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">The note&#x27;s tags: &#123;&#123;Tags&#125;&#125;</span><br><span class="line"></span><br><span class="line">The type of note: &#123;&#123;Type&#125;&#125;</span><br><span class="line"></span><br><span class="line">The card&#x27;s deck: &#123;&#123;Deck&#125;&#125;</span><br><span class="line"></span><br><span class="line">The card&#x27;s subdeck: &#123;&#123;Subdeck&#125;&#125;</span><br><span class="line"></span><br><span class="line">The type of card : &#123;&#123;Card&#125;&#125;</span><br><span class="line"></span><br><span class="line">The content of the front template:</span><br><span class="line">&#123;&#123;FrontSide&#125;&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Card-Generation-amp-Deletion-卡片的生成与删除"><a href="#Card-Generation-amp-Deletion-卡片的生成与删除" class="headerlink" title="Card Generation &amp; Deletion (卡片的生成与删除)"></a>Card Generation &amp; Deletion (卡片的生成与删除)</h3><p>Anki 不会创建正面空白的卡片。Note 正面为空会无法创建 Cards。</p>
+<p>将一条已经存在的卡片编辑，使它正面为空 ，为了防止数据丢失 ， Anki 不会自动删除这张空卡片。需要手动在软件主页面选择 “Tools” -&gt; “Empty Cards…”。</p>
+<p>由于卡片的生成方式，删除单张 Card 可能不会生成该 Note（有的一条 Note 会创建多张 Card ），因此要么把与这条 Note 相关的 Card 一一全部删除 ，要么你可以编辑 Card 内容，使正面 Field 的内容为空（与之相关的 Note 也会被更改），再回到首页，直行删除空卡片 。</p>
+<h3 id="Media-amp-LaTex-References-媒体与-LaTex-引用"><a href="#Media-amp-LaTex-References-媒体与-LaTex-引用" class="headerlink" title="Media &amp; LaTex References (媒体与 LaTex 引用)"></a>Media &amp; LaTex References (媒体与 LaTex 引用)</h3><h4 id="静态引用声音或图像"><a href="#静态引用声音或图像" class="headerlink" title="静态引用声音或图像"></a>静态引用声音或图像</h4><p>假如你希望每张卡片上都含有一个相同的图片，例如一个公司 logo。</p>
+<blockquote>
+<p>先将图片文件重命名，并且一定以下划线开头（这非常重要），例如“_logo.jpg”</p>
+</blockquote>
+<p>在卡片的正面或背面模板添加该图片文件的引用：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;img src=&quot;_logo.jpg&quot;&gt;</span><br></pre></td></tr></table></figure>
+
+<p>不允许出现下述的表达（否则会失效 ）：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;img src=&#123;&#123;Expression&#125;&#125;.jpg&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Conditional-Replacement-条件替换"><a href="#Conditional-Replacement-条件替换" class="headerlink" title="Conditional Replacement (条件替换)"></a>Conditional Replacement (条件替换)</h3><p>举两个例子就可以解释了，第一个例子是在 “<strong>Expression</strong>“ Field 非空时显示 “<strong>Note</strong>“ Field 的内容：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#123;&#123;#Expression&#125;&#125;</span><br><span class="line">&#123;&#123;Note&#125;&#125;</span><br><span class="line">&#123;&#123;/Expression&#125;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>第二个例子是在 “<strong>Expression</strong>“ Field 为空时才显示 “<strong>Note</strong>“ Field 的内容：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#123;&#123;^Expression&#125;&#125;</span><br><span class="line">&#123;&#123;Note&#125;&#125;</span><br><span class="line">&#123;&#123;/Expression&#125;&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>Basic (optional reversed card)</strong> 笔记类型中第二个 Card Type 就是使用了条件判断，来决定卡片正面的内容的，当卡片正面为空时 ，Anki 自然不会创建反转卡片 。</p>
+<h3 id="Cloze-Templates-挖空模板"><a href="#Cloze-Templates-挖空模板" class="headerlink" title="Cloze Templates (挖空模板)"></a>Cloze Templates (挖空模板)</h3><p>Cloze 模板的卡片生成方式与 其他卡片的生成方式略微有所不同：</p>
+<ul>
+<li>  Anki 先在正面模板查看有没有像这样的 Cloze Replacements: {cloze:FieldName}</li>
+<li>  再查找 FieldName 里面的 Cloze References，例如： { c1:text }</li>
+<li>  生成卡片</li>
+</ul>
+<p>理解了这个后，再去查看 <strong>Cloze</strong> Note Type 下的 Templates 就可以看懂了。</p>
+<h3 id="Browser-Appearance"><a href="#Browser-Appearance" class="headerlink" title="Browser Appearance"></a>Browser Appearance</h3><p>如果你的模板太复杂 ，可能每张卡片在 Browser 里显示时（Browser 里第一页会显示卡片的正面 ） ，你可以使用编辑页里 “<strong>Cards</strong>“ -&gt; “<strong>Options</strong>“ -&gt; “<strong>Browser Appearance</strong>“ 来自定义该卡片在浏览器里显示的内容 。</p>
+<h3 id="Plarform-Specific-CSS"><a href="#Plarform-Specific-CSS" class="headerlink" title="Plarform-Specific CSS"></a>Plarform-Specific CSS</h3><p>略</p>
+<h3 id="Installing-Fonts"><a href="#Installing-Fonts" class="headerlink" title="Installing Fonts"></a>Installing Fonts</h3><p>略</p>
+<h3 id="Night-Mode"><a href="#Night-Mode" class="headerlink" title="Night Mode"></a>Night Mode</h3><p>略</p>
+<h2 id="Peofiles-amp-Preferences-配置文件和首选项"><a href="#Peofiles-amp-Preferences-配置文件和首选项" class="headerlink" title="Peofiles &amp; Preferences (配置文件和首选项)"></a>Peofiles &amp; Preferences (配置文件和首选项)</h2><p>##Profiles (配置文件 )</p>
+<p>如果有多个用户在一台电脑上使用 Anki，你可以为每个用户添加一个 Profile，也就是配置文件 ，配置文件里包含了该用户所有的信息 ，首选项、学习记录、媒体文件、卡片、同步账号……</p>
+<p>在主页面点击 “<strong>File</strong>“ -&gt; “<strong>Switch Profile</strong>“，就可以切换配置文件了。</p>
+<h3 id="Preferences-（首选项-）"><a href="#Preferences-（首选项-）" class="headerlink" title="Preferences （首选项 ）"></a>Preferences （首选项 ）</h3><p>首选项里面有三块，第一块是 Basic。里面可以切换语言 、第二个下拉框可以决定学习时 新卡片和复习卡片的显示顺序 、决定凌晨几点开始才属于第二天（对于熬夜学习的同学 很有用）</p>
+<p><strong>Learn Ahead Limit</strong> 默认是 20，假如当你学习完了所有卡片以后，还有几张卡片本应当在再过十分钟左右显示 ，10&lt;20，那么 这些卡片就会直接继续显示 。</p>
+<p><strong>Time Box</strong> 是一种将大块的学习时间分成小段的方技巧，比如一次只学 30 分钟 。如果你把它设成非零的数值比如 30 ，Anki 每过这么 30 分钟，就会提醒一下你在这段时间里学习了多少张卡片 。</p>
+<h2 id="Deck-Option（记忆库-牌组-选项）"><a href="#Deck-Option（记忆库-牌组-选项）" class="headerlink" title="Deck Option（记忆库/牌组 选项）"></a>Deck Option（记忆库/牌组 选项）</h2><p>你可以在软件主窗口某个 Deck 的右边点击齿轮图标，选择 “<strong>Options</strong>“ 进入该 Deck 的 Option。</p>
+<p>在上方的下拉框 ，你可以设定多个设置组，方便在不同学习阶段切换不同的学习设置 。默认只有一个 default。</p>
+<p>在下方 你可以设置 Steps、每天学习的新卡片和复习卡片数量 。</p>
+<blockquote>
+<p>千万不要太兴奋 把每天学习新卡片的数量调到很多 ，假如你一天学习 20 个 ，当你的学习稳定后 ，每天应当复习的卡片数量就大概会是 200 个 。</p>
+</blockquote>
+<p><strong>Starting ease</strong> 数值 250%，代表当一张卡牌的难度 对你很简单的时候 ，每次复习间隔的时间 是上一次间隔时间的 2.5 倍 。</p>
+<h3 id="Lapses"><a href="#Lapses" class="headerlink" title="Lapses"></a>Lapses</h3><p>当有一张 Revied 的卡片 被你忘记了 ，再次复习的时候你选择了 “Again”，我们就称这张卡片 Lapsed。首选项里有对应这种卡片的复习参数。</p>
+<h3 id="General"><a href="#General" class="headerlink" title="General"></a>General</h3><p><strong>Ignore answer times than</strong> 的默认数值是 60 秒，当你学习时，Anki 会记住你学习的时间 ，显示一张卡片，你超过 60 秒 没有回答 ，Anki 就认为你的注意力已经不在学习上了 ，会停止增加学习时间计时，这样就可以避免不准确的统计 。这个数值最小是 30 秒 。</p>
+<h3 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h3><p>这个里面允许你写下关于你这个 Deck 的描述，方便你分享 Deck 时 ，让别人通过这个 Description 了解这个 Deck 更多的信息 。</p>
+<h2 id="AnkiWeb-and-Synchronization-（同步）"><a href="#AnkiWeb-and-Synchronization-（同步）" class="headerlink" title="AnkiWeb and Synchronization （同步）"></a>AnkiWeb and Synchronization （同步）</h2><p>AnkiWeb 是一个免费服务 ，你在上面注册上免费账号后 ，在电脑和手机端 等多个设备上登录 ，就可以进行同步 ，在手机上学习完 ，就可以将学习记录同步到电脑端 。</p>
+<p>首次同步时 ，服务器上内容为空 ，Anki 会无法合并 AnkiWeb 上和本地的内容，你可以选择上传全部到云端。</p>
+<p>默认每次打开和关闭软件时都会自动同步，如果你倾向于手动同步 ，可以在首选项里关闭自动同步 。</p>
+<h3 id="Conflicts"><a href="#Conflicts" class="headerlink" title="Conflicts"></a>Conflicts</h3><p>大部分的操作都可以在同步时合并 ，但是如果你做了一些比较大的改动 ，例如修改模板 ，就无法进行合并同步 ，这时你可以选择从云端覆盖本地 ，或从本地覆盖云端 。</p>
+<h3 id="同步速度慢"><a href="#同步速度慢" class="headerlink" title="同步速度慢"></a>同步速度慢</h3><p>由于某些众所周知的原因（如果你不知道，那最好别知道，多一事不如少一事），我国访问外国网站速度非常慢，而这个软件的云端 AnkiWeb 的服务器在日本，再加上是开源免费软件，服务器并不是很强大，在国内访问速度比蜗牛还慢，同步几 KB 的学习记录甚至要好几十秒，如果有图片和音频媒体文件要同步 ，那就更慢的要死。这个同步服务只能说是可以用，但会让人用着超级不爽 。可以说这也是阻碍 Anki 在国内传播的一个因素吧。</p>
+<p>针对这种情况，有些人想出一些奇思妙招 ，比如通过手动从从电脑上导出文件 ，到手机上导入 ，再从手机上导出 ，传到电脑上导入 ，这哪里是略微麻烦，简直是太麻烦 ，而且还不能合并同步。又有的人就只用一台设备添加卡片和学习 。</p>
+<p>但其实我认为最佳的使用方法是使用电脑专门用于录入笔记 （电脑在这方面优势很大 ），用手机在平时闲暇功夫复习 ，例如排队、等车的时候 。学习完后再一同步，一合并，多完美。</p>
+<p>所以我在阿里云上租了一台服务器 ，搭建了一个同步服务 ，简单修改一下电脑端和手机端同步服务器的地址，就可以非常快速的同步。如果受不了官方的同步速度 ，联系我在服务器上开一个账户就 ok 了 (^_^)</p>
+<p>搭建服务器和修改同步服务器地址的教程，我都发表在了一篇知乎文章上**《在阿里云上搭建 Anki 同步服务器（傻瓜化小白解决方案）》**。估计看的人也不会有几个。</p>
+<h2 id="Browser-（浏览器）"><a href="#Browser-（浏览器）" class="headerlink" title="Browser （浏览器）"></a>Browser （浏览器）</h2><p>在软件主界面点击 Browse ，就可以打开浏览器了。左侧是筛选列表 ，右侧是 Cards 。右侧上边有一个搜索框 ，可以进行 高级筛选搜索 。选中一个卡牌，可以直接编辑 Note 的内容 ，点击右上角的 “<strong>Preview</strong>“ 按钮就可以进行预览 。</p>
+<h3 id="Searching（高级搜索）"><a href="#Searching（高级搜索）" class="headerlink" title="Searching（高级搜索）"></a>Searching（高级搜索）</h3><p>关于搜索，当你的卡牌很多时，搜索有时就会很必要。下面关于搜索的描述我就不再翻译 ，因为其实都很简单 ，但没有必要刻意去记，需要某些 需要某些复杂的搜索条件时 ，查阅一下 User Guide 的搜索部分即可。</p>
+<p>Above the card list is a search box. You can type in various things there to search for cards. (If you’d rather select what you’re looking for in a list, please take a look at the sidebar section above.)</p>
+<h4 id="Simple-searches"><a href="#Simple-searches" class="headerlink" title="Simple searches"></a>Simple searches</h4><p>When you type some text into the search box, Anki finds matching notes and displays their cards. Anki searches in all fields of the notes, but does not search for tags (see later in this section for how to search for tags). Some examples:</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">dog</span><br><span class="line"></span><br><span class="line">search for &quot;dog&quot; - will match words like &quot;doggy&quot; and &quot;underdog&quot; too</span><br><span class="line"></span><br><span class="line">dog cat</span><br><span class="line"></span><br><span class="line">finds notes with both &quot;dog&quot; and &quot;cat&quot;, such as &quot;a dog and cat&quot;</span><br><span class="line"></span><br><span class="line">dog or cat</span><br><span class="line"></span><br><span class="line">finds notes with either &quot;dog&quot; or &quot;cat&quot;</span><br><span class="line"></span><br><span class="line">dog (cat or mouse)</span><br><span class="line"></span><br><span class="line">finds notes with dog and cat, or dog and mouse</span><br><span class="line"></span><br><span class="line">-cat</span><br><span class="line"></span><br><span class="line">finds notes without the word &quot;cat&quot;.</span><br><span class="line"></span><br><span class="line">-cat -mouse</span><br><span class="line"></span><br><span class="line">finds notes with neither &quot;cat&quot; nor &quot;mouse&quot;.</span><br><span class="line"></span><br><span class="line">-(cat or mouse)</span><br><span class="line"></span><br><span class="line">same as the above.</span><br><span class="line"></span><br><span class="line">&quot;a dog&quot;</span><br><span class="line"></span><br><span class="line">finds notes with the exact phrase &quot;a dog&quot; on them</span><br><span class="line"></span><br><span class="line">-&quot;a dog&quot;</span><br><span class="line"></span><br><span class="line">finds notes without the exact phrase &quot;a dog&quot;</span><br><span class="line"></span><br><span class="line">d_g</span><br><span class="line"></span><br><span class="line">finds notes with d, a letter, g, like dog, dig, dug, and so on.</span><br><span class="line"></span><br><span class="line">d*g</span><br><span class="line"></span><br><span class="line">finds notes with d, &lt;zero or more letters&gt;, g, like dg, dog, dung, etc.</span><br></pre></td></tr></table></figure>
+
+<p>Things to note from the above:</p>
+<p>Search terms are separated by spaces.</p>
+<p>When multiple search terms are provided, Anki looks for notes that match all of the terms.</p>
+<p>You can use “or” if you only need one of the terms to match.</p>
+<p>You can prepend a minus sign to a term to find notes that don’t match.</p>
+<p>If you want to search for something including a space or parenthesis, enclose it in quotes.</p>
+<p>You can group search terms by placing them in parentheses, as in the dog (cat or mouse) example. This becomes important when combining OR and AND searches — in the example, with the parentheses, it matches either dog cat or dog mouse, whereas without them it would match either dog and cat or mouse.</p>
+<p>Anki is only able to search within formatting in the sort field you’ve configured. For example, if you add “example” to one of your fields, this will not be matched when searching for “example” unless that field is the sort field. If a word is not formatted, or the formatting does not change in the middle of the word, then Anki will be able to find it in any field.</p>
+<h4 id="Limiting-to-a-field"><a href="#Limiting-to-a-field" class="headerlink" title="Limiting to a field"></a>Limiting to a field</h4><p>You can also ask Anki to match only if a particular field contains some text. Unlike the searches above, searching on fields requires an exact match by default.</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">front:dog</span><br><span class="line"></span><br><span class="line">find notes with a Front field of exactly &quot;dog&quot;. A field that says &quot;a dog&quot; will not match.</span><br><span class="line"></span><br><span class="line">front:*dog*</span><br><span class="line"></span><br><span class="line">find notes with Front field containing dog somewhere</span><br><span class="line"></span><br><span class="line">front:</span><br><span class="line"></span><br><span class="line">find notes that have an empty Front field</span><br><span class="line"></span><br><span class="line">front:_*</span><br><span class="line"></span><br><span class="line">find notes that have a non-empty Front field</span><br><span class="line"></span><br><span class="line">front:*</span><br><span class="line"></span><br><span class="line">find notes that have a Front field, empty or not</span><br><span class="line"></span><br><span class="line">Tags, decks, cards and notes</span><br><span class="line"></span><br><span class="line">tag:animal</span><br><span class="line"></span><br><span class="line">find notes with the tag &quot;animal&quot;</span><br><span class="line"></span><br><span class="line">tag:none</span><br><span class="line"></span><br><span class="line">find notes with no tags</span><br><span class="line"></span><br><span class="line">tag:ani*</span><br><span class="line"></span><br><span class="line">find notes with tags starting with ani</span><br><span class="line"></span><br><span class="line">deck:french</span><br><span class="line"></span><br><span class="line">find cards in a French deck, or subdecks like French::Vocab</span><br><span class="line"></span><br><span class="line">deck:french -deck:french::*</span><br><span class="line"></span><br><span class="line">find cards in French, but not subdecks</span><br><span class="line"></span><br><span class="line">deck:&quot;french vocab&quot;</span><br><span class="line"></span><br><span class="line">searching when a deck has a space</span><br><span class="line"></span><br><span class="line">&quot;deck:french vocab&quot;</span><br><span class="line"></span><br><span class="line">also ok</span><br><span class="line"></span><br><span class="line">deck:filtered</span><br><span class="line"></span><br><span class="line">filtered decks only</span><br><span class="line"></span><br><span class="line">-deck:filtered</span><br><span class="line"></span><br><span class="line">normal decks only</span><br><span class="line"></span><br><span class="line">card:forward</span><br><span class="line"></span><br><span class="line">search for Forward cards</span><br><span class="line"></span><br><span class="line">card:1</span><br><span class="line"></span><br><span class="line">search for cards by template number - eg, to find the second cloze deletion for a note, you’d use card:2</span><br><span class="line"></span><br><span class="line">note:basic</span><br><span class="line"></span><br><span class="line">search for cards with a Basic note type</span><br><span class="line"></span><br><span class="line">Card state</span><br><span class="line"></span><br><span class="line">is:due</span><br><span class="line"></span><br><span class="line">review cards and learning cards waiting to be studied</span><br><span class="line"></span><br><span class="line">is:new</span><br><span class="line"></span><br><span class="line">new cards</span><br><span class="line"></span><br><span class="line">is:learn</span><br><span class="line"></span><br><span class="line">cards in learning</span><br><span class="line"></span><br><span class="line">is:review</span><br><span class="line"></span><br><span class="line">reviews (both due and not due) and lapsed cards</span><br><span class="line"></span><br><span class="line">is:suspended</span><br><span class="line"></span><br><span class="line">cards that have been manually suspended</span><br><span class="line"></span><br><span class="line">is:buried</span><br><span class="line"></span><br><span class="line">cards that have been buried, either automatically or manually</span><br><span class="line"></span><br><span class="line">Cards that have lapsed fall into several of these categories, so it may be useful to combine them to get more precise results:</span><br><span class="line"></span><br><span class="line">is:learn is:review</span><br><span class="line"></span><br><span class="line">cards that have lapsed and are awaiting relearning</span><br><span class="line"></span><br><span class="line">-is:learn is:review</span><br><span class="line"></span><br><span class="line">review cards, not including lapsed cards</span><br><span class="line"></span><br><span class="line">is:learn -is:review</span><br><span class="line"></span><br><span class="line">cards that are in learning for the first time</span><br><span class="line"></span><br><span class="line">Card properties</span><br><span class="line"></span><br><span class="line">prop:ivl&gt;=10</span><br><span class="line"></span><br><span class="line">cards with interval of 10 days or more</span><br><span class="line"></span><br><span class="line">prop:due=1</span><br><span class="line"></span><br><span class="line">cards due tomorrow</span><br><span class="line"></span><br><span class="line">prop:due=-1</span><br><span class="line"></span><br><span class="line">cards due yesterday that haven’t been answered yet</span><br><span class="line"></span><br><span class="line">prop:due&gt;-1 prop:due&lt;1</span><br><span class="line"></span><br><span class="line">cards due between yesterday and tomorrow</span><br><span class="line"></span><br><span class="line">prop:reps&lt;10</span><br><span class="line"></span><br><span class="line">cards that have been answered less than 10 times</span><br><span class="line"></span><br><span class="line">prop:lapses&gt;3</span><br><span class="line"></span><br><span class="line">cards that have moved into relearning more than 3 times</span><br><span class="line"></span><br><span class="line">prop:ease!=2.5</span><br><span class="line"></span><br><span class="line">cards easier or harder than default</span><br><span class="line"></span><br><span class="line">Note that due only matches review cards and learning cards with an interval of a day or more: cards in learning with small intervals like 10 minutes are not included.</span><br><span class="line"></span><br><span class="line">Recently added</span><br><span class="line"></span><br><span class="line">added:1</span><br><span class="line"></span><br><span class="line">cards added today</span><br><span class="line"></span><br><span class="line">added:7</span><br><span class="line"></span><br><span class="line">cards added in last week</span><br><span class="line"></span><br><span class="line">The check is made against card creation time rather than note creation time, so cards that were generated within the time frame will be included even if their notes were added a long time ago.</span><br><span class="line"></span><br><span class="line">Recently answered</span><br><span class="line"></span><br><span class="line">rated:1</span><br><span class="line"></span><br><span class="line">cards answered today</span><br><span class="line"></span><br><span class="line">rated:1:2</span><br><span class="line"></span><br><span class="line">cards answered Hard (2) today</span><br><span class="line"></span><br><span class="line">rated:7:1</span><br><span class="line"></span><br><span class="line">cards answered Again (1) over the last 7 days</span><br><span class="line"></span><br><span class="line">rated:31:4</span><br><span class="line"></span><br><span class="line">cards answered Easy (4) in the last month</span><br><span class="line"></span><br><span class="line">For speed, rating searches are limited to 31 days.</span><br><span class="line"></span><br><span class="line">Object IDs</span><br><span class="line"></span><br><span class="line">nid:123</span><br><span class="line"></span><br><span class="line">all cards of the note with note id 123</span><br><span class="line"></span><br><span class="line">cid:123</span><br><span class="line"></span><br><span class="line">the card with card id 123</span><br><span class="line"></span><br><span class="line">mid:123</span><br><span class="line"></span><br><span class="line">find note types with note type id 123</span><br><span class="line"></span><br><span class="line">Note and card IDs can be found in the card info dialog in the browser. Note type IDs can be found by clicking on a note type in the Browse screen. These searches may also be helpful when doing add-on development or otherwise working closely with the database.</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>Note: Object IDs will not work in the mobile clients, and are not intended to be used in filtered decks at the moment.</p>
+</blockquote>
+<h2 id="Filtered-Decks-amp-Cramming-筛选卡片和死记硬背"><a href="#Filtered-Decks-amp-Cramming-筛选卡片和死记硬背" class="headerlink" title="Filtered Decks &amp; Cramming (筛选卡片和死记硬背)"></a>Filtered Decks &amp; Cramming (筛选卡片和死记硬背)</h2><p>Filtered Decks 是一个非常有用的功能，通过一定的搜索条件 ，将符合条件的 Cards 从原本的 Decks 抽取出来 ，放到一个 Filtered Deck 单独学习，每张 Card 会在学习完成后会携带着学习记录，自动被放回到原来的 Decks ，你也可以删掉这个 Filtered Deck，里面的 Cards 同样会自动回到原来的 Decks 。</p>
+<p>这个功能对于考试前的综合大复习等等情况非常有用！</p>
+<h2 id="Leeches-老是忘的-Notes"><a href="#Leeches-老是忘的-Notes" class="headerlink" title="Leeches (老是忘的 Notes)"></a>Leeches (老是忘的 Notes)</h2><p>Leeches 是你经常忘记的卡片，他们需要比其他卡片花更多的时间来复习 。</p>
+<p>可以帮助你辨别哪些是 ，每次你复习的时候 Lapses（点击了 “<strong>Again</strong>“ ），就会计数一次 ，当计数达到 8 时 ，这条 Note 就会被加上 <strong>leech</strong> 的标签 ，并且这张卡片被 Suspend ，这个阈值可以在 Deck Options 里面修改 。</p>
+<p>每过阈值一半数量的 Lapses ，Anki 就会提醒一次你的 Leeches。</p>
+<p>只要你找到了 Leech ，处理它的方法就多了去了。</p>
+<h2 id="批量导入导出"><a href="#批量导入导出" class="headerlink" title="批量导入导出"></a>批量导入导出</h2><p>略。。。(▼ 皿 ▼#)</p>
+<h2 id="Managing-Files-and-Your-Collection-管理你的学习文件"><a href="#Managing-Files-and-Your-Collection-管理你的学习文件" class="headerlink" title="Managing Files and Your Collection (管理你的学习文件)"></a>Managing Files and Your Collection (管理你的学习文件)</h2><p>为什么要有这样一章？其实这一章的内容还不少 ，不过我都把不会用到的地方给省略了。</p>
+<h3 id="检查数据库"><a href="#检查数据库" class="headerlink" title="检查数据库"></a>检查数据库</h3><p>当你的 Collection 意外地出现了问题 ，可以使用 “<strong>Tool</strong>“ -&gt; “<strong>Check Database</strong>“ 功能来优化数据库。</p>
+<p>比如你删除了一些 Notes ，会留下一些空的 Tags ，为了防止数据丢失 ， Anki 并不会自动删除这些空 Tags ，而当你检查数据库的时候 ，空 Tags 就会被优化清理掉 。</p>
+<h3 id="文件位置"><a href="#文件位置" class="headerlink" title="文件位置"></a>文件位置</h3><p>在 WINDOWS 电脑上 ，打开 文件管理器 ，在地址栏输入 <code>%APPDATA%\Anki2</code>，就可以定位到你的学习文件存储位置。</p>
+<h3 id="把-Anki-装在-U-盘上"><a href="#把-Anki-装在-U-盘上" class="headerlink" title="把 Anki 装在 U 盘上"></a>把 Anki 装在 U 盘上</h3><p>如果你希望随时随地找到一台电脑都可以用 Anki，你可能想把它装在 U 盘上 。这个操作会有点复杂 ，建议需要的时候查看官方用户指南 。就不翻译了。</p>
+<h2 id="Graphs-and-Statics-（图表和统计）"><a href="#Graphs-and-Statics-（图表和统计）" class="headerlink" title="Graphs and Statics （图表和统计）"></a>Graphs and Statics （图表和统计）</h2><p>你所有的学习过程 、学习结果的好坏，Anki 都会帮你记下来 作为统计数据 （只有你能看到 ），在软件主页面点击 “<strong>Stats</strong>” 就可以看到统计图标，里面各个名词的具体意思 我就不再翻译了</p>
+<ul>
+<li>  一来用处不大</li>
+<li>  二来基本上都可以直观理解</li>
+<li>  三来你都看到这里了 ，遇到我没有翻译的 不懂的的地方应该有能力去看下官方文档了</li>
+</ul>
+<h2 id="Latex-支持"><a href="#Latex-支持" class="headerlink" title="Latex 支持"></a>Latex 支持</h2><p>略</p>
+<h2 id="Miacellanea-杂录"><a href="#Miacellanea-杂录" class="headerlink" title="Miacellanea (杂录)"></a>Miacellanea (杂录)</h2><p>略</p>
+<h2 id="Add-on-插件"><a href="#Add-on-插件" class="headerlink" title="Add-on (插件)"></a>Add-on (插件)</h2><p>略</p>
+<h2 id="常见问题"><a href="#常见问题" class="headerlink" title="常见问题"></a>常见问题</h2><p>略（大部分是关于学习的，例如过了一个月没有学习 ，该怎么办等等。Anki 会帮你处理的。）</p>
+<p>翻译一个有意思的地方吧：</p>
+<h3 id="为什么安卓桌免费而苹果端收费？"><a href="#为什么安卓桌免费而苹果端收费？" class="headerlink" title="为什么安卓桌免费而苹果端收费？"></a>为什么安卓桌免费而苹果端收费？</h3><p>开发者的回答：<code>开发 Anki 是我现在的全职工作 ，我也需要一份收入来支持 ，所以只能依赖在苹果端的收入来支持开发。 安卓端的 AnkiDroid 是一群志愿者基于我的一个免费桌面版本开发的，并且支持 AnkiWeb 同步，他们也决定让这个软件免费。</code></p>
+<p>我忘记从哪里看到了 ，作者曾解释了为什么苹果专要收费 160 元 ，其实刚开始的时候定价是不高的 ，但是这个软件需要一定的学习成本 ，许多人在 App Store 见着便宜买了以后 ，没有花精力学习 ，就觉得这软件特别难用 ，不值得花几块钱买 ，于是就给了差评 ，拉低拉软件的评分 ，所以作者干脆把价格调得很高 ，通过价格筛选用户 ，没有认识到 Anki 价值的人是不会花这么多钱买这个软件的，从而也就避免了大量的差评，保护了软件评分。</p>
+<p>至此，这篇 20000 多字的中文 Anki 教程就完结撒花了！ </p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">叶落花开</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://www.yeluohuakai.com/posts/2022/11/9362ca3f.html">https://www.yeluohuakai.com/posts/2022/11/9362ca3f.html</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://www.yeluohuakai.com" target="_blank">叶落花开的博客</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Anki/">Anki</a></div><div class="post_share"><div class="social-share" data-image="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://fastly.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/posts/2022/11/a89d4e23.html"><img class="next-cover" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">anki基础-基本概念</div></div></a></div></nav><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/loading.gif" data-original="/img/ava.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">叶落花开</div><div class="author-info__description">持续学习，记录后端技术、web技术，以及对认知、技术变现的思考。</div></div><div class="card-info-data is-center"><div class="card-info-data-item"><a href="/archives/"><div class="headline">文章</div><div class="length-num">80</div></a></div><div class="card-info-data-item"><a href="/tags/"><div class="headline">标签</div><div class="length-num">63</div></a></div><div class="card-info-data-item"><a href="/categories/"><div class="headline">分类</div><div class="length-num">18</div></a></div></div></div><div class="card-widget user-map" id="user-map"><div class="item-headline"><i class="fas fa-link"></i><span>友情链接</span></div><div class="item-content"><ul class="entry"><li><a href="/bszs" title="各大高校博士招生信息">各大高校博士招生信息</a></li><li><a target="_blank" rel="noopener" href="https://xiyou4you.us/r/?s=20079253" title="如何科学上网">如何科学上网</a></li></ul></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BD%91%E7%AB%99%E5%8F%82%E8%80%83%EF%BC%9A"><span class="toc-number">1.1.</span> <span class="toc-text">网站参考：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%8B%E7%BB%8D"><span class="toc-number">2.</span> <span class="toc-text">介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BB%E5%8A%A8%E5%9B%9E%E5%BF%86%E6%80%A7%E7%9A%84%E9%97%AE%E7%AD%94"><span class="toc-number">2.1.</span> <span class="toc-text">主动回忆性的问答</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%A7%E8%84%91%E7%9A%84%E4%B8%8D%E7%94%A8%E5%B0%B1%E5%BF%98%E7%AD%96%E7%95%A5"><span class="toc-number">2.2.</span> <span class="toc-text">大脑的不用就忘策略</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%89%E9%97%B4%E9%9A%94%E7%9A%84%E5%A4%9A%E6%AC%A1%E5%A4%8D%E4%B9%A0"><span class="toc-number">2.3.</span> <span class="toc-text">有间隔的多次复习</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SuperMeomo"><span class="toc-number">2.4.</span> <span class="toc-text">SuperMeomo</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BD%BF%E7%94%A8-Anki%EF%BC%9F"><span class="toc-number">2.5.</span> <span class="toc-text">为什么使用 Anki？</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5"><span class="toc-number">3.</span> <span class="toc-text">基础概念</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Cards"><span class="toc-number">3.1.</span> <span class="toc-text">Cards</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Decks"><span class="toc-number">3.2.</span> <span class="toc-text">Decks</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Notes-%E5%92%8C-Fields"><span class="toc-number">3.3.</span> <span class="toc-text">Notes 和 Fields</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Card-Types"><span class="toc-number">3.4.</span> <span class="toc-text">Card Types</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Note-Types"><span class="toc-number">3.5.</span> <span class="toc-text">Note Types</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Collection"><span class="toc-number">3.6.</span> <span class="toc-text">Collection</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B7%BB%E5%8A%A0-Material"><span class="toc-number">4.</span> <span class="toc-text">添加 Material</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%8B%E8%BD%BD-Shared-Decks"><span class="toc-number">4.1.</span> <span class="toc-text">下载 Shared Decks</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B7%BB%E5%8A%A0-Note-%E5%92%8C-Card"><span class="toc-number">4.2.</span> <span class="toc-text">添加 Note 和 Card</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B7%BB%E5%8A%A0-Note-Types"><span class="toc-number">4.3.</span> <span class="toc-text">添加 Note Types</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89-Fields"><span class="toc-number">4.4.</span> <span class="toc-text">自定义 Fields</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%AD%A3%E7%A1%AE%E7%9A%84%E4%BD%BF%E7%94%A8-Deck"><span class="toc-number">4.5.</span> <span class="toc-text">正确的使用 Deck</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Study-Overview"><span class="toc-number">4.6.</span> <span class="toc-text">Study Overview</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Question"><span class="toc-number">4.7.</span> <span class="toc-text">Question</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Learning"><span class="toc-number">4.8.</span> <span class="toc-text">Learning</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Reviewing"><span class="toc-number">4.9.</span> <span class="toc-text">Reviewing</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Due-Counts-and-Time-Estimates%EF%BC%88%E5%BE%85%E5%AD%A6%E8%AE%A1%E6%95%B0%E5%92%8C%E6%97%B6%E9%97%B4%E4%BC%B0%E8%AE%A1%EF%BC%89"><span class="toc-number">4.10.</span> <span class="toc-text">Due Counts and Time Estimates（待学计数和时间估计）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Editing-and-More%EF%BC%88%E7%BC%96%E8%BE%91%E5%92%8C%E6%9B%B4%E5%A4%9A-%EF%BC%89"><span class="toc-number">4.11.</span> <span class="toc-text">Editing and More（编辑和更多 ）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Display-Order%EF%BC%88%E6%98%BE%E7%A4%BA%E9%A1%BA%E5%BA%8F-%EF%BC%89"><span class="toc-number">4.12.</span> <span class="toc-text">Display Order（显示顺序 ）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Siblings-and-Burying%EF%BC%88%E7%9B%B8%E5%85%B3%E5%8D%A1%E7%89%87%E5%92%8C%E6%90%81%E7%BD%AE-%EF%BC%89"><span class="toc-number">4.13.</span> <span class="toc-text">Siblings and Burying（相关卡片和搁置 ）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%94%AE%E7%9B%98%E5%BF%AB%E6%8D%B7%E9%94%AE"><span class="toc-number">4.14.</span> <span class="toc-text">键盘快捷键</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Editing%EF%BC%88%E7%BC%96%E8%BE%91-%EF%BC%89"><span class="toc-number">5.</span> <span class="toc-text">Editing（编辑 ）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Features%EF%BC%88%E7%89%B9%E6%80%A7%EF%BC%89"><span class="toc-number">5.1.</span> <span class="toc-text">Features（特性）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Cloze-Deletion-%EF%BC%88%E6%8C%96%E7%A9%BA%EF%BC%89"><span class="toc-number">5.2.</span> <span class="toc-text">Cloze Deletion （挖空）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Cards-and-Templates-%EF%BC%88%E5%8D%A1%E7%89%87%E5%92%8C%E6%A8%A1%E6%9D%BF%EF%BC%89"><span class="toc-number">6.</span> <span class="toc-text">Cards and Templates （卡片和模板）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Reverse-Cards-%E5%88%9B%E5%BB%BA%E5%8F%8D%E8%BD%AC%E5%8D%A1%E7%89%87"><span class="toc-number">6.1.</span> <span class="toc-text">Reverse Cards (创建反转卡片)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Basic-Templates-%E5%9F%BA%E7%A1%80%E6%A8%A1%E6%9D%BF"><span class="toc-number">6.2.</span> <span class="toc-text">Basic Templates (基础模板)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Checking-Your-Answer-%EF%BC%88%E8%BE%93%E5%85%A5%E6%AF%94%E5%AF%B9%E6%A8%A1%E5%BC%8F%EF%BC%89"><span class="toc-number">6.3.</span> <span class="toc-text">Checking Your Answer （输入比对模式）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Card-Styling-%E5%8D%A1%E7%89%87%E6%A0%B7%E5%BC%8F"><span class="toc-number">6.4.</span> <span class="toc-text">Card Styling (卡片样式 )</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Special-Fields"><span class="toc-number">6.5.</span> <span class="toc-text">Special Fields</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Card-Generation-amp-Deletion-%E5%8D%A1%E7%89%87%E7%9A%84%E7%94%9F%E6%88%90%E4%B8%8E%E5%88%A0%E9%99%A4"><span class="toc-number">6.6.</span> <span class="toc-text">Card Generation &amp; Deletion (卡片的生成与删除)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Media-amp-LaTex-References-%E5%AA%92%E4%BD%93%E4%B8%8E-LaTex-%E5%BC%95%E7%94%A8"><span class="toc-number">6.7.</span> <span class="toc-text">Media &amp; LaTex References (媒体与 LaTex 引用)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%9D%99%E6%80%81%E5%BC%95%E7%94%A8%E5%A3%B0%E9%9F%B3%E6%88%96%E5%9B%BE%E5%83%8F"><span class="toc-number">6.7.1.</span> <span class="toc-text">静态引用声音或图像</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Conditional-Replacement-%E6%9D%A1%E4%BB%B6%E6%9B%BF%E6%8D%A2"><span class="toc-number">6.8.</span> <span class="toc-text">Conditional Replacement (条件替换)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Cloze-Templates-%E6%8C%96%E7%A9%BA%E6%A8%A1%E6%9D%BF"><span class="toc-number">6.9.</span> <span class="toc-text">Cloze Templates (挖空模板)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Browser-Appearance"><span class="toc-number">6.10.</span> <span class="toc-text">Browser Appearance</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Plarform-Specific-CSS"><span class="toc-number">6.11.</span> <span class="toc-text">Plarform-Specific CSS</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Installing-Fonts"><span class="toc-number">6.12.</span> <span class="toc-text">Installing Fonts</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Night-Mode"><span class="toc-number">6.13.</span> <span class="toc-text">Night Mode</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Peofiles-amp-Preferences-%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E5%92%8C%E9%A6%96%E9%80%89%E9%A1%B9"><span class="toc-number">7.</span> <span class="toc-text">Peofiles &amp; Preferences (配置文件和首选项)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Preferences-%EF%BC%88%E9%A6%96%E9%80%89%E9%A1%B9-%EF%BC%89"><span class="toc-number">7.1.</span> <span class="toc-text">Preferences （首选项 ）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Deck-Option%EF%BC%88%E8%AE%B0%E5%BF%86%E5%BA%93-%E7%89%8C%E7%BB%84-%E9%80%89%E9%A1%B9%EF%BC%89"><span class="toc-number">8.</span> <span class="toc-text">Deck Option（记忆库&#x2F;牌组 选项）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Lapses"><span class="toc-number">8.1.</span> <span class="toc-text">Lapses</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#General"><span class="toc-number">8.2.</span> <span class="toc-text">General</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Description"><span class="toc-number">8.3.</span> <span class="toc-text">Description</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#AnkiWeb-and-Synchronization-%EF%BC%88%E5%90%8C%E6%AD%A5%EF%BC%89"><span class="toc-number">9.</span> <span class="toc-text">AnkiWeb and Synchronization （同步）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Conflicts"><span class="toc-number">9.1.</span> <span class="toc-text">Conflicts</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%90%8C%E6%AD%A5%E9%80%9F%E5%BA%A6%E6%85%A2"><span class="toc-number">9.2.</span> <span class="toc-text">同步速度慢</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Browser-%EF%BC%88%E6%B5%8F%E8%A7%88%E5%99%A8%EF%BC%89"><span class="toc-number">10.</span> <span class="toc-text">Browser （浏览器）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Searching%EF%BC%88%E9%AB%98%E7%BA%A7%E6%90%9C%E7%B4%A2%EF%BC%89"><span class="toc-number">10.1.</span> <span class="toc-text">Searching（高级搜索）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Simple-searches"><span class="toc-number">10.1.1.</span> <span class="toc-text">Simple searches</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Limiting-to-a-field"><span class="toc-number">10.1.2.</span> <span class="toc-text">Limiting to a field</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Filtered-Decks-amp-Cramming-%E7%AD%9B%E9%80%89%E5%8D%A1%E7%89%87%E5%92%8C%E6%AD%BB%E8%AE%B0%E7%A1%AC%E8%83%8C"><span class="toc-number">11.</span> <span class="toc-text">Filtered Decks &amp; Cramming (筛选卡片和死记硬背)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Leeches-%E8%80%81%E6%98%AF%E5%BF%98%E7%9A%84-Notes"><span class="toc-number">12.</span> <span class="toc-text">Leeches (老是忘的 Notes)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%89%B9%E9%87%8F%E5%AF%BC%E5%85%A5%E5%AF%BC%E5%87%BA"><span class="toc-number">13.</span> <span class="toc-text">批量导入导出</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Managing-Files-and-Your-Collection-%E7%AE%A1%E7%90%86%E4%BD%A0%E7%9A%84%E5%AD%A6%E4%B9%A0%E6%96%87%E4%BB%B6"><span class="toc-number">14.</span> <span class="toc-text">Managing Files and Your Collection (管理你的学习文件)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A3%80%E6%9F%A5%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="toc-number">14.1.</span> <span class="toc-text">检查数据库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E4%BD%8D%E7%BD%AE"><span class="toc-number">14.2.</span> <span class="toc-text">文件位置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8A%8A-Anki-%E8%A3%85%E5%9C%A8-U-%E7%9B%98%E4%B8%8A"><span class="toc-number">14.3.</span> <span class="toc-text">把 Anki 装在 U 盘上</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Graphs-and-Statics-%EF%BC%88%E5%9B%BE%E8%A1%A8%E5%92%8C%E7%BB%9F%E8%AE%A1%EF%BC%89"><span class="toc-number">15.</span> <span class="toc-text">Graphs and Statics （图表和统计）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Latex-%E6%94%AF%E6%8C%81"><span class="toc-number">16.</span> <span class="toc-text">Latex 支持</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Miacellanea-%E6%9D%82%E5%BD%95"><span class="toc-number">17.</span> <span class="toc-text">Miacellanea (杂录)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Add-on-%E6%8F%92%E4%BB%B6"><span class="toc-number">18.</span> <span class="toc-text">Add-on (插件)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98"><span class="toc-number">19.</span> <span class="toc-text">常见问题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E5%AE%89%E5%8D%93%E6%A1%8C%E5%85%8D%E8%B4%B9%E8%80%8C%E8%8B%B9%E6%9E%9C%E7%AB%AF%E6%94%B6%E8%B4%B9%EF%BC%9F"><span class="toc-number">19.1.</span> <span class="toc-text">为什么安卓桌免费而苹果端收费？</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By 叶落花开</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">本地搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://fastly.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>(()=>{
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'freecloud-0gzubvbebcf38cf6',
+      region: '',
+      onCommentLoaded: function () {
+        btf.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.vemoji)'))
+      }
+    }, null))
+  }
+
+  const getCount = () => {
+    twikoo.getCommentsCount({
+      envId: 'freecloud-0gzubvbebcf38cf6',
+      region: '',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(function (res) {
+      document.getElementById('twikoo-count').innerText = res[0].count
+    }).catch(function (err) {
+      console.error(err);
+    });
+  }
+
+  const runFn = () => {
+    init()
+    
+  }
+
+  const loadTwikoo = () => {
+    if (typeof twikoo === 'object') {
+      setTimeout(runFn,0)
+      return
+    } 
+    getScript('https://fastly.jsdelivr.net/npm/twikoo/dist/twikoo.all.min.js').then(runFn)
+  }
+
+  if ('Twikoo' === 'Twikoo' || !false) {
+    if (false) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo()
+  } else {
+    window.loadOtherComment = () => {
+      loadTwikoo()
+    }
+  }
+})()</script></div><script id="canvas_nest" defer="defer" color="0,0,255" opacity="0.7" zIndex="-1" count="99" mobile="false" src="https://fastly.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-nest.min.js"></script></div>
+        <style>
+            [bg-lazy] {
+                background-image: none !important;
+                background-color: #eee !important;
+            }
+        </style>
+        <script>
+            window.imageLazyLoadSetting = {
+                isSPA: false,
+                preloadRatio: 1,
+                processImages: null,
+            };
+        </script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script><script>!function(r){r.imageLazyLoadSetting.processImages=t;var e=r.imageLazyLoadSetting.isSPA,n=r.imageLazyLoadSetting.preloadRatio||1,c=a();function a(){var t=Array.prototype.slice.call(document.querySelectorAll("img[data-original]")),e=Array.prototype.slice.call(document.querySelectorAll("[bg-lazy]"));return t.concat(e)}function t(){e&&(c=a());for(var t,o=0;o<c.length;o++)0<=(t=(t=c[o]).getBoundingClientRect()).bottom&&0<=t.left&&t.top<=(r.innerHeight*n||document.documentElement.clientHeight*n)&&function(){var t,e,n,a,i=c[o];e=function(){c=c.filter(function(t){return i!==t}),r.imageLazyLoadSetting.onImageLoaded&&r.imageLazyLoadSetting.onImageLoaded(i)},(t=i).hasAttribute("bg-lazy")?(t.removeAttribute("bg-lazy"),e&&e()):(n=new Image,a=t.getAttribute("data-original"),n.onload=function(){t.src=a,t.removeAttribute("data-original"),e&&e()},t.src!==a&&(n.src=a))}()}function i(){clearTimeout(t.tId),t.tId=setTimeout(t,500)}t(),document.addEventListener("scroll",i),r.addEventListener("resize",i),r.addEventListener("orientationchange",i)}(this);</script></body></html>
