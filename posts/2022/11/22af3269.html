@@ -1,0 +1,409 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>Swift5 Sqlite.swift 使用教程 | 叶落花开的博客</title><meta name="keywords" content="Swift,Sqlite"><meta name="author" content="叶落花开"><meta name="copyright" content="叶落花开"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="1. iOS SQLite.swift 简介   之前使用SQLite苹果官方框架的痛点之前在Swift下使用SQLite很是麻烦（当然OC下也是挺麻烦的），苹果官方文档中，要使用原生的SQLite，要先导入framwork，然后建一个.h文件，还要做一次Swift与C语言的桥接（SQLite是基于C语言的），使用的时候还要写SQL语句，反正就是很麻烦，需要写很多胶水代码。   Swift下的SQ">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Swift5 Sqlite.swift 使用教程">
+<meta property="og:url" content="https://www.yeluohuakai.com/posts/2022/11/22af3269.html">
+<meta property="og:site_name" content="叶落花开的博客">
+<meta property="og:description" content="1. iOS SQLite.swift 简介   之前使用SQLite苹果官方框架的痛点之前在Swift下使用SQLite很是麻烦（当然OC下也是挺麻烦的），苹果官方文档中，要使用原生的SQLite，要先导入framwork，然后建一个.h文件，还要做一次Swift与C语言的桥接（SQLite是基于C语言的），使用的时候还要写SQL语句，反正就是很麻烦，需要写很多胶水代码。   Swift下的SQ">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-11-27T01:25:00.000Z">
+<meta property="article:modified_time" content="2022-11-27T01:29:04.229Z">
+<meta property="article:author" content="叶落花开">
+<meta property="article:tag" content="Swift">
+<meta property="article:tag" content="Sqlite">
+<meta name="twitter:card" content="summary"><link rel="shortcut icon" href="/favicon.png"><link rel="canonical" href="https://www.yeluohuakai.com/posts/2022/11/22af3269"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//www.google-analytics.com" crossorigin=""/><link rel="preconnect" href="//hm.baidu.com"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?2f8a615b51582cf280e790200f3527e6";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script><script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-LB2ZMBR4ZN"></script><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-LB2ZMBR4ZN');
+</script><script>(function(){
+var el = document.createElement("script");
+el.src = "https://lf1-cdn-tos.bytegoofy.com/goofy/ttzz/push.js?18da2b25537eeea1b5c8819ad9a03fc2279abb7e5ff9fdb01a2409cbd77b8f1db3e414cba65c376eba389ba56d9ee0846cad2206506a6529fe6ee21a7373effb434c445cf6444b10ea9756ea44e128a6";
+el.id = "ttzz";
+var s = document.getElementsByTagName("script")[0];
+s.parentNode.insertBefore(el, s);
+})(window)
+</script><script async="async" crossorigin="anonymous" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6673854567363222"></script><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":false,"highlightLang":false,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://fastly.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.js',
+      css: 'https://fastly.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Swift5 Sqlite.swift 使用教程',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-11-27 09:29:04'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/index_code.css"><meta name="generator" content="Hexo 6.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/loading.gif" data-original="/img/ava.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data is-center"><div class="data-item"><a href="/archives/"><div class="headline">文章</div><div class="length-num">81</div></a></div><div class="data-item"><a href="/tags/"><div class="headline">标签</div><div class="length-num">64</div></a></div><div class="data-item"><a href="/categories/"><div class="headline">分类</div><div class="length-num">18</div></a></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" target="_blank" rel="noopener" href="https://support.qq.com/product/377343"><i class="fa-fw fa fa-paper-plane"></i><span> 反馈</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">叶落花开的博客</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" target="_blank" rel="noopener" href="https://support.qq.com/product/377343"><i class="fa-fw fa fa-paper-plane"></i><span> 反馈</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">Swift5 Sqlite.swift 使用教程</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-11-27T01:25:00.000Z" title="发表于 2022-11-27 09:25:00">2022-11-27</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-11-27T01:29:04.229Z" title="更新于 2022-11-27 09:29:04">2022-11-27</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%AE%A2%E6%88%B7%E7%AB%AF%E5%BC%80%E5%8F%91/">客户端开发</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%AE%A2%E6%88%B7%E7%AB%AF%E5%BC%80%E5%8F%91/Swift%E5%BC%80%E5%8F%91/">Swift开发</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span id="" data-flag-title="Swift5 Sqlite.swift 使用教程"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="twikoo_visitors"></span></span></div></div></div><article class="post-content" id="article-container"><h2 id="1-iOS-SQLite-swift-简介"><a href="#1-iOS-SQLite-swift-简介" class="headerlink" title="1. iOS SQLite.swift 简介"></a>1. iOS SQLite.swift 简介</h2><ul>
+<li>  之前使用SQLite苹果官方框架的痛点<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">之前在Swift下使用SQLite很是麻烦（当然OC下也是挺麻烦的），苹果官方文档中，要使用原生的SQLite，要先导入framwork，然后建一个.h文件，还要做一次Swift与C语言的桥接（SQLite是基于C语言的），使用的时候还要写SQL语句，反正就是很麻烦，需要写很多胶水代码。</span><br></pre></td></tr></table></figure></li>
+<li>  Swift下的SQLite.swift就是为了解决上面痛点而产生的。不过只支持swift4.0以上版本。</li>
+</ul>
+<h2 id="2-iOS-SQLite-swift-安装"><a href="#2-iOS-SQLite-swift-安装" class="headerlink" title="2. iOS SQLite.swift 安装"></a>2. iOS SQLite.swift 安装</h2><ul>
+<li>  这里只介绍pod安装：</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">pod &#x27;SQLite.swift&#x27;</span><br></pre></td></tr></table></figure>
+<p>或者指定具体版本</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">pod &#x27;SQLite.swift&#x27;, &#x27;~&gt; 0.12.2&#x27;</span><br></pre></td></tr></table></figure>
+<span id="more"></span>
+<h2 id="3-iOS-SQLite-swift-使用"><a href="#3-iOS-SQLite-swift-使用" class="headerlink" title="3. iOS SQLite.swift 使用"></a>3. iOS SQLite.swift 使用</h2><h2 id="3-1-导入"><a href="#3-1-导入" class="headerlink" title="3.1 导入"></a>3.1 导入</h2><ul>
+<li>  在要使用SQLite的地方导入头文件，当然一般会将数据库操作封装到一个类中<code>import SQLite</code></li>
+</ul>
+<h2 id="3-2-创建-连接数据库"><a href="#3-2-创建-连接数据库" class="headerlink" title="3.2 创建/连接数据库"></a>3.2 创建/连接数据库</h2><ul>
+<li>  比如在iOS下，要在Document文件夹下创建一个名为db.sqlite3的数据库，并且要连接数据库。</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//获取doc路径</span><br><span class="line">let path = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first!</span><br><span class="line">//如果不存在的话，创建一个名为db.sqlite3的数据库，并且连接数据库</span><br><span class="line">let db = try Connection(&quot;\(path)/db.sqlite3&quot;)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>  如果你把一个数据库应用程序（例如，复制数据库文件到你的Xcode项目并将其添加到你的应用程序的target），你可以建立一个只读连接。</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">let path = Bundle.main.pathForResource(&quot;db&quot;, ofType: &quot;sqlite3&quot;)</span><br><span class="line">let db = try Connection(path, readonly: true)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>  如果省略路径，sqlite.swift将提供一个内存数据库。</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//创建一个内存数据库</span><br><span class="line">let db = try Connection() </span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>  有时候多个数据库连接使用同一个数据库的时候，可能会出现线程安全的问题，这时候访问数据库可能会出错，这时候就有类似于网络访问超时的机制，如果为单个数据库维护多个连接，可以设置超时时间（以秒为单位）以及繁忙处理程序。</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">db.busyTimeout = 5</span><br><span class="line"></span><br><span class="line">db.busyHandler(&#123; tries in</span><br><span class="line">    if tries &gt;= 3 &#123;</span><br><span class="line">        return false</span><br><span class="line">    &#125;</span><br><span class="line">    return true</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-3-Expression基本表达式"><a href="#3-3-Expression基本表达式" class="headerlink" title="3.3 Expression基本表达式"></a>3.3 Expression基本<a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=%E8%A1%A8%E8%BE%BE%E5%BC%8F&spm=1001.2101.3001.7020">表达式</a></h2><ul>
+<li>  Swift和SQLite数据类型的对照图</li>
+</ul>
+<p><img src="/img/loading.gif" data-original="https://img-blog.csdnimg.cn/20190902110632190.png" alt="Swift和SQLite数据类型的对照图"></p>
+<ul>
+<li>  表达式是与类型（内置或自定义）、原始SQL和（可选）值绑定到该SQL的通用结构。通常，您只需显式地创建表达式来描述列，通常每列只有一次。</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">let id = Expression&lt;Int64&gt;(&quot;id&quot;)</span><br><span class="line">let email = Expression&lt;String&gt;(&quot;email&quot;)</span><br><span class="line">let balance = Expression&lt;Double&gt;(&quot;balance&quot;)</span><br><span class="line">let verified = Expression&lt;Bool&gt;(&quot;verified&quot;)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>  以上表达式分别表示表的字段，第一个字段名是id，类型是Int64,第二个字段名是email,类型是String…以此类推，以上创建的是不为空的，要创建可以为空的字段，可以这样创建：<code>let name = Expression&lt;String?&gt;(&quot;name&quot;)</code></li>
+</ul>
+<h2 id="3-4-创建表"><a href="#3-4-创建表" class="headerlink" title="3.4 创建表"></a>3.4 创建表</h2><ul>
+<li>  声明一个Table常量</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">let users = Table(&quot;users&quot;)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>  使用上文表达式创建的字段，如果表不存在，就创建表</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">try db.run(users.create(ifNotExists: true) &#123; t in     // CREATE TABLE &quot;users&quot; (</span><br><span class="line">    t.column(id, primaryKey: true) //     &quot;id&quot; INTEGER PRIMARY KEY NOT NULL,</span><br><span class="line">    t.column(email, unique: true)  //     &quot;email&quot; TEXT UNIQUE NOT NULL,</span><br><span class="line">    t.column(name)                 //     &quot;name&quot; TEXT</span><br><span class="line">&#125;) </span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>  我们也可以对字段进行约束。设置字段为主键/自增/唯一/检查/设置默认值/校对/设置外键等等</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">t.column(id, primaryKey: true)</span><br><span class="line">// &quot;id&quot; INTEGER PRIMARY KEY NOT NULL</span><br><span class="line"></span><br><span class="line">t.column(id, primaryKey: .autoincrement)</span><br><span class="line">// &quot;id&quot; INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL</span><br><span class="line"></span><br><span class="line">t.column(email, unique: true)</span><br><span class="line">// &quot;email&quot; TEXT UNIQUE NOT NULL</span><br><span class="line"></span><br><span class="line">t.column(email, check: email.like(&quot;%@%&quot;))</span><br><span class="line">// &quot;email&quot; TEXT NOT NULL CHECK (&quot;email&quot; LIKE &#x27;%@%&#x27;)</span><br><span class="line"></span><br><span class="line">t.column(name, defaultValue: &quot;Anonymous&quot;)</span><br><span class="line">// &quot;name&quot; TEXT DEFAULT &#x27;Anonymous&#x27;</span><br><span class="line"></span><br><span class="line">t.column(email, collate: .nocase)</span><br><span class="line">// &quot;email&quot; TEXT NOT NULL COLLATE &quot;NOCASE&quot;</span><br><span class="line">t.column(name, collate: .rtrim)</span><br><span class="line">// &quot;name&quot; TEXT COLLATE &quot;RTRIM&quot;</span><br><span class="line"></span><br><span class="line">t.column(user_id, references: users, id)</span><br><span class="line">// &quot;user_id&quot; INTEGER REFERENCES &quot;users&quot; (&quot;id&quot;)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>  表之间的约束</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//不像上面的字段约束，它支持所有的数据库类型，升序和降序命令，和复合（多字段）键。</span><br><span class="line"> t.primaryKey(email.asc, name)</span><br><span class="line">// PRIMARY KEY(&quot;email&quot; ASC, &quot;name&quot;)</span><br><span class="line"></span><br><span class="line">//不像上面的字段约束，它支持复合（多字段）键。</span><br><span class="line">t.unique(local, domain)</span><br><span class="line">// UNIQUE(&quot;local&quot;, &quot;domain&quot;)</span><br><span class="line"></span><br><span class="line">t.check(balance &gt;= 0)</span><br><span class="line">// CHECK (&quot;balance&quot; &gt;= 0.0)</span><br><span class="line"></span><br><span class="line">//可以使用过滤器运算符和函数轻松地构造布尔表达式。</span><br><span class="line">t.check(balance &gt;= 0)</span><br><span class="line">// CHECK (&quot;balance&quot; &gt;= 0.0)</span><br><span class="line"></span><br><span class="line">//和上面的引用约束不同的是，它支持SQLite的全部类型，比如更新、删除操作以及复合（多字段）键。</span><br><span class="line">t.foreignKey(user_id, references: users, id, delete: .setNull)</span><br><span class="line">// FOREIGN KEY(&quot;user_id&quot;) REFERENCES &quot;users&quot;(&quot;id&quot;) ON DELETE SET NULL</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-5-增，删，改，查"><a href="#3-5-增，删，改，查" class="headerlink" title="3.5 增，删，改，查"></a>3.5 增，删，改，查</h2><h3 id="3-5-1-插入操作（增）"><a href="#3-5-1-插入操作（增）" class="headerlink" title="3.5.1 插入操作（增）"></a>3.5.1 插入操作（增）</h3><ul>
+<li>  通过insert()方法进行插入操作，操作成功会返回一个类型为Int64的ROWID</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">try db.run(users.insert(email &lt;- &quot;alice@mac.com&quot;, name &lt;- &quot;Alice&quot;))</span><br><span class="line">// INSERT INTO &quot;users&quot; (&quot;email&quot;, &quot;name&quot;) VALUES (&#x27;alice@mac.com&#x27;, &#x27;Alice&#x27;)</span><br><span class="line"></span><br><span class="line">try db.run(users.insert(or: .replace, email &lt;- &quot;alice@mac.com&quot;, name &lt;- &quot;Alice B.&quot;))</span><br><span class="line">// INSERT OR REPLACE INTO &quot;users&quot; (&quot;email&quot;, &quot;name&quot;) VALUES (&#x27;alice@mac.com&#x27;, &#x27;Alice B.&#x27;)</span><br><span class="line"></span><br><span class="line">do &#123;</span><br><span class="line">    let rowid = try db.run(users.insert(email &lt;- &quot;alice@mac.com&quot;))</span><br><span class="line">    print(&quot;inserted id: \(rowid)&quot;)</span><br><span class="line">&#125; catch &#123;</span><br><span class="line">    print(&quot;insertion failed: \(error)&quot;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>  如果insert()方法没有任何参数，全部字段都会以默认值录入数据库表，字段没有默认值的，会报错。</li>
+</ul>
+<h3 id="3-5-2-删除操作（删）"><a href="#3-5-2-删除操作（删）" class="headerlink" title="3.5.2 删除操作（删）"></a>3.5.2 删除操作（删）</h3><ul>
+<li>  使用delete()方法进行删除操作：</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">try db.run(users.delete())</span><br><span class="line">// DELETE FROM &quot;users&quot;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>  可以先使用filter()方法进行过滤操作，指定范围进行删除操作</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">let alice = users.filter(id == 1)</span><br><span class="line">try db.run(alice.delete())</span><br><span class="line">// DELETE FROM &quot;users&quot; WHERE (&quot;id&quot; = 1)    </span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>  删除操作会返回被删除数据的行号</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">do &#123;</span><br><span class="line">    if try db.run(alice.delete()) &gt; 0 &#123;</span><br><span class="line">        print(&quot;deleted alice&quot;)</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">       print(&quot;alice not found&quot;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125; catch &#123;</span><br><span class="line">    print(&quot;delete failed: \(error)&quot;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-5-3-更新操作（改）"><a href="#3-5-3-更新操作（改）" class="headerlink" title="3.5.3 更新操作（改）"></a>3.5.3 更新操作（改）</h3><ul>
+<li>  赋值方法:</li>
+</ul>
+<blockquote>
+<p>在SQLite.swift中，可以直接使用 ‘&lt;-’ 为字段赋值，由上文表达式一节可见端倪，同样，我们也可以在update,delete等语句中使用同样格式进行操作。比如，在更新语句中：<code>try db.run(users.update(balance-=10))</code> 这条语句是指对表中全部数据的balance字段进行 -10 操作。</p>
+</blockquote>
+<ul>
+<li>  使用update()方法进行更新操作：</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">try db.run(users.update(email &lt;- &quot;alice@me.com&quot;))</span><br><span class="line">// UPDATE &quot;users&quot; SET &quot;email&quot; = &#x27;alice@me.com&#x27;    </span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>  可以先使用filter()方法进行过滤操作，指定范围进行更新操作</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">let alice = users.filter(id == 1)</span><br><span class="line">try db.run(alice.update(email &lt;- &quot;alice@me.com&quot;))</span><br><span class="line">// UPDATE &quot;users&quot; SET &quot;email&quot; = &#x27;alice@me.com&#x27; WHERE (&quot;id&quot; = 1)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>  更新操作会返回被更新数据的行号</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">do &#123;</span><br><span class="line">    if try db.run(alice.update(email &lt;- &quot;alice@me.com&quot;)) &gt; 0 &#123;</span><br><span class="line">        print(&quot;updated alice&quot;)</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        print(&quot;alice not found&quot;)</span><br><span class="line">    &#125;    </span><br><span class="line">&#125; catch &#123;</span><br><span class="line">    print(&quot;update failed: \(error)&quot;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-5-4-查询操作（查）"><a href="#3-5-4-查询操作（查）" class="headerlink" title="3.5.4 查询操作（查）"></a>3.5.4 查询操作（查）</h3><ul>
+<li>  在SQLite.swift中，使用prepare()方法表示SELECT操作。此方法返回的是一组数据，我们可以使用forin循环从里面取出数据.</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">for user in try db.prepare(users) &#123;</span><br><span class="line">    print(&quot;id: \(user[id]), email: \(user[email]), name: \(user[name])&quot;)</span><br><span class="line">&#125;</span><br><span class="line">// SELECT * FROM &quot;users&quot;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>  在一条数据中的列下标将尝试中止错误的情况下执行，如果想处理这种情况，可以使用Row.get(_ column: Expression)</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">for user in try db.prepare(users) &#123;</span><br><span class="line">    do &#123;</span><br><span class="line">        print(&quot;name: \(try user.get(name))&quot;)</span><br><span class="line">    &#125; catch &#123;</span><br><span class="line">        // handle</span><br><span class="line">    &#125;</span><br><span class="line">&#125;    </span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>  我们可以通过对数据库连接上的pluck方法的查询来获取第一行。</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">if let user = try db.pluck(users) &#123; /* ... */ &#125; // Row</span><br><span class="line">// SELECT * FROM &quot;users&quot; LIMIT 1</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>  将查询结果封装成一个数组也很简单，我们可以这样处理：</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">let all = Array(try db.prepare(users))</span><br><span class="line">// SELECT * FROM &quot;users&quot;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>  上面的是指一些很简单的查询操作，实际操作中这些肯定满足不了我们的需求的，所以要用到复合查询操作。</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">let query = users.select(email)           // SELECT &quot;email&quot; FROM &quot;users&quot;</span><br><span class="line">                 .filter(name != nil)                // WHERE &quot;name&quot; IS NOT NULL</span><br><span class="line">                 .order(email.desc, name)   // ORDER BY &quot;email&quot; DESC, &quot;name&quot;</span><br><span class="line">                 .limit(5, offset: 1)                 // LIMIT 5 OFFSET 1</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>  选择指定的字段</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">for user in try db.prepare(users.select(id, email)) &#123;</span><br><span class="line">   print(&quot;id: \(user[id]), email: \(user[email])&quot;)</span><br><span class="line">    // id: 1, email: alice@mac.com</span><br><span class="line">&#125;</span><br><span class="line">// SELECT &quot;id&quot;, &quot;email&quot; FROM &quot;users&quot;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>  数据表内联接，比如将posts表的user_id和users表的id作为连接条件，内联两个表</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">users.join(posts, on: user_id == users[id])</span><br><span class="line">// SELECT * FROM &quot;users&quot; INNER JOIN &quot;posts&quot; ON (&quot;user_id&quot; = &quot;users&quot;.&quot;id&quot;)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>  以上是表之间的连接，有时候涉及到表内自联，这时候就要用到数据表别名alias</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">let managers = users.alias(&quot;managers&quot;)</span><br><span class="line">let query = users.join(managers, on: managers[id] == users[managerId])</span><br><span class="line">// SELECT * FROM &quot;users&quot;</span><br><span class="line">// INNER JOIN (&quot;users&quot;) AS &quot;managers&quot; ON (&quot;managers&quot;.&quot;id&quot; = &quot;users&quot;.&quot;manager_id&quot;)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>  选择的条件：</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">users.filter(id == 1)</span><br><span class="line">// SELECT * FROM &quot;users&quot; WHERE (&quot;id&quot; = 1)</span><br><span class="line"></span><br><span class="line">users.filter([1, 2, 3, 4, 5].contains(id))</span><br><span class="line">// SELECT * FROM &quot;users&quot; WHERE (&quot;id&quot; IN (1, 2, 3, 4, 5))</span><br><span class="line"></span><br><span class="line">users.filter(email.like(&quot;%@mac.com&quot;))</span><br><span class="line">// SELECT * FROM &quot;users&quot; WHERE (&quot;email&quot; LIKE &#x27;%@mac.com&#x27;)</span><br><span class="line"></span><br><span class="line">users.filter(verified &amp;&amp; name.lowercaseString == &quot;alice&quot;)</span><br><span class="line">// SELECT * FROM &quot;users&quot; WHERE (&quot;verified&quot; AND (lower(&quot;name&quot;) == &#x27;alice&#x27;))</span><br><span class="line"></span><br><span class="line">users.filter(verified || balance &gt;= 10_000)</span><br><span class="line">// SELECT * FROM &quot;users&quot; WHERE (&quot;verified&quot; OR (&quot;balance&quot; &gt;= 10000.0))</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>  排序操作（ASC：升序，DESC：降序），根据email和name字段排序</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">users.order(email, name)</span><br><span class="line">// SELECT * FROM &quot;users&quot; ORDER BY &quot;email&quot;, &quot;name&quot;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>  email字段降序，name字段升序</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">users.order(email.desc, name.asc)</span><br><span class="line">// SELECT * FROM &quot;users&quot; ORDER BY &quot;email&quot; DESC, &quot;name&quot; ASC</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>  分页操作,取前面5条数据</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">users.limit(5)</span><br><span class="line">// SELECT * FROM &quot;users&quot; LIMIT 5</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>  分页操作, 偏移量为5，取偏移量后面5条数据</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">users.limit(5, offset: 5)</span><br><span class="line">// SELECT * FROM &quot;users&quot; LIMIT 5 OFFSET 5</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>  聚合操作</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">let count = try db.scalar(users.count)</span><br><span class="line">  // SELECT count(*) FROM &quot;users&quot;</span><br><span class="line">let count = try db.scalar(users.filter(name != nil).count)</span><br><span class="line">// SELECT count(*) FROM &quot;users&quot; WHERE &quot;name&quot; IS NOT NULL</span><br><span class="line">let count = try db.scalar(users.select(name.count)) // -&gt; Int</span><br><span class="line">// SELECT count(&quot;name&quot;) FROM &quot;users&quot;</span><br><span class="line">let max = try db.scalar(users.select(id.max)) // -&gt; Int64?</span><br><span class="line">// SELECT max(&quot;id&quot;) FROM &quot;users&quot;</span><br><span class="line">let min = try db.scalar(users.select(id.min)) // -&gt; Int64?</span><br><span class="line">// SELECT min(&quot;id&quot;) FROM &quot;users&quot;</span><br><span class="line">let average = try db.scalar(users.select(balance.average)) // -&gt; Double?</span><br><span class="line">// SELECT avg(&quot;balance&quot;) FROM &quot;users&quot;</span><br><span class="line">let sum = try db.scalar(users.select(balance.sum)) // -&gt; Double?</span><br><span class="line">// SELECT sum(&quot;balance&quot;) FROM &quot;users&quot;</span><br><span class="line">let total = try db.scalar(users.select(balance.total)) // -&gt; Double</span><br><span class="line">// SELECT total(&quot;balance&quot;) FROM &quot;users&quot;</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-6-错误处理"><a href="#3-6-错误处理" class="headerlink" title="3.6 错误处理"></a>3.6 错误处理</h2><ul>
+<li>  你可以匹配上选择性地抓住SQLite的错误错误。例如，专门处理约束错误</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">do &#123;</span><br><span class="line">    try db.run(users.insert(email &lt;- &quot;alice@mac.com&quot;))</span><br><span class="line">    try db.run(users.insert(email &lt;- &quot;alice@mac.com&quot;))</span><br><span class="line">&#125; catch let Result.error(message, code, statement) where code == SQLITE_CONSTRAINT &#123;</span><br><span class="line">    print(&quot;constraint failed: \(message), in \(statement)&quot;)</span><br><span class="line">&#125; catch let error &#123;</span><br><span class="line">    print(&quot;insertion failed: \(error)&quot;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>  Result.error类型包含描述错误的英语文本（信息），错误代码（参见SQLite结果代码列表详情），产生错误的语句的一个可选的引用。</li>
+</ul>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">叶落花开</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://www.yeluohuakai.com/posts/2022/11/22af3269.html">https://www.yeluohuakai.com/posts/2022/11/22af3269.html</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://www.yeluohuakai.com" target="_blank">叶落花开的博客</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Swift/">Swift</a><a class="post-meta__tags" href="/tags/Sqlite/">Sqlite</a></div><div class="post_share"><div class="social-share" data-image="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://fastly.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/posts/2022/11/9362ca3f.html"><img class="next-cover" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Anki基础教程</div></div></a></div></nav><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/loading.gif" data-original="/img/ava.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">叶落花开</div><div class="author-info__description">持续学习，记录后端技术、web技术，以及对认知、技术变现的思考。</div></div><div class="card-info-data is-center"><div class="card-info-data-item"><a href="/archives/"><div class="headline">文章</div><div class="length-num">81</div></a></div><div class="card-info-data-item"><a href="/tags/"><div class="headline">标签</div><div class="length-num">64</div></a></div><div class="card-info-data-item"><a href="/categories/"><div class="headline">分类</div><div class="length-num">18</div></a></div></div></div><div class="card-widget user-map" id="user-map"><div class="item-headline"><i class="fas fa-link"></i><span>友情链接</span></div><div class="item-content"><ul class="entry"><li><a href="/bszs" title="各大高校博士招生信息">各大高校博士招生信息</a></li><li><a target="_blank" rel="noopener" href="https://xiyou4you.us/r/?s=20079253" title="如何科学上网">如何科学上网</a></li></ul></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-iOS-SQLite-swift-%E7%AE%80%E4%BB%8B"><span class="toc-number">1.</span> <span class="toc-text">1. iOS SQLite.swift 简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-iOS-SQLite-swift-%E5%AE%89%E8%A3%85"><span class="toc-number">2.</span> <span class="toc-text">2. iOS SQLite.swift 安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-iOS-SQLite-swift-%E4%BD%BF%E7%94%A8"><span class="toc-number">3.</span> <span class="toc-text">3. iOS SQLite.swift 使用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-1-%E5%AF%BC%E5%85%A5"><span class="toc-number">4.</span> <span class="toc-text">3.1 导入</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-2-%E5%88%9B%E5%BB%BA-%E8%BF%9E%E6%8E%A5%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="toc-number">5.</span> <span class="toc-text">3.2 创建&#x2F;连接数据库</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-3-Expression%E5%9F%BA%E6%9C%AC%E8%A1%A8%E8%BE%BE%E5%BC%8F"><span class="toc-number">6.</span> <span class="toc-text">3.3 Expression基本表达式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-4-%E5%88%9B%E5%BB%BA%E8%A1%A8"><span class="toc-number">7.</span> <span class="toc-text">3.4 创建表</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-5-%E5%A2%9E%EF%BC%8C%E5%88%A0%EF%BC%8C%E6%94%B9%EF%BC%8C%E6%9F%A5"><span class="toc-number">8.</span> <span class="toc-text">3.5 增，删，改，查</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-5-1-%E6%8F%92%E5%85%A5%E6%93%8D%E4%BD%9C%EF%BC%88%E5%A2%9E%EF%BC%89"><span class="toc-number">8.1.</span> <span class="toc-text">3.5.1 插入操作（增）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-5-2-%E5%88%A0%E9%99%A4%E6%93%8D%E4%BD%9C%EF%BC%88%E5%88%A0%EF%BC%89"><span class="toc-number">8.2.</span> <span class="toc-text">3.5.2 删除操作（删）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-5-3-%E6%9B%B4%E6%96%B0%E6%93%8D%E4%BD%9C%EF%BC%88%E6%94%B9%EF%BC%89"><span class="toc-number">8.3.</span> <span class="toc-text">3.5.3 更新操作（改）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-5-4-%E6%9F%A5%E8%AF%A2%E6%93%8D%E4%BD%9C%EF%BC%88%E6%9F%A5%EF%BC%89"><span class="toc-number">8.4.</span> <span class="toc-text">3.5.4 查询操作（查）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-6-%E9%94%99%E8%AF%AF%E5%A4%84%E7%90%86"><span class="toc-number">9.</span> <span class="toc-text">3.6 错误处理</span></a></li></ol></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By 叶落花开</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">本地搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://fastly.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>(()=>{
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'freecloud-0gzubvbebcf38cf6',
+      region: '',
+      onCommentLoaded: function () {
+        btf.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.vemoji)'))
+      }
+    }, null))
+  }
+
+  const getCount = () => {
+    twikoo.getCommentsCount({
+      envId: 'freecloud-0gzubvbebcf38cf6',
+      region: '',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(function (res) {
+      document.getElementById('twikoo-count').innerText = res[0].count
+    }).catch(function (err) {
+      console.error(err);
+    });
+  }
+
+  const runFn = () => {
+    init()
+    
+  }
+
+  const loadTwikoo = () => {
+    if (typeof twikoo === 'object') {
+      setTimeout(runFn,0)
+      return
+    } 
+    getScript('https://fastly.jsdelivr.net/npm/twikoo/dist/twikoo.all.min.js').then(runFn)
+  }
+
+  if ('Twikoo' === 'Twikoo' || !false) {
+    if (false) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo()
+  } else {
+    window.loadOtherComment = () => {
+      loadTwikoo()
+    }
+  }
+})()</script></div><script id="canvas_nest" defer="defer" color="0,0,255" opacity="0.7" zIndex="-1" count="99" mobile="false" src="https://fastly.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-nest.min.js"></script></div>
+        <style>
+            [bg-lazy] {
+                background-image: none !important;
+                background-color: #eee !important;
+            }
+        </style>
+        <script>
+            window.imageLazyLoadSetting = {
+                isSPA: false,
+                preloadRatio: 1,
+                processImages: null,
+            };
+        </script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script><script>!function(r){r.imageLazyLoadSetting.processImages=t;var e=r.imageLazyLoadSetting.isSPA,n=r.imageLazyLoadSetting.preloadRatio||1,c=a();function a(){var t=Array.prototype.slice.call(document.querySelectorAll("img[data-original]")),e=Array.prototype.slice.call(document.querySelectorAll("[bg-lazy]"));return t.concat(e)}function t(){e&&(c=a());for(var t,o=0;o<c.length;o++)0<=(t=(t=c[o]).getBoundingClientRect()).bottom&&0<=t.left&&t.top<=(r.innerHeight*n||document.documentElement.clientHeight*n)&&function(){var t,e,n,a,i=c[o];e=function(){c=c.filter(function(t){return i!==t}),r.imageLazyLoadSetting.onImageLoaded&&r.imageLazyLoadSetting.onImageLoaded(i)},(t=i).hasAttribute("bg-lazy")?(t.removeAttribute("bg-lazy"),e&&e()):(n=new Image,a=t.getAttribute("data-original"),n.onload=function(){t.src=a,t.removeAttribute("data-original"),e&&e()},t.src!==a&&(n.src=a))}()}function i(){clearTimeout(t.tId),t.tId=setTimeout(t,500)}t(),document.addEventListener("scroll",i),r.addEventListener("resize",i),r.addEventListener("orientationchange",i)}(this);</script></body></html>
