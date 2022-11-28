@@ -1,0 +1,260 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>复习机制的想法(关于Anki与MarginNote) | 叶落花开的博客</title><meta name="keywords" content="Anki"><meta name="author" content="叶落花开"><meta name="copyright" content="叶落花开"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="大纲：  anki的优缺点 人的记忆规律(不是艾宾浩斯这些老生常谈)   复习机制实现的建议  这里是比较新的观点和总结，全是干货，很值得一看，比那些公众号大谈特谈记忆的诀窍要强得多。 大家都觉得anki做的很好了。我不同意，anki在应付考试这方面确实很不错。但学习的目的不只是为了考试。记忆太重要了，估计没人反对。复习太重要了，极少有人能不复习就不遗忘的吧(如果有，那不是天才，那是病，没人能选择">
+<meta property="og:type" content="article">
+<meta property="og:title" content="复习机制的想法(关于Anki与MarginNote)">
+<meta property="og:url" content="https://www.yeluohuakai.com/posts/2022/11/a5ad2d9b.html">
+<meta property="og:site_name" content="叶落花开的博客">
+<meta property="og:description" content="大纲：  anki的优缺点 人的记忆规律(不是艾宾浩斯这些老生常谈)   复习机制实现的建议  这里是比较新的观点和总结，全是干货，很值得一看，比那些公众号大谈特谈记忆的诀窍要强得多。 大家都觉得anki做的很好了。我不同意，anki在应付考试这方面确实很不错。但学习的目的不只是为了考试。记忆太重要了，估计没人反对。复习太重要了，极少有人能不复习就不遗忘的吧(如果有，那不是天才，那是病，没人能选择">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-11-28T10:40:00.000Z">
+<meta property="article:modified_time" content="2022-11-28T10:41:34.083Z">
+<meta property="article:author" content="叶落花开">
+<meta property="article:tag" content="Anki">
+<meta name="twitter:card" content="summary"><link rel="shortcut icon" href="/favicon.png"><link rel="canonical" href="https://www.yeluohuakai.com/posts/2022/11/a5ad2d9b"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//www.google-analytics.com" crossorigin=""/><link rel="preconnect" href="//hm.baidu.com"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?2f8a615b51582cf280e790200f3527e6";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script><script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-LB2ZMBR4ZN"></script><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-LB2ZMBR4ZN');
+</script><script>(function(){
+var el = document.createElement("script");
+el.src = "https://lf1-cdn-tos.bytegoofy.com/goofy/ttzz/push.js?18da2b25537eeea1b5c8819ad9a03fc2279abb7e5ff9fdb01a2409cbd77b8f1db3e414cba65c376eba389ba56d9ee0846cad2206506a6529fe6ee21a7373effb434c445cf6444b10ea9756ea44e128a6";
+el.id = "ttzz";
+var s = document.getElementsByTagName("script")[0];
+s.parentNode.insertBefore(el, s);
+})(window)
+</script><script async="async" crossorigin="anonymous" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6673854567363222"></script><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":false,"highlightLang":false,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://fastly.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.js',
+      css: 'https://fastly.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '复习机制的想法(关于Anki与MarginNote)',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-11-28 18:41:34'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/index_code.css"><meta name="generator" content="Hexo 6.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/loading.gif" data-original="/img/ava.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data is-center"><div class="data-item"><a href="/archives/"><div class="headline">文章</div><div class="length-num">90</div></a></div><div class="data-item"><a href="/tags/"><div class="headline">标签</div><div class="length-num">64</div></a></div><div class="data-item"><a href="/categories/"><div class="headline">分类</div><div class="length-num">18</div></a></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" target="_blank" rel="noopener" href="https://support.qq.com/product/377343"><i class="fa-fw fa fa-paper-plane"></i><span> 反馈</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">叶落花开的博客</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" target="_blank" rel="noopener" href="https://support.qq.com/product/377343"><i class="fa-fw fa fa-paper-plane"></i><span> 反馈</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">复习机制的想法(关于Anki与MarginNote)</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-11-28T10:40:00.000Z" title="发表于 2022-11-28 18:40:00">2022-11-28</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-11-28T10:41:34.083Z" title="更新于 2022-11-28 18:41:34">2022-11-28</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/IT%E6%8A%80%E6%9C%AF/">IT技术</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/IT%E6%8A%80%E6%9C%AF/Anki/">Anki</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span id="" data-flag-title="复习机制的想法(关于Anki与MarginNote)"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="twikoo_visitors"></span></span></div></div></div><article class="post-content" id="article-container"><p>大纲：</p>
+<ul>
+<li>anki的优缺点</li>
+<li>人的记忆规律(不是艾宾浩斯这些老生常谈)</li>
+<li>  复习机制实现的建议</li>
+</ul>
+<p>这里是比较新的观点和总结，全是干货，很值得一看，比那些公众号大谈特谈记忆的诀窍要强得多。</p>
+<p>大家都觉得anki做的很好了。我不同意，anki在应付考试这方面确实很不错。但学习的目的不只是为了考试。记忆太重要了，估计没人反对。复习太重要了，极少有人能不复习就不遗忘的吧(如果有，那不是天才，那是病，没人能选择性记忆、遗忘)。</p>
+<h2 id="anki的优点"><a href="#anki的优点" class="headerlink" title="anki的优点"></a>anki的优点</h2><ul>
+<li>生态和开源。我认为这是它最出色的一点。一个软件能有这么多用户参与进来，我没见过第二个(因为我太菜，没见过GNU)。你想要的，往往有大神已经做出来了。偶尔也会没有。</li>
+<li>配合上插件，功能非常完善。filter deck，card browser。各种模板(html,css的支持)，公式、化学式、latex支持，图像音频支持。和插件配合，支持代码块高亮插件、表格、超链接，估计都超越了大多数笔记软件。<span id="more"></span>
+  在我心里，它的笔记支持是最好的。markdown原生不支持音频、图像也很弱。onenote太强大了，力不从心，不支持latex。印象笔记就更不用说了，代码块高亮都不支持(虽然配上tool是可以有的，只是很麻烦)。富文本，虽然也都能支持，但排版麻烦，而且也没找到很理想的富文本编辑器。</li>
+<li>多平台(所有主流平台，甚至包括linux)，同步稳定可靠(只要没有冲突)。</li>
+</ul>
+<p>flashcard该有的anki全都有，尽善尽美。而且社区也在不断壮大，迭代速度也很快。</p>
+<h2 id="anki的短板"><a href="#anki的短板" class="headerlink" title="anki的短板"></a>anki的短板</h2><p>anki功能上堪称尽善尽美，它的缺点是设计思路上的，插件很难弥补。</p>
+<h2 id="缺乏整体的连接，知识是碎片的"><a href="#缺乏整体的连接，知识是碎片的" class="headerlink" title="缺乏整体的连接，知识是碎片的"></a>缺乏整体的连接，知识是碎片的</h2><p>用来学学语言挺好的，学个初等数论、几何，就把知识割裂开了，一般的学科就像搭积木，没有这一层就没有上面一层。知识与知识之间有联系的。</p>
+<p>anki局限在一个卡片了。anki的卡片没有url，估计短时间内都不会支持。</p>
+<p>举个场景，简单线性回归OLS中b的表示方式可以是Xi的线性组合。用anki，你记住了Xi的线性组合系数ki的3大性质。但你无法将OLS与非OLS的线性无偏估计进行比较，后者也有2个相同性质，只差第三点。</p>
+<p>你也想不到，这简单线性回归中，这个知识点在什么位置。但</p>
+<p>用思维导图你就能看到，这就是我比较坚定地认为MN更好的原因。</p>
+<p>一句话，知识是散的，不成体系、难以梳理，这是flashcard的固有缺点。</p>
+<h2 id="忽略了卡片难度的巨大差别"><a href="#忽略了卡片难度的巨大差别" class="headerlink" title="忽略了卡片难度的巨大差别"></a>忽略了卡片难度的巨大差别</h2><p>我发现的基本规律，那就是，10个知识点，有7个很简单，比如概念和定理本身和定理的一些显然的推论。3个很困难，比如定理的证明，比如一道综合性强的题目。但anki的算法对难度不敏感。我复习的时候，经常想，这么简单还好意思出现？或者是，根本不记得了，我记忆力好差。就是因为anki没有考虑到二八定律(20%的时间用于80%时间的考虑)。把大量时间用于简单内容的复习上，让人不胜其烦。</p>
+<h2 id="算法不合理"><a href="#算法不合理" class="headerlink" title="算法不合理"></a>算法不合理</h2><p>anki算法基础就是记忆是按指数衰减的。记忆指数衰减规律真的对么？我不这么认为，或许因为我的记忆力比一般人差。背了那么十几天GRE，间隔稍微长一点，又不记得了。</p>
+<p>我觉得是大家误解了艾宾浩斯实验本身的意义，是强行推论。艾宾浩斯只是告诉我们，适当安排复习是非常重要的，可没告诉我们怎么才是“适当”的间隔。没说是指数，也没说这个衰减的公式是什么。我不同意指数衰减，人脑对困难的材料没那么强悍。比如要是有人跟我说，GRE单词难度是指数衰减的，我就不信，顶多是个等差数列级别的。我只同意一点：一开始的复习很重要。后面是我关于人的记忆的猜想。</p>
+<h2 id="再来一遍？"><a href="#再来一遍？" class="headerlink" title="再来一遍？"></a>再来一遍？</h2><p>有时候，有个知识点我忘了，此时我不想复习那几十张其它的，就想记这个。我得新建立一个deck，再移动过去。记完了再移动回去。2.0版本有个插件可以做到预览复习，2.1这个插件就不支持了(但估计迟早会支持，作者是一位大神)。</p>
+<h2 id="我总结的记忆规律"><a href="#我总结的记忆规律" class="headerlink" title="我总结的记忆规律"></a>我总结的记忆规律</h2><p>最开始的那一段时间(比如一周)的密集召回记忆是最重要的。如果能应用，比如给同学讲讲，效果会更好。总之就是一开始要走心，要多想多用。如果我给同学讲了一种方法，那么这种方法我会记很久。到大学这么操作不容易，没这个氛围。</p>
+<p>我有些诗文记得很牢，不是因为我指数间隔复习，而是因为一开始的那一段时间过于密集地复习，老师也抽背，同学们之间互相考着玩。比如背《醉翁亭记》《岳阳楼记》，那几天总是在想这个，下课就背上两句。尽管后面没怎么复习，还是记很久。反观《马嵬》，背的时候没怎么走心，几下背了就不管了，现在都只记得最后两句了。</p>
+<p>你是不是感觉小时候背的东西记得很牢，怎么也不会忘。其实是因为小时候学的知识太少了，能反复巩固。你想想，是不是背了首李煜的《虞美人》，就迫不及待地跟父母同学展示？</p>
+<h2 id="我对MN复习机制设计的建议"><a href="#我对MN复习机制设计的建议" class="headerlink" title="我对MN复习机制设计的建议"></a>我对MN复习机制设计的建议</h2><p>这个想法很不成熟，纸上谈兵，不过只是说来听听：</p>
+<ul>
+<li>关于复习的参数，是卡片本身属性的一部分，就像标签一样。最基本的属性是：开始学习的时间，上一次复习到下一次复习的间隔，它选择的记忆路线 ，它被记忆了几次(index)。如果有遗忘，那么index重置为1。  记忆路线：可以由用户自定义，很简单，只是常数数组。比如：1,1,1,1,8,20。表示的是，上一次复习到下一次复习的间隔。  实际上记忆路线只是个参考，用户可以自己定义下一次复习时间。那么记忆路线是不是乱套、不能用了呢？不，它继续按照index和路线数组决定。比如，这是第3次记忆，我自己选择了一个新的间隔，那么下一个间隔继续按照a[3]这样，就好像之前的手动选择没发生过一样。反正维护的只是间隔，不是日期。但是实际UI中，为了方便用户，可以选择日期，日期更直观。  用户也可以选择重置。</li>
+<li>关于上一点我觉得如果能与搜索过滤设置配合就更好了。就是找出遗忘的，这样不用到复习界面就能复习，好处是看得更快。</li>
+<li>对于难点的复习，由用户标注为难点，在一开始给它安排大量复习。意思是，用户循环完一遍以后，这个循环就再次开始，而不是像现在这样，今天复习就结束了，记忆不结束，直到没有难点为止。排序也要调整，上一次的错误排在前面。要提醒用户，这种卡片记忆压力很大，不是重难点不要标记，否则就是浪费时间。  那么什么时候变成普通的卡片呢？<ul>
+<li>  用户标志熟记。</li>
+<li>  记录一下整个用时，当时间小到一定程度的时候，且连续好几次时间都很短的时候，从难点变为普通。</li>
+</ul>
+  当它不是难点以后，它就跟普通卡片没区别了，默默地进入冷宫。  而且难点不划分科目，直接在一起，因为难点数量不多，用户可以自由地筛选来自哪个笔记本的，就类似于搜索的过滤一样。  当用户没有多少时间的时候，首先要复习的就是难点。</li>
+</ul>
+<p>这两点做到以后，实际上就是少数的难点(大概1/4-1/5的样子)，和不怎么需要操心的简单卡片。让用户把复习时间花在刀刃上。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">叶落花开</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://www.yeluohuakai.com/posts/2022/11/a5ad2d9b.html">https://www.yeluohuakai.com/posts/2022/11/a5ad2d9b.html</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://www.yeluohuakai.com" target="_blank">叶落花开的博客</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Anki/">Anki</a></div><div class="post_share"><div class="social-share" data-image="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://fastly.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/posts/2022/11/2f173542.html"><img class="next-cover" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">提升记忆力——艾宾浩斯记忆曲线原理</div></div></a></div></nav><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/loading.gif" data-original="/img/ava.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">叶落花开</div><div class="author-info__description">持续学习，记录后端技术、web技术，以及对认知、技术变现的思考。</div></div><div class="card-info-data is-center"><div class="card-info-data-item"><a href="/archives/"><div class="headline">文章</div><div class="length-num">90</div></a></div><div class="card-info-data-item"><a href="/tags/"><div class="headline">标签</div><div class="length-num">64</div></a></div><div class="card-info-data-item"><a href="/categories/"><div class="headline">分类</div><div class="length-num">18</div></a></div></div></div><div class="card-widget user-map" id="user-map"><div class="item-headline"><i class="fas fa-link"></i><span>友情链接</span></div><div class="item-content"><ul class="entry"><li><a href="/bszs" title="各大高校博士招生信息">各大高校博士招生信息</a></li><li><a target="_blank" rel="noopener" href="https://xiyou4you.us/r/?s=20079253" title="如何科学上网">如何科学上网</a></li></ul></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#anki%E7%9A%84%E4%BC%98%E7%82%B9"><span class="toc-number">1.</span> <span class="toc-text">anki的优点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#anki%E7%9A%84%E7%9F%AD%E6%9D%BF"><span class="toc-number">2.</span> <span class="toc-text">anki的短板</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BC%BA%E4%B9%8F%E6%95%B4%E4%BD%93%E7%9A%84%E8%BF%9E%E6%8E%A5%EF%BC%8C%E7%9F%A5%E8%AF%86%E6%98%AF%E7%A2%8E%E7%89%87%E7%9A%84"><span class="toc-number">3.</span> <span class="toc-text">缺乏整体的连接，知识是碎片的</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BF%BD%E7%95%A5%E4%BA%86%E5%8D%A1%E7%89%87%E9%9A%BE%E5%BA%A6%E7%9A%84%E5%B7%A8%E5%A4%A7%E5%B7%AE%E5%88%AB"><span class="toc-number">4.</span> <span class="toc-text">忽略了卡片难度的巨大差别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AE%97%E6%B3%95%E4%B8%8D%E5%90%88%E7%90%86"><span class="toc-number">5.</span> <span class="toc-text">算法不合理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%86%8D%E6%9D%A5%E4%B8%80%E9%81%8D%EF%BC%9F"><span class="toc-number">6.</span> <span class="toc-text">再来一遍？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%88%91%E6%80%BB%E7%BB%93%E7%9A%84%E8%AE%B0%E5%BF%86%E8%A7%84%E5%BE%8B"><span class="toc-number">7.</span> <span class="toc-text">我总结的记忆规律</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%88%91%E5%AF%B9MN%E5%A4%8D%E4%B9%A0%E6%9C%BA%E5%88%B6%E8%AE%BE%E8%AE%A1%E7%9A%84%E5%BB%BA%E8%AE%AE"><span class="toc-number">8.</span> <span class="toc-text">我对MN复习机制设计的建议</span></a></li></ol></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By 叶落花开</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">本地搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://fastly.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>(()=>{
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'freecloud-0gzubvbebcf38cf6',
+      region: '',
+      onCommentLoaded: function () {
+        btf.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.vemoji)'))
+      }
+    }, null))
+  }
+
+  const getCount = () => {
+    twikoo.getCommentsCount({
+      envId: 'freecloud-0gzubvbebcf38cf6',
+      region: '',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(function (res) {
+      document.getElementById('twikoo-count').innerText = res[0].count
+    }).catch(function (err) {
+      console.error(err);
+    });
+  }
+
+  const runFn = () => {
+    init()
+    
+  }
+
+  const loadTwikoo = () => {
+    if (typeof twikoo === 'object') {
+      setTimeout(runFn,0)
+      return
+    } 
+    getScript('https://fastly.jsdelivr.net/npm/twikoo/dist/twikoo.all.min.js').then(runFn)
+  }
+
+  if ('Twikoo' === 'Twikoo' || !false) {
+    if (false) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo()
+  } else {
+    window.loadOtherComment = () => {
+      loadTwikoo()
+    }
+  }
+})()</script></div><script id="canvas_nest" defer="defer" color="0,0,255" opacity="0.7" zIndex="-1" count="99" mobile="false" src="https://fastly.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-nest.min.js"></script></div>
+        <style>
+            [bg-lazy] {
+                background-image: none !important;
+                background-color: #eee !important;
+            }
+        </style>
+        <script>
+            window.imageLazyLoadSetting = {
+                isSPA: false,
+                preloadRatio: 1,
+                processImages: null,
+            };
+        </script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script><script>!function(r){r.imageLazyLoadSetting.processImages=t;var e=r.imageLazyLoadSetting.isSPA,n=r.imageLazyLoadSetting.preloadRatio||1,c=a();function a(){var t=Array.prototype.slice.call(document.querySelectorAll("img[data-original]")),e=Array.prototype.slice.call(document.querySelectorAll("[bg-lazy]"));return t.concat(e)}function t(){e&&(c=a());for(var t,o=0;o<c.length;o++)0<=(t=(t=c[o]).getBoundingClientRect()).bottom&&0<=t.left&&t.top<=(r.innerHeight*n||document.documentElement.clientHeight*n)&&function(){var t,e,n,a,i=c[o];e=function(){c=c.filter(function(t){return i!==t}),r.imageLazyLoadSetting.onImageLoaded&&r.imageLazyLoadSetting.onImageLoaded(i)},(t=i).hasAttribute("bg-lazy")?(t.removeAttribute("bg-lazy"),e&&e()):(n=new Image,a=t.getAttribute("data-original"),n.onload=function(){t.src=a,t.removeAttribute("data-original"),e&&e()},t.src!==a&&(n.src=a))}()}function i(){clearTimeout(t.tId),t.tId=setTimeout(t,500)}t(),document.addEventListener("scroll",i),r.addEventListener("resize",i),r.addEventListener("orientationchange",i)}(this);</script></body></html>
