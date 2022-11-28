@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://www.yeluohuakai.com/posts/2022/11/929d38a8.html</loc>
+    <loc>https://www.yeluohuakai.com/posts/2022/11/2f173542.html</loc>
     
     <lastmod>2022-11-28</lastmod>
     
@@ -12,6 +12,15 @@
   
   <url>
     <loc>https://www.yeluohuakai.com/posts/2022/11/d364a871.html</loc>
+    
+    <lastmod>2022-11-28</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.yeluohuakai.com/posts/2022/11/929d38a8.html</loc>
     
     <lastmod>2022-11-28</lastmod>
     
@@ -1472,6 +1481,20 @@
   
   <url>
     <loc>https://www.yeluohuakai.com/categories/IT%E6%8A%80%E6%9C%AF/Anki/</loc>
+    <lastmod>2022-11-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.yeluohuakai.com/categories/IT/</loc>
+    <lastmod>2022-11-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.yeluohuakai.com/categories/IT/Anki/</loc>
     <lastmod>2022-11-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
