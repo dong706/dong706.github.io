@@ -4,6 +4,87 @@
   
     
     <entry>
+      <title>针对不同类型记忆材料的Anki参数设置模板</title>
+      <link href="/posts/2022/11/499d8081.html"/>
+      <url>/posts/2022/11/499d8081.html</url>
+      
+        <content type="html"><![CDATA[<h2 id="2022-07-29-更新"><a href="#2022-07-29-更新" class="headerlink" title="2022-07-29 更新"></a>2022-07-29 更新</h2><ol><li> <strong>修改文科记忆2和理解性记忆的</strong> <strong>New interval</strong>：文科记忆2的忘记代价太小了，出现了部分卡片不会之后下次复习还是忘记了；理解性记忆反之。</li><li> 把<strong>Minimum interval</strong> <em>（The minimum interval given to a review card after eecn acuon answering Again）</em> 设置为2了，大概就是说我前一天不会的卡片，至少会在2天后出现，默认是1。没这个需求的可以不设置。</li></ol><h3 id="New-Cards"><a href="#New-Cards" class="headerlink" title="New Cards"></a>New Cards</h3><p>Learning steps: 10m</p><p>Graduating interval: 2</p><p>Easy interval: 8</p><span id="more"></span><h3 id="Lapses"><a href="#Lapses" class="headerlink" title="Lapses"></a>Lapses</h3><p>Leech threshold: 8（默认）</p><p>Leech action: Tag Only</p><p>Relearning steps: 10m</p><p>Minimum interval: 2</p><h3 id="Advanced"><a href="#Advanced" class="headerlink" title="Advanced"></a>Advanced</h3><p>Starting ease: 2.5（默认）</p><p>Easy bonus: 1.3（默认）</p><img src="https://fastly.jsdelivr.net/gh/dong706/dong706.github.io@latest/images/pasted-70.png" alt=""><h2 id="原文："><a href="#原文：" class="headerlink" title="原文："></a>原文：</h2><p>首先是上一张图，我其实也用了很久的anki了，陪伴我度过了考研的时光，对于anki的各种参数有一些感受，在此分享一下我的anki设置。</p><img src="https://fastly.jsdelivr.net/gh/dong706/dong706.github.io@latest/images/pasted-71.png" alt=""><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">下面对于高级设置中的3个参数——Interval modifier、Hard interval和New interval分享我的看法：</span><br><span class="line"></span><br><span class="line">Interval modifier（间隔修饰符）越大，复习间隔越大，以1.0为基准，是影响复习压力最大的变量,是目前我认为影响记忆效果的最重要变量</span><br><span class="line"></span><br><span class="line">--------------------------------------------------------------------------------------------</span><br><span class="line"></span><br><span class="line">Hard interval（困难间隔 ） 越大，选择困难之后间隔时间越大，以120%为基准，即选择“Hard”之后卡片到下次复习的间隔时间。</span><br><span class="line"></span><br><span class="line">----------------------------------------------------------------------------------------------</span><br><span class="line"></span><br><span class="line">New interval（新间隔 ） 越大，失误之后间隔时间越大，以0%为基准，即选择“Again”之后被设置为新卡片的间隔时间。</span><br></pre></td></tr></table></figure><h3 id="第一组参数推荐：关于这三个参数，有如下几种不同类型的推荐，根据Deck的不同选择不同的参数："><a href="#第一组参数推荐：关于这三个参数，有如下几种不同类型的推荐，根据Deck的不同选择不同的参数：" class="headerlink" title="第一组参数推荐：关于这三个参数，有如下几种不同类型的推荐，根据Deck的不同选择不同的参数："></a><strong>第一组参数推荐：关于这三个参数，有如下几种不同类型的推荐，根据Deck的不同选择不同的参数：</strong></h3><table><thead><tr><th>类型</th><th>Interval modifier（间隔修饰符）</th><th>Hard interval（困难间隔 ）</th><th>New interval（新间隔 ）</th><th>备注</th></tr></thead><tbody><tr><td>通用</td><td>0.9</td><td>1.1</td><td>0.1</td><td>用于没有特殊要求的普通难度的普通记忆，曾用于记忆英语作文、英语阅读、政治填空题、政治选择题。</td></tr><tr><td>理解性记忆</td><td>0.8</td><td>0.7</td><td>0.1</td><td>不要求严格背住，但属于难度高的项目，困难间隔为0.7，方便控制下一次的复习时间。</td></tr><tr><td>文科记忆</td><td>0.6</td><td>1.0</td><td>0.1</td><td>曾用于专业课的论述、简答的学习。</td></tr><tr><td>公式</td><td>0.5</td><td>1.05</td><td>0.1</td><td>记忆效果最好，适用于精度要求高的项目，曾用于用于公式和定理。</td></tr></tbody></table><h3 id="第二组参数推荐：New-Cards里面三个参数的设置如下："><a href="#第二组参数推荐：New-Cards里面三个参数的设置如下：" class="headerlink" title="第二组参数推荐：New Cards里面三个参数的设置如下："></a>第二组参数推荐：<strong>New Cards里面三个参数的设置如下：</strong></h3><p>Learning steps：10m （因为卡片量比较大，所以每张卡片我回答正确一次之后，这张就进入下一阶段了；如果希望一张卡片回答错了之后多出现一次，可以采用2步步长，即默认值）</p><p>Graduating interval：<strong>2</strong>（新卡片点击Good时，下一次复习的间隔<strong>2</strong>天）</p><p>Easy interval：<strong>8</strong>（新卡片点击Easy时，下一次复习的间隔<strong>8</strong>天）</p><h2 id="题外话："><a href="#题外话：" class="headerlink" title="题外话："></a>题外话：</h2><ul><li><p>  关于supermemo和anki</p></li><li><p>  今天偶然发现有人在讨论supermemo和anki，有几位大佬在anki的复习量巨大的情况下，决定转向supermemo，其实我也有面临过anki复习量巨大的情况，我是如何解决的呢？就是Suspend，一些collection里面的知识点，如果说删掉的话，感觉很可惜，毕竟是辛辛苦苦整理的卡片，因此采用suspend的方式，将一些不再需要背诵的考过的内容，暂停复习，减少目前学习的卡片总量。</p></li><li><p>  其实，一些东西，考试的时候无法查阅，需要背下来，但是平常总是背这么多东西，肯定会影响精力，倒不如Suspend，等到万一再用到之时，比如某某公式，只能依稀记得好像背过，这时，只需要查询一下，然后再取消Suspend，正常复习就好。</p></li><li><p>  关于anki</p></li><li><p>  其实我也不太懂里面那些算法，很多地方是边蒙带猜。</p></li></ul><img src="https://fastly.jsdelivr.net/gh/dong706/dong706.github.io@latest/images/pasted-72.png" alt=""><h2 id="一些评论"><a href="#一些评论" class="headerlink" title="一些评论"></a>一些评论</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">叶峻峣：                      </span><br><span class="line">[捂脸]反对任何忘记后不让间隔归一的系数，特别是困难。如果30天后忘了，点困难，30* 0.7 = 21，我敢保证21天后铁忘。  </span><br><span class="line">如果还记得，间隔应该拉长，也不应该出现 * 0.7 的情况  </span><br><span class="line">nus9Vyt8n：  </span><br><span class="line">如果是需要重新学习的情况，我认为应该点Again，而不是Hard。这样可以使学习间隔归零而不影响Ease。  </span><br><span class="line">叶峻峣：    </span><br><span class="line">那hard一般是什么情况下点呢？  </span><br><span class="line">nus9Vyt8n：    </span><br><span class="line">30天之后如果完全忘记了，应该点Again，30*0.1是3天。</span><br><span class="line">此外，对于Hard按键，官方手册解释hard（困难/模糊）会让卡片下一次出现的间隔比上一次略微长一点点，并且会让Anki在未来更加频繁地出示这张卡片。  </span><br><span class="line">除了理解性记忆，我的所有参数设置都是≥1的，这符合官方的定义，理解性记忆主要是用于数学题目的解题思路。  </span><br><span class="line">所以我违背了官方的定义，将默认的1.2改为了0.7，以达到让这道题目更频繁出现，又能有一个比上次更短的间隔。  </span><br><span class="line">nus9Vyt8n：  </span><br><span class="line">对于一个间隔曾经可以达到20天以上的卡片，我认为这张卡片不至于说当天背完第二天就能忘记，所以将New interval（新间隔 ）参数从默认的0.0调整为0.1。  </span><br><span class="line">nus9Vyt8n：  </span><br><span class="line">从我个人的使用情况来看，Hard我会在：勉强说出来/很困难说出来/说对了一半/不太确定自己说的对不对但其实是对的 这种情况之下点击  </span><br><span class="line">叶峻峣：  </span><br><span class="line">关于间隔很长的卡片，在忘记后重新背，间隔是否要比新卡片长一些，其实有相关研究：  </span><br><span class="line">叶峻峣：  </span><br><span class="line">如果是说对一半的话，我感觉卡片还可以继续拆分，如果放在一起，点困难的话，大概率下一次还是只对一半。 </span><br><span class="line">nus9Vyt8n：  </span><br><span class="line">此外还有就是，我需要Anki在未来，更加频繁的出示这张卡片，也即需要相对的减少这张卡片的间隔。  </span><br><span class="line">因为按照现在的，我点击Good出现了我：勉强说出来/很困难说出来/说对了一半/不太确定自己说的对不对但其实是对的 这种情况。    </span><br><span class="line">总之，就是需要告诉anki，这张卡片的难度好像比较大（降低ease值），未来你要更频繁的提问我这张卡片（降低间隔）。  </span><br><span class="line">nus9Vyt8n：  </span><br><span class="line">你说的是对的，如果一个卡片存在了这种情况，首选是拆分。但是，不是所有的卡片都可以拆分，有的卡片的内容因为牵扯思路或者完整性，不适合拆分。  </span><br><span class="line">这时候我只能采取这种方法：降低他的ease，使这张卡片在相同情况下，能比其他卡片间隔少，这是我的处理方法。</span><br><span class="line">叶峻峣：  </span><br><span class="line">嗯嗯，理解了哈哈，顺便安利一下制卡教程：</span><br><span class="line">如何写出好卡片：利用间隔重复创造理解 - 叶峻峣的文章 - 知乎</span><br></pre></td></tr></table></figure><p>文章来源：<a href="https://zhuanlan.zhihu.com/p/435951839">Anki的相关参数设置 - 知乎</a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> IT技术 </category>
+          
+          <category> Anki </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Anki </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Anki算法与术语浅谈-叶峻峣</title>
+      <link href="/posts/2022/11/c54807c8.html"/>
+      <url>/posts/2022/11/c54807c8.html</url>
+      
+        <content type="html"><![CDATA[<blockquote><p>已收录于<a href="https://zhuanlan.zhihu.com/p/57637220">「一周年」专栏整理</a></p></blockquote><p>新卡片-步伐：第一个数字是学习新卡片选择【重来】的间隔，1 表示重来的间隔是 1 分钟，即一分钟后会重新出现。后面的数字是学习新卡片时选择【一般】的间隔， 5 10 表示第一次间隔 5 分钟，第二次间隔 10 分钟；</p><p>毕业间隔：学习新卡片后连续选择【一般】的间隔；</p><p>简单间隔：学习新卡片后选择【简单】的间隔；</p><p>开始简化：其实英文是 starting ease ，即初始简易度，这个决定了每次间隔之间的倍数；</p><p>简单奖励：与选择【简单】的间隔有关；</p><p>间隔修饰符：与所有复习间隔有关；</p><span id="more"></span><p>失误次数-步伐：复习卡片选择【重来】的间隔；</p><p>新间隔：重来卡片连续选择一般/简单后，下次复习的【间隔】= 之前复习的间隔 * 【新间隔】，默认为 0；</p><p>最小间隔：因为新间隔算出来可能很小，如果小于最小间隔，就用最小间隔来替代下次复习的【间隔】；</p><p>难点阈值：设置难点阈值，即累计失误次数；</p><p>记忆难点动作：如果一张卡片的失误次数超过难点阈值，就会【暂停卡片】或者【仅标记】。</p><p>以上是所有与算法相关的术语，接下来就简单的说说算法吧！</p><p>拿三个图来展示一下：</p>  <blockquote><p>19/08/19 补充：</p></blockquote>  <p>首先，每张卡片的复习间隔都与卡片本身的<strong>简易度</strong>、<strong>上一次的间隔</strong>和此次的<strong>选项</strong>有关</p><p>如果你按下了。。。</p><p>【重来】</p><p>卡片进入重新学习队列，简易度减少 20 个百分点（比如，原来的简易度是 250%，现在变成 230%）</p><blockquote><p>19/08/19 补充：在重新学习队列中连续正确即可恢复成复习卡片，第一次复习的间隔为【上次复习间隔】* 【新间隔】和【最小间隔】中较大的间隔</p></blockquote><p>【困难】</p><p>卡片的简易度减少 15% ，当前的间隔乘以 1.2。</p><p>【一般】</p><p>当前间隔乘以当前简易度，简易度不变。（比如上一次的间隔是 10 天，简易度是 250%，那么下一次的间隔就是 10 * 250% = 25(天)）。</p><p>【容易】</p><p>当前间隔乘以当前简易度再乘以简单奖励，简易度增加 15 个百分点。（比如上一次的间隔是10天，简易度是250%，那么下一次的间隔就是 10 * 250% * 130% = 32.5 ≈ 33(天)，简易度为 250% + 15% = 265%）。</p><p>So？间隔修饰符呢？由于初始为 100%，所以任何间隔都乘以 100%，即不变。如果你想缩短任何间隔，就把它调整到小于 100% 吧。</p><p>PS：简易度最低为 130%，算法默认重来 8 次就会暂停这张卡片，免得气到你，233。</p><p>PPS：研究算法我还发现，算法调用了随机算法，所以同样进度的卡片在同样的选项下可能会有不同的间隔，可以错开复习时机。</p><p>文章来源：<a href="https://zhuanlan.zhihu.com/p/42921090">Anki 算法与术语浅谈 - 知乎</a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> IT技术 </category>
+          
+          <category> Anki </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Anki </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Anki的重复间隔如何计算的</title>
+      <link href="/posts/2022/11/56bf4c70.html"/>
+      <url>/posts/2022/11/56bf4c70.html</url>
+      
+        <content type="html"><![CDATA[<h2 id="Terminology"><a href="#Terminology" class="headerlink" title="Terminology"></a>Terminology</h2><ul><li>  间隔：Anki 是 Spaced repetition 软件，核心就是「间隔」的计算</li><li>  笔记：Note，Anki 知识库中的一条记录</li><li>  卡片：Card，拥有学习进度的最小单位，由一个笔记中的特定内容组合而成</li><li>  牌组：Deck，卡片的集合</li></ul><h2 id="Anki-卡片的-4-种状态"><a href="#Anki-卡片的-4-种状态" class="headerlink" title="Anki 卡片的 4 种状态"></a>Anki 卡片的 4 种状态</h2><ol><li> New  新卡片  </li><li> Learning  学习中卡片</li><li> Re-Learning    复习中卡片</li><li> Graduated   毕业</li></ol><h2 id="未毕业卡片的间隔"><a href="#未毕业卡片的间隔" class="headerlink" title="未毕业卡片的间隔"></a>未毕业卡片的间隔</h2><span id="more"></span><p>在 [[anki option]] 中的 learning step 指定。</p><img src="https://fastly.jsdelivr.net/gh/dong706/dong706.github.io@latest/images/pasted-66.png" alt=""><p>使用上图的配置（15m 1d 6d），卡片的出现的间隔就是</p><img src="https://fastly.jsdelivr.net/gh/dong706/dong706.github.io@latest/images/pasted-65.png" alt=""><h2 id="回答的作用"><a href="#回答的作用" class="headerlink" title="回答的作用"></a>回答的作用</h2><p>在 learning 阶段，回答不会影响间隔值本身。</p><p>答错只是会将卡片重置回第一步，间隔还是以前的间隔。</p><h2 id="已毕业卡片的间隔"><a href="#已毕业卡片的间隔" class="headerlink" title="已毕业卡片的间隔"></a>已毕业卡片的间隔</h2><p>卡片一旦走完 learning step 进入毕业状态，复习间隔就要根据下面公式计算：</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">已毕业卡片的新间隔 = 当前间隔 * ease * 间隔调节参数</span><br></pre></td></tr></table></figure><p>公式说明：</p><table><thead><tr><th>parameter</th><th>explanation</th><th>note</th></tr></thead><tbody><tr><td>当前间隔</td><td>字面意思</td><td></td></tr><tr><td>ease 难度值</td><td>默认 <code>default starting ease</code> 是 250%</td><td>和卡片绑定</td></tr><tr><td>间隔调节参数</td><td>默认 <code>default interval modifier</code> 是 100%</td><td>和牌组绑定</td></tr></tbody></table><p>ease 和间隔调节参数的进一步说明：</p><ol><li> 牌组可以理解为卡片的容器</li><li> 难度值（ease）是卡片的属性，即使把卡片移动到了新的牌组，ease 保持不变</li><li> 间隔调节参数却是牌组的属性，卡片移动到了新的牌组，就要使用新牌组的间隔调节参数</li></ol><h2 id="回答的作用-1"><a href="#回答的作用-1" class="headerlink" title="回答的作用"></a>回答的作用</h2><p>不同于未毕业的卡片，回答会影响已毕业卡片的 ease，进而影响间隔：</p><table><thead><tr><th>Answer</th><th>Ease</th><th>Interval</th></tr></thead><tbody><tr><td>Good</td><td><code>ease = ease</code></td><td><code>interval = interval * ease * interval modifier</code></td></tr><tr><td>Again</td><td><code>ease = ease * 0.8</code></td><td>_触发 re-learning 机制, 由 new interval 参数控制</td></tr><tr><td>Hard</td><td><code>ease = ease * 0.85</code></td><td><code>interval = interval * 1.2 * interval modifier</code></td></tr><tr><td>Easy</td><td><code>ease = ease * 1.15</code></td><td><code>interval = interval * new ease * interval modifier * ease bonus</code></td></tr></tbody></table><p>可以看到，如果一个已毕业的卡片总是答不对（Again 或 Hard），ease 值会持续下降，这样会引发一个问题，ease hell</p><h2 id="ease-hell"><a href="#ease-hell" class="headerlink" title="ease hell"></a>ease hell</h2><h2 id="什么是-ease-hell？"><a href="#什么是-ease-hell？" class="headerlink" title="什么是 ease hell？"></a>什么是 ease hell？</h2><p>一些卡片出现的频率非常高，即使每次都回答 Good，还是会以很高的频率反复出现。</p><h2 id="产生原因"><a href="#产生原因" class="headerlink" title="产生原因"></a>产生原因</h2><ol><li> 一直对一个卡片按 Hard 和 Again，卡片的 ease 会掉到 130%（最低值）</li><li> 达到 ease 下限的卡片，即使之后按 Good，也不会提高 ease，导致计算出来的频率非常高</li></ol><h2 id="如何避免？"><a href="#如何避免？" class="headerlink" title="如何避免？"></a>如何避免？</h2><p>配置 [[anki option]] 中的 learning step，多增加几个 step，不要只用默认值。</p><p>原理很简单，处在 learning 阶段的卡片，按 hard/again 还是 good 都不会影响 ease ：）</p><h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul><li>  <a href="https://www.youtube.com/watch?v=1XaJjbCSXT0">Guide to Anki Intervals and Learning Steps - YouTube</a></li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> IT技术 </category>
+          
+          <category> Anki </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Anki </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Swift5 Sqlite.swift 使用教程</title>
       <link href="/posts/2022/11/22af3269.html"/>
       <url>/posts/2022/11/22af3269.html</url>
