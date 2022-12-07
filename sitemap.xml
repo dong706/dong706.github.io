@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://www.yeluohuakai.com/posts/2022/11/26993213.html</loc>
+    
+    <lastmod>2022-12-07</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://www.yeluohuakai.com/posts/2022/05/768a9d0d.html</loc>
     
     <lastmod>2022-12-07</lastmod>
@@ -381,15 +390,6 @@
   
   <url>
     <loc>https://www.yeluohuakai.com/posts/2022/11/c21c189e.html</loc>
-    
-    <lastmod>2022-11-21</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.yeluohuakai.com/posts/2022/11/26993213.html</loc>
     
     <lastmod>2022-11-21</lastmod>
     
@@ -1483,13 +1483,6 @@
   
   <url>
     <loc>https://www.yeluohuakai.com/tags/%E5%AD%98%E5%82%A8%E5%8D%B7/</loc>
-    <lastmod>2022-12-07</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.yeluohuakai.com/tags/PVC/</loc>
     <lastmod>2022-12-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
