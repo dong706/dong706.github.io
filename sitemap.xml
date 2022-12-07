@@ -2,6 +2,51 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://www.yeluohuakai.com/posts/2022/05/768a9d0d.html</loc>
+    
+    <lastmod>2022-12-07</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.yeluohuakai.com/posts/2022/05/8635d5dd.html</loc>
+    
+    <lastmod>2022-12-07</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.yeluohuakai.com/posts/2022/05/8ce9d753.html</loc>
+    
+    <lastmod>2022-12-07</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.yeluohuakai.com/posts/2022/05/eec2f1a3.html</loc>
+    
+    <lastmod>2022-12-07</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.yeluohuakai.com/posts/2022/05/741c30b.html</loc>
+    
+    <lastmod>2022-12-07</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://www.yeluohuakai.com/posts/2022/12/4d8c9542.html</loc>
     
     <lastmod>2022-12-07</lastmod>
@@ -506,24 +551,6 @@
   </url>
   
   <url>
-    <loc>https://www.yeluohuakai.com/posts/2022/05/8635d5dd.html</loc>
-    
-    <lastmod>2022-11-09</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.yeluohuakai.com/posts/2022/05/8ce9d753.html</loc>
-    
-    <lastmod>2022-11-09</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://www.yeluohuakai.com/posts/2022/05/4feefd57.html</loc>
     
     <lastmod>2022-11-09</lastmod>
@@ -561,33 +588,6 @@
   
   <url>
     <loc>https://www.yeluohuakai.com/posts/2022/05/e0ba2ad4.html</loc>
-    
-    <lastmod>2022-11-09</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.yeluohuakai.com/posts/2022/05/741c30b.html</loc>
-    
-    <lastmod>2022-11-09</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.yeluohuakai.com/posts/2022/05/768a9d0d.html</loc>
-    
-    <lastmod>2022-11-09</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.yeluohuakai.com/posts/2022/05/eec2f1a3.html</loc>
     
     <lastmod>2022-11-09</lastmod>
     
@@ -1328,13 +1328,6 @@
   </url>
   
   <url>
-    <loc>https://www.yeluohuakai.com/tags/k8s/</loc>
-    <lastmod>2022-12-07</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://www.yeluohuakai.com/tags/Docker/</loc>
     <lastmod>2022-12-07</lastmod>
     <changefreq>weekly</changefreq>
@@ -1406,13 +1399,6 @@
   
   <url>
     <loc>https://www.yeluohuakai.com/tags/%E5%AD%97%E5%B9%95/</loc>
-    <lastmod>2022-12-07</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.yeluohuakai.com/tags/docker/</loc>
     <lastmod>2022-12-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
