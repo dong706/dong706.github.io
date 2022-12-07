@@ -177,7 +177,7 @@ s.parentNode.insertBefore(el, s);
 </ol>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">translate_title:</span><br><span class="line">  translate_way: google  # google,youdao,baidu_with_appid,baidu_no_appid</span><br><span class="line">  is_need_proxy: false     # true | false</span><br><span class="line">  # proxy_url: http://localhost:50018 # Your proxy_url</span><br><span class="line">  # youdao_api_key: &#x27;&#x27; # Your youdao_api_key</span><br><span class="line">  # youdao_keyfrom: xxxx-blog # Your youdao_keyfrom</span><br><span class="line">  # baidu_appid: &#x27;&#x27; # Your baidu_appid</span><br><span class="line">  # baidu_appkey: &#x27;&#x27; # Your baidu_appkey</span><br><span class="line"># 修改原链接格式：permalink: :year/:month/:day/:title/</span><br><span class="line">permalink: :year:month:day/:translate_title.html</span><br></pre></td></tr></table></figure>
 <ol start="3">
-<li><p>测试<br>用hexo d重新生成，留意控制台输出以及public目录下是否有生成相应的<hexo-translate-title>.html文件，如果有代表成功了，再用hexo d部署即可。  </hexo-translate-title></p>
+<li><p>测试<br>用hexo d重新生成，留意控制台输出以及public目录下是否有生成相应的<hexo-translate-title>.html文件，如果有代表成功了，再用hexo d部署即可。  </p>
 </li>
 <li><p>注意<br>  Google翻译服务的不稳定，按上述流程安装、配置和部署，有可能生成的链接都是undefined.html。</p>
 </li>
