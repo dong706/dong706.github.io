@@ -4,6 +4,60 @@
   
     
     <entry>
+      <title>Swift 5 : 怎么把NSAttributedString转换为HTML字符串？</title>
+      <link href="/posts/2022/12/6f432d44.html"/>
+      <url>/posts/2022/12/6f432d44.html</url>
+      
+        <content type="html"><![CDATA[<p>You need to specify what kind of document data you would like to convert your attributed string to:</p><hr><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">.txt    // Plain Text Document Type (Simple Text)</span><br><span class="line">.html   // HTML  Text Document Type (Hypertext Markup Language) </span><br><span class="line">.rtf    // RTF   Text Document Type (Rich text format document)</span><br><span class="line">.rtfd   // RTFD  Text Document Type (Rich text format document with attachment)</span><br></pre></td></tr></table></figure><hr><p><strong>update Xcode 10.2 • Swift 5 or later</strong></p><span id="more"></span><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">let textView = UITextView()</span><br><span class="line">textView.attributedText = .init(string: &quot;abc&quot;,</span><br><span class="line">                                attributes: [.font: UIFont(name: &quot;Helvetica&quot;, size: 16)!])</span><br><span class="line">if let attributedText = textView.attributedText &#123;</span><br><span class="line">    do &#123;</span><br><span class="line">        let htmlData = try attributedText.data(from: .init(location: 0, length: attributedText.length),</span><br><span class="line">                                               documentAttributes: [.documentType: NSAttributedString.DocumentType.html])</span><br><span class="line">        let htmlString = String(data: htmlData, encoding: .utf8) ?? &quot;&quot;</span><br><span class="line">        print(htmlString)</span><br><span class="line">    &#125; catch &#123;</span><br><span class="line">        print(error)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><hr><p>Expanding on that:</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">extension NSAttributedString &#123;</span><br><span class="line"></span><br><span class="line">    convenience init(data: Data, documentType: DocumentType, encoding: String.Encoding = .utf8) throws &#123;</span><br><span class="line">        try self.init(attributedString: .init(data: data, options: [.documentType: documentType, .characterEncoding: encoding.rawValue], documentAttributes: nil))</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    func data(_ documentType: DocumentType) -&gt; Data &#123;</span><br><span class="line">        // Discussion</span><br><span class="line">        // Raises an rangeException if any part of range lies beyond the end of the receiver’s characters.</span><br><span class="line">        // Therefore passing a valid range allow us to force unwrap the result</span><br><span class="line">        try! data(from: .init(location: 0, length: length),</span><br><span class="line">                  documentAttributes: [.documentType: documentType])</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    var text: Data &#123; data(.plain) &#125;</span><br><span class="line">    var html: Data &#123; data(.html)  &#125;</span><br><span class="line">    var rtf:  Data &#123; data(.rtf)   &#125;</span><br><span class="line">    var rtfd: Data &#123; data(.rtfd)  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><hr><p>Usage:</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">let textView = UITextView()</span><br><span class="line">textView.attributedText = .init(string: &quot;abc&quot;, attributes: [.font: UIFont(name: &quot;Helvetica&quot;, size: 16)!])</span><br><span class="line">if let textData = textView.attributedText?.text &#123;</span><br><span class="line">    let text = String(data: textData, encoding: .utf8) ?? &quot;&quot;</span><br><span class="line">    print(text)  // abc</span><br><span class="line">&#125;</span><br><span class="line">if let htmlData = textView.attributedText?.html &#123;</span><br><span class="line">    let html = String(data: htmlData, encoding: .utf8) ?? &quot;&quot;</span><br><span class="line">    print(html)  // /* &lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD HTML 4.01//EN&quot; ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><hr><p>This will print</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">abc</span><br><span class="line">/* &lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD HTML 4.01//EN&quot; &quot;http://www.w3.org/TR/html4/strict.dtd&quot;&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=UTF-8&quot;&gt;</span><br><span class="line">&lt;meta http-equiv=&quot;Content-Style-Type&quot; content=&quot;text/css&quot;&gt;</span><br><span class="line">&lt;title&gt;&lt;/title&gt;</span><br><span class="line">&lt;meta name=&quot;Generator&quot; content=&quot;Cocoa HTML Writer&quot;&gt;</span><br><span class="line">&lt;style type=&quot;text/css&quot;&gt;</span><br><span class="line">p.p1 &#123;margin: 0.0px 0.0px 0.0px 0.0px; font: 16.0px Helvetica&#125;</span><br><span class="line">span.s1 &#123;font-family: &#x27;Helvetica&#x27;; font-weight: normal; font-style: normal; font-size: 16.00pt&#125;</span><br><span class="line">&lt;/style&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;p class=&quot;p1&quot;&gt;&lt;span class=&quot;s1&quot;&gt;abc&lt;/span&gt;&lt;/p&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br><span class="line">*/</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> 客户端开发 </category>
+          
+          <category> Swift开发 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Swift </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Swift 5 : How to convert HTML to an NSAttributedString</title>
+      <link href="/posts/2022/12/1eff425b.html"/>
+      <url>/posts/2022/12/1eff425b.html</url>
+      
+        <content type="html"><![CDATA[<p>在Swift里，您可以直接从 HTML 创建，包括支持各种格式、使用特殊的初始值设定项以及传入文档类型。<code>NSAttributedString``NSAttributedString.DocumentType.html</code></p><p>例如，给定以下 HTML：</p><figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> html <span class="operator">=</span> <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">&lt;html&gt;</span></span><br><span class="line"><span class="string">&lt;body&gt;</span></span><br><span class="line"><span class="string">&lt;h1&gt;Hello, world!&lt;/h1&gt;</span></span><br><span class="line"><span class="string">&lt;/body&gt;</span></span><br><span class="line"><span class="string">&lt;/html&gt;</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br></pre></td></tr></table></figure><span id="more"></span><p>您首先需要将该字符串转换为实例，如下所示：<code>Data</code></p><figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> data <span class="operator">=</span> <span class="type">Data</span>(html.utf8)</span><br></pre></td></tr></table></figure><p>您现在可以从中创建。这是一个_抛出_调用，因为您可能会尝试转换无效的内容，因此我们将使用并将其包装在：<code>NSAttributedString``try?``if let</code></p><figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> <span class="keyword">let</span> attributedString <span class="operator">=</span> <span class="keyword">try?</span> <span class="type">NSAttributedString</span>(data: data, options: [.documentType: <span class="type">NSAttributedString</span>.<span class="type">DocumentType</span>.html], documentAttributes: <span class="literal">nil</span>) &#123;</span><br><span class="line">    yourLabel.attributedText <span class="operator">=</span> attributedString</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> 客户端开发 </category>
+          
+          <category> Swift开发 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Swift </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>1个可以用于微信聊天的ChatGPT机器人</title>
       <link href="/posts/2022/12/4d8c9542.html"/>
       <url>/posts/2022/12/4d8c9542.html</url>
