@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>Centos下yum安装MongoDB</title>
+      <link href="/posts/2022/12/4bbcaac9.html"/>
+      <url>/posts/2022/12/4bbcaac9.html</url>
+      
+        <content type="html"><![CDATA[<p>1、创建repo仓库</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">vi /etc/yum.repos.d/mongodb-org-5.0.repo</span><br></pre></td></tr></table></figure><p>2、把下面的内容复制到文件中 保存退出</p><blockquote><p>[mongodb-org-5.0]<br>name=MongoDB 5.0 Repository<br>baseurl=<a href="https://repo.mongodb.org/yum/redhat/$releasever/mongodb-org/5.0/$basearch/">https://repo.mongodb.org/yum/redhat/$releasever/mongodb-org/5.0/$basearch/</a><br>gpgcheck=1<br>enabled=1<br>gpgkey=<a href="https://www.mongodb.org/static/pgp/server-5.0.asc">https://www.mongodb.org/static/pgp/server-5.0.asc</a></p></blockquote><span id="more"></span><p>注意，上面的数字比如5.0可以替换成其他已有的版本号，参见</p><p>下面这个链接可以选择linux版本</p><p><a href="https://repo.mongodb.org/yum/redhat/" title="Index of redhat">Index of redhat</a></p><p>假设我是centos 7的</p><p><a href="https://repo.mongodb.org/yum/redhat/7Server/mongodb-org/" title="Index of mongodb-org">Index of mongodb-org</a></p><p>我可以选择3.4版本</p><p>3、yum安装</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">yum install -y mongodb-org</span><br></pre></td></tr></table></figure><p><img src="https://img-blog.csdnimg.cn/c40f2d5f4a6f4acf95bed48d30295882.jpg?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAcXFfMzg3ODEwNzU=,size_20,color_FFFFFF,t_70,g_se,x_16"></p><p>警告：外网下载很慢 </p><p>然后发现下载很慢，我就把图中列出的rpm包手动下载了，然后删除掉前面创建的repo文件。</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">rm /etc/yum.repos.d/mongodb-org-5.0.repo</span><br></pre></td></tr></table></figure><p>我的linux是centos 7 ，我准备下载5.0的<a href="https://so.csdn.net/so/search?q=MongoDB&spm=1001.2101.3001.7020">MongoDB</a>，我从下面这个链接下载rpm</p><p><a href="https://repo.mongodb.org/yum/redhat/7Server/mongodb-org/5.0/x86_64/RPMS/" title="Index of RPMS">Index of RPMS</a></p><p><img src="https://img-blog.csdnimg.cn/7dfe2219f5c64c23982d8ffc6459fc6e.jpg"></p><p> 成功安装</p><p><img src="https://img-blog.csdnimg.cn/8a384a6d71a2417dab8b748a34c20773.jpg?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAcXFfMzg3ODEwNzU=,size_20,color_FFFFFF,t_70,g_se,x_16"></p><p> 4、修改配置文件</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">vi /etc/mongod.conf</span><br></pre></td></tr></table></figure><p>把bindIP改成 0.0.0.0所有的机器都可以访问</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">bindIp: 0.0.0.0 </span><br></pre></td></tr></table></figure><p>5、启动/关闭mogodb</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">systemctl start mongod</span><br><span class="line">systemctl enable mongod</span><br></pre></td></tr></table></figure><p>6、有时候重启报错开机无法启动的问题，报错子进程启动失败</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">chown mongod:mongod /tmp/mongodb-27017.sock</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> IT技术 </category>
+          
+          <category> Linux </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> MongoDB </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>分享几个 ChatGPT 变现案例</title>
       <link href="/posts/2022/12/a1b4a331.html"/>
       <url>/posts/2022/12/a1b4a331.html</url>
