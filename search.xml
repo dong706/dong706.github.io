@@ -4,6 +4,27 @@
   
     
     <entry>
+      <title>SWIFT在导航栏多个按钮_SWIFT设置NAVIGATION左右两侧多个按钮</title>
+      <link href="/posts/2023/01/85a91584.html"/>
+      <url>/posts/2023/01/85a91584.html</url>
+      
+        <content type="html"><![CDATA[<p>IOS App开发难免会遇到导航栏右上角需要显示2个按钮的时候，今天就讲一下Swift在导航栏左侧或者右侧放置多个按钮例子，使用 navigationItem.leftBarButtonItem 和 navigationItem.rightBarButtonItem 可以很方便的分别设置导航栏左侧和右侧按钮，但一侧只能有一个按钮。如果想要在一侧使用多个按钮，可以通过 leftBarButtonItems 和 rightBarButtonItems 来实现。</p><p>设置按钮  </p><span id="more"></span><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">override func viewDidLoad()&#123;</span><br><span class="line">    super.viewDidLoad()</span><br><span class="line">    </span><br><span class="line">    //navitem search 搜索按钮</span><br><span class="line">    let buttonSearch = UIButton.init(frame: CGRect.init(x: 0, y: 0, width: 20, height: 20))</span><br><span class="line">    buttonSearch.setImage(UIImage.init(named: &quot;home_navitem_search&quot;), for: UIControlState.normal)</span><br><span class="line">    buttonSearch.addTarget(self, action: #selector(navigationItemSearchAction), for: UIControlEvents.touchUpInside)</span><br><span class="line">    let barButtonSearch = UIBarButtonItem(customView: buttonSearch)</span><br><span class="line">    </span><br><span class="line">    //navitem 客服按钮</span><br><span class="line">    let buttonService = UIButton.init(frame: CGRect.init(x: 0, y: 0, width: 20, height: 20))</span><br><span class="line">    buttonService.setImage(UIImage.init(named: &quot;customer_service&quot;), for: UIControlState.normal)</span><br><span class="line">    buttonService.addTarget(self, action: #selector(navigationItemServiceAction), for: UIControlEvents.touchUpInside)</span><br><span class="line">    let barButtonService = UIBarButtonItem(customView: buttonService)</span><br><span class="line">    </span><br><span class="line">    //按钮间的空隙</span><br><span class="line">    let gap = UIBarButtonItem.init(barButtonSystemItem: UIBarButtonSystemItem.fixedSpace, target: nil, action: nil)</span><br><span class="line">    gap.width = 12;</span><br><span class="line">    </span><br><span class="line">    //用于消除右边边空隙，要不然按钮顶不到最边上</span><br><span class="line">    let spacer = UIBarButtonItem.init(barButtonSystemItem: UIBarButtonSystemItem.fixedSpace, target: nil, action: nil)</span><br><span class="line">    spacer.width = -5;</span><br><span class="line">    </span><br><span class="line">    //设置按钮（注意顺序）</span><br><span class="line">    self.navigationItem.rightBarButtonItems = [spacer, barButtonSearch, gap, barButtonService]</span><br><span class="line">    </span><br></pre></td></tr></table></figure><p>点击事件</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//搜索</span><br><span class="line">@objc func navigationItemSearchAction() &#123;</span><br><span class="line">    print(&quot;搜索按钮点击&quot;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//客服</span><br><span class="line">@objc func navigationItemServiceAction() &#123;</span><br><span class="line">    print(&quot;客服按钮点击&quot;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> 客户端开发 </category>
+          
+          <category> Swift开发 </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Centos7 通过yum安装指定版本node</title>
       <link href="/posts/2022/12/14846d38.html"/>
       <url>/posts/2022/12/14846d38.html</url>
