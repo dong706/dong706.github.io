@@ -216,7 +216,7 @@
       <link href="/posts/2022/12/4d8c9542.html"/>
       <url>/posts/2022/12/4d8c9542.html</url>
       
-        <content type="html"><![CDATA[<p>1个可以用于微信聊天的ChatGPT机器人<br>GitHub地址：<a href="https://github.com/fuergaosi233/wechat-chatgpt">https://github.com/fuergaosi233/wechat-chatgpt</a></p><p>支持特性</p><blockquote><p>通过微信在微信上使用ChatGPT<br>支持OpenAI帐户池<br>支持使用代理登录<br>在消息接收时模拟</p></blockquote><p>我这边已经部署成功并成功运行，如有疑问可邮件联系 <a href="mailto:&#x64;&#x6f;&#110;&#x67;&#55;&#x30;&#x36;&#64;&#103;&#x6d;&#97;&#105;&#x6c;&#x2e;&#99;&#x6f;&#109;">&#x64;&#x6f;&#110;&#x67;&#55;&#x30;&#x36;&#64;&#103;&#x6d;&#97;&#105;&#x6c;&#x2e;&#99;&#x6f;&#109;</a> </p><span id="more"></span>]]></content>
+        <content type="html"><![CDATA[<p>1个可以用于微信聊天的ChatGPT机器人<br>GitHub地址：<a href="https://github.com/fuergaosi233/wechat-chatgpt">https://github.com/fuergaosi233/wechat-chatgpt</a></p><p>支持特性</p><blockquote><p>通过微信在微信上使用ChatGPT<br>支持OpenAI帐户池<br>支持使用代理登录<br>在消息接收时模拟</p></blockquote><p>我这边已经部署成功并成功运行，如有疑问可邮件联系 <a href="mailto:&#x64;&#x6f;&#110;&#x67;&#55;&#x30;&#x36;&#x40;&#103;&#x6d;&#97;&#x69;&#x6c;&#46;&#x63;&#111;&#109;">&#x64;&#x6f;&#110;&#x67;&#55;&#x30;&#x36;&#x40;&#103;&#x6d;&#97;&#x69;&#x6c;&#46;&#x63;&#111;&#109;</a> </p><span id="more"></span>]]></content>
       
       
       <categories>
@@ -230,9 +230,9 @@
             
             <tag> 人工智能 </tag>
             
-            <tag> ChatGPT </tag>
-            
             <tag> OpenAI </tag>
+            
+            <tag> ChatGPT </tag>
             
         </tags>
       
@@ -259,9 +259,9 @@
             
             <tag> 人工智能 </tag>
             
-            <tag> OpenAI </tag>
-            
             <tag> chatGPT </tag>
+            
+            <tag> OpenAI </tag>
             
         </tags>
       
@@ -288,9 +288,9 @@
             
             <tag> 人工智能 </tag>
             
-            <tag> OpenAI </tag>
-            
             <tag> chatGPT </tag>
+            
+            <tag> OpenAI </tag>
             
         </tags>
       
@@ -1162,11 +1162,11 @@
       
         <tags>
             
+            <tag> PVC </tag>
+            
             <tag> StorageClass </tag>
             
             <tag> nfs </tag>
-            
-            <tag> PVC </tag>
             
         </tags>
       
@@ -1365,9 +1365,9 @@
             
             <tag> K8s </tag>
             
-            <tag> PVC </tag>
-            
             <tag> 存储卷 </tag>
+            
+            <tag> PVC </tag>
             
         </tags>
       
@@ -1634,9 +1634,9 @@
             
             <tag> K8s </tag>
             
-            <tag> containerd </tag>
-            
             <tag> 容器技术 </tag>
+            
+            <tag> containerd </tag>
             
         </tags>
       
