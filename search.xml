@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>用WKWebview加载html字符串完成后如何动态替换其中一部分内容？</title>
+      <link href="/posts/2023/02/63ef1274.html"/>
+      <url>/posts/2023/02/63ef1274.html</url>
+      
+        <content type="html"><![CDATA[<p>可以使用 WKWebView 的 evaluateJavaScript 方法来替换已经加载的 HTML 字符串中的部分内容。</p><p>具体来说，你可以先用 WKWebView 的 loadHTMLString 方法加载一个 HTML 字符串，然后在加载完成后，再用 evaluateJavaScript 方法来修改其中的内容。</p><p>下面是一个示例代码，其中使用了 jQuery 库来查找并替换 HTML 内容：</p><span id="more"></span> <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">import WebKit</span><br><span class="line"></span><br><span class="line">class ViewController: UIViewController, WKNavigationDelegate &#123;</span><br><span class="line">    var webView: WKWebView!</span><br><span class="line"></span><br><span class="line">    override func viewDidLoad() &#123;</span><br><span class="line">        super.viewDidLoad()</span><br><span class="line"></span><br><span class="line">        // 创建 WKWebView</span><br><span class="line">        let configuration = WKWebViewConfiguration()</span><br><span class="line">        webView = WKWebView(frame: view.bounds, configuration: configuration)</span><br><span class="line">        webView.navigationDelegate = self</span><br><span class="line">        view.addSubview(webView)</span><br><span class="line"></span><br><span class="line">        // 加载 HTML 字符串</span><br><span class="line">        let htmlString = &quot;&quot;&quot;</span><br><span class="line">            &lt;html&gt;</span><br><span class="line">            &lt;body&gt;</span><br><span class="line">            &lt;h1 id=&quot;title&quot;&gt;Hello, World!&lt;/h1&gt;</span><br><span class="line">            &lt;p id=&quot;content&quot;&gt;This is a sample HTML string.&lt;/p&gt;</span><br><span class="line">            &lt;/body&gt;</span><br><span class="line">            &lt;/html&gt;</span><br><span class="line">        &quot;&quot;&quot;</span><br><span class="line">        webView.loadHTMLString(htmlString, baseURL: nil)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) &#123;</span><br><span class="line">        // 使用 jQuery 查找并替换 HTML 内容</span><br><span class="line">        let script = &quot;&quot;&quot;</span><br><span class="line">            $(&#x27;#title&#x27;).text(&#x27;New Title&#x27;);</span><br><span class="line">            $(&#x27;#content&#x27;).text(&#x27;New Content&#x27;);</span><br><span class="line">        &quot;&quot;&quot;</span><br><span class="line">        webView.evaluateJavaScript(script, completionHandler: nil)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure><p>在这个示例代码中，首先创建了一个 WKWebView，并使用 loadHTMLString 方法加载了一个 HTML 字符串。在 WKWebView 的 didFinish 回调方法中，使用 evaluateJavaScript 方法执行了一个 JavaScript 脚本，该脚本使用 jQuery 查找了 HTML 中的标题和内容，并将它们替换为新的标题和内容。</p><p>当 WKWebView 执行完 JavaScript 脚本后，它会自动更新显示的内容。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 客户端开发 </category>
+          
+          <category> Swift开发 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Swift </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>swift在UITextView上怎么实现滑动触摸到的文字颜色变得和背景颜色一样?</title>
       <link href="/posts/2023/02/250efe97.html"/>
       <url>/posts/2023/02/250efe97.html</url>
