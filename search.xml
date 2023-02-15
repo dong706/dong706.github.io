@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>swift在UITextView上怎么实现滑动触摸到的文字颜色变得和背景颜色一样?</title>
+      <link href="/posts/2023/02/250efe97.html"/>
+      <url>/posts/2023/02/250efe97.html</url>
+      
+        <content type="html"><![CDATA[<p>要在 UITextView 上实现滑动触摸到的文字颜色变得和背景颜色一样的效果，可以考虑以下步骤：</p><p>给 UITextView 添加一个 UIPanGestureRecognizer 手势，以便接收用户的滑动事件。</p><p>在 UIPanGestureRecognizer 的回调方法中，获取用户当前滑动的位置，并通过 UITextView 的 layoutManager 将这个位置转换为对应的文本位置。</p><p>根据文本位置获取到对应的字符，并将这个字符的前景色设置为和背景色一样的颜色，实现滑动触摸到的文字颜色变得和背景颜色一样的效果。</p><p>下面是一个简单的实现示例代码，可以参考一下：</p><span id="more"></span> <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">class ViewController: UIViewController &#123;</span><br><span class="line">    @IBOutlet weak var textView: UITextView!</span><br><span class="line"></span><br><span class="line">    override func viewDidLoad() &#123;</span><br><span class="line">        super.viewDidLoad()</span><br><span class="line"></span><br><span class="line">        // 添加 UIPanGestureRecognizer 手势</span><br><span class="line">        let panGesture = UIPanGestureRecognizer(target: self, action: #selector(handlePan(_:)))</span><br><span class="line">        textView.addGestureRecognizer(panGesture)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @objc func handlePan(_ gesture: UIPanGestureRecognizer) &#123;</span><br><span class="line">        let location = gesture.location(in: textView)</span><br><span class="line"></span><br><span class="line">        switch gesture.state &#123;</span><br><span class="line">        case .changed:</span><br><span class="line">            // 将触摸位置转换为文本位置</span><br><span class="line">            if let textPosition = textView.closestPosition(to: location) &#123;</span><br><span class="line">                // 获取对应的字符</span><br><span class="line">                let range = NSRange(location: textView.offset(from: textView.beginningOfDocument, to: textPosition), length: 1)</span><br><span class="line">                let attributes = textView.textStorage.attributes(at: range.location, effectiveRange: nil)</span><br><span class="line"></span><br><span class="line">                // 将字符的前景色设置为和背景色一样的颜色</span><br><span class="line">                if let backgroundColor = attributes[NSAttributedString.Key.backgroundColor] as? UIColor &#123;</span><br><span class="line">                    let foregroundColor = backgroundColor.withAlphaComponent(1)</span><br><span class="line">                    textView.textStorage.addAttributes([NSAttributedString.Key.foregroundColor: foregroundColor], range: range)</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        case .ended, .cancelled:</span><br><span class="line">            // 恢复所有字符的前景色</span><br><span class="line">            let range = NSRange(location: 0, length: textView.text.count)</span><br><span class="line">            textView.textStorage.removeAttribute(NSAttributedString.Key.foregroundColor, range: range)</span><br><span class="line">        default:</span><br><span class="line">            break</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> 客户端开发 </category>
+          
+          <category> Swift开发 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Swift </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>借助 ChatGPT 挣点房贷钱</title>
       <link href="/posts/2023/02/e64bf21.html"/>
       <url>/posts/2023/02/e64bf21.html</url>
