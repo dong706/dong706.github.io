@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>Swift选择文件的回调函数 documentPicker的文件处理逻辑过程中无法更新主界面？</title>
+      <link href="/posts/2023/02/ebbc3f45.html"/>
+      <url>/posts/2023/02/ebbc3f45.html</url>
+      
+        <content type="html"><![CDATA[<p>原因在于在Swift中获取文件权限的startAccessingSecurityScopedResource会阻塞当前线程。</p><p>startAccessingSecurityScopedResource 是 Swift 中用于访问安全范围资源（Security-Scoped Resources）的方法。它的作用是向系统请求权限来访问一个特定的安全范围资源，并返回一个布尔值来表示是否成功获取权限。</p><p>在使用 startAccessingSecurityScopedResource 时，如果成功获取权限，则可以访问安全范围内的文件或文件夹。但是需要注意的是，由于该方法会触发一个权限请求窗口，所以会阻塞当前线程，直到用户授权或拒绝请求。因此，如果你在主线程中使用该方法，它可能会阻塞主线程并使应用程序变得不响应。</p><span id="more"></span> <p>为了避免这种情况，可以将 startAccessingSecurityScopedResource 方法放在一个后台线程中执行，或者在必要时使用异步执行。例如，你可以使用 DispatchQueue.global().async 将该方法放在一个后台线程中执行。这样，即使在获取权限时阻塞了线程，也不会影响主线程的响应性。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 客户端开发 </category>
+          
+          <category> Swift开发 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Swift </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>用WKWebview加载html字符串完成后如何动态替换其中一部分内容？</title>
       <link href="/posts/2023/02/63ef1274.html"/>
       <url>/posts/2023/02/63ef1274.html</url>
