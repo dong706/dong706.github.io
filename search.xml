@@ -4,6 +4,60 @@
   
     
     <entry>
+      <title>swift怎么判断一个UIDynamicSystemColor是不是指定颜色</title>
+      <link href="/posts/2023/02/cf12d257.html"/>
+      <url>/posts/2023/02/cf12d257.html</url>
+      
+        <content type="html"><![CDATA[<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">UIDynamicSystemColor是attributeString里字体的前景色或者背景色</span><br></pre></td></tr></table></figure><p>在 Swift 中，可以使用 UIColor 的 isEqual(_:) 方法来比较两个颜色是否相等。如果要判断一个 UIDynamicSystemColor 是否为白色，可以将其转换为 UIColor，然后将其与 UIColor.white 进行比较。</p><p>以下是示例代码：</p><span id="more"></span> <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">if let dynamicColor = someDynamicColor as? UIColor &#123;</span><br><span class="line">    if dynamicColor.isEqual(UIColor.white) &#123;</span><br><span class="line">        // dynamicColor 是白色</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        // dynamicColor 不是白色</span><br><span class="line">    &#125;</span><br><span class="line">&#125; else &#123;</span><br><span class="line">    // someDynamicColor 不是 UIColor 类型</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure><p>在上面的代码中，首先将 <code>someDynamicColor</code> 强制转换为 <code>UIColor</code> 类型。如果转换成功，就可以使用 <code>isEqual(_:)</code> 方法将其与 <code>UIColor.white</code> 进行比较。如果 <code>dynamicColor</code> 是白色，就会执行 <code>// dynamicColor 是白色</code> 中的代码，否则执行 <code>// dynamicColor 不是白色</code> 中的代码。如果 <code>someDynamicColor</code> 不是 <code>UIColor</code> 类型，就会执行 <code>// someDynamicColor 不是 UIColor 类型</code> 中的代码。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 客户端开发 </category>
+          
+          <category> Swift开发 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Swift </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Swift中realm数据库怎么保存attributedString类型数据</title>
+      <link href="/posts/2023/02/1cb33b38.html"/>
+      <url>/posts/2023/02/1cb33b38.html</url>
+      
+        <content type="html"><![CDATA[<p>Realm 数据库原生不支持直接存储 NSAttributedString 类型数据，因为 NSAttributedString 类型是一个复杂的对象，由多个属性组成，无法直接映射到数据库的基本数据类型中。但是，您可以使用一些技巧来存储 NSAttributedString 类型的数据。</p><p>一种方法是将 NSAttributedString 对象转换为 NSData 类型，再将 NSData 对象存储到 Realm 数据库中。在这种情况下，您需要使用 NSKeyedArchiver 和 NSKeyedUnarchiver 将 NSAttributedString 对象转换为 NSData 对象，并在需要时将其解档为 NSAttributedString 对象。以下是一个示例：</p><span id="more"></span><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">class Note: Object &#123;</span><br><span class="line">    @Persisted var textData: Data?</span><br><span class="line">    </span><br><span class="line">    var text: NSAttributedString? &#123;</span><br><span class="line">        get &#123;</span><br><span class="line">            guard let data = textData else &#123; return nil &#125;</span><br><span class="line">            return try? NSKeyedUnarchiver.unarchivedObject(ofClass: NSAttributedString.self, from: data)</span><br><span class="line">        &#125;</span><br><span class="line">        set &#123;</span><br><span class="line">            if let newValue = newValue &#123;</span><br><span class="line">                textData = try? NSKeyedArchiver.archivedData(withRootObject: newValue, requiringSecureCoding: false)</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                textData = nil</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>在上面的示例中，我们定义了一个名为 Note 的 Realm 对象，其中包含一个名为 textData 的属性，用于存储 NSAttributedString 对象的 NSData 表示。我们还为 Note 对象定义了一个名为 text 的计算属性，用于获取和设置 textData 属性。当设置 text 属性时，我们使用 NSKeyedArchiver 将 NSAttributedString 对象转换为 NSData 对象，并将其存储在 textData 属性中。当获取 text 属性时，我们使用 NSKeyedUnarchiver 将 textData 属性中的 NSData 对象转换回 NSAttributedString 对象。</p><p>另一个方法是使用 Realm 的 LinkingObjects 关系来存储 NSAttributedString 类型数据。在这种情况下，您需要创建一个单独的 Realm 对象来存储 NSAttributedString 对象，并将其与包含 Note 对象的 Realm 对象建立链接。以下是一个示例：</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">class Note: Object &#123;</span><br><span class="line">    @Persisted var textObject: NSAttributedStringObject?</span><br><span class="line">    var text: NSAttributedString? &#123;</span><br><span class="line">        get &#123; return textObject?.text &#125;</span><br><span class="line">        set &#123;</span><br><span class="line">            if let newValue = newValue &#123;</span><br><span class="line">                if let textObject = textObject &#123;</span><br><span class="line">                    try! realm.write &#123;</span><br><span class="line">                        textObject.text = newValue</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125; else &#123;</span><br><span class="line">                    let textObject = NSAttributedStringObject(value: [&quot;text&quot;: newValue])</span><br><span class="line">                    try! realm.write &#123;</span><br><span class="line">                        realm.add(textObject)</span><br><span class="line">                        textObject.note = self</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                if let textObject = textObject &#123;</span><br><span class="line">                    try! realm.write &#123;</span><br><span class="line">                        realm.delete(textObject)</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class NSAttributedStringObject: Object &#123;</span><br><span class="line">    @Persisted var textData: Data?</span><br><span class="line">    var text: NSAttributedString? &#123;</span><br><span class="line">        get &#123;</span><br><span class="line">            guard let data = textData else &#123; return nil &#125;</span><br><span class="line">            return try? NSKeyedUnarchiver.unarchivedObject(ofClass: NSAttributedString.self, from: data)</span><br><span class="line">        &#125;</span><br><span class="line">        set &#123;</span><br><span class="line">            if let newValue = newValue &#123;</span><br><span class="line">                textData = try? NSKeyedArchiver.archivedData(withRootObject: newValue, requiringSecureCoding: false)</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">               </span><br><span class="line">            textData = nil</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">@Persisted(originProperty: &quot;notes&quot;) var note: LinkingObjects&lt;Note&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure><p>在上面的示例中，我们定义了两个 Realm 对象：<code>Note</code> 和 <code>NSAttributedStringObject</code>。<code>Note</code> 对象包含一个名为 <code>textObject</code> 的属性，它是一个指向 <code>NSAttributedStringObject</code> 对象的链接。<code>NSAttributedStringObject</code> 对象包含一个名为 <code>textData</code> 的属性，它用于存储 NSAttributedString 对象的 NSData 表示，并包含一个名为 <code>note</code> 的 LinkingObjects 关系，它用于获取与当前 <code>NSAttributedStringObject</code> 对象相关联的所有 <code>Note</code> 对象。</p><p>当设置 <code>text</code> 属性时，我们首先检查是否已经存在一个 <code>NSAttributedStringObject</code> 对象。如果存在，则更新 <code>textData</code> 属性的值。如果不存在，则创建一个新的 <code>NSAttributedStringObject</code> 对象，并将其与当前 <code>Note</code> 对象建立链接。当获取 <code>text</code> 属性时，我们从 <code>textObject</code> 属性获取与当前 <code>Note</code> 对象相关联的 <code>NSAttributedStringObject</code> 对象，并从 <code>textData</code> 属性中获取 NSAttributedString 对象的值。</p><p>请注意，这只是一些示例技巧，您可以根据您的具体需求来使用它们。当存储复杂的数据类型时，一定要仔细考虑数据库结构和数据访问模式。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 客户端开发 </category>
+          
+          <category> Swift开发 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Swift </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Swift选择文件的回调函数 documentPicker的文件处理逻辑过程中无法更新主界面？</title>
       <link href="/posts/2023/02/ebbc3f45.html"/>
       <url>/posts/2023/02/ebbc3f45.html</url>
@@ -297,7 +351,7 @@
       <link href="/posts/2022/12/4d8c9542.html"/>
       <url>/posts/2022/12/4d8c9542.html</url>
       
-        <content type="html"><![CDATA[<p>1个可以用于微信聊天的ChatGPT机器人<br>GitHub地址：<a href="https://github.com/fuergaosi233/wechat-chatgpt">https://github.com/fuergaosi233/wechat-chatgpt</a></p><p>支持特性</p><blockquote><p>通过微信在微信上使用ChatGPT<br>支持OpenAI帐户池<br>支持使用代理登录<br>在消息接收时模拟</p></blockquote><p>我这边已经部署成功并成功运行，如有疑问可邮件联系 <a href="mailto:&#x64;&#x6f;&#110;&#103;&#x37;&#48;&#54;&#64;&#x67;&#x6d;&#x61;&#x69;&#x6c;&#46;&#99;&#x6f;&#x6d;">&#x64;&#x6f;&#110;&#103;&#x37;&#48;&#54;&#64;&#x67;&#x6d;&#x61;&#x69;&#x6c;&#46;&#99;&#x6f;&#x6d;</a> </p><span id="more"></span>]]></content>
+        <content type="html"><![CDATA[<p>1个可以用于微信聊天的ChatGPT机器人<br>GitHub地址：<a href="https://github.com/fuergaosi233/wechat-chatgpt">https://github.com/fuergaosi233/wechat-chatgpt</a></p><p>支持特性</p><blockquote><p>通过微信在微信上使用ChatGPT<br>支持OpenAI帐户池<br>支持使用代理登录<br>在消息接收时模拟</p></blockquote><p>我这边已经部署成功并成功运行，如有疑问可邮件联系 <a href="mailto:&#x64;&#x6f;&#x6e;&#103;&#x37;&#x30;&#54;&#64;&#103;&#x6d;&#97;&#x69;&#108;&#46;&#99;&#x6f;&#109;">&#x64;&#x6f;&#x6e;&#103;&#x37;&#x30;&#54;&#64;&#103;&#x6d;&#97;&#x69;&#108;&#46;&#99;&#x6f;&#109;</a> </p><span id="more"></span>]]></content>
       
       
       <categories>
@@ -1243,11 +1297,11 @@
       
         <tags>
             
-            <tag> PVC </tag>
-            
             <tag> StorageClass </tag>
             
             <tag> nfs </tag>
+            
+            <tag> PVC </tag>
             
         </tags>
       
@@ -1446,9 +1500,9 @@
             
             <tag> K8s </tag>
             
-            <tag> 存储卷 </tag>
-            
             <tag> PVC </tag>
+            
+            <tag> 存储卷 </tag>
             
         </tags>
       
