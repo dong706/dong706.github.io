@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>swift在uitextview中横向触摸时触发触摸监听但是在竖向滑动时不触发</title>
+      <link href="/posts/2023/02/1f5a362b.html"/>
+      <url>/posts/2023/02/1f5a362b.html</url>
+      
+        <content type="html"><![CDATA[<p>要实现在UITextView中横向触摸时触发UITapGestureRecognizer监听但是在竖向滑动时不触发UITapGestureRecognizer，您可以结合使用UIGestureRecognizerDelegate和UIScrollViewDelegate来实现。</p><p>首先，您需要将UITextView的isScrollEnabled属性设置为false，以防止滑动视图时触发手势识别事件。然后，您可以通过实现UIGestureRecognizerDelegate协议中的gestureRecognizer(_:shouldReceive:)方法来控制手势识别器是否应该接受触摸事件。在这个方法中，您可以检查手势的方向，并根据方向返回true或false，以告诉手势识别器是否应该接受该触摸事件。</p><p>接下来，您需要使用UIScrollViewDelegate协议中的scrollViewDidScroll(_:)方法来检查滚动视图的滚动方向。在这个方法中，您可以检查滚动视图的滚动方向，并将手势识别器的isEnabled属性设置为true或false，以启用或禁用手势识别器。</p><span id="more"></span> <p>下面是一个示例代码，演示了如何在UITextView中实现此功能：</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">class MyViewController: UIViewController, UIGestureRecognizerDelegate, UIScrollViewDelegate &#123;</span><br><span class="line">    @IBOutlet weak var myTextView: UITextView!</span><br><span class="line">    let tapGesture = UITapGestureRecognizer()</span><br><span class="line">    </span><br><span class="line">    override func viewDidLoad() &#123;</span><br><span class="line">        super.viewDidLoad()</span><br><span class="line">        // 设置tapGesture</span><br><span class="line">        tapGesture.delegate = self</span><br><span class="line">        tapGesture.addTarget(self, action: #selector(handleTap(_:)))</span><br><span class="line">        myTextView.addGestureRecognizer(tapGesture)</span><br><span class="line">        // 禁用UITextView的滚动</span><br><span class="line">        myTextView.isScrollEnabled = false</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    // 手势识别器委托方法</span><br><span class="line">    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -&gt; Bool &#123;</span><br><span class="line">        let velocity = touch.velocity(in: myTextView)</span><br><span class="line">        return abs(velocity.x) &gt; abs(velocity.y)</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    // 滚动视图委托方法</span><br><span class="line">    func scrollViewDidScroll(_ scrollView: UIScrollView) &#123;</span><br><span class="line">        tapGesture.isEnabled = scrollView.contentOffset.y == 0</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    // 处理tapGesture的方法</span><br><span class="line">    @objc func handleTap(_ gestureRecognizer: UITapGestureRecognizer) &#123;</span><br><span class="line">        // 处理tapGesture事件</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure><p>在上面的示例中，我们首先将UITextView的isScrollEnabled属性设置为false，以禁用滚动。然后，我们使用UIGestureRecognizerDelegate协议中的gestureRecognizer(_:shouldReceive:)方法来检查手势的方向，并根据方向返回true或false，以告诉手势识别器是否应该接受该触摸事件。</p><p>最后，我们使用UIScrollViewDelegate协议中的scrollViewDidScroll(_:)方法来检查滚动视图的滚动方向，并将手势识别器的isEnabled属性设置为true或false，以启用或禁用手势识别器。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 客户端开发 </category>
+          
+          <category> Swift开发 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Swift </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>swift怎么判断一个UIDynamicSystemColor是不是指定颜色</title>
       <link href="/posts/2023/02/cf12d257.html"/>
       <url>/posts/2023/02/cf12d257.html</url>
@@ -351,7 +378,7 @@
       <link href="/posts/2022/12/4d8c9542.html"/>
       <url>/posts/2022/12/4d8c9542.html</url>
       
-        <content type="html"><![CDATA[<p>1个可以用于微信聊天的ChatGPT机器人<br>GitHub地址：<a href="https://github.com/fuergaosi233/wechat-chatgpt">https://github.com/fuergaosi233/wechat-chatgpt</a></p><p>支持特性</p><blockquote><p>通过微信在微信上使用ChatGPT<br>支持OpenAI帐户池<br>支持使用代理登录<br>在消息接收时模拟</p></blockquote><p>我这边已经部署成功并成功运行，如有疑问可邮件联系 <a href="mailto:&#x64;&#x6f;&#x6e;&#103;&#x37;&#x30;&#54;&#64;&#103;&#x6d;&#97;&#x69;&#108;&#46;&#99;&#x6f;&#109;">&#x64;&#x6f;&#x6e;&#103;&#x37;&#x30;&#54;&#64;&#103;&#x6d;&#97;&#x69;&#108;&#46;&#99;&#x6f;&#109;</a> </p><span id="more"></span>]]></content>
+        <content type="html"><![CDATA[<p>1个可以用于微信聊天的ChatGPT机器人<br>GitHub地址：<a href="https://github.com/fuergaosi233/wechat-chatgpt">https://github.com/fuergaosi233/wechat-chatgpt</a></p><p>支持特性</p><blockquote><p>通过微信在微信上使用ChatGPT<br>支持OpenAI帐户池<br>支持使用代理登录<br>在消息接收时模拟</p></blockquote><p>我这边已经部署成功并成功运行，如有疑问可邮件联系 <a href="mailto:&#x64;&#111;&#110;&#103;&#x37;&#48;&#x36;&#x40;&#x67;&#109;&#97;&#105;&#x6c;&#46;&#x63;&#111;&#x6d;">&#x64;&#111;&#110;&#103;&#x37;&#48;&#x36;&#x40;&#x67;&#109;&#97;&#105;&#x6c;&#46;&#x63;&#111;&#x6d;</a> </p><span id="more"></span>]]></content>
       
       
       <categories>
