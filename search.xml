@@ -4,6 +4,60 @@
   
     
     <entry>
+      <title>pod的preStop机制调用外部的httpapi并提交json参数</title>
+      <link href="/posts/2023/03/40cea8fe.html"/>
+      <url>/posts/2023/03/40cea8fe.html</url>
+      
+        <content type="html"><![CDATA[<p>在k8s里可以使用preStop钩子来调用外部的HTTP API，并且可以以JSON形式POST提交参数。<br>下面是一个使用preStop钩子来调用HTTP API的YAML示例：</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">apiVersion: v1</span><br><span class="line">kind: Pod</span><br><span class="line">metadata:</span><br><span class="line">  name: my-pod</span><br><span class="line">spec:</span><br><span class="line">  containers:</span><br><span class="line">  - name: my-container</span><br><span class="line">    image: my-image</span><br><span class="line">    env:</span><br><span class="line">    - name: API_URL</span><br><span class="line">      value: &quot;http://example.com/api&quot;</span><br><span class="line">    - name: PARAMS_JSON</span><br><span class="line">      value: &#x27;&#123;&quot;param1&quot;:&quot;value1&quot;,&quot;param2&quot;:&quot;value2&quot;&#125;&#x27;</span><br><span class="line">    command: [&quot;sleep&quot;, &quot;3600&quot;]</span><br><span class="line">    lifecycle:</span><br><span class="line">      preStop:</span><br><span class="line">        exec:</span><br><span class="line">          command:</span><br><span class="line">          - &quot;/bin/sh&quot;</span><br><span class="line">          - &quot;-c&quot;</span><br><span class="line">          - &quot;curl -X POST -H &#x27;Content-Type: application/json&#x27; -d &#x27;$&#123;PARAMS_JSON&#125;&#x27; $&#123;API_URL&#125;&quot;</span><br><span class="line"></span><br></pre></td></tr></table></figure><span id="more"></span> <p>在上面的示例中，定义了一个名为my-container的容器，并设置了两个环境变量：API_URL和PARAMS_JSON。在PARAMS_JSON中，我们以JSON格式设置了要提交的参数。在preStop钩子中，我们使用curl命令来调用外部HTTP API，该API的URL和参数值都是从环境变量中获取的。</p><p>在容器即将停止之前，Kubernetes将执行preStop钩子中定义的命令。在本示例中，当Pod的生命周期结束时，将执行curl命令，并向<a href="http://example.com/api%E5%8F%91%E9%80%81POST%E8%AF%B7%E6%B1%82%EF%BC%8C%E5%8F%82%E6%95%B0%E4%BB%A5JSON%E6%A0%BC%E5%BC%8F%E6%8F%90%E4%BA%A4%EF%BC%8CContent-Type%E8%AE%BE%E7%BD%AE%E4%B8%BAapplication/json%E3%80%82">http://example.com/api发送POST请求，参数以JSON格式提交，Content-Type设置为application/json。</a></p><p>请注意，上述示例仅供参考。实际上，你需要根据你的特定情况和需求进行修改。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 服务端开发 </category>
+          
+          <category> 容器技术 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Kubernetes </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>swift以闭包形式传递回调函数如何避免循环引用和内存泄漏</title>
+      <link href="/posts/2023/03/c4ee8bc2.html"/>
+      <url>/posts/2023/03/c4ee8bc2.html</url>
+      
+        <content type="html"><![CDATA[<p>在使用闭包作为回调函数时，可能会出现循环引用和内存泄漏的问题，因为闭包会捕获其所在的环境中的变量和对象。为了避免这些问题，可以采取以下措施：</p><ol><li> 使用捕获列表：在闭包定义时，使用捕获列表来显式地指定需要捕获的变量，并使用weak或unowned关键字来指定它们的引用类型。使用weak关键字可以避免循环引用，使用unowned关键字可以在可选类型安全的情况下避免循环引用。例如：</li></ol><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#123; [weak self] in</span><br><span class="line">    self?.doSomething()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#123; [unowned self] in</span><br><span class="line">    self.doSomething()</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure><span id="more"></span> <ol start="2"><li> 手动解除循环引用：在需要释放闭包的时候，手动将闭包的引用置为nil，以解除循环引用。例如：</li></ol><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">var closure: (() -&gt; Void)? = &#123; [weak self] in</span><br><span class="line">    self?.doSomething()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">closure?()</span><br><span class="line">closure = nil</span><br><span class="line"></span><br></pre></td></tr></table></figure><ol start="3"><li> 将闭包放入自动释放池中：在某些情况下，可能需要将闭包放入自动释放池中，以便在适当的时候释放闭包的内存。例如：</li></ol><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">autoreleasepool &#123;</span><br><span class="line">    let closure = &#123; [weak self] in</span><br><span class="line">        self?.doSomething()</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    closure()</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure><p>总之，在使用闭包作为回调函数时，需要注意避免循环引用和内存泄漏的问题，以确保代码的健壮性和性能。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 客户端开发 </category>
+          
+          <category> Swift开发 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Swift </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>realmswift里怎么按多个字段排序</title>
       <link href="/posts/2023/03/b1059dbd.html"/>
       <url>/posts/2023/03/b1059dbd.html</url>
