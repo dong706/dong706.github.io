@@ -1,0 +1,247 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>aardio-给HTMLLayout 添加状态栏 | 叶落花开的博客</title><meta name="keywords" content="aardio,htmlayout"><meta name="author" content="叶落花开"><meta name="copyright" content="叶落花开"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="准备尝试HTMLLAYOUT的RIBBON 界面，觉得什么都好，就是缺少一个绝对居于底部的状态栏，然后找了个代码，合成了个，无论窗口是否最大化，状态栏始终是在底部。分享下。把代码粘贴替换RIBBON 模版的res&#x2F;main.html页面即可。状态栏没有添加任何润色，需要修改的同学直接给#footer 写CSS 代码美化即可。   代码出处：    http:&#x2F;&#x2F;www.cssstickyfoote">
+<meta property="og:type" content="article">
+<meta property="og:title" content="aardio-给HTMLLayout 添加状态栏">
+<meta property="og:url" content="https://www.yeluohuakai.com/posts/2024/08/bcd81421.html">
+<meta property="og:site_name" content="叶落花开的博客">
+<meta property="og:description" content="准备尝试HTMLLAYOUT的RIBBON 界面，觉得什么都好，就是缺少一个绝对居于底部的状态栏，然后找了个代码，合成了个，无论窗口是否最大化，状态栏始终是在底部。分享下。把代码粘贴替换RIBBON 模版的res&#x2F;main.html页面即可。状态栏没有添加任何润色，需要修改的同学直接给#footer 写CSS 代码美化即可。   代码出处：    http:&#x2F;&#x2F;www.cssstickyfoote">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-08-11T02:02:00.000Z">
+<meta property="article:modified_time" content="2024-08-11T02:09:11.496Z">
+<meta property="article:author" content="叶落花开">
+<meta property="article:tag" content="aardio">
+<meta property="article:tag" content="htmlayout">
+<meta name="twitter:card" content="summary"><link rel="shortcut icon" href="/favicon.png"><link rel="canonical" href="https://www.yeluohuakai.com/posts/2024/08/bcd81421"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//www.google-analytics.com" crossorigin=""/><link rel="preconnect" href="//hm.baidu.com"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?2f8a615b51582cf280e790200f3527e6";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script><script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-LB2ZMBR4ZN"></script><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-LB2ZMBR4ZN');
+</script><script>(function(){
+var el = document.createElement("script");
+el.src = "https://lf1-cdn-tos.bytegoofy.com/goofy/ttzz/push.js?18da2b25537eeea1b5c8819ad9a03fc2279abb7e5ff9fdb01a2409cbd77b8f1db3e414cba65c376eba389ba56d9ee0846cad2206506a6529fe6ee21a7373effb434c445cf6444b10ea9756ea44e128a6";
+el.id = "ttzz";
+var s = document.getElementsByTagName("script")[0];
+s.parentNode.insertBefore(el, s);
+})(window)
+</script><script async="async" crossorigin="anonymous" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6673854567363222"></script><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":false,"highlightLang":false,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://fastly.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.js',
+      css: 'https://fastly.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'aardio-给HTMLLayout 添加状态栏',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2024-08-11 10:09:11'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/index_code.css"><meta name="generator" content="Hexo 6.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/loading.gif" data-original="/img/ava.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data is-center"><div class="data-item"><a href="/archives/"><div class="headline">文章</div><div class="length-num">141</div></a></div><div class="data-item"><a href="/tags/"><div class="headline">标签</div><div class="length-num">71</div></a></div><div class="data-item"><a href="/categories/"><div class="headline">分类</div><div class="length-num">19</div></a></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" target="_blank" rel="noopener" href="https://support.qq.com/product/377343"><i class="fa-fw fa fa-paper-plane"></i><span> 反馈</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">叶落花开的博客</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" target="_blank" rel="noopener" href="https://support.qq.com/product/377343"><i class="fa-fw fa fa-paper-plane"></i><span> 反馈</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">aardio-给HTMLLayout 添加状态栏</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-08-11T02:02:00.000Z" title="发表于 2024-08-11 10:02:00">2024-08-11</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-08-11T02:09:11.496Z" title="更新于 2024-08-11 10:09:11">2024-08-11</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%AE%A2%E6%88%B7%E7%AB%AF%E5%BC%80%E5%8F%91/">客户端开发</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%AE%A2%E6%88%B7%E7%AB%AF%E5%BC%80%E5%8F%91/aardio/">aardio</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span id="" data-flag-title="aardio-给HTMLLayout 添加状态栏"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="twikoo_visitors"></span></span></div></div></div><article class="post-content" id="article-container"><p>准备尝试HTMLLAYOUT的RIBBON 界面，觉得什么都好，就是缺少一个绝对居于底部的状态栏，然后找了个代码，合成了个，无论窗口是否最大化，状态栏始终是在底部。分享下。把代码粘贴替换RIBBON 模版的res/main.html页面即可。<br>状态栏没有添加任何润色，需要修改的同学直接给#footer 写CSS 代码美化即可。  </p>
+<p>代码出处：  </p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="http://www.cssstickyfooter.com/">http://www.cssstickyfooter.com/</a><br>HTML 代码：<br><a target="_blank" rel="noopener" href="http://www.cssstickyfooter.com/html-code.html">http://www.cssstickyfooter.com/html-code.html</a><br>CSS代码：<br><a target="_blank" rel="noopener" href="http://www.cssstickyfooter.com/style.css">http://www.cssstickyfooter.com/style.css</a></p>
+</blockquote>
+<p>代码讲解：  </p>
+<blockquote>
+<p>有兴趣的同学可以多看看：<a target="_blank" rel="noopener" href="http://www.blueidea.com/tech/web/2009/6451.asp">http://www.blueidea.com/tech/web/2009/6451.asp</a> ，代码有点不同，但是道理应该是相同的吧？反正我自己是一点没有看。</p>
+</blockquote>
+<p>特别强调：<br>如果要修改状态栏的高度：请修改一下三个高度的值：  </p>
+<span id="more"></span>
+
+<blockquote>
+<p>#main {overflow:auto;<br>        padding-bottom: <strong>50px</strong>;}  /* 必须和 #footer 高度一样*/  </p>
+<p>#footer {position: relative;<br>        margin-top: <strong>-50px</strong>; /* 高度的负值 */<br>        height: <strong>50px</strong>;<br>        clear:both;}</p>
+</blockquote>
+<p>代码如下：把代码粘贴替换RIBBON 模版的res/main.html页面即可。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD XHTML 1.0 Transitional//EN&quot; &quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&quot;&gt;</span><br><span class="line">&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=UTF-8&quot; /&gt;</span><br><span class="line">&lt;title&gt;&lt;/title&gt; </span><br><span class="line">&lt;link href=&quot;image/main.css&quot; type=&quot;text/css&quot; rel=&quot;Stylesheet&quot; /&gt;</span><br><span class="line">&lt;script type=&quot;text/javascript&quot; src=&quot;js/aardio.js&quot;&gt;&lt;/script&gt; </span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line"></span><br><span class="line">&lt;style type=&quot;text/css&quot;&gt;</span><br><span class="line">/*  </span><br><span class="line">Sticky Footer Solution</span><br><span class="line">by Steve Hatcher </span><br><span class="line">http://stever.ca</span><br><span class="line">http://www.cssstickyfooter.com</span><br><span class="line">*/</span><br><span class="line"></span><br><span class="line">* &#123;margin:0;padding:0;&#125; </span><br><span class="line"></span><br><span class="line">/* must declare 0 margins on everything, also for main layout components use padding, not </span><br><span class="line">vertical margins (top and bottom) to add spacing, else those margins get added to total height </span><br><span class="line">and your footer gets pushed down a bit more, creating vertical scroll bars in the browser */</span><br><span class="line"></span><br><span class="line">html, body &#123;height: 100%;&#125;</span><br><span class="line"></span><br><span class="line">#wrap &#123;min-height: 100%;&#125;</span><br><span class="line"></span><br><span class="line">#main &#123;overflow:auto;</span><br><span class="line">        padding-bottom: 50px;&#125;  /* 必须和 #footer 高度一样*/</span><br><span class="line"></span><br><span class="line">#footer &#123;position: relative;</span><br><span class="line">        margin-top: -50px; /* 高度的负值 */</span><br><span class="line">        height: 50px;</span><br><span class="line">        clear:both;&#125; </span><br><span class="line"></span><br><span class="line">/*Opera Fix*/</span><br><span class="line">body:before &#123;/* thanks to Maleika (Kohoutec)*/</span><br><span class="line">content:&quot;&quot;;</span><br><span class="line">height:100%;</span><br><span class="line">float:left;</span><br><span class="line">width:0;</span><br><span class="line">margin-top:-32767px;/* thank you Erik J - negate effect of float*/</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">/* IMPORTANT</span><br><span class="line"></span><br><span class="line">You also need to include this conditional style in the &lt;head&gt; of your HTML file to feed this style to IE 6 and lower and 8 and higher.</span><br><span class="line"></span><br><span class="line">&lt;!--[if !IE 7]&gt;</span><br><span class="line">        &lt;style type=&quot;text/css&quot;&gt;</span><br><span class="line">                #wrap &#123;display:table;height:100%&#125;</span><br><span class="line">        &lt;/style&gt;</span><br><span class="line">&lt;![endif]--&gt;</span><br><span class="line"></span><br><span class="line">*/</span><br><span class="line">&lt;/style&gt;        </span><br><span class="line">&lt;body&gt;</span><br><span class="line"></span><br><span class="line">&lt;div id=&quot;wrap&quot;&gt;</span><br><span class="line">        &lt;div id=&quot;main&quot;&gt;</span><br><span class="line">                所有HTML页面请放置于res目录下.</span><br><span class="line"></span><br><span class="line">                如果res目录设为内嵌资源,则发布时无需修改任何代码自动生成独立EXE文件。</span><br><span class="line"></span><br><span class="line">                并在head节点链接&quot;res/js/aardio.js&quot;(更改为页面相对路径),例如在本页添加如下代码：</span><br><span class="line"></span><br><span class="line">                &lt;strong  style=&quot; text-decoration:underline&quot;&gt;&lt;script type=&quot;text/javascript&quot; src=&quot;js/aardio.js&quot;&gt;&lt;/script&gt; &lt;/strong&gt;</span><br><span class="line"></span><br><span class="line">                </span><br><span class="line"></span><br><span class="line">                aardio.js的作用是在所有html文件载入时,根据路径自动载入相应的用户库</span><br><span class="line"></span><br><span class="line">                例如 &quot;/res/main/html&quot; 加载时 自动调用external.loadServer()接口函数,加载 &lt;strong  style=&quot; text-decoration:underline&quot;&gt;server.main.aardio&lt;/strong&gt;,</span><br><span class="line"></span><br><span class="line">                在页面退出时,自动调用 &lt;strong  style=&quot; text-decoration:underline&quot;&gt;server.main().onUnload()&lt;/strong&gt; 函数(如果定义了该函数).</span><br><span class="line"></span><br><span class="line">                </span><br><span class="line"></span><br><span class="line">                aardio.js 同时定义了 console.log() 函数,用于在javascript输出调试信息到控制台 </span><br><span class="line"></span><br><span class="line">                </span><br><span class="line"></span><br><span class="line">                在任意javascript中都可以使用 &lt;strong style=&quot; text-decoration:underline&quot;&gt;external.config.配置文件名.配置字段名&lt;/strong&gt; 直接读写</span><br><span class="line"></span><br><span class="line">                配置文件, 配置文件将会自动创建并自动保存</span><br><span class="line"></span><br><span class="line">                </span><br><span class="line"></span><br><span class="line">                &lt;span style=&quot;font-size:9pt;&quot;&gt;推荐的文件存储位置:&lt;/span&gt;</span><br><span class="line">                &lt;blockquote style=&quot;margin-top:0px; padding-top:0px; padding-left:20pt; margin-left:0px;&quot;&gt;</span><br><span class="line">                &lt;div style=&quot;margin-top:3px&quot;&gt;将所有图片放在/res/image目录下,并按用途建立子目录,</span><br><span class="line"></span><br><span class="line">                与图片相关的CSS文件放在相同目录下. &lt;/div&gt;</span><br><span class="line">                &lt;div style=&quot;margin-top:3px&quot;&gt;jQuery请置于以下位置: &quot;/res/js/jQuery/jQuery-1.6.1.min.js&quot;，</span><br><span class="line"></span><br><span class="line">                所有js文件请置于res/js目录下 &lt;/div&gt;</span><br><span class="line">                &lt;/blockquote&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;div id=&quot;footer&quot;&gt;</span><br><span class="line">这里就是状态栏</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">                        </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"> </span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<hr>
+<p>更精炼的方法：<br>HTMLayout作为一个界面引擎，绝对定位非常方便</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#footer&#123;</span><br><span class="line">  position:absolute;</span><br><span class="line">  left:1px;</span><br><span class="line">  right:1px;</span><br><span class="line">  bottom:1px;</span><br><span class="line">  height:20px;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这样就可以建立一个状态栏了，很简单。<br>position:absolute;  指定绝对定位，left指定左侧位置，right指定右侧位置，bottom指定底部的位置，height指定高度。<br>当然也可以用top指定顶部位置，你可以轻松的将节点放在任何地方，不需要写一大堆代码</p>
+<hr>
+<p>在HTMLayout中嵌入webform浏览器，推荐用下面的方法更简单一些。<br>（ 工程范例里的ribbon用的方法不是很好，因为当时web.layout支持的功能还很有限）</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//自定义控件</span><br><span class="line">import win.ui;</span><br><span class="line">/*DSG&#123;&#123;*/</span><br><span class="line">var winform = ..win.form( bottom=523;parent=...;right=789;border=&quot;resizable&quot;;text=&quot;HTMLayout 自定义控件&quot; )</span><br><span class="line">winform.add(  )</span><br><span class="line">/*&#125;&#125;*/</span><br><span class="line"></span><br><span class="line">import web.layout;</span><br><span class="line">var wbLayout = web.layout(winform );</span><br><span class="line"></span><br><span class="line">import web.layout.debug;</span><br><span class="line">wbLayout.attachEventHandler( web.layout.debug );</span><br><span class="line"></span><br><span class="line">import web.form;</span><br><span class="line">wbLayout.onControlCreated = function( ltEle,ltCtrl )&#123;</span><br><span class="line">    var url = ltEle[&quot;data-url&quot;];</span><br><span class="line">   </span><br><span class="line">    if(url)&#123;</span><br><span class="line">   </span><br><span class="line">        wb = ..web.form( ltCtrl,0x4/*_UIFLAG_NO3DBORDER*/, ,true/*securityTrusted*/ )</span><br><span class="line">        wb.go(url)</span><br><span class="line">        </span><br><span class="line">        ltEle.onSize = function (ltEle) &#123;</span><br><span class="line">            ltCtrl.adjust();</span><br><span class="line">        &#125;</span><br><span class="line">        ltEle.attachEventHandler();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//在HTML中引用的控件，需要使用import语句导入aardio</span><br><span class="line">import win.ui.ctrl.static;</span><br><span class="line">import win.ui.ctrl.richedit;</span><br><span class="line">wbLayout.html =/***</span><br><span class="line">&lt;body&gt;</span><br><span class="line"></span><br><span class="line">&lt;span style=&quot;font:system&quot;&gt;</span><br><span class="line">自定义控件很简单,在input,object,widget三种节点中使用cls属性指定控件类名即可,&lt;br /&gt;</span><br><span class="line">可选在data-table属性中使用一个table对象指定控件初始化参数 &lt;br /&gt;</span><br><span class="line">&lt;/span&gt;</span><br><span class="line"></span><br><span class="line">&lt;input cls=&quot;richedit&quot; data-table=&quot;&#123; text=&#x27;控件文本&#x27;;multiline=true &#125;&quot; id=&quot;edit&quot; style=&quot;font-size:9pt;width:100%; height:50px;&quot;&gt;&lt;/object&gt;</span><br><span class="line">&lt;widget cls=&quot;static&quot; data-url=&quot;http://www.baidu.com&quot; style=&quot;width:100%%;height:100%%;&quot;&gt;&lt;/widget&gt;</span><br><span class="line">widget可以指定相对高度,input,object因为被包含在匿名节点中,无法指定相对高度</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">***/</span><br><span class="line"></span><br><span class="line">wbLayout.css = /**</span><br><span class="line">body&#123;</span><br><span class="line">    margin:20px;</span><br><span class="line">    height:100%%;</span><br><span class="line">    font:system;</span><br><span class="line">&#125;</span><br><span class="line">**/</span><br><span class="line"></span><br><span class="line">winform.show()</span><br><span class="line">win.loopMessage();</span><br></pre></td></tr></table></figure>
+<p>原文链接：<a target="_blank" rel="noopener" href="https://bbs.aardio.com/forum.php?mod=viewthread&amp;tid=8151&amp;extra=page=9">https://bbs.aardio.com/forum.php?mod=viewthread&amp;tid=8151&amp;extra=page%3D9</a></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">叶落花开</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://www.yeluohuakai.com/posts/2024/08/bcd81421.html">https://www.yeluohuakai.com/posts/2024/08/bcd81421.html</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://www.yeluohuakai.com" target="_blank">叶落花开的博客</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/aardio/">aardio</a><a class="post-meta__tags" href="/tags/htmlayout/">htmlayout</a></div><div class="post_share"><div class="social-share" data-image="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://fastly.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/posts/2024/08/aea121e6.html"><img class="prev-cover" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">aardio-HTMLayout - 使用file控件（支持选择多个文件）</div></div></a></div><div class="next-post pull-right"><a href="/posts/2024/08/f0496eec.html"><img class="next-cover" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">aardio-HTMLayout获取checkbox是否选中</div></div></a></div></nav><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/loading.gif" data-original="/img/ava.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">叶落花开</div><div class="author-info__description">持续学习，记录后端技术、web技术，以及对认知、技术变现的思考。</div></div><div class="card-info-data is-center"><div class="card-info-data-item"><a href="/archives/"><div class="headline">文章</div><div class="length-num">141</div></a></div><div class="card-info-data-item"><a href="/tags/"><div class="headline">标签</div><div class="length-num">71</div></a></div><div class="card-info-data-item"><a href="/categories/"><div class="headline">分类</div><div class="length-num">19</div></a></div></div></div><div class="card-widget user-map" id="user-map"><div class="item-headline"><i class="fas fa-link"></i><span>友情链接</span></div><div class="item-content"><ul class="entry"><li><a href="/bszs" title="各大高校博士招生信息">各大高校博士招生信息</a></li><li><a target="_blank" rel="noopener" href="https://www.xiaoxinsoft.com" title="小新软件服务">小新软件安装服务</a></li></ul></div></div><div class="sticky_layout"></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 By 叶落花开</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">本地搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://fastly.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>(()=>{
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'freecloud-0gzubvbebcf38cf6',
+      region: '',
+      onCommentLoaded: function () {
+        btf.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.vemoji)'))
+      }
+    }, null))
+  }
+
+  const getCount = () => {
+    twikoo.getCommentsCount({
+      envId: 'freecloud-0gzubvbebcf38cf6',
+      region: '',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(function (res) {
+      document.getElementById('twikoo-count').innerText = res[0].count
+    }).catch(function (err) {
+      console.error(err);
+    });
+  }
+
+  const runFn = () => {
+    init()
+    
+  }
+
+  const loadTwikoo = () => {
+    if (typeof twikoo === 'object') {
+      setTimeout(runFn,0)
+      return
+    } 
+    getScript('https://fastly.jsdelivr.net/npm/twikoo/dist/twikoo.all.min.js').then(runFn)
+  }
+
+  if ('Twikoo' === 'Twikoo' || !false) {
+    if (false) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo()
+  } else {
+    window.loadOtherComment = () => {
+      loadTwikoo()
+    }
+  }
+})()</script></div><script id="canvas_nest" defer="defer" color="0,0,255" opacity="0.7" zIndex="-1" count="99" mobile="false" src="https://fastly.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-nest.min.js"></script></div>
+        <style>
+            [bg-lazy] {
+                background-image: none !important;
+                background-color: #eee !important;
+            }
+        </style>
+        <script>
+            window.imageLazyLoadSetting = {
+                isSPA: false,
+                preloadRatio: 1,
+                processImages: null,
+            };
+        </script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script><script>!function(r){r.imageLazyLoadSetting.processImages=t;var e=r.imageLazyLoadSetting.isSPA,n=r.imageLazyLoadSetting.preloadRatio||1,c=a();function a(){var t=Array.prototype.slice.call(document.querySelectorAll("img[data-original]")),e=Array.prototype.slice.call(document.querySelectorAll("[bg-lazy]"));return t.concat(e)}function t(){e&&(c=a());for(var t,o=0;o<c.length;o++)0<=(t=(t=c[o]).getBoundingClientRect()).bottom&&0<=t.left&&t.top<=(r.innerHeight*n||document.documentElement.clientHeight*n)&&function(){var t,e,n,a,i=c[o];e=function(){c=c.filter(function(t){return i!==t}),r.imageLazyLoadSetting.onImageLoaded&&r.imageLazyLoadSetting.onImageLoaded(i)},(t=i).hasAttribute("bg-lazy")?(t.removeAttribute("bg-lazy"),e&&e()):(n=new Image,a=t.getAttribute("data-original"),n.onload=function(){t.src=a,t.removeAttribute("data-original"),e&&e()},t.src!==a&&(n.src=a))}()}function i(){clearTimeout(t.tId),t.tId=setTimeout(t,500)}t(),document.addEventListener("scroll",i),r.addEventListener("resize",i),r.addEventListener("orientationchange",i)}(this);</script></body></html>
