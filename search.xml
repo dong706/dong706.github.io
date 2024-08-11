@@ -4,6 +4,122 @@
   
     
     <entry>
+      <title>aardio-在HTMLayout中使用框架(iframe)</title>
+      <link href="/posts/2024/08/dba69701.html"/>
+      <url>/posts/2024/08/dba69701.html</url>
+      
+        <content type="html"><![CDATA[<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">import win.ui;</span><br><span class="line">/*DSG&#123;&#123;*/</span><br><span class="line">winform = ..win.form( bottom=399;parent=...;right=599;text=&quot;在HTMLayout中使用框架&quot; ) </span><br><span class="line">/*&#125;&#125;*/</span><br><span class="line"></span><br><span class="line">import web.layout;</span><br><span class="line">wbLayout = web.layout( winform );</span><br><span class="line"> </span><br><span class="line">wbLayout.html =/***</span><br><span class="line">&lt;iframe src=&quot;about:blank&quot; style=&quot;width:100%%;height:100%%&quot; /&gt;</span><br><span class="line">***/</span><br><span class="line"> </span><br><span class="line">var frame = wbLayout.queryEle(&quot;iframe&quot;); </span><br><span class="line">wbLayout.onDocumentComplete = function() &#123;</span><br><span class="line">        frame.querySelector(&quot;input#kw&quot;).value = &quot;测试&quot;;</span><br><span class="line">&#125;</span><br><span class="line">frame.xcall(&quot;load&quot;,&quot;http://www.baidu.com&quot;); </span><br><span class="line"></span><br><span class="line">winform.show() </span><br><span class="line">win.loopMessage(); </span><br><span class="line"></span><br></pre></td></tr></table></figure><p>使用CSS选择器查询框架内的节点时，需首先获取框架节点。例如：</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">var frame = wbLayout.queryEle(&quot;iframe&quot;);</span><br><span class="line">frame.querySelector(&quot;input#kw&quot;).value = &quot;测试&quot;;</span><br></pre></td></tr></table></figure><p>使用框架打开网页：</p><span id="more"></span><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">frame.xcall(&quot;load&quot;,&quot;http://www.baidu.com&quot;);</span><br></pre></td></tr></table></figure><p>清空框架内容：</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">frame.xcall(&quot;clear&quot;)</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> 客户端开发 </category>
+          
+          <category> aardio </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> aardio </tag>
+            
+            <tag> htmlayout </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>aardio-HTMLayout 中学习使用文本框,按钮等基本控件</title>
+      <link href="/posts/2024/08/7d4cb2b3.html"/>
+      <url>/posts/2024/08/7d4cb2b3.html</url>
+      
+        <content type="html"><![CDATA[<p>示例代码：</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">import win.ui;</span><br><span class="line">/*DSG&#123;&#123;*/</span><br><span class="line">var winform = ..win.form( bottom=399;parent=...;right=599;text=&quot;HTMLayout 文本框&quot; )</span><br><span class="line">winform.add(  )</span><br><span class="line">/*&#125;&#125;*/</span><br><span class="line"></span><br><span class="line">import web.layout;</span><br><span class="line">var wbLayout = web.layout(winform)</span><br><span class="line"></span><br><span class="line">import web.layout.debug;</span><br><span class="line">wbLayout.attachEventHandler( web.layout.debug );</span><br><span class="line">wbLayout.html = /**</span><br><span class="line">        &lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">  &lt;style&gt;</span><br><span class="line">    input[type=&quot;text&quot;]</span><br><span class="line">    &#123;</span><br><span class="line">       background-image:url(data:image/png;base64,</span><br><span class="line">       iVBORw0KGgoAAAANSUhEUgAAAC0AAAAXCAYAAACf+8ZRAAAACXBIWXMAAA7DAAAO</span><br><span class="line">wwHHb6hkAAAA5UlEQVR4nGNkAAGn/9LKEn/mCvP95WIYpODtJ+Zvd1+wJDPsY3zK</span><br><span class="line">yGD3X1FX+dfBja3vZBUl/w6023CC+8+ZGfyrhR5ffshmyaga+2fznp7XPnJig9fB</span><br><span class="line">MAByuGuJyE4mXo6/SkPBwSAASgmCvP+lmdjZBtoppAFWlv9MTAPtCHLAqKPpBUYd</span><br><span class="line">TS8w6mh6gVFH0wuMOppeYNTR9AJD09G//zD+G2hHkAJA7mV6/5nxKahHMBQAyJ0g</span><br><span class="line">9zKBOougvtdgdzisjwhyLyNYBNoblxb9J8TN8Z9ngN2HAb7+YPzy9DXTO1hvHABp</span><br><span class="line">3VAYxhOqkwAAAABJRU5ErkJggg==);</span><br><span class="line">       background-repeat:expand; /*九宫格切图*/</span><br><span class="line">       background-position: 5 5 5 5; /*上,右,下,左各5个像素固定边距*/</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /*输入框得到焦点的样式*/</span><br><span class="line">    input[type=&quot;text&quot;]:focus</span><br><span class="line">    &#123;</span><br><span class="line">      outline:4px glow #3070ff 1px;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /*输入框为空的样式*/</span><br><span class="line">    input[type=&quot;text&quot;]:empty&#123;</span><br><span class="line">      color:#CCCCCC;</span><br><span class="line">    &#125;</span><br><span class="line">  </span><br><span class="line">  &lt;/style&gt;  </span><br><span class="line">&lt;head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">  &lt;p&gt;</span><br><span class="line">    用户名: &lt;input type=&quot;text&quot; id=&quot;用户名&quot; novalue =&quot;请输入用户名&quot;/&gt;</span><br><span class="line">    密码: &lt;input type=&quot;text&quot; id=&quot;密码&quot; novalue=&quot;请输入用密码&quot;/&gt;</span><br><span class="line">    &lt;button id=&quot;登录&quot;&gt; 登 录 &lt;/button&gt;</span><br><span class="line">  &lt;/p&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br><span class="line">**/</span><br><span class="line"></span><br><span class="line">wbLayout.onButtonClick = function (ltTarget,ltEle,reason,behaviorParams) &#123;</span><br><span class="line">    if( ltEle.id == &quot;登录&quot; )&#123;</span><br><span class="line">        winform.msgbox(&quot;欢迎:&quot; + wbLayout.getEle(&quot;用户名&quot;).value )</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">winform.show()</span><br><span class="line">win.loopMessage();</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> 客户端开发 </category>
+          
+          <category> aardio </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> aardio </tag>
+            
+            <tag> htmlayout </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>aardio-HTMLayout iframe框架用法演示</title>
+      <link href="/posts/2024/08/b548e6bb.html"/>
+      <url>/posts/2024/08/b548e6bb.html</url>
+      
+        <content type="html"><![CDATA[<p>参考帖子：<a href="http://bbs.aardio.com/forum.php?mod=viewthread&tid=7156">HTMLayout内置behavior大全</a></p><p>代码示例：</p><span id="more"></span><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">import win.ui;</span><br><span class="line">/*DSG&#123;&#123;*/</span><br><span class="line">winform = ..win.form( text=&quot;HTMLayout 框架演示&quot;;bottom=399;parent=...;right=599;border=&quot;resizable&quot; )</span><br><span class="line">winform.add(</span><br><span class="line">layoutWindow=&#123; dr=1;dl=1;notify=1;right=580;left=10;dt=1;top=12;z=1;db=1;bottom=382;multiline=1;cls=&quot;edit&quot; &#125;</span><br><span class="line">)</span><br><span class="line">/*&#125;&#125;*/</span><br><span class="line"></span><br><span class="line">import web.layout;</span><br><span class="line">wbLayout = web.layout(winform.layoutWindow);</span><br><span class="line"></span><br><span class="line">string.save(&quot;/frame1.html&quot;,&quot;frame1&quot;)</span><br><span class="line">string.save(&quot;/frame2.html&quot;,&quot;frame2&quot;)</span><br><span class="line"></span><br><span class="line">wbLayout.html =/***</span><br><span class="line">&lt;button&gt;点这里加载 frame2.html&lt;/button&gt;</span><br><span class="line">&lt;div id=&quot;main&quot;&gt;</span><br><span class="line">    &lt;iframe src=&quot;frame1.html&quot; width=&quot;100%&quot; height=&quot;100%&quot;&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">***/</span><br><span class="line"></span><br><span class="line">wbLayout.onButtonClick = function (ltTarget,ltEle,reason,behaviorParams) &#123;</span><br><span class="line">    var ltFrame = wbLayout.queryEle(&quot;#main iframe&quot;);</span><br><span class="line">    ltFrame.xcall(&quot;load&quot;,&quot;frame2.html&quot;); //加载网页到框架</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">winform.show()</span><br><span class="line">win.loopMessage();</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> 客户端开发 </category>
+          
+          <category> aardio </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> aardio </tag>
+            
+            <tag> htmlayout </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>aardio-HTMLayout-获取HTML中自定义属性的具体值</title>
+      <link href="/posts/2024/08/fe859ed.html"/>
+      <url>/posts/2024/08/fe859ed.html</url>
+      
+        <content type="html"><![CDATA[<p>可以参考：<a href="http://bbs.aardio.com/thread-2087-1-1.html">http://bbs.aardio.com/thread-2087-1-1.html</a> 很全面，详细<br>代码示例:</p><span id="more"></span><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">import web.mshtml;</span><br><span class="line">import console;</span><br><span class="line"></span><br><span class="line">var wb = web.mshtml()</span><br><span class="line"></span><br><span class="line">html = /**</span><br><span class="line">    &lt;div id=&quot;idTest&quot; class=&quot;style2&quot; node=&quot;node1&quot;&gt;</span><br><span class="line">    测试文本1</span><br><span class="line">    测试文本2</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">   </span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">   </span><br><span class="line">    &lt;div id=&quot;idTest2&quot; class=&quot;style2&quot; node=&quot;node2&quot;&gt;</span><br><span class="line">    测试文本3</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">**/</span><br><span class="line">wb.write(html)</span><br><span class="line"></span><br><span class="line">qEles = wb.queryEles( [&quot;node&quot;] = &quot;.+&quot;)</span><br><span class="line"></span><br><span class="line">console.varDump( qEles )</span><br><span class="line"></span><br><span class="line">for(k,v in qEles)&#123;</span><br><span class="line">        console.varDump( v ) //qEles中不是获取的值为空，而是是无法在控制台显示的数据类型</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">io.open();</span><br><span class="line">io.print(qEles[1].getAttribute(&quot;node&quot;));</span><br><span class="line">io.print(qEles[1].id);</span><br><span class="line">execute(&quot;pause&quot;) //按任意键继续</span><br><span class="line">io.close();//关闭控制台</span><br><span class="line"></span><br></pre></td></tr></table></figure><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">import web.mshtml;</span><br><span class="line">import console;</span><br><span class="line">var wb = web.mshtml()</span><br><span class="line">html = /**</span><br><span class="line">    &lt;div id=&quot;idTest&quot; class=&quot;style2&quot; node=&quot;node1&quot; custom=&quot;test11&quot;&gt;</span><br><span class="line">    测试文本1</span><br><span class="line">    测试文本2</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">  </span><br><span class="line">**/</span><br><span class="line">wb.write(html)</span><br><span class="line">qEles = wb.queryEles( [&quot;node&quot;] = &quot;.+&quot;)</span><br><span class="line">io.open();</span><br><span class="line">io.print(qEles[1].getAttribute(&quot;custom&quot;));</span><br><span class="line">execute(&quot;pause&quot;) //按任意键继续</span><br><span class="line">io.close();//关闭控制台</span><br><span class="line"></span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> 客户端开发 </category>
+          
+          <category> aardio </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> aardio </tag>
+            
+            <tag> htmlayout </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>aardio-HTMLayout-给tabs添加关闭按钮</title>
       <link href="/posts/2024/08/ea62c450.html"/>
       <url>/posts/2024/08/ea62c450.html</url>
@@ -467,7 +583,7 @@
           
           <category> 客户端开发 </category>
           
-          <category> Aardio </category>
+          <category> aardio </category>
           
       </categories>
       
@@ -992,7 +1108,7 @@
       <link href="/posts/2022/12/4d8c9542.html"/>
       <url>/posts/2022/12/4d8c9542.html</url>
       
-        <content type="html"><![CDATA[<p>1个可以用于微信聊天的ChatGPT机器人<br>GitHub地址：<a href="https://github.com/fuergaosi233/wechat-chatgpt">https://github.com/fuergaosi233/wechat-chatgpt</a></p><p>支持特性</p><blockquote><p>通过微信在微信上使用ChatGPT<br>支持OpenAI帐户池<br>支持使用代理登录<br>在消息接收时模拟</p></blockquote><p>我这边已经部署成功并成功运行，如有疑问可邮件联系 <a href="mailto:&#100;&#111;&#110;&#103;&#x37;&#x30;&#54;&#64;&#103;&#109;&#97;&#x69;&#108;&#x2e;&#99;&#111;&#x6d;">&#100;&#111;&#110;&#103;&#x37;&#x30;&#54;&#64;&#103;&#109;&#97;&#x69;&#108;&#x2e;&#99;&#111;&#x6d;</a> </p><span id="more"></span>]]></content>
+        <content type="html"><![CDATA[<p>1个可以用于微信聊天的ChatGPT机器人<br>GitHub地址：<a href="https://github.com/fuergaosi233/wechat-chatgpt">https://github.com/fuergaosi233/wechat-chatgpt</a></p><p>支持特性</p><blockquote><p>通过微信在微信上使用ChatGPT<br>支持OpenAI帐户池<br>支持使用代理登录<br>在消息接收时模拟</p></blockquote><p>我这边已经部署成功并成功运行，如有疑问可邮件联系 <a href="mailto:&#x64;&#111;&#x6e;&#x67;&#55;&#x30;&#54;&#x40;&#103;&#109;&#x61;&#105;&#x6c;&#x2e;&#x63;&#111;&#109;">&#x64;&#111;&#x6e;&#x67;&#55;&#x30;&#54;&#x40;&#103;&#109;&#x61;&#105;&#x6c;&#x2e;&#x63;&#111;&#109;</a> </p><span id="more"></span>]]></content>
       
       
       <categories>
