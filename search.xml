@@ -4,6 +4,60 @@
   
     
     <entry>
+      <title>aardio-webform的select控件如何动态增加删除选项</title>
+      <link href="/posts/2024/08/8bdd7535.html"/>
+      <url>/posts/2024/08/8bdd7535.html</url>
+      
+        <content type="html"><![CDATA[<p>代码示例1：</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">import win.ui;</span><br><span class="line">/*DSG&#123;&#123;*/</span><br><span class="line">var winform = ..win.form( right=586;bottom=414;parent=...;text=&quot;Dropdown-select&quot;;border=&quot;resizable&quot; )</span><br><span class="line">winform.add(  )</span><br><span class="line">/*&#125;&#125;*/</span><br><span class="line"></span><br><span class="line">import console;</span><br><span class="line">import web.layout;</span><br><span class="line">var wbLayout = web.layout( winform );</span><br><span class="line"></span><br><span class="line">wbLayout.html = /**</span><br><span class="line">&lt;body&gt;</span><br><span class="line">    爱好：</span><br><span class="line">    &lt;select #test&gt;</span><br><span class="line">            &lt;option&gt;体育&lt;/option&gt;</span><br><span class="line">            &lt;option&gt;足球&lt;/option&gt;</span><br><span class="line">            &lt;option&gt;篮球&lt;/option&gt;</span><br><span class="line">            &lt;option&gt;羽毛球&lt;/option&gt;</span><br><span class="line">    &lt;/select&gt;</span><br><span class="line">   </span><br><span class="line">    &lt;div #sel-html&gt;&lt;/div&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">**/</span><br><span class="line"></span><br><span class="line">wbLayout.css = /**</span><br><span class="line">html &#123; font: system; &#125;</span><br><span class="line">**/</span><br><span class="line"></span><br><span class="line">//输出HTMLayout中select的源码就知道是为什么了</span><br><span class="line">wbLayout.getEle(&quot;sel-html&quot;).innerText = wbLayout.getEle(&quot;test&quot;).outerHTML  </span><br><span class="line"></span><br><span class="line">var ltPopup = wbLayout.getEle(&quot;test&quot;).child(3)</span><br><span class="line">ltPopup.child(2).detach(); //在IDE函数提示中,或者库源码中都可以看到此函数分离节点</span><br><span class="line">var ltEle = ltPopup.child(3).clone(-1); //复制一个节点并添加到尾部</span><br><span class="line">ltEle.innerHTML = &quot;新增的节点&quot;</span><br><span class="line"></span><br><span class="line">winform.show();</span><br><span class="line">win.loopMessage();</span><br><span class="line">return winform;</span><br></pre></td></tr></table></figure><p>代码示例2：<br>用 innerHTML 动态生成字符串也可以，这也是HTMLayout官方推荐的方法。</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">import win.ui;</span><br><span class="line">/*DSG&#123;&#123;*/</span><br><span class="line">var winform = ..win.form( right=586;bottom=414;parent=...;text=&quot;Dropdown-select&quot;;border=&quot;resizable&quot; )</span><br><span class="line">winform.add(  )</span><br><span class="line">/*&#125;&#125;*/</span><br><span class="line"></span><br><span class="line">import console;</span><br><span class="line">import web.layout;</span><br><span class="line">var wbLayout = web.layout( winform );</span><br><span class="line"></span><br><span class="line">wbLayout.html = /**</span><br><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;div #sel /&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">**/</span><br><span class="line"></span><br><span class="line">wbLayout.getEle(&quot;sel&quot;).innerHTML = /*&lt;select #test&gt;</span><br><span class="line">            &lt;option&gt;体育&lt;/option&gt;</span><br><span class="line">            &lt;option&gt;足球&lt;/option&gt;</span><br><span class="line">            &lt;option&gt;篮球&lt;/option&gt;</span><br><span class="line">            &lt;option&gt;羽毛球&lt;/option&gt;</span><br><span class="line">    &lt;/select&gt;</span><br><span class="line">*/</span><br><span class="line"></span><br><span class="line">winform.show();</span><br><span class="line">win.loopMessage();</span><br><span class="line">return winform;</span><br></pre></td></tr></table></figure><p>代码示例3：</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">import win.ui;</span><br><span class="line">/*DSG&#123;&#123;*/</span><br><span class="line">var winform = ..win.form( bottom=276;parent=...;right=797;text=&quot;Dropdown-select&quot; )</span><br><span class="line">winform.add(  )</span><br><span class="line">/*&#125;&#125;*/</span><br><span class="line"></span><br><span class="line">import web.layout;</span><br><span class="line">import web.layout.behavior;</span><br><span class="line"></span><br><span class="line">var wbLayout = web.layout( winform );</span><br><span class="line"></span><br><span class="line"> wbLayout.html = /**</span><br><span class="line"> &lt;body&gt;</span><br><span class="line">     &lt;div id=&quot;addselect&quot;&gt;</span><br><span class="line">             &lt;div id=&quot;addtxt&quot;&gt;请选择你喜欢的体育项目：&lt;/div&gt;</span><br><span class="line">             &lt;div id=&quot;sel&quot; &gt;</span><br><span class="line">                        &lt;select id=&quot;test&quot;&gt;</span><br><span class="line">                                &lt;option&gt;足球&lt;/option&gt;</span><br><span class="line">                                &lt;option&gt;篮球&lt;/option&gt;</span><br><span class="line">                                &lt;option&gt;羽毛球&lt;/option&gt;</span><br><span class="line">                        &lt;/select&gt;</span><br><span class="line">             &lt;/div&gt;</span><br><span class="line">             &lt;div id=&quot;txt&quot;&gt;追加体育项目：&lt;input type=&quot;text&quot; id=&quot;addoption&quot; novalue=&quot;增加一个体育名称&quot; /&gt;&lt;/div&gt;</span><br><span class="line">             &lt;button id=&quot;mybutton1&quot;&gt;追加一个下拉式选项中的选项&lt;/button&gt;</span><br><span class="line">             &lt;button id=&quot;mybutton2&quot;&gt;替换所有下拉式选项中的选项，但也是固定的选项&lt;/button&gt;</span><br><span class="line">     &lt;/div&gt;</span><br><span class="line"> &lt;/body&gt;</span><br><span class="line"> **/</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">namespace web.layout.behavior.command1&#123;</span><br><span class="line">        onButtonClick = function (ltTarget,ltEle,reason,behaviorParams) &#123;</span><br><span class="line">//                wbLayout.getEle(&quot;test&quot;).child(3).insertAdjacentHTML(&quot;beforeEnd&quot;,&quot;&lt;option&gt;乒乓球&lt;/option&gt;&quot;)                                      //增加固定的</span><br><span class="line">//                wbLayout.getEle(&quot;test&quot;).child(3).insertAdjacentHTML(&quot;beforeEnd&quot;,&quot;&lt;option&gt;&quot;+wbLayout.getEle(&quot;addoption&quot;).innerText+&quot;&lt;/option&gt;&quot;)  //增加动态的，但不能为空，否则给出错误提示</span><br><span class="line">                if(wbLayout.getEle(&quot;addoption&quot;).innerText!=null)&#123;                                                                                            //非空值时追加，但没有给出是否重复判定</span><br><span class="line">                        wbLayout.getEle(&quot;test&quot;).child(3).insertAdjacentHTML(&quot;beforeEnd&quot;,&quot;&lt;option&gt;&quot;+wbLayout.getEle(&quot;addoption&quot;).innerText+&quot;&lt;/option&gt;&quot;)</span><br><span class="line">                        winform.msgbox(&quot;成功插入，请查看下拉列表项！&quot;,&quot;aardio提示&quot;) </span><br><span class="line">                &#125;</span><br><span class="line">                else&#123; </span><br><span class="line">                        winform.msgbox(&quot;输入为空值，请重新输入！&quot;,&quot;aardio提示&quot;)</span><br><span class="line">                </span><br><span class="line">                 &#125;</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">namespace web.layout.behavior.command2&#123;</span><br><span class="line">        onButtonClick = function (ltTarget,ltEle,reason,behaviorParams) &#123;</span><br><span class="line">                 wbLayout.getEle(&quot;sel&quot;).innerHTML =</span><br><span class="line">                                                                                          /*&lt;select #test&gt;</span><br><span class="line">                                                                                     &lt;option&gt;足球&lt;/option&gt;</span><br><span class="line">                                                                                     &lt;option&gt;篮球&lt;/option&gt;</span><br><span class="line">                                                                                     &lt;option&gt;羽毛球&lt;/option&gt;</span><br><span class="line">                                                                                     &lt;option&gt;乒乓球&lt;/option&gt;</span><br><span class="line">                                                                                  &lt;/select&gt;</span><br><span class="line">                                                                                   */</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">wbLayout.css = /**</span><br><span class="line">#mybutton1&#123;</span><br><span class="line">        behavior:~command1;</span><br><span class="line">&#125;</span><br><span class="line">#mybutton2&#123;</span><br><span class="line">        behavior:~command2;</span><br><span class="line">&#125;</span><br><span class="line">#addselect&#123;</span><br><span class="line">flow:h-flow;</span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line">#addtxt&#123;</span><br><span class="line">        width:200px;</span><br><span class="line">&#125;</span><br><span class="line">#sel&#123;</span><br><span class="line">        width:100px;</span><br><span class="line">&#125;</span><br><span class="line">#txt&#123;</span><br><span class="line">        width:150px;        </span><br><span class="line">&#125;</span><br><span class="line">#addoption:empty&#123;</span><br><span class="line">        color:graytext;        </span><br><span class="line">&#125;</span><br><span class="line">**/</span><br><span class="line">//可以与数据库连了</span><br><span class="line">var input=wbLayout.createEle(&quot;option&quot;)</span><br><span class="line">var str=wbLayout.$1(&quot;select&quot;)</span><br><span class="line">str.child(3).append(input)</span><br><span class="line">input.value=&quot;自行车&quot;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"> winform.show();</span><br><span class="line"> win.loopMessage();</span><br><span class="line"></span><br></pre></td></tr></table></figure><p>原文链接：<a href="https://bbs.aardio.com/forum.php?mod=viewthread&amp;tid=8139">https://bbs.aardio.com/forum.php?mod=viewthread&amp;tid=8139</a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 客户端开发 </category>
+          
+          <category> aardio </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> aardio </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>aardio-穷举webform的select控件的所有显示值</title>
+      <link href="/posts/2024/08/61eec19d.html"/>
+      <url>/posts/2024/08/61eec19d.html</url>
+      
+        <content type="html"><![CDATA[<p>代码示例:</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">import win.ui;</span><br><span class="line">import web.form;</span><br><span class="line"></span><br><span class="line">/*DSG&#123;&#123;*/</span><br><span class="line">var winform = win.form(parent=...; scroll=1;text=&quot;aardio Form&quot;;right=349;bottom=249 )</span><br><span class="line">winform.add(  )</span><br><span class="line">/*&#125;&#125;*/</span><br><span class="line"></span><br><span class="line">//创建web窗体</span><br><span class="line">var wb = web.form( winform  );</span><br><span class="line"></span><br><span class="line">var html = /**</span><br><span class="line">&lt;select name=&quot;model.projectId&quot; id=&quot;aForm_model_projectId&quot; class=&quot;required&quot;&gt;</span><br><span class="line">    &lt;option value=&quot;&quot;&gt;&lt;/option&gt;</span><br><span class="line">    &lt;option value=&quot;P201106260010&quot;&gt;叶城第2项目&lt;/option&gt;</span><br><span class="line">    &lt;option value=&quot;P201106260011&quot;&gt;叶城第3项目&lt;/option&gt;</span><br><span class="line">    &lt;option value=&quot;P201106260012&quot;&gt;叶城第4项目&lt;/option&gt;</span><br><span class="line">    &lt;option value=&quot;P201106260013&quot;&gt;叶城的草稿&lt;/option&gt;</span><br><span class="line">    &lt;option value=&quot;P201106270016&quot;&gt;叶城第一个测试项目&lt;/option&gt;</span><br><span class="line">    &lt;option value=&quot;P201106270017&quot;&gt;叶城第一个测试项目&lt;/option&gt;</span><br><span class="line">    &lt;option value=&quot;P201106290032&quot;&gt;顺德碧海蓝天工程&lt;/option&gt;</span><br><span class="line">    &lt;option value=&quot;P201106290035&quot;&gt;香港海蓝天工程&lt;/option&gt;</span><br><span class="line">&lt;/select&gt;</span><br><span class="line">**/</span><br><span class="line"></span><br><span class="line">wb.write(html)</span><br><span class="line">winform.show()</span><br><span class="line">wb.wait(&quot;&quot;);</span><br><span class="line"></span><br><span class="line">//获取所有选项</span><br><span class="line">var qEles = wb.queryEles(</span><br><span class="line">    parent = wb.getEle(&quot;aForm_model_projectId&quot;,可以在这里指定框架名字 );</span><br><span class="line">    value = &quot;P\d+&quot; ; //e.g. P201106260011</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">//在控制台中输出所有选项</span><br><span class="line">io.open()</span><br><span class="line">for(k,ele in qEles )&#123;</span><br><span class="line">    io.print( ele.innerHTML )</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//进入消息循环</span><br><span class="line">win.loopMessage();</span><br><span class="line">return winform,wb;</span><br><span class="line"></span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> 客户端开发 </category>
+          
+          <category> aardio </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> aardio </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>aardio-在HTMLayout中使用框架(iframe)</title>
       <link href="/posts/2024/08/dba69701.html"/>
       <url>/posts/2024/08/dba69701.html</url>
@@ -1108,7 +1162,7 @@
       <link href="/posts/2022/12/4d8c9542.html"/>
       <url>/posts/2022/12/4d8c9542.html</url>
       
-        <content type="html"><![CDATA[<p>1个可以用于微信聊天的ChatGPT机器人<br>GitHub地址：<a href="https://github.com/fuergaosi233/wechat-chatgpt">https://github.com/fuergaosi233/wechat-chatgpt</a></p><p>支持特性</p><blockquote><p>通过微信在微信上使用ChatGPT<br>支持OpenAI帐户池<br>支持使用代理登录<br>在消息接收时模拟</p></blockquote><p>我这边已经部署成功并成功运行，如有疑问可邮件联系 <a href="mailto:&#x64;&#111;&#x6e;&#x67;&#55;&#x30;&#54;&#x40;&#103;&#109;&#x61;&#105;&#x6c;&#x2e;&#x63;&#111;&#109;">&#x64;&#111;&#x6e;&#x67;&#55;&#x30;&#54;&#x40;&#103;&#109;&#x61;&#105;&#x6c;&#x2e;&#x63;&#111;&#109;</a> </p><span id="more"></span>]]></content>
+        <content type="html"><![CDATA[<p>1个可以用于微信聊天的ChatGPT机器人<br>GitHub地址：<a href="https://github.com/fuergaosi233/wechat-chatgpt">https://github.com/fuergaosi233/wechat-chatgpt</a></p><p>支持特性</p><blockquote><p>通过微信在微信上使用ChatGPT<br>支持OpenAI帐户池<br>支持使用代理登录<br>在消息接收时模拟</p></blockquote><p>我这边已经部署成功并成功运行，如有疑问可邮件联系 <a href="mailto:&#100;&#x6f;&#110;&#x67;&#55;&#48;&#54;&#64;&#103;&#x6d;&#x61;&#105;&#x6c;&#46;&#99;&#x6f;&#109;">&#100;&#x6f;&#110;&#x67;&#55;&#48;&#54;&#64;&#103;&#x6d;&#x61;&#105;&#x6c;&#46;&#99;&#x6f;&#109;</a> </p><span id="more"></span>]]></content>
       
       
       <categories>
@@ -2054,11 +2108,11 @@
       
         <tags>
             
+            <tag> PVC </tag>
+            
             <tag> StorageClass </tag>
             
             <tag> nfs </tag>
-            
-            <tag> PVC </tag>
             
         </tags>
       
@@ -2257,9 +2311,9 @@
             
             <tag> K8s </tag>
             
-            <tag> PVC </tag>
-            
             <tag> 存储卷 </tag>
+            
+            <tag> PVC </tag>
             
         </tags>
       
