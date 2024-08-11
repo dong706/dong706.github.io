@@ -2,6 +2,24 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://www.yeluohuakai.com/posts/2024/08/3a0700f7.html</loc>
+    
+    <lastmod>2024-08-11</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.yeluohuakai.com/posts/2024/08/44995320.html</loc>
+    
+    <lastmod>2024-08-11</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://www.yeluohuakai.com/posts/2024/08/61ab607b.html</loc>
     
     <lastmod>2024-08-11</lastmod>
@@ -1046,7 +1064,7 @@
   </url>
   
   <url>
-    <loc>https://www.yeluohuakai.com/posts/2021/05/3fd2352e.html</loc>
+    <loc>https://www.yeluohuakai.com/posts/2021/05/95b43a10.html</loc>
     
     <lastmod>2022-11-09</lastmod>
     
@@ -1055,7 +1073,7 @@
   </url>
   
   <url>
-    <loc>https://www.yeluohuakai.com/posts/2021/05/95b43a10.html</loc>
+    <loc>https://www.yeluohuakai.com/posts/2021/05/3fd2352e.html</loc>
     
     <lastmod>2022-11-09</lastmod>
     
@@ -1443,20 +1461,6 @@
   </url>
   
   <url>
-    <loc>https://www.yeluohuakai.com/tags/Corba/</loc>
-    <lastmod>2024-08-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.yeluohuakai.com/tags/JacORB/</loc>
-    <lastmod>2024-08-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://www.yeluohuakai.com/tags/xml/</loc>
     <lastmod>2024-08-11</lastmod>
     <changefreq>weekly</changefreq>
@@ -1472,6 +1476,20 @@
   
   <url>
     <loc>https://www.yeluohuakai.com/tags/SpringBoot/</loc>
+    <lastmod>2024-08-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.yeluohuakai.com/tags/Corba/</loc>
+    <lastmod>2024-08-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.yeluohuakai.com/tags/JacORB/</loc>
     <lastmod>2024-08-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1816,14 +1834,14 @@
   </url>
   
   <url>
-    <loc>https://www.yeluohuakai.com/categories/%E5%AE%A2%E6%88%B7%E7%AB%AF%E5%BC%80%E5%8F%91/aardio/</loc>
+    <loc>https://www.yeluohuakai.com/categories/%E5%AE%A2%E6%88%B7%E7%AB%AF%E5%BC%80%E5%8F%91/Swift%E5%BC%80%E5%8F%91/</loc>
     <lastmod>2024-08-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://www.yeluohuakai.com/categories/%E5%AE%A2%E6%88%B7%E7%AB%AF%E5%BC%80%E5%8F%91/Swift%E5%BC%80%E5%8F%91/</loc>
+    <loc>https://www.yeluohuakai.com/categories/%E5%AE%A2%E6%88%B7%E7%AB%AF%E5%BC%80%E5%8F%91/aardio/</loc>
     <lastmod>2024-08-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
