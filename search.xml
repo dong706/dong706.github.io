@@ -4,6 +4,197 @@
   
     
     <entry>
+      <title>aardio-父窗口与其模态窗口相互通信演示</title>
+      <link href="/posts/2024/08/f47e1d33.html"/>
+      <url>/posts/2024/08/f47e1d33.html</url>
+      
+        <content type="html"><![CDATA[<p>父窗口与其模态窗口相互通信演示</p><p>使用功能:<br>两者窗口之间通信利用了subscribe和publish订阅指令<br>子模态窗口里使用了新增的窗口函数winform.beforShowWindow() 和 winform.beforeDestroy ()</p><p>实现原理:<br>父窗口通过打开模态窗口之前发送订阅信息, 模态窗口显示之前获取到此订阅信息,然后展示信息并显示窗体 , 模态窗口中返回信息用了两种方式,1是利用窗口销毁前函数发送订阅信息, 2是通过模态终结指令endModal()返回信息.</p><p>适用范围:<br>窗体之间的传递信息</p><p>父窗体代码如下:</p><span id="more"></span><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">import win.ui;</span><br><span class="line">/*DSG&#123;&#123;*/</span><br><span class="line">mainForm = win.form(text=&quot;与模态窗口相互通信演示&quot;;right=372;bottom=292)</span><br><span class="line">mainForm.add(</span><br><span class="line">button=&#123;cls=&quot;button&quot;;text=&quot;打开模态子窗口并附带参数&quot;;left=197;top=19;right=360;bottom=88;z=3&#125;;</span><br><span class="line">edit=&#123;cls=&quot;edit&quot;;text=&quot;你好啊,模态子窗口?&quot;;left=20;top=18;right=187;bottom=85;edge=1;multiline=1;z=1&#125;;</span><br><span class="line">edit2=&#123;cls=&quot;edit&quot;;left=18;top=107;right=359;bottom=186;edge=1;multiline=1;z=2&#125;;</span><br><span class="line">edit3=&#123;cls=&quot;edit&quot;;left=16;top=214;right=359;bottom=279;edge=1;multiline=1;z=4&#125;</span><br><span class="line">)</span><br><span class="line">/*&#125;&#125;*/</span><br><span class="line"> </span><br><span class="line">mainForm.button.oncommand = function(id,event)&#123;</span><br><span class="line">     </span><br><span class="line">     </span><br><span class="line">var frmChild,wb = mainForm.loadForm(&quot;\筛选器\testaa.aardio&quot;);</span><br><span class="line">publish(&quot;窗体之间传参&quot;,mainForm.edit.text)</span><br><span class="line">var chstr = frmChild.doModal();</span><br><span class="line">    mainForm.edit3.text =chstr</span><br><span class="line">     </span><br><span class="line">     </span><br><span class="line">&#125;</span><br><span class="line">subscribe(&quot;接收一个窗口销毁&quot;,function(...)&#123;</span><br><span class="line">    mainForm.edit2.text = ...</span><br><span class="line">&#125; )</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line">mainForm.enableDpiScaling();</span><br><span class="line">mainForm.show();</span><br><span class="line"> </span><br><span class="line">return win.loopMessage();</span><br></pre></td></tr></table></figure><p>模态窗口代码如下(testaa.aardio):</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">import win.ui;</span><br><span class="line">/*DSG&#123;&#123;*/</span><br><span class="line">var winform = win.form(text=&quot;模态子窗口&quot;;right=326;bottom=274;parent=...)</span><br><span class="line">winform.add(</span><br><span class="line">button=&#123;cls=&quot;button&quot;;text=&quot;关闭模态窗口并附带返回值&quot;;left=12;top=197;right=312;bottom=258;z=2&#125;;</span><br><span class="line">edit=&#123;cls=&quot;edit&quot;;left=12;top=13;right=315;bottom=185;edge=1;multiline=1;z=1&#125;</span><br><span class="line">)</span><br><span class="line">/*&#125;&#125;*/</span><br><span class="line"> </span><br><span class="line">winform.beforShowWindow = function(shown,status)&#123; </span><br><span class="line">    subscribe(&quot;窗体之间传参&quot;,function(str)&#123;</span><br><span class="line">         </span><br><span class="line">        winform.edit.text = str;</span><br><span class="line">         </span><br><span class="line">    &#125; )</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">winform.beforeDestroy = function()&#123;</span><br><span class="line">     </span><br><span class="line">    publish(&quot;接收一个窗口销毁&quot;,&#x27;我是模态窗口销毁时候的返回消息:\r\n&#x27; ++ winform.edit.text)</span><br><span class="line">     </span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">winform.button.oncommand = function(id,event)&#123;</span><br><span class="line">    winform.endModal(&#x27;我是点击了关闭模态窗口的返回消息:\r\n&#x27; ++ &quot;你好啊主窗口,我是模态窗口关闭附带的返回值.&quot;)</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">winform.enableDpiScaling();</span><br><span class="line">winform.show();</span><br><span class="line"> </span><br><span class="line">win.loopMessage();</span><br><span class="line">return winform;</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> 客户端开发 </category>
+          
+          <category> aardio </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> aardio </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>aardio-如何让主窗体不在任务栏显示</title>
+      <link href="/posts/2024/08/4f865e2b.html"/>
+      <url>/posts/2024/08/4f865e2b.html</url>
+      
+        <content type="html"><![CDATA[<p>首先需要意识到toolwindow是没有最大化最小化按钮的。<br>我们不在这上面浪费时间。  </p><p><strong>解决办法：</strong><br>创建一个toolwindow风格的隐藏窗口作为父窗口。<br>子窗口指定为popun窗格，扩展样式为none( 即不是 appwindow也不是toolwindow )</p><span id="more"></span><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">import win.ui; </span><br><span class="line"></span><br><span class="line">var frmToolWindow = win.form( exmode=&quot;toolwindow&quot; ) </span><br><span class="line">/*DSG&#123;&#123;*/</span><br><span class="line">var winform = ..win.form( exmode=&quot;none&quot;;bottom=399;parent=frmToolWindow;mode=&quot;popup&quot;;right=599;text=&quot;aardio Form&quot; )</span><br><span class="line">winform.add(  )</span><br><span class="line">/*&#125;&#125;*/</span><br><span class="line"></span><br><span class="line">winform.onClose = function(hwnd,message,wParam,lParam)&#123;</span><br><span class="line">    frmToolWindow.close()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">winform.show() </span><br><span class="line">win.loopMessage();</span><br><span class="line">  </span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> 客户端开发 </category>
+          
+          <category> aardio </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> aardio </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>aardio-htmlayout-拖动窗口或调整窗口大小时取消显示内容让窗口不再闪烁</title>
+      <link href="/posts/2024/08/f1f90161.html"/>
+      <url>/posts/2024/08/f1f90161.html</url>
+      
+        <content type="html"><![CDATA[<p>mainForm.disableDragFullWindow = true; 一句就可以达到目的了。</p><span id="more"></span>]]></content>
+      
+      
+      <categories>
+          
+          <category> 客户端开发 </category>
+          
+          <category> aardio </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> aardio </tag>
+            
+            <tag> htmlayout </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>aardio-webform取得指定网页节点的方法归纳</title>
+      <link href="/posts/2024/08/2a17a149.html"/>
+      <url>/posts/2024/08/2a17a149.html</url>
+      
+        <content type="html"><![CDATA[<p>刚才花了一些时间写的基础教程，由于篇幅和格式的问题，给一个纲要和链接。</p><p>我们要使用 web.form 库对网页进行操作，首先要取得想要操作的那个网页节点。若是第一步就出了问题，后续的操作就无法正常进行了。于是，怎样取得指定的网页节点成了一个至关重要的问题。在这里，我简单的列举一些常用的方式（以下的 wb 变量均为 web.form 的一个实例对象）：</p><p><strong>1、通过节点的 id 或者 name 一步取得</strong></p><p><strong>2、通过子节点取得父节点</strong></p><p><strong>3、通过节点名取得节点集合</strong></p><p><strong>4、枚举法 + 节点特点</strong></p><hr><p>要讨论这个问题，我们得先明白什么是网页节点。我们平时浏览网页的时候一般是不会注意网页节点的，因为网页节点这个概念是相对于网页源代码而言的。我们在网页页面上右键，选择查看源代码即可查看网页的源代码。  </p><p>我们可以看到网页的源代码的格式与 xml 格式极为相似，也是由一个一个节点构成，具体节点的含义可以看一下百度百科的解释： <a href="http://baike.baidu.com/view/47398.htm#2">http://baike.baidu.com/view/47398.htm#2</a></p><p>我们要使用 web.form 库对网页进行操作，首先要取得想要操作的那个网页节点。若是第一步就出了问题，后续的操作就无法正常进行了。于是，怎样取得指定的网页节点成了一个至关重要的问题。在这里，我简单的列举一些常用的方式（以下的 wb 变量均为 web.form 的一个实例对象）：  </p><p><strong>1、通过节点的 id 或者 name 一步取得</strong><br> <span id="more"></span><br>我们一定非常熟悉 wb.getEle 这个东西，因为获取元素我们一般都会调用这个方法。我们可以看一下它的函数原型：<br>ele = wb.getEle( HTML节点的ID名name, 框架名 )  </p><p>当提供 id 或 name 可以唯一确定一个节点的时候，我们只要提供网页节点的 id 或者 name 属性，即可获取该节点。  </p><p>当网页中存在同 name 节点的时候，我们则可以用 wb.getEles 方法取得，我们可以看一下它的函数原型：<br>tele = wb.getEles( HTML节点的name属性, 框架名 )  </p><p>可能这个方法大家并不常用，wb.getEles 返回的是节点的集合。因为网页中节点的 id 属性是不可重复的，而 name 属性却是可重复的，因此当我们想要获取的节点有 name 属性的时候，就要考虑到网页中是否有其他节点与之 name 属性相同。wb.getEles 就可以获取所有指定 name 属性的节点。  </p><p>举个例子，网页代码如下：  </p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">    &lt;html&gt;  </span><br><span class="line">    &lt;head&gt;  </span><br><span class="line">    ...  </span><br><span class="line">    &lt;/head&gt;  </span><br><span class="line">    &lt;body&gt;  </span><br><span class="line">    &lt;input type=&quot;checkbox&quot; name=&quot;hobbies&quot; value=&quot;足球&quot; /&gt;  </span><br><span class="line">    &lt;input type=&quot;checkbox&quot; name=&quot;hobbies&quot; value=&quot;篮球&quot; /&gt;  </span><br><span class="line">    &lt;input type=&quot;checkbox&quot; name=&quot;hobbies&quot; value=&quot;排球&quot; /&gt;  </span><br><span class="line">    &lt;/body&gt;  </span><br><span class="line">    &lt;/html&gt;  </span><br></pre></td></tr></table></figure><p>我们可以发现我们用 wb.getEle(“hobbies”) 的话，只能取到足球的 checkbox，而不能取到篮球或排球的节点。这时候，我们就可以使用 wb.getEles 来解决了，代码如下：  </p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">    var tele = wb.getEles(&quot;hobbies&quot;);  </span><br><span class="line">    var 足球, 篮球, 排球 = tele(0), tele(1), tele(2);  </span><br><span class="line">    排球.checked = true;  </span><br></pre></td></tr></table></figure><p>上面一段代码就可以实现获取足球、篮球和排球三个节点了，这里要注意的是，wb.getEles 返回的是 com 数组，因此必须使用小括号来读取数组成员，而不是中括号，并且 com 数组的索引是从 0 开始的，而不是 1。  </p><p><strong>2、通过子节点取得父节点</strong>  </p><p>这也是一个可以被接受的方式。往往我们要直接取得指定的节点十分困难，但是我们发现这个节点的某一个子节点很容易取得。这时候，我们就可以通过这个子节点来取得我们想要的父节点。  </p><p>举个例子，网页代码如下：  </p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">    &lt;form action=&quot;...&quot; method=&quot;post&quot;&gt;  </span><br><span class="line">        &lt;input type=&quot;text&quot; name=&quot;username&quot; id=&quot;username&quot; /&gt;  </span><br><span class="line">    &lt;/form&gt;  </span><br></pre></td></tr></table></figure><p>假设我们要提交这个表单，你会使用什么方法取得表单节点？或许你会说：“这个表单没有 name，也没有 id，大概只能枚举法或者通过节点名取得。不过它里面有一个 input 节点挺好获取的。”  </p><p>枚举法或者通过节点名取节点确实是一个办法，但是，当这个节点下某一个子节点非常好取的时候，我们不妨就通过这个子节点搭桥，代码如下：<br>  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">var childEle = wb.getEle(&quot;username&quot;); // 我们取得了子节点  </span><br><span class="line">  var ele = childEle.parentNode; // 子节点的 parentNode 即为我们要取的父节点  </span><br></pre></td></tr></table></figure><br>这确实是一个好方法，但是你可能会说：“我根本不知道什么 parentNode 属性，帮助文档里好像也没有提及。”  </p><p>但是你别忘了，我们还有智能提示，即使没有智能提示也还有 DOM 帮助手册，毕竟这是 IE 的东西，不管aardio什么事，aardio只需要调用 IE 提供的接口就可以了。因此还有许多智能提示以及帮助中没有提及的属性和方法，我们将会尽可能多的让大家了解。  </p><p>那么，我考大家一个问题，若是网页代码如下，怎么获取表单节点呢？  </p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">    &lt;form action=&quot;...&quot; method=&quot;post&quot;&gt;  </span><br><span class="line">        &lt;div&gt;  </span><br><span class="line">            &lt;span&gt;  </span><br><span class="line">                &lt;input type=&quot;text&quot; name=&quot;username&quot; id=&quot;username&quot; /&gt;  </span><br><span class="line">            &lt;/span&gt;  </span><br><span class="line">        &lt;/div&gt;  </span><br><span class="line">    &lt;/form&gt;  </span><br></pre></td></tr></table></figure><p>你也许会说：“这还不简单？同上，childEle.parentNode.parentNode.parentNode…”  </p><p>噢，这确实可行，但是当父节点层次非常多的时候，我们可以有简便的方法：  </p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">    var ele = childEle.form;  </span><br></pre></td></tr></table></figure><p>childEle.form 可以直接获取 childEle 所在的表单节点。是不是感觉被骗了？呵呵。不，我上面讲的那么多并不是废话，因为有时候我们要获取父节点并不一定是一个表单，可能是其他类型的节点，这时候我们就不得不用 parentNode 了。  </p><p><strong>3、通过节点名取得节点集合</strong>  </p><p>我们知道，凡是网页节点都有一个节点名。那么，我们能不能通过网页节点名来获取网页节点呢？答案当然是肯定的。  </p><p>节点名类似于节点的 name 属性，是可以重复的，而且由于这些节点名是固定的，几乎没有哪一个网页节点名没有重复，因此取回的同样是节点的集合——一个 com 数组。  </p><p>要通过节点名获取节点，可以使用 getElementsByTagName，同样通过一个例子说明问题，网页代码如下：  </p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">    &lt;img src=&quot;...&quot; alt=&quot;确定&quot; /&gt;  </span><br><span class="line">    &lt;img src=&quot;...&quot; alt=&quot;取消&quot; /&gt;  </span><br></pre></td></tr></table></figure><p>倘若整张网页只有这两个 img 节点，我们可以使用如下代码来获取这两个节点：  </p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">    var tele = wb.document.getElementsByTagName(&quot;img&quot;);  </span><br><span class="line">    var 确定, 取消 = tele(0), tele(1);  </span><br><span class="line">    取消.click();  </span><br></pre></td></tr></table></figure><p>在这里我就不多做解释，想必大家要是没有忘记上面的“通过 name 属性获取节点”的话，应该很容易能够理解。  </p><p>至于第三行，我这里简单解释一下，我们看到网页代码中，两个 img 节点都有 onclick 属性，这个属性是指定该节点被单击时触发的脚本。  </p><p>我们通过 取消.click() 可以触发这个脚本，也就相当于我们单击了取消按钮。  </p><p>同样的，任何节点都有 getElementsByTagName 函数，我们可以结合上面的方法来获取指定的节点。  </p><p>举个例子，网页代码如下：  </p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">    &lt;img alt=&quot;&quot; /&gt;  </span><br><span class="line">    &lt;!--前面有许多图片--&gt;  </span><br><span class="line">    &lt;form action=&quot;...&quot; method=&quot;post&quot;&gt;  </span><br><span class="line">        &lt;input type=&quot;text&quot; name=&quot;username&quot; id=&quot;username&quot; /&gt;  </span><br><span class="line">        &lt;img src=&quot;...&quot; alt=&quot;确定&quot; /&gt;    </span><br><span class="line">        &lt;img src=&quot;...&quot; alt=&quot;取消&quot; /&gt;    </span><br><span class="line">    &lt;/form&gt;  </span><br></pre></td></tr></table></figure><p>我们要实现填完 username 之后，单击确定按钮，则可以使用如下代码：<br>  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">    /*  </span><br><span class="line">      取的用户名节点，这里也可以使用 getEle 方法，但是 getEle 方法是 web.form 库的一个封装方法，  </span><br><span class="line">      该方法并不能在网页节点上使用。譬如 form 是一个表单元素，我们要获取一个在 form 下的有 id 的  </span><br><span class="line">      子元素，则只能使用 form.getElementById(&quot;ID&quot;)，而不能使用 form.getEle(&quot;ID&quot;)。  </span><br><span class="line">      而 form.getEle(&quot;Name&quot;) 则可以用 form.getElementsByName(&quot;Name&quot;)(0) 替代。具体可看库代码。  </span><br><span class="line">     */    </span><br><span class="line">    var username = wb.document.getElementById(&quot;username&quot;);  </span><br><span class="line">    var form = username.form;  </span><br><span class="line">    var img = form.getElementsByTagName(&quot;img&quot;)(0); // form 下第一个 img 的节点（确定），0 替换为 1 可取得第二个（取消）  </span><br><span class="line">    img.click();  </span><br></pre></td></tr></table></figure><br>怎么样？是不是有些明白了？  </p><p><strong>4、枚举法 + 节点特点</strong>  </p><p>当我们想要获取的节点没有 name，也没有 id。甚至用上面的任何方法都难以获取的时候该怎么办呢？当我们实在没有办法的时候，可以使用枚举法。但是有一点必须确定，这个节点应当是有特征的。  </p><p>何为有特征？一般的节点都有自己的特点，比如说：在一个 form 中有一个 input 节点，其 type 属性为 “image”，而且我们通过这两个线索可以唯一确定这个节点。我们就可以遍历表单中所有的 input 节点，然后再检查这些节点的 type 属性值。  </p><p>同样举个例子，网页代码如下：<br>  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">    &lt;form id=&quot;frmLogin&quot; action=&quot;...&quot; method=&quot;post&quot;&gt;  </span><br><span class="line">        &lt;input type=&quot;text&quot; name=&quot;...&quot; /&gt;  </span><br><span class="line">        &lt;input type=&quot;text&quot; name=&quot;...&quot; /&gt;  </span><br><span class="line">        &lt;input type=&quot;text&quot; name=&quot;...&quot; /&gt;  </span><br><span class="line">           </span><br><span class="line">        &lt;input type=&quot;image&quot; /&gt;  </span><br><span class="line">    &lt;/form&gt;  </span><br></pre></td></tr></table></figure><br>没错，我们就要获取那个 type=”image” 的 input 节点。还记得吗？我们可以通过 getElementsByTagName 取得所有 input 节点的。如果你还记得，那就跟我一起做：<br>  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">    var form = wb.getEle(&quot;frmLogin&quot;); // 先取得表单节点，这一步很方便  </span><br><span class="line">    var inputs = form.getElementsByTagName(&quot;input&quot;); // 看，这句就获取了所有的 input 节点了  </span><br></pre></td></tr></table></figure><br>嗯，我们已经完成了大部分了，取得了表单下所有的 input 节点的集合，下面我们可以通过 com 库来遍历这些节点，当我们输入 com.each 的时候，aardio会自动生成循环体基本代码，真是太方便了：<br>  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">    var img; // 时刻准备被赋值  </span><br><span class="line">    for index,obj in com.each(inputs) &#123;  </span><br><span class="line">        // 现在 obj 就是每一个 input 节点了，有几个 input，就会循环几次  </span><br><span class="line">        if (string.lower(obj.type) == &quot;image&quot;) &#123; // 判断 obj 的 type 属性是否为 image，可以先转化为小写，写得严密一些  </span><br><span class="line">            // 很激动，现在 obj 就是我们要找的节点了，我们可以把它赋给 img 变量  </span><br><span class="line">            img = obj;  </span><br><span class="line">            break; // 赶紧挑出循环，不要浪费系统资源和用户的时间  </span><br><span class="line">        &#125;  </span><br><span class="line">    &#125;  </span><br><span class="line">    if (img != null) &#123; // 如果 img 不为空，即我们取到了这个节点  </span><br><span class="line">        // 后续操作，点它！  </span><br><span class="line">        img.click();  </span><br><span class="line">    &#125;  </span><br></pre></td></tr></table></figure><br><strong>5、无比强大的 wb.queryEles() 函数</strong></p><p>怎么样，是不是很方便呢？赶紧试试看吧。</p><p>原文链接： <a href="https://bbs.aardio.com/forum.php?mod=viewthread&amp;tid=940">https://bbs.aardio.com/forum.php?mod=viewthread&amp;tid=940</a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 客户端开发 </category>
+          
+          <category> aardio </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> aardio </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>aardio-win, winex库</title>
+      <link href="/posts/2024/08/b7cc21c6.html"/>
+      <url>/posts/2024/08/b7cc21c6.html</url>
+      
+        <content type="html"><![CDATA[<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"> win, winex库</span><br><span class="line">match(.(句柄,文本,类名,ID) = 指定一个窗口句柄,检测是否符合给定参数\n所有参数可选,类名与文本支持模式表达式</span><br><span class="line">find(.(类名模式串,标题模式串,进程ID,线程ID)=查找顶层窗口，所有参数都是可选参数\n返回值为：句柄,线程ID,进程ID</span><br><span class="line">findMainWnd(.(类名模式串,标题模式串,进程ID,线程ID) = 查找独立不属于其他窗口所有的顶层窗口所有参数都是可选参数\n返回值为：句柄,线程ID,进程ID</span><br><span class="line">findEx(.(父窗口句柄,第几个匹配,类名模式串 ,标题模式串, 控件ID )=查找子窗口，除父窗口句柄外所有参数可选\n返回值为句柄</span><br><span class="line">findExists(.(父窗口标题,控件文本,父窗口类名,控件类名,控件ID,进程ID,第几个匹配) = 查找包含指定控件窗口的父窗口,所有参数可选\n返回值为:窗口句柄,控件句柄,线程ID,进程ID</span><br><span class="line">findActivate(.(父窗口标题,控件文本,父窗口类名,控件类名,控件ID,进程ID,第几个匹配) = 调用winex.findExists查找并激活包含指定控件窗口的父窗口,所有参数可选\n返回值为:窗口句柄,控件句柄,线程ID,进程ID</span><br><span class="line"></span><br><span class="line">winex.attach(hwnd) //附加到“外部”线程窗口并共享输入状态，注意该函数会重置键盘状态。返回值为是否成功附加</span><br><span class="line">winex.attach(hwnd,false) //解除共享输入状态。返回值为是否成功解除</span><br><span class="line">winex.sendString(文本, 窗口句柄=前台窗口) //发送@1给@2，\r\n表示换行</span><br><span class="line">winex.say(文本, 窗口句柄=前台窗口) //发送@1给@2，\n表示换行</span><br><span class="line">winex.say2(文本,窗口句柄=前台窗口) //发送@1给@2，\n表示换行</span><br><span class="line">winex.sayIme(文本,窗口句柄=前台窗口) //发送@1给@2，\n表示换行</span><br><span class="line">hwnd,线程ID,进程ID = winex.find( 类名,标题,进程ID,线程ID ) //查找窗口</span><br><span class="line">winex.key.combine(hedit,&quot;CTRL&quot;,&quot;s&quot;) //在hedit窗口中按下Ctrl+S，需import winex.key</span><br><span class="line">winex.key.click(hedit,&quot;ENTER&quot; ) //在hedit窗口中按下Enter键，需import winex.key</span><br><span class="line">winex.key.altClick(hedit,&quot;F&quot; ) //在hedit窗口中按下Alt+F键，需import winex.key</span><br><span class="line"></span><br><span class="line">win.isChild(.(父窗口句柄,子窗口句柄) //判断@2是否是@1的子窗口或隶属子窗口。返回1/0</span><br><span class="line">win.isVisible(hwnd) //判断窗口是否可见，可通过win.show()改变。返回true/false</span><br><span class="line">win.isWindow(hwnd) //判断是否有效窗口。返回true/false</span><br><span class="line">win.isIconic(hwnd) //判断窗口是否最小化为任务栏图标。返回true/false</span><br><span class="line">win.isZoomed(hwnd) //判断窗口是否最大化。返回true/false</span><br><span class="line">win.isEnable(__/*输入窗口句柄*/) = 判断窗口是否启用状态</span><br><span class="line">win.show(hwnd,_SW_...) //显示窗口，任务栏中出现，并不是显示到最前面，@2是以_SW_为前缀的可选显示参数，参见windows编程SW_</span><br><span class="line">win.show(hwnd,false) //隐藏窗口，任务栏中消失</span><br><span class="line">win.close(hwnd) //关闭窗口\n关闭外部进程窗口请使用winex.close()替代</span><br><span class="line">win.enable(__/*输入窗口句柄*/,true) = 启用窗口</span><br><span class="line">win.enable(__/*输入窗口句柄*/,false) = 禁用窗口</span><br><span class="line">win.setTop(__/*输入窗口句柄*/)=前置窗口到当前线程Z序顶部\n顶层窗口或者设置了 _WS_CLIPSIBLINGS 重叠裁剪样式的窗口向前移动\n子窗口会向后面移动.</span><br><span class="line">win.getForeground()=获取前台窗口句柄</span><br><span class="line">win.getActive()=获取当前线程激活窗口句柄,如果要获取全局激活窗口请使用win.getForeground()</span><br><span class="line">win.setActive(hwnd) //设置激活窗口(激活窗口是什么？)</span><br><span class="line">win.getFocus() //获取输入焦点所在窗口句柄</span><br><span class="line">win.setFocus(hwnd) //设置输入焦点，只用于当前线程</span><br><span class="line">win.getDesktop() //获取桌面句柄</span><br><span class="line">win.setTopmost(hwnd) //置顶窗口（不是win.setForeground()）</span><br><span class="line">win.setTopmost(hwnd,false) //取消置顶窗口</span><br><span class="line">win.setForeground(__/*输入窗口句柄*/) //前置窗口并获取输入焦点（把窗口显示在屏幕最前面,最小化窗口自动还原+获取焦点）,\n当前程序是背景窗口时,win7以上系统令在任务栏闪烁,</span><br><span class="line">win.showForeground(.(窗口句柄,x,y,cx,cy) //把窗口显示在屏幕最前面,最小化窗口自动还原\n类似setForeground但不会改变输入焦点,\n除句柄外,其他参数为可选参数</span><br><span class="line">win.find(.(类名,标题) //查找顶层窗口，参数都是可选参数。返回句柄</span><br><span class="line">win.findEx(.(父窗口句柄,上一个窗口句柄,类名,标题) //查找子窗口，除父窗口句柄以外，其他参数都是可选参数 </span><br><span class="line">win.setCapture(.(窗口句柄) = 开始捕获鼠标消息,返回上次调用该函数的窗口句柄</span><br><span class="line">win.releaseCapture() = 释放鼠标捕获,成功返回true</span><br><span class="line">win.registerClassEx(.(&quot;类名&quot;,类参数表,&quot;源类名&quot;) =  并注册新类名\n如果参数@3指定了源类名则复制该类\n可选用参数@2指定 WNDCLASSEX的部份字段值</span><br><span class="line">win.registerFormClass(&quot;类名&quot;,类参数表,&quot;源类名&quot;) = @.registerFormClass(&quot;类名&quot;,&#123;\n    style = _CS___\n&#125; );</span><br><span class="line"></span><br><span class="line">win.delay(1000* 5) //毫秒延时，区别sleep()使用于无窗口、无消息循环时</span><br><span class="line">win.getClass(hwnd) //返回窗口类名</span><br><span class="line">win.getId(hwnd) //返回控件ID</span><br><span class="line">win.getText(hwnd, 缓冲区长度=文本长度) //返回控件文本内容，@2可选</span><br><span class="line">win.setText(hwnd,文本,缓冲区长度=文本长度) //设置控件文本，外部进程窗口使用winex.setText()</span><br><span class="line"></span><br><span class="line">win.flash(hwnd,次数,时间间隔,选项) //闪烁窗口</span><br><span class="line">win.msgbox(文本,标题,样式,所有者hwnd) //弹出对话框</span><br><span class="line">win.msgboxErr(文本,标题,所有者hwnd) //弹出错误对话框</span><br><span class="line">win.msgboxTimeout(文本,标题,超时毫秒值,样式,所有者hwnd) //弹出对话框，超时自动关闭</span><br><span class="line">win.msgboxTest(文本,标题,所有者hwnd) //返回布尔值表示用户是否按了“确定”按钮</span><br><span class="line">win.getScreen() //返回屏幕宽度、高度</span><br><span class="line">win.center(hwnd,目标窗口句柄) //居中窗口,并调整以保证显示在可见范围内，目标窗口句柄如果为空则取父窗口或所有者窗口,为0表示桌面</span><br><span class="line"></span><br><span class="line">hwndroot = win.getRoot() //获取最顶层父窗口句柄</span><br><span class="line">win.enable(hwnd, 1) //启用窗口，使可以操作</span><br><span class="line">win.enable(hwnd, 0) //禁用窗口，使不能操作</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> 客户端开发 </category>
+          
+          <category> aardio </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> aardio </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>aardio-子窗口内嵌到父窗口的控件里显示</title>
+      <link href="/posts/2024/08/6a5695a2.html"/>
+      <url>/posts/2024/08/6a5695a2.html</url>
+      
+        <content type="html"><![CDATA[<p>子窗体：</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">import win.ui;</span><br><span class="line">/*DSG&#123;&#123;*/</span><br><span class="line">var winform = ..win.form( border=&quot;none&quot;;bgcolor=255;bottom=219;parent=...;text=&quot;aardio Form&quot;;left=0;right=293;top=0;mode=&quot;child&quot;/*这里样式为child*/)</span><br><span class="line">winform.add(</span><br><span class="line">button=&#123; bottom=197;right=255;left=176;top=161;z=1;text=&quot;button&quot;;cls=&quot;button&quot; &#125;;</span><br><span class="line">edit=&#123; bottom=119;text=&quot;edit&quot;;left=50;multiline=1;top=21;z=2;right=237;edge=1;cls=&quot;edit&quot; &#125;</span><br><span class="line">)</span><br><span class="line">/*&#125;&#125;*/</span><br><span class="line"></span><br><span class="line">winform.show()</span><br><span class="line">win.loopMessage();</span><br><span class="line">return winform;</span><br></pre></td></tr></table></figure><p>主窗体:</p><span id="more"></span><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">import win.ui;</span><br><span class="line">/*DSG&#123;&#123;*/</span><br><span class="line">mainForm = ..win.form( right=600;bottom=400;parent=...;text=&quot;aardio Form&quot; )</span><br><span class="line">mainForm.add(  )</span><br><span class="line">/*&#125;&#125;*/</span><br><span class="line"></span><br><span class="line">var child,wb = mainForm.loadForm(&quot;\res\aa.aardio&quot;,mainForm /*指定父窗口*/ );</span><br><span class="line">child.show();</span><br><span class="line"></span><br><span class="line">//可以使用 win.setPos()函数 移动子窗体</span><br><span class="line">win.setPos(child.hwnd,100,100)</span><br><span class="line"></span><br><span class="line">mainForm.show()</span><br><span class="line">win.loopMessage();</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> 客户端开发 </category>
+          
+          <category> aardio </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> aardio </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>aardio-子窗口调用父窗口函数</title>
+      <link href="/posts/2024/08/9c1a548b.html"/>
+      <url>/posts/2024/08/9c1a548b.html</url>
+      
+        <content type="html"><![CDATA[<p>子窗口调用父窗口函数是比较常用的编程技术，通常用于把功能分解模块化到多窗口的程序中，比如一个程序有登陆窗口、主窗口、管理窗口、编辑窗口、查询窗口等，就需要父子窗口之间互相通信，互相操作对方。下面演示一个最简单的父子窗口互动编程教程：<br>1.新建win窗口工程<br>2.工程资源管理器资源文件文件夹上右键,新建窗口文件<br>3.把child1.aardio拖到main.aardio里,会自动生成引用代码<br>4.在子窗口上放一个按钮,双击进去,写上代码<br>5.在主窗口里写上函数<br>这里要注意把函数作为主窗口mainForm的成员函数，不然子窗口调用时会报null。  </p><p>主窗口源码：</p><span id="more"></span><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">import win.ui;</span><br><span class="line">/*DSG&#123;&#123;*/</span><br><span class="line">mainForm = win.form(text=&quot;简码编程 jianma123.com&quot;;right=759;bottom=469)</span><br><span class="line">mainForm.add(</span><br><span class="line">edit=&#123;cls=&quot;edit&quot;;left=14;top=246;right=743;bottom=455;db=1;dl=1;dr=1;dt=1;edge=1;multiline=1;z=1&#125;</span><br><span class="line">)</span><br><span class="line">/*&#125;&#125;*/</span><br><span class="line"></span><br><span class="line">//注意这里是 mainForm.  即是 主窗口加法 变成了mainForm的成员函数</span><br><span class="line">mainForm.主窗口加法 = function(a,b)&#123;</span><br><span class="line">    win.msgbox(a+b)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">var frmChild,wb = mainForm.loadForm(&quot;\res\child1.aardio&quot;);</span><br><span class="line">frmChild.show();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">mainForm.enableDpiScaling();</span><br><span class="line">mainForm.show();</span><br><span class="line"></span><br><span class="line">return win.loopMessage(); </span><br></pre></td></tr></table></figure><p>子窗口源码：</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">import win.ui;</span><br><span class="line">/*DSG&#123;&#123;*/</span><br><span class="line">var winform = win.form(text=&quot;简码编程 jianma123.com 子窗口&quot;;right=387;bottom=241;parent=...)</span><br><span class="line">winform.add(</span><br><span class="line">button=&#123;cls=&quot;button&quot;;text=&quot;button&quot;;left=122;top=83;right=256;bottom=139;z=1&#125;</span><br><span class="line">)</span><br><span class="line">/*&#125;&#125;*/</span><br><span class="line">//注意窗口构建代码里有 parent=...</span><br><span class="line"></span><br><span class="line">winform.button.oncommand = function(id,event)&#123;</span><br><span class="line">    winform.parent.主窗口加法(1,2);//    winform.parent指的是用loadForm()加载之个子窗口的父对象</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">winform.enableDpiScaling();</span><br><span class="line">winform.show();</span><br><span class="line"></span><br><span class="line">win.loopMessage();</span><br><span class="line">return winform;//注意这里返回窗口对象给父窗口</span><br></pre></td></tr></table></figure><p>其它：<br>父子窗口的互相调用操作，还有在父窗口或子窗口里定义全局变量、全局函数等方法，请自行研究。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 客户端开发 </category>
+          
+          <category> aardio </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> aardio </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>aardio-webform的select控件如何动态增加删除选项</title>
       <link href="/posts/2024/08/8bdd7535.html"/>
       <url>/posts/2024/08/8bdd7535.html</url>
@@ -630,7 +821,7 @@
       <link href="/posts/2024/08/6d96ec79.html"/>
       <url>/posts/2024/08/6d96ec79.html</url>
       
-        <content type="html"><![CDATA[<p>aardio多窗口交互的方法</p><p>将窗体对象赋值到全局变量，就可以在其他代码文件中直接使用了。例如主窗体我们一般这样写：<br><code>mainForm = win.form(text=&quot;使用选项卡控件&quot;;right=599;bottom=399)</code><br>注意一个程序中只有主窗体命名为 mainForm 。</p><p>但大多时候，我们应当把其他窗体对象赋值以局部变量，例如：<br><code>var frmTabPage1 = win.form(text=&quot;选项卡的子窗口&quot;;right=599;bottom=399)</code><br>上面的 var 语句声明一个局部变量 - 局部变量限制了他的作用域在定义他的语句块中生效，不能在其他文件中访问该局部变量。</p><p>实际上全局变量要少用，全局的窗体对象更应该少用，每个窗体应当保持独立性。打个比方，一个程序小象一个小世界，各个子窗口就象各个小国家，国家之间要保持一定的独立性，国家与国家之间有什么事儿要沟通 - 你不能直接随意的冲过国界跑来跑去的玩儿（大家都这样搞，就象各个窗体的控件都这样搞，程序就会变的很混乱），你得经过外交部门。这个外交部门，在我们写程序的时候来讲，我们可以用以下几种方式来实现：</p><p>方式1、直接在 main.aardio 中创建全局变量，例如 main.aardio代码如下：</p><span id="more"></span> <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">import win.ui;</span><br><span class="line">/*DSG&#123;&#123;*/</span><br><span class="line">mainForm = win.form(text=&quot;使用选项卡控件&quot;;right=599;bottom=399)</span><br><span class="line">mainForm.add(tab=&#123;cls=&quot;tab&quot;;left=23;top=20;right=568;bottom=373;edge=1;z=1&#125;)</span><br><span class="line">/*&#125;&#125;*/</span><br><span class="line"> </span><br><span class="line">frmTabPage1 = mainForm.tab.loadForm(&quot;\res\frmTabPage1.aardio&quot;);</span><br><span class="line">frmTabPage2 = mainForm.tab.loadForm(&quot;\res\frmTabPage2.aardio&quot;);</span><br><span class="line"> </span><br><span class="line">myUserInfo = &#123; </span><br><span class="line">    username = &quot;&quot; ;//frmTabPage1.editUsername.text 的值</span><br><span class="line">    passeword = &quot;&quot; ;//frmTabPage1.editPassword.text 的值</span><br><span class="line">    webSite = &quot;&quot; ;//frmTabPage2.editWebsit.text 的值</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">mainForm.show()  </span><br><span class="line">当然全局变量是所有加载的窗体可以直接访问的，例如在/res/frmTabPage1.aau中可以这样写：</span><br><span class="line">frmTabPage1.editUsername.oncommand = function(id,event)&#123;</span><br><span class="line">    if( event = 0x300/*_EN_CHANGE*/ )&#123;</span><br><span class="line">        myUserInfo.username = frmTabPage1.editUsername.text;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>方式2、公用类库的方式，例如我们新建一个用户库 叫 myUserInfo，里面的代码如下：</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">namespace myUserInfo&#123;</span><br><span class="line">    username = &quot;&quot; ;//frmTabPage1.editUsername.text 的值</span><br><span class="line">    passeword = &quot;&quot; ;//frmTabPage1.editPassword.text 的值</span><br><span class="line">    webSite = &quot;&quot; ;//frmTabPage2.editWebsit.text 的值</span><br><span class="line">&#125;</span><br><span class="line">那么在 /res/frmTabPage1.aardio 这个文件里就可以这么写，在修改文本框的时候及时更新公用的数据：</span><br><span class="line">import myUserInfo;</span><br><span class="line">frmTabPage1.editUsername.oncommand = function(id,event)&#123;</span><br><span class="line">    if( event = 0x300/*_EN_CHANGE*/ )&#123;</span><br><span class="line">        myUserInfo.username = frmTabPage1.editUsername.text;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>其他窗体要使用这个数据同样很简单，只要import myUserInfo; 就行了;</p><p>方式3、在控件值变更的时候调用 publish() 函数发布消息就行了，例如：</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">frmTabPage1.editUsername.oncommand = function(id,event)&#123;</span><br><span class="line">    if( event = 0x300/*_EN_CHANGE*/ )&#123;</span><br><span class="line">       publish(&quot;界面上的用户名被改了&quot;,frmTabPage1.editUsername.text)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>在其他窗体中就可以根据需要订阅此消息，例如：</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">subscribe(&quot;界面上的用户名被改了&quot;,function(值)&#123;</span><br><span class="line">    frmTabPage2.editUsername.text = 值</span><br><span class="line">&#125; )</span><br></pre></td></tr></table></figure>]]></content>
+        <content type="html"><![CDATA[<p>aardio多窗口交互的方法</p><p>将窗体对象赋值到全局变量，就可以在其他代码文件中直接使用了。例如主窗体我们一般这样写：<br><code>mainForm = win.form(text=&quot;使用选项卡控件&quot;;right=599;bottom=399)</code><br>注意一个程序中只有主窗体命名为 mainForm 。</p><p>但大多时候，我们应当把其他窗体对象赋值以局部变量，例如：<br><code>var frmTabPage1 = win.form(text=&quot;选项卡的子窗口&quot;;right=599;bottom=399)</code><br>上面的 var 语句声明一个局部变量 - 局部变量限制了他的作用域在定义他的语句块中生效，不能在其他文件中访问该局部变量。</p><p>实际上全局变量要少用，全局的窗体对象更应该少用，每个窗体应当保持独立性。打个比方，一个程序小象一个小世界，各个子窗口就象各个小国家，国家之间要保持一定的独立性，国家与国家之间有什么事儿要沟通 - 你不能直接随意的冲过国界跑来跑去的玩儿（大家都这样搞，就象各个窗体的控件都这样搞，程序就会变的很混乱），你得经过外交部门。这个外交部门，在我们写程序的时候来讲，我们可以用以下几种方式来实现：</p><p>方式1、直接在 main.aardio 中创建全局变量，例如 main.aardio代码如下：</p><span id="more"></span> <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">import win.ui;</span><br><span class="line">/*DSG&#123;&#123;*/</span><br><span class="line">mainForm = win.form(text=&quot;使用选项卡控件&quot;;right=599;bottom=399)</span><br><span class="line">mainForm.add(tab=&#123;cls=&quot;tab&quot;;left=23;top=20;right=568;bottom=373;edge=1;z=1&#125;)</span><br><span class="line">/*&#125;&#125;*/</span><br><span class="line"> </span><br><span class="line">frmTabPage1 = mainForm.tab.loadForm(&quot;\res\frmTabPage1.aardio&quot;);</span><br><span class="line">frmTabPage2 = mainForm.tab.loadForm(&quot;\res\frmTabPage2.aardio&quot;);</span><br><span class="line"> </span><br><span class="line">myUserInfo = &#123; </span><br><span class="line">    username = &quot;&quot; ;//frmTabPage1.editUsername.text 的值</span><br><span class="line">    passeword = &quot;&quot; ;//frmTabPage1.editPassword.text 的值</span><br><span class="line">    webSite = &quot;&quot; ;//frmTabPage2.editWebsit.text 的值</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">mainForm.show()  </span><br><span class="line">当然全局变量是所有加载的窗体可以直接访问的，例如在/res/frmTabPage1.aau中可以这样写：</span><br><span class="line">frmTabPage1.editUsername.oncommand = function(id,event)&#123;</span><br><span class="line">    if( event = 0x300/*_EN_CHANGE*/ )&#123;</span><br><span class="line">        myUserInfo.username = frmTabPage1.editUsername.text;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>方式2、公用类库的方式，例如我们新建一个用户库 叫 myUserInfo，里面的代码如下：</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">namespace myUserInfo&#123;</span><br><span class="line">    username = &quot;&quot; ;//frmTabPage1.editUsername.text 的值</span><br><span class="line">    passeword = &quot;&quot; ;//frmTabPage1.editPassword.text 的值</span><br><span class="line">    webSite = &quot;&quot; ;//frmTabPage2.editWebsit.text 的值</span><br><span class="line">&#125;</span><br><span class="line">那么在 /res/frmTabPage1.aardio 这个文件里就可以这么写，在修改文本框的时候及时更新公用的数据：</span><br><span class="line">import myUserInfo;</span><br><span class="line">frmTabPage1.editUsername.oncommand = function(id,event)&#123;</span><br><span class="line">    if( event = 0x300/*_EN_CHANGE*/ )&#123;</span><br><span class="line">        myUserInfo.username = frmTabPage1.editUsername.text;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>其他窗体要使用这个数据同样很简单，只要import myUserInfo; 就行了;</p><p>方式3、在控件值变更的时候调用 publish() 函数发布消息就行了，例如：</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">frmTabPage1.editUsername.oncommand = function(id,event)&#123;</span><br><span class="line">    if( event = 0x300/*_EN_CHANGE*/ )&#123;</span><br><span class="line">       publish(&quot;界面上的用户名被改了&quot;,frmTabPage1.editUsername.text)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>在其他窗体中就可以根据需要订阅此消息，例如：</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">subscribe(&quot;界面上的用户名被改了&quot;,function(值)&#123;</span><br><span class="line">    frmTabPage2.editUsername.text = 值</span><br><span class="line">&#125; )</span><br></pre></td></tr></table></figure><p><a href="/posts/2024/08/f47e1d33.html" title="示例代码:">示例代码</a></p>]]></content>
       
       
       <categories>
@@ -1162,7 +1353,7 @@
       <link href="/posts/2022/12/4d8c9542.html"/>
       <url>/posts/2022/12/4d8c9542.html</url>
       
-        <content type="html"><![CDATA[<p>1个可以用于微信聊天的ChatGPT机器人<br>GitHub地址：<a href="https://github.com/fuergaosi233/wechat-chatgpt">https://github.com/fuergaosi233/wechat-chatgpt</a></p><p>支持特性</p><blockquote><p>通过微信在微信上使用ChatGPT<br>支持OpenAI帐户池<br>支持使用代理登录<br>在消息接收时模拟</p></blockquote><p>我这边已经部署成功并成功运行，如有疑问可邮件联系 <a href="mailto:&#100;&#x6f;&#110;&#x67;&#55;&#48;&#54;&#64;&#103;&#x6d;&#x61;&#105;&#x6c;&#46;&#99;&#x6f;&#109;">&#100;&#x6f;&#110;&#x67;&#55;&#48;&#54;&#64;&#103;&#x6d;&#x61;&#105;&#x6c;&#46;&#99;&#x6f;&#109;</a> </p><span id="more"></span>]]></content>
+        <content type="html"><![CDATA[<p>1个可以用于微信聊天的ChatGPT机器人<br>GitHub地址：<a href="https://github.com/fuergaosi233/wechat-chatgpt">https://github.com/fuergaosi233/wechat-chatgpt</a></p><p>支持特性</p><blockquote><p>通过微信在微信上使用ChatGPT<br>支持OpenAI帐户池<br>支持使用代理登录<br>在消息接收时模拟</p></blockquote><p>我这边已经部署成功并成功运行，如有疑问可邮件联系 <a href="mailto:&#x64;&#x6f;&#110;&#x67;&#x37;&#48;&#x36;&#64;&#x67;&#109;&#x61;&#105;&#108;&#x2e;&#x63;&#111;&#109;">&#x64;&#x6f;&#110;&#x67;&#x37;&#48;&#x36;&#64;&#x67;&#109;&#x61;&#105;&#108;&#x2e;&#x63;&#111;&#109;</a> </p><span id="more"></span>]]></content>
       
       
       <categories>
@@ -2108,11 +2299,11 @@
       
         <tags>
             
-            <tag> PVC </tag>
-            
             <tag> StorageClass </tag>
             
             <tag> nfs </tag>
+            
+            <tag> PVC </tag>
             
         </tags>
       
@@ -2311,9 +2502,9 @@
             
             <tag> K8s </tag>
             
-            <tag> 存储卷 </tag>
-            
             <tag> PVC </tag>
+            
+            <tag> 存储卷 </tag>
             
         </tags>
       
