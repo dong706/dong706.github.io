@@ -4,6 +4,114 @@
   
     
     <entry>
+      <title>aardio-监视外部窗口的创建销毁</title>
+      <link href="/posts/2024/08/ba5eaa66.html"/>
+      <url>/posts/2024/08/ba5eaa66.html</url>
+      
+        <content type="html"><![CDATA[<p>监视外部窗口的创建销毁，可以使用shellhook，例如：</p><span id="more"></span><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//监视窗口创建销毁</span><br><span class="line"></span><br><span class="line">import win.ui;</span><br><span class="line">/*DSG&#123;&#123;*/</span><br><span class="line">var winform = win.form(parent=...; text=&quot;aardio Form&quot;;right=448;bottom=249 )</span><br><span class="line">winform.add(</span><br><span class="line">edit=&#123; dr=1;dl=1;bottom=239;vscroll=1;right=437;left=8;multiline=1;top=13;text=&quot;&quot;;z=1;db=1;dt=1;edge=1;cls=&quot;edit&quot; &#125;</span><br><span class="line">)</span><br><span class="line">/*&#125;&#125;*/</span><br><span class="line"></span><br><span class="line">//导入shellhook支持库</span><br><span class="line">import win.util.shellhook</span><br><span class="line"></span><br><span class="line">//创建shellhook窗口</span><br><span class="line">shellhook = win.util.shellhook(winform)</span><br><span class="line">shellhook.onShellHook=function(hshell,hwnd)&#123;</span><br><span class="line"></span><br><span class="line">    //获取线程ID,进程ID</span><br><span class="line">    var tid,pid = win.getThreadProcessId(hwnd)</span><br><span class="line">    if(tid== thread.getId())&#123;</span><br><span class="line">        /*return 如果不想临视本线程在这里退出*/</span><br><span class="line">    &#125;</span><br><span class="line">   </span><br><span class="line">    //判断钩子拦截到的消息类型</span><br><span class="line">    select(hshell ) &#123;</span><br><span class="line">        case 0x1/*_HSHELL_WINDOWCREATED*/ &#123;  </span><br><span class="line">            winform.edit.text +=   &quot;一个窗口创建&quot;+hwnd+&quot;进程ID：&quot; + pid + &quot;线程ID:&quot; +tid + &#x27;\r\n    标题:&#x27; + win.getText(hwnd) + &#x27;\r\n\r\n&#x27;</span><br><span class="line">        &#125;</span><br><span class="line">        case 0x2/*_HSHELL_WINDOWDESTROYED*/&#123;</span><br><span class="line">            winform.edit.text += &quot;一个窗口销毁&quot;+hwnd+&quot;进程ID：&quot; + pid + &quot;线程ID:&quot; +tid  + &#x27;\r\n   标题:&#x27; + win.getText(hwnd) + &#x27;\r\n\r\n&#x27;</span><br><span class="line">        &#125;   </span><br><span class="line">        case 0x4/*_HSHELL_WINDOWACTIVATED*/&#123;</span><br><span class="line">            winform.edit.text += &quot;一个窗口激活&quot;+hwnd+&quot;进程ID：&quot; + pid + &quot;线程ID:&quot; +tid  + &#x27;\r\n   标题:&#x27; + win.getText(hwnd) + &#x27;\r\n\r\n&#x27;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">     &#125;  </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">winform.show()</span><br><span class="line">win.loopMessage();</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> 客户端开发 </category>
+          
+          <category> aardio </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> aardio </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>aardio-根据DPI自动调整控件参数的方法</title>
+      <link href="/posts/2024/08/380df2d5.html"/>
+      <url>/posts/2024/08/380df2d5.html</url>
+      
+        <content type="html"><![CDATA[<p>原理：</p><p>1、根据dpiScaleX或dpiScaleY的值，计算出缩放比例。</p><p>2、在 winform.onDpiChanged 事件里，根据缩放比例，对需要调整的组件参数进行设置。</p><p>3、关键方法：winform.enableDpiScaling</p><p>示例代码：</p><span id="more"></span><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">import win.ui;</span><br><span class="line">/*DSG&#123;&#123;*/</span><br><span class="line">var winform = win.form(text=&quot;aardio form&quot;;right=759;bottom=469;composited=1)</span><br><span class="line">winform.add(</span><br><span class="line">button=&#123;cls=&quot;button&quot;;text=&quot;刷新&quot;;left=235;top=318;right=515;bottom=380;db=1;dl=1;z=2&#125;;</span><br><span class="line">custom=&#123;cls=&quot;custom&quot;;text=&quot;自定义控件&quot;;left=17;top=12;right=743;bottom=295;ah=1;aw=1;border=1;db=1;dl=1;dr=1;dt=1;edge=1;z=1&#125;</span><br><span class="line">)</span><br><span class="line">/*&#125;&#125;*/</span><br><span class="line"> </span><br><span class="line">winform.show();</span><br><span class="line"> </span><br><span class="line">import godking.egrid</span><br><span class="line">var e = godking.egrid(winform.custom)</span><br><span class="line"> </span><br><span class="line">// 下面这个函数是计算、调整的关键部分</span><br><span class="line">var rescale = function()&#123;</span><br><span class="line">var rowh = 30</span><br><span class="line">var colw = &#123;90,100,80,60,120&#125;</span><br><span class="line">var dpi =winform.dpiScaleX</span><br><span class="line">rowh *= dpi;</span><br><span class="line">for(i=1;#colw;1) colw[i] *= dpi;</span><br><span class="line">e.RowHeight=rowh</span><br><span class="line">e.setColWidth(,colw)</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">winform.onDpiChanged = function(dpiX,dpiY,rect)&#123;</span><br><span class="line">    winform.enableDpiScaling(dpiX/96,dpiY/96) </span><br><span class="line">    rescale()  // 系统dpi改变后自动调整</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">e.setText(0,1,&#123;&quot;文本型&quot;,&quot;图片型&quot;,&quot;选择型&quot;,&quot;不可编辑列表型&quot;&#125;)</span><br><span class="line">e.setText(1,&#123;1,4&#125;,&#123;&quot;第1行第1列&quot;,&quot;第1行第4列&quot;&#125;)</span><br><span class="line">e.setText(2,,&quot;全部第2行&quot;)</span><br><span class="line">e.setText(3,1,&quot;第3行第1列&quot;)</span><br><span class="line"> </span><br><span class="line">rescale(); // 软件启动，先设置一下</span><br><span class="line">winform.button.oncommand = function(id,event)&#123;</span><br><span class="line">rescale(); // 随时可以手动刷新</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">win.loopMessage();</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> 客户端开发 </category>
+          
+          <category> aardio </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> aardio </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>aadio-利用transparent制作透明的不规则窗体</title>
+      <link href="/posts/2024/08/b1ad9a8b.html"/>
+      <url>/posts/2024/08/b1ad9a8b.html</url>
+      
+        <content type="html"><![CDATA[<p>一直对transparent使用不好，最近摔了几次，稍微摸索了点出来，与大家共同分享。  </p><p>先上结果图片：  </p><p>transparent的三种使用方法，true,false,以及设置透明色。<br>前两种就不说了，主要看第三种。    </p><p>一开始我设置透明色，使用如下语句<br>winform.transparent(,0xfffff);<br>但对于很多的颜色设置总是失败（我也不知道为什么，即使前面直接用winform.bgcolor=0xffffff也失败。。。。）  </p><p>后来发现了在窗口的生成语言里也有这么一句：<br>bgcolour =   一串数字。。。<br>我试着用这个数字来填写透明色，如：<br>红色的背景，用这样的代码，winform.transparent(,255);<br>居然每次都能够成功。  </p><span id="more"></span><p>PS：不认识的颜色，可以用背景颜色的吸管取一下，再到后面的代码去查看。或者论坛里有转换颜色的工具。。。  </p><p>transparent对设置的透明色的准确性非常高，稍微偏差一点，即使只相差1点，也无法变成透明。<br>因为这一点，也吃了很多的亏。<br>开始用PS处理完存成jpg的格式，总是画面破损很严重，后来才知道jpg保存的时候，颜色会有少许失真。<br>用BMP格式（低版本的PS不支持存BMP）来保存文件效果就大为改观了。  </p><p>最后要提的是处理图片的一些技巧。<br>我尝试过效果最好的办法是，用特别的单色（将来要设置成透明，必须是唯一色），新建图层，填充后，放在图片下面作为背景。然后放大图片，用矩形工具，不断delete需要透明的部分（有斜线或曲线购置出的选区，删除时会造成周围细微变色），这样出来的效果完全可以比肩htmlayout载入的png图片。<br>总之，总体思路就是要创建一张透明部分，严格纯色的图片，这样效果会很好。  </p><p>最后上一个从网上下载的播放器的图片，来制作的例子，就是之前的图片，供大家参考，希望对大家有所帮助。  </p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">import win.ui;</span><br><span class="line">/*DSG&#123;&#123;*/</span><br><span class="line">var winform = ..win.form( image=$&quot;\res\1_110328090910_20.bmp&quot;;bottom=612;parent=...;text=&quot;aardio Form&quot;;border=&quot;none&quot;;right=681 )</span><br><span class="line">winform.add(  )</span><br><span class="line">/*&#125;&#125;*/</span><br><span class="line"></span><br><span class="line">winform.wndproc = function(hwnd,message,wParam,lParam)&#123;</span><br><span class="line">                select(message) &#123;//判断消息类型</span><br><span class="line">                  case 0x201/*_WM_LBUTTONDOWN 鼠标按下*/&#123;</span><br><span class="line">                           winform.hitCaption(); //使整个窗体可以拖动</span><br><span class="line">                  &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        //无返回值则继续调用默认回调函数</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">winform.transparent(128,5720627)</span><br><span class="line">winform.show() </span><br><span class="line">win.loopMessage();</span><br><span class="line">return winform;</span><br></pre></td></tr></table></figure><p>完整文件：<a href="http://pan.baidu.com/share/link?shareid=334709&uk=1024505407">仿播放器</a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 客户端开发 </category>
+          
+          <category> aardio </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> aardio </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>aardio-设置透明窗体说明</title>
+      <link href="/posts/2024/08/97fdbb1b.html"/>
+      <url>/posts/2024/08/97fdbb1b.html</url>
+      
+        <content type="html"><![CDATA[<p>废话不多说，直接开干！<br>窗体透明一般事plus</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">import win.ui;</span><br><span class="line">/*DSG&#123;&#123;*/</span><br><span class="line">var winform = win.form(text=&quot;透明题栏&quot;;right=286;bottom=176;border=&quot;none&quot;)</span><br><span class="line">winform.add(</span><br><span class="line">button=&#123;cls=&quot;button&quot;;text=&quot;提交&quot;;left=176;top=87;right=231;bottom=108;z=3&#125;;</span><br><span class="line">edit=&#123;cls=&quot;edit&quot;;text=&quot;Edit&quot;;left=86;top=55;right=234;bottom=76;edge=1;z=2&#125;;</span><br><span class="line">static=&#123;cls=&quot;static&quot;;text=&quot;用记名&quot;;left=37;top=56;right=109;bottom=77;transparent=1;z=1&#125;</span><br><span class="line">)</span><br><span class="line">/*&#125;&#125;*/</span><br><span class="line"></span><br><span class="line">//给窗体设置背景</span><br><span class="line">import inet.http;//加上http</span><br><span class="line">winform.image = &quot;https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fhbimg.huabanimg.com%2F1c6b595acfd6652b9a080110a0f7b6fc5a94ee33513d-qdBaTS_fw658&amp;refer=http%3A%2F%2Fhbimg.huabanimg.com&amp;app=2002&amp;size=f9999,10000&amp;q=a80&amp;n=0&amp;g=0n&amp;fmt=auto?sec=1654231490&amp;t=169f387371bd97076777e269d07668fc&quot;;</span><br><span class="line"></span><br><span class="line">//显示窗体</span><br><span class="line">winform.show()</span><br><span class="line">win.loopMessage();</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure><span id="more"></span><p>窗体透明化之后,里面的控件脱离原来的窗口显示在窗体外面之后怎么还原回去?</p><p>我建立了一个窗口,里面与一个背景色为蓝色的plus. 我设置了窗口透明度是80,然后里面的控件plus也透明化了.  </p><p>用到代码</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">winform.plus.orphanWindow();</span><br></pre></td></tr></table></figure><p>plus的父窗体为winform  </p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">win.setParent(winform.plus.hwnd,winform.hwnd);</span><br></pre></td></tr></table></figure><p>plus控件确实再一次透明化了,但是发现它的位置不是在原来的地方.<br>再设置plus相对winform位置…  </p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">var x,y = winform.plus.getPos();</span><br><span class="line">var bx,by = win.toClient(winform.hwnd,x,y)</span><br><span class="line"></span><br><span class="line">win.setParent(winform.plus.hwnd,winform.hwnd);</span><br><span class="line">winform.plus.setPos(bx,by);</span><br></pre></td></tr></table></figure><p>运行后,确实透明化在原来的地方.<br>按钮事件，可在图形编辑视图下，双击按钮快速自动生成<br>但,问题又来了. 拖动窗口发现,这个plus不是随着窗体移动相对窗口静止,而是随着移动窗口移动的更大幅度<br>看下完整代码  </p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">import win.ui;</span><br><span class="line">//设置窗体透明度</span><br><span class="line">/*DSG&#123;&#123;*/</span><br><span class="line">var winform = win.form(text=&quot;aardio form&quot;;right=759;bottom=469)</span><br><span class="line">winform.add(</span><br><span class="line">button=&#123;cls=&quot;button&quot;;text=&quot;button&quot;;left=86;top=372;right=253;bottom=429;z=3&#125;;</span><br><span class="line">button2=&#123;cls=&quot;button&quot;;text=&quot;button2&quot;;left=462;top=356;right=613;bottom=427;z=4&#125;;</span><br><span class="line">//设置透明度</span><br><span class="line">edit=&#123;cls=&quot;edit&quot;;text=&quot;白叔King&quot;;left=93;top=90;right=328;bottom=125;edge=1;font=LOGFONT(h=-21);multiline=1;z=1&#125;;</span><br><span class="line">plus=&#123;cls=&quot;plus&quot;;left=105;top=172;right=567;bottom=240;bgcolor=15780518;z=2&#125;</span><br><span class="line">)</span><br><span class="line">/*&#125;&#125;*/</span><br><span class="line"></span><br><span class="line">import console;</span><br><span class="line">console.open();</span><br><span class="line"></span><br><span class="line">winform.button2.oncommand = function(id,event)&#123;</span><br><span class="line">        //winform.msgbox( winform.button2.text );</span><br><span class="line">/*</span><br><span class="line">        console.dump(</span><br><span class="line">                win.getPos(winform.plus.hwnd,true)</span><br><span class="line">        )</span><br><span class="line">        console.dump(</span><br><span class="line">                winform.plus.getPos()</span><br><span class="line">        )</span><br><span class="line">*/</span><br><span class="line">        var x,y = winform.plus.getPos();</span><br><span class="line">        var bx,by = win.toClient(winform.hwnd,x,y)</span><br><span class="line"></span><br><span class="line">        win.setParent(winform.plus.hwnd,winform.hwnd);</span><br><span class="line">        winform.plus.setPos(bx,by);</span><br><span class="line">        </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">winform.button.oncommand = function(id,event)&#123;</span><br><span class="line">        //winform.msgbox( winform.button.text );</span><br><span class="line">        </span><br><span class="line">        winform.edit.orphanWindow();</span><br><span class="line">        winform.plus.orphanWindow();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">winform.transparent(80);</span><br><span class="line"></span><br><span class="line">winform.show() </span><br><span class="line">win.loopMessage();</span><br><span class="line"></span><br></pre></td></tr></table></figure><p>看下效果截图<br>初次运行安装对应库<br><img src="https://i-blog.csdnimg.cn/blog_migrate/23d154f6c82114d1ec600713b153fa3b.png"><br>给电脑添加透明护眼蒙版(鼠标穿透) 以上代码参考了, win.ui.mask库里的代码</p><p>其实还是可以直接用这个库来实现,上面就是为了学习</p><p>要想改变蒙版的颜色, 就把窗口背景色改一改就可以了</p><p>看代码</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">import win.ui;</span><br><span class="line">/*DSG&#123;&#123;*/</span><br><span class="line">var winform = win.form(text=&quot;aardio form&quot;;right=205;bottom=447;bgcolor=8409088;border=&quot;none&quot;)</span><br><span class="line">winform.add(</span><br><span class="line">plus=&#123;cls=&quot;plus&quot;;text=&quot;半透明写标题&quot;;left=0;top=0;right=206;bottom=31;align=&quot;left&quot;;color=16777215;dl=1;dr=1;dt=1;font=LOGFONT(h=-16);notify=1;textPadding=&#123;left=8&#125;;z=1&#125;</span><br><span class="line">)</span><br><span class="line">/*&#125;&#125;*/</span><br><span class="line"> </span><br><span class="line">winform.plus.background = 0x33000812;</span><br><span class="line">winform.transparent(60)</span><br><span class="line">winform.plus.orphanWindow(true)</span><br><span class="line">winform.plus.onMouseDown = function(wParam,lParam)&#123;</span><br><span class="line">    winform.hitCaption()</span><br><span class="line">     </span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">import win.ui.shadow</span><br><span class="line">win.ui.shadow(winform);</span><br><span class="line"> </span><br><span class="line">winform.show() </span><br><span class="line">win.loopMessage();</span><br></pre></td></tr></table></figure><p>可以设置尺寸，透明度<br>看下效果<br><img src="https://i-blog.csdnimg.cn/blog_migrate/173b9cfb433c75e9f2df520c1e7453a7.png"><br>原文链接：<a href="https://blog.csdn.net/weixin_37254196/article/details/124569117">https://blog.csdn.net/weixin_37254196/article/details/124569117</a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 客户端开发 </category>
+          
+          <category> aardio </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> aardio </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>aardio-父窗口与其模态窗口相互通信演示</title>
       <link href="/posts/2024/08/f47e1d33.html"/>
       <url>/posts/2024/08/f47e1d33.html</url>
@@ -1353,7 +1461,7 @@
       <link href="/posts/2022/12/4d8c9542.html"/>
       <url>/posts/2022/12/4d8c9542.html</url>
       
-        <content type="html"><![CDATA[<p>1个可以用于微信聊天的ChatGPT机器人<br>GitHub地址：<a href="https://github.com/fuergaosi233/wechat-chatgpt">https://github.com/fuergaosi233/wechat-chatgpt</a></p><p>支持特性</p><blockquote><p>通过微信在微信上使用ChatGPT<br>支持OpenAI帐户池<br>支持使用代理登录<br>在消息接收时模拟</p></blockquote><p>我这边已经部署成功并成功运行，如有疑问可邮件联系 <a href="mailto:&#x64;&#x6f;&#110;&#x67;&#x37;&#48;&#x36;&#64;&#x67;&#109;&#x61;&#105;&#108;&#x2e;&#x63;&#111;&#109;">&#x64;&#x6f;&#110;&#x67;&#x37;&#48;&#x36;&#64;&#x67;&#109;&#x61;&#105;&#108;&#x2e;&#x63;&#111;&#109;</a> </p><span id="more"></span>]]></content>
+        <content type="html"><![CDATA[<p>1个可以用于微信聊天的ChatGPT机器人<br>GitHub地址：<a href="https://github.com/fuergaosi233/wechat-chatgpt">https://github.com/fuergaosi233/wechat-chatgpt</a></p><p>支持特性</p><blockquote><p>通过微信在微信上使用ChatGPT<br>支持OpenAI帐户池<br>支持使用代理登录<br>在消息接收时模拟</p></blockquote><p>我这边已经部署成功并成功运行，如有疑问可邮件联系 <a href="mailto:&#100;&#111;&#x6e;&#103;&#x37;&#48;&#54;&#64;&#x67;&#109;&#x61;&#105;&#x6c;&#x2e;&#99;&#x6f;&#x6d;">&#100;&#111;&#x6e;&#103;&#x37;&#48;&#54;&#64;&#x67;&#109;&#x61;&#105;&#x6c;&#x2e;&#99;&#x6f;&#x6d;</a> </p><span id="more"></span>]]></content>
       
       
       <categories>
