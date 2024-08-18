@@ -4,6 +4,154 @@
   
     
     <entry>
+      <title>aardio-让Button按钮实现[单击]和[长按]功能</title>
+      <link href="/posts/2024/08/46ae9d4b.html"/>
+      <url>/posts/2024/08/46ae9d4b.html</url>
+      
+        <content type="html"><![CDATA[<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">import win.ui;</span><br><span class="line">tick = 0;</span><br><span class="line">/*DSG&#123;&#123;*/</span><br><span class="line">var winform = win.form(text=&quot;aardio form&quot;;right=759;bottom=469)</span><br><span class="line">winform.add(</span><br><span class="line">button=&#123;cls=&quot;button&quot;;text=&quot;button&quot;;left=117;top=84;right=229;bottom=142;z=1&#125;;</span><br><span class="line">static=&#123;cls=&quot;static&quot;;text=&quot;static&quot;;left=83;top=187;right=315;bottom=229;transparent=1;z=2&#125;</span><br><span class="line">)</span><br><span class="line">/*&#125;&#125;*/</span><br><span class="line"></span><br><span class="line">winform.button.wndproc = function(hwnd,message,wParam,lParam)&#123;</span><br><span class="line">        if(message == 0x0201/*_WM_LBUTTONDOWN*/)&#123;</span><br><span class="line">                winform.static.text = &quot;按下鼠标&quot;;</span><br><span class="line">                tick = time.tick();</span><br><span class="line">        &#125;</span><br><span class="line">        if(message == 0x0202/*_WM_LBUTTONUP*/)&#123;</span><br><span class="line">                winform.static.text = &quot;放开鼠标&quot;;</span><br><span class="line">                jg = time.tick() - tick;</span><br><span class="line">                if(jg &gt; 300)&#123;</span><br><span class="line">                        winform.static.text = &quot;长按。ms:&quot; ++ jg ;        </span><br><span class="line">                &#125;else &#123;</span><br><span class="line">                        winform.static.text = &quot;单击。ms:&quot; ++ jg;        </span><br><span class="line">                        &#125;        </span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">winform.show() </span><br><span class="line">win.loopMessage();</span><br></pre></td></tr></table></figure><span id="more"></span>]]></content>
+      
+      
+      <categories>
+          
+          <category> 客户端开发 </category>
+          
+          <category> aardio </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> aardio </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>aardio-如何获取static控件中文字的真实宽度？</title>
+      <link href="/posts/2024/08/ed0dda3a.html"/>
+      <url>/posts/2024/08/ed0dda3a.html</url>
+      
+        <content type="html"><![CDATA[<p>在窗体上添加了一个static文本控件，通过代码设置控件text值，但由于控件是固定宽度，导致文本过长则无法显示完整文字，想通过获取真实文字的宽度来调整static的宽度，以达到完整显示文字的目的。</p><ol><li><p>不需要搞这么复杂，把static拖长到足够容纳文本为止，static是透明的，没必要去动态伸缩自己的长度。  </p></li><li><p>并没有GetTextExtent这个API函数，这是C++里的函数，API一般不会傻到在返回值里写结构体，他调用的API是 ::Gdi32.GetTextExtentPoint32  </p></li></ol><p>API一般不需要声明，直接用就可以，例如：</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">var r,size = ::Gdi32.GetTextExtentPoint32(dc</span><br><span class="line">        ,&quot;待检查文本&quot;</span><br><span class="line">        ,string.len(&quot;待检查文本&quot;),</span><br><span class="line">        ::SIZE()</span><br><span class="line">        );</span><br></pre></td></tr></table></figure><span id="more"></span>]]></content>
+      
+      
+      <categories>
+          
+          <category> 客户端发开发 </category>
+          
+          <category> aardio </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> aardio </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>aardio-悬浮窗体库</title>
+      <link href="/posts/2024/08/94c379c4.html"/>
+      <url>/posts/2024/08/94c379c4.html</url>
+      
+        <content type="html"><![CDATA[<p>写了个库，就像很多软件都使用悬浮窗体基本框架，其实还可以实现一些如：利用图片生成异形窗体、透明窗体之类。</p><span id="more"></span><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//悬浮窗口</span><br><span class="line">/************************************</span><br><span class="line">Author      : wudijushi</span><br><span class="line">Date        : 2011.01.09</span><br><span class="line">************************************/</span><br><span class="line"></span><br><span class="line">namespace win.util;</span><br><span class="line"></span><br><span class="line">import win.ui;</span><br><span class="line">import gdip;</span><br><span class="line">import gdip.bitmap;</span><br><span class="line"></span><br><span class="line">class  float&#123;</span><br><span class="line">    ctor( parentwinform, linkimage, shownow, tab)&#123;</span><br><span class="line">    if(!tab)&#123; arg = &#123;bottom=50;right=50;imgPathWnd=false;color=null&#125;;  &#125;</span><br><span class="line">    else &#123; arg = tab; &#125;</span><br><span class="line">   </span><br><span class="line">    this.winform = ..win.form(parent=parentwinform; exmode=&quot;none&quot;;title=false;min=false;max=false;</span><br><span class="line">                                sysmenu=false;image=linkimage;border=&quot;none&quot;;bottom=arg[&quot;bottom&quot;];right=arg[&quot;right&quot;];mode=&quot;popup&quot; );</span><br><span class="line">    this.winform.add(  );</span><br><span class="line">   </span><br><span class="line">    //成员变量</span><br><span class="line">    this.hWnd = this.winform.hwnd;</span><br><span class="line">   </span><br><span class="line">    //窗体消息</span><br><span class="line">    this.winform.wndproc = function(hwnd,message,wparam,lparam)&#123;</span><br><span class="line">        select(message) &#123;//判断消息类型</span><br><span class="line">            case 0x10/*_WCLOSE窗口关闭消息*/&#123;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">            case 0x2/*_WDESTROY*/&#123;</span><br><span class="line">                //释放区域对象</span><br><span class="line">                if( this.hRgn)&#123;</span><br><span class="line">                    ::DeleteObject(topointer(this.hRgn));</span><br><span class="line">                    this.hRgn = null;</span><br><span class="line">                &#125;</span><br><span class="line">                //释放位图相关对象</span><br><span class="line">                if ( this.hMemDC)&#123;</span><br><span class="line">                    ::SelectObject(this.hMemDC, this.hOldBmp);</span><br><span class="line">                    ::DeleteDC(topointer(this.hMemDC));</span><br><span class="line">                    this.hMemDC = null;</span><br><span class="line">                    this.hOldBmp = null;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            case 0x14/*_WERASEBKGND*/&#123;  </span><br><span class="line">                    if(this.hMemDC)&#123;</span><br><span class="line">                        var rect = ::RECT();</span><br><span class="line">                        ::GetClientRect(this.hWnd, rect);</span><br><span class="line">                        var hdc = ::GetDC(this.hWnd);</span><br><span class="line">                        ::BitBlt(hdc, 0, 0, rect.right, rect.bottom, this.hMemDC, 0, 0, 0xCC0020/*_SRCCOPY*/);</span><br><span class="line">                        ::ReleaseDC(this.hWnd, hdc);</span><br><span class="line">                        return true;</span><br><span class="line">                    &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            case 0x205/*_WRBUTTONUP 鼠标右键弹起，弹出菜单*/begin</span><br><span class="line">                var x,y = ::LOWORD(lparam), ::HIWORD(lparam)</span><br><span class="line">                if( this.popmenu ) //如果用户定义了弹出菜单</span><br><span class="line">                    this.popmenu.popup(x,y);//弹出菜单</span><br><span class="line">            end</span><br><span class="line">            case 0x201/*_WLBUTTONDOWN*/&#123;</span><br><span class="line">                this.winform.hitCaption();</span><br><span class="line">            &#125;</span><br><span class="line">            case 0x203/*_WLBUTTONDBLCLK*/&#123;</span><br><span class="line">                ..win.show(this.winform.parent.hwnd,!..win.isVisible( this.winform.parent.hwnd ));</span><br><span class="line">            &#125;</span><br><span class="line">            else&#123;</span><br><span class="line">               </span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    //无返回值则继续调用默认回调函数</span><br><span class="line">    &#125;</span><br><span class="line">   </span><br><span class="line">    //悬浮置顶</span><br><span class="line">    ..win.setTopmost( this.hWnd );</span><br><span class="line">    //调整位置</span><br><span class="line">    ..win.setPos( this.hWnd,</span><br><span class="line">                ::GetSystemMetrics(0x10/*_SCXFULLSCREEN*/) - (this.winform.rect.right - this.winform.rect.left) - 80,</span><br><span class="line">                ::GetSystemMetrics(0x11/*_SCYFULLSCREEN*/) /10,</span><br><span class="line">                this.winform.rect.right - this.winform.rect.left,</span><br><span class="line">                this.winform.rect.right - this.winform.rect.left</span><br><span class="line">    );</span><br><span class="line">  //图片路径画窗体</span><br><span class="line">    if( arg[&quot;color&quot;] !=null )&#123;</span><br><span class="line">            //创建一个内存兼容DC</span><br><span class="line">            var hdc          = ::GetDC( this.hWnd );</span><br><span class="line">            this.hMemDC   := ::CreateCompatibleDC( hdc );</span><br><span class="line">            ::ReleaseDC(this.hWnd, hdc);</span><br><span class="line">            //将内存DC和位图关联</span><br><span class="line">            this.hOldBmp    := ::SelectObject(this.hMemDC, this.winform.hBkbitmap);</span><br><span class="line">            //根据位图生成区域对象</span><br><span class="line">            //循环中用到的临时变量</span><br><span class="line">            var hRgn = null;</span><br><span class="line">            var hRgnTemp = null;</span><br><span class="line">            //循环检测位图，将非透明点增加到最终区域。</span><br><span class="line">            var img = ..gdip.bitmap(this.winform.image);</span><br><span class="line">            for(x=0; img.width-1; 1)&#123;</span><br><span class="line">                for(y=0; img.height-1; 1)&#123;</span><br><span class="line">                    var cr = ::GetPixel(this.hMemDC, x, y);</span><br><span class="line">                    if (cr != arg[&quot;color&quot;])&#123;        </span><br><span class="line">                        hRgnTemp = CreateRectRgn(x, y, x+1, y+1);</span><br><span class="line">                        if (hRgn)&#123;</span><br><span class="line">                            CombineRgn(hRgn, hRgn, hRgnTemp, 0x2/*_RGN_OR*/);</span><br><span class="line">                            ::DeleteObject(topointer(hRgnTemp));</span><br><span class="line">                        &#125;</span><br><span class="line">                        else&#123;</span><br><span class="line">                            hRgn = hRgnTemp;</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            this.hRgn := hRgn;</span><br><span class="line">            //将区域设置到窗体</span><br><span class="line">            SetWindowRgn(this.hWnd, this.hRgn, 0x1/*_TRUE*/);</span><br><span class="line">    &#125;</span><br><span class="line">    //显示窗口</span><br><span class="line">    if( shownow )&#123; this.winform.show() &#125;</span><br><span class="line">   </span><br><span class="line">   &#125;  //end ctor</span><br><span class="line">   </span><br><span class="line">    //成员函数</span><br><span class="line">    showme = function( flag )&#123;</span><br><span class="line">        if( flag )&#123;</span><br><span class="line">            ..win.show(this.hWnd, flag);</span><br><span class="line">        &#125;</span><br><span class="line">      else &#123;</span><br><span class="line">            ..win.show(this.hWnd, flag);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">namespace float&#123;</span><br><span class="line">    SetWindowRgn = ::User32.api(&quot;SetWindowRgn&quot;,&quot;int(int hWnd,int hRgn,int bRedraw)&quot;);</span><br><span class="line">    GetObjectAPI = ::Gdi32.api(&quot;GetObjectA&quot;,&quot;int(int hObject,int nCount,pointer&amp; lpObject)&quot;);</span><br><span class="line">    CreateRectRgn = ::Gdi32.api(&quot;CreateRectRgn&quot;,&quot;int(int X1,int Y1,int X2,int Y2)&quot;);</span><br><span class="line">    CombineRgn = ::Gdi32.api(&quot;CombineRgn&quot;,&quot;int(int hDestRgn,int hSrcRgn1,int hSrcRgn2,int nCombineMode)&quot;);      </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">/*intellisense()</span><br><span class="line">win.util.float(.(parentwinform, linkimage, shownow(true|false),&#123;可选项&#125; ) =&#123;可选项&#125;\n&#123;buttom=50;\nright=50;\ncolor= gdi.RGB( 0, 0, 0)若传入，侧使你指定的颜色透明，但是请确保是.bmp后缀的图片做背景！ &#125;</span><br><span class="line">!float.showme(.(true显示 / false隐藏)</span><br><span class="line">!float.hWnd = 悬浮窗句柄</span><br><span class="line">!float.winform = 悬浮窗体对象</span><br><span class="line">!float.popmenu = 右键菜单</span><br><span class="line">?win.util.float = !float.</span><br><span class="line">end intellisense*/</span><br></pre></td></tr></table></figure><p>测试代码:</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">大家这样进行测试：</span><br><span class="line">import win.util;</span><br><span class="line">var fw = win.utill.float.createfloatwindow(winform,$&quot;c:\1.jpg&quot;,true);  //传入张50*50的图片，或根据智能提示自定义悬浮窗体的大小</span><br></pre></td></tr></table></figure><p>原文链接：<a href="https://bbs.aardio.com/forum.php?mod=viewthread&amp;tid=732">https://bbs.aardio.com/forum.php?mod=viewthread&amp;tid=732</a></p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>aardio-listbox简单判断添加内容是否重复</title>
+      <link href="/posts/2024/08/7c30a260.html"/>
+      <url>/posts/2024/08/7c30a260.html</url>
+      
+        <content type="html"><![CDATA[<p>1、把“添加”按钮的Z序调整到“最后面”，在编辑框输入内容后，直接按回车就添加；<br>2、按回车后，编辑框清空，以便下次输入。（重复与不重复都清空edit）<br>源代码:</p><span id="more"></span><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">import win.ui;</span><br><span class="line">/*DSG&#123;&#123;*/</span><br><span class="line">winform = ..win.form( bottom=335;parent=...;right=402;text=&quot;aardio Form&quot; )</span><br><span class="line">winform.add(</span><br><span class="line">listbox2=&#123; bgcolor=16777215;bottom=322;right=388;left=216;top=93;z=4;vscroll=1;</span><br><span class="line">items=&#123;  &#125;;edge=1;cls=&quot;listbox&quot; &#125;;</span><br><span class="line">static3=&#123; bottom=30;text=&quot;要添加的内容写这里&quot;;left=16;right=144;top=11;z=7;transparent=1;cls=&quot;static&quot; &#125;;</span><br><span class="line">edit=&#123; bottom=61;right=205;left=14;top=31;z=2;edge=1;cls=&quot;edit&quot; &#125;;</span><br><span class="line">button=&#123; bottom=61;right=315;left=223;top=28;z=1;text=&quot;添加&quot;;cls=&quot;button&quot; &#125;;</span><br><span class="line">static=&#123; bottom=89;right=144;left=14;text=&quot;现有内容&quot;;top=68;transparent=1;z=5;cls=&quot;static&quot; &#125;;</span><br><span class="line">listbox=&#123; bgcolor=16777215;bottom=325;right=206;left=14;top=93;z=3;vscroll=1;</span><br><span class="line">items=&#123;  &#125;;edge=1;cls=&quot;listbox&quot; &#125;;</span><br><span class="line">static2=&#123; bottom=88;right=350;left=221;top=68;z=6;notify=1;text=&quot;状态&quot;;transparent=1;cls=&quot;static&quot; &#125;</span><br><span class="line">)</span><br><span class="line">/*&#125;&#125;*/</span><br><span class="line"></span><br><span class="line">winform.button.oncommand = function(id,event)&#123;</span><br><span class="line">    //winform.msgbox( winform.button.text );</span><br><span class="line">    var str =winform.edit.text ;</span><br><span class="line">    if(#str&gt;0)&#123;//判断输入数据为非空</span><br><span class="line">        chong=true//定义名为chong 值为真的变量</span><br><span class="line">        for(i=1;winform.listbox.count;1)&#123;    //判断是否出现重复</span><br><span class="line">            if(str==winform.listbox.getItemText(i))&#123;</span><br><span class="line">                chong=false//出现重复时将chong的值改为false</span><br><span class="line">                winform.listbox2.add(&quot;出现重复&quot;,-1)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        if(chong)&#123;    //如果没有重复将数据写入</span><br><span class="line">            winform.listbox.add(str,-1)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    winform.edit.text=&quot;&quot;</span><br><span class="line">&#125;</span><br><span class="line">            </span><br><span class="line"></span><br><span class="line">winform.show()</span><br><span class="line">win.loopMessage();</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> 客户端开发 </category>
+          
+          <category> aardio </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> aardio </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>aardio-如何使子窗口不在任务栏显示</title>
+      <link href="/posts/2024/08/1d827891.html"/>
+      <url>/posts/2024/08/1d827891.html</url>
+      
+        <content type="html"><![CDATA[<p>aardio生成父子窗口非常方便，但是如果打开子窗口也在任务栏显示<br>如果打开多个子窗口，那任务栏就多了一堆图标，这样就不美观了  </p><p>只显示父窗口图标，解决方法很简单：  </p><p>1.指定子窗口的父窗口句柄（拖动文件到窗口自动生成代码已经有了)</p><p>2.子窗口在设计视图把这些属性修改：<br>样式：popup<br>扩展样式：none  </p><span id="more"></span>]]></content>
+      
+      
+      <categories>
+          
+          <category> 客户端开发 </category>
+          
+          <category> aardio </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> aardio </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>aardio-如何给关闭窗体加上确认条件呢?</title>
+      <link href="/posts/2024/08/e8380b4.html"/>
+      <url>/posts/2024/08/e8380b4.html</url>
+      
+        <content type="html"><![CDATA[<p>源代码:</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">import win.ui;</span><br><span class="line">/*DSG&#123;&#123;*/</span><br><span class="line">var winform = win.form(parent=...; text=&quot;aardio Form&quot;;right=349;bottom=249 )</span><br><span class="line">winform.add(  )</span><br><span class="line">/*&#125;&#125;*/</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">winform.show()</span><br><span class="line"></span><br><span class="line">winform.wndproc = function(hwnd,message,wparam,lparam)&#123;</span><br><span class="line">    select(message) &#123;//判断消息类型</span><br><span class="line">        case 0x10/*_WM_CLOSE窗口关闭消息*/&#123;</span><br><span class="line">            if(win.msgboxTest(&quot;你要关闭窗口么?&quot;,&quot;询问&quot;)=false)&#123;</span><br><span class="line">                return wparam;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">    //无返回值则继续调用默认回调函数</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">win.loopMessage();</span><br><span class="line">return winform;</span><br></pre></td></tr></table></figure><span id="more"></span>]]></content>
+      
+      
+      <categories>
+          
+          <category> 客户端开发 </category>
+          
+          <category> aardio </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> aardio </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>aardio-多窗口：登录窗口+主窗口示例</title>
       <link href="/posts/2024/08/377d6c84.html"/>
       <url>/posts/2024/08/377d6c84.html</url>
@@ -1542,7 +1690,7 @@
       <link href="/posts/2022/12/4d8c9542.html"/>
       <url>/posts/2022/12/4d8c9542.html</url>
       
-        <content type="html"><![CDATA[<p>1个可以用于微信聊天的ChatGPT机器人<br>GitHub地址：<a href="https://github.com/fuergaosi233/wechat-chatgpt">https://github.com/fuergaosi233/wechat-chatgpt</a></p><p>支持特性</p><blockquote><p>通过微信在微信上使用ChatGPT<br>支持OpenAI帐户池<br>支持使用代理登录<br>在消息接收时模拟</p></blockquote><p>我这边已经部署成功并成功运行，如有疑问可邮件联系 <a href="mailto:&#x64;&#111;&#x6e;&#x67;&#55;&#48;&#54;&#x40;&#103;&#109;&#97;&#105;&#x6c;&#x2e;&#99;&#111;&#x6d;">&#x64;&#111;&#x6e;&#x67;&#55;&#48;&#54;&#x40;&#103;&#109;&#97;&#105;&#x6c;&#x2e;&#99;&#111;&#x6d;</a> </p><span id="more"></span>]]></content>
+        <content type="html"><![CDATA[<p>1个可以用于微信聊天的ChatGPT机器人<br>GitHub地址：<a href="https://github.com/fuergaosi233/wechat-chatgpt">https://github.com/fuergaosi233/wechat-chatgpt</a></p><p>支持特性</p><blockquote><p>通过微信在微信上使用ChatGPT<br>支持OpenAI帐户池<br>支持使用代理登录<br>在消息接收时模拟</p></blockquote><p>我这边已经部署成功并成功运行，如有疑问可邮件联系 <a href="mailto:&#x64;&#111;&#110;&#x67;&#x37;&#x30;&#x36;&#64;&#x67;&#109;&#97;&#x69;&#108;&#46;&#x63;&#x6f;&#109;">&#x64;&#111;&#110;&#x67;&#x37;&#x30;&#x36;&#64;&#x67;&#109;&#97;&#x69;&#108;&#46;&#x63;&#x6f;&#109;</a> </p><span id="more"></span>]]></content>
       
       
       <categories>
@@ -3531,9 +3679,9 @@
       
         <tags>
             
-            <tag> Node </tag>
-            
             <tag> Hexo </tag>
+            
+            <tag> Node </tag>
             
             <tag> Git </tag>
             
