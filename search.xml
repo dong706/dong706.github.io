@@ -4,6 +4,87 @@
   
     
     <entry>
+      <title>aardio-多窗口：登录窗口+主窗口示例</title>
+      <link href="/posts/2024/08/377d6c84.html"/>
+      <url>/posts/2024/08/377d6c84.html</url>
+      
+        <content type="html"><![CDATA[<p>程序功能和流程我简单说一下：<br>1、运行程序 弹出登录窗口要求输入用户名和密码同时主窗口不显示。<br>2、点击登录窗口中的取消键后关闭登录窗口，退出程序。<br>3、输入用户名、密码后验证用户名和密码(本例中用户名为：123，密码为：456)。如果验证不通过则弹出对话框提示用户名密码不对。如果通过验证，则关闭登录窗口，显示主窗口，并在主窗口上显示登录成功的字样。<br>初版代码如下（<strong>注意：该代码有一个重大逻辑错误，正确代码继续往下看</strong>）：</p><span id="more"></span><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">import win.ui;</span><br><span class="line">/*DSG&#123;&#123;*/</span><br><span class="line">var mainform = ..win.form( mode=&quot;popup&quot;;right=599;bottom=399;parent=...;text=&quot;主窗口&quot;;border=&quot;dialog frame&quot; )</span><br><span class="line">mainform.add( </span><br><span class="line">static=&#123; bottom=165;right=402;left=144;top=85;z=1;transparent=1;cls=&quot;static&quot; &#125;</span><br><span class="line">)</span><br><span class="line">/*&#125;&#125;*/</span><br><span class="line"></span><br><span class="line">//登录窗口代码</span><br><span class="line">var loginform = ..win.form( text=&quot;登录窗口&quot;;right=355;bottom=208;parent=...;mode=&quot;popup&quot;;border=&quot;dialog frame&quot;;sysmenu=false )</span><br><span class="line">loginform.add( </span><br><span class="line">button2=&#123; bottom=183;text=&quot;取消&quot;;left=189;top=152;z=6;right=262;cls=&quot;button&quot; &#125;;</span><br><span class="line">edit=&#123; bottom=73;right=253;left=111;top=46;z=3;edge=1;cls=&quot;edit&quot; &#125;;</span><br><span class="line">button=&#123; bottom=185;text=&quot;登录&quot;;left=88;top=153;z=5;right=162;cls=&quot;button&quot; &#125;;</span><br><span class="line">static=&#123; bottom=70;right=120;left=62;top=51;z=1;transparent=1;text=&quot;用户名：&quot;;cls=&quot;static&quot; &#125;;</span><br><span class="line">edit2=&#123; bottom=123;right=252;left=112;multiline=1;top=92;z=4;password=1;edge=1;cls=&quot;edit&quot; &#125;;</span><br><span class="line">static2=&#123; bottom=130;right=161;left=63;top=97;z=2;transparent=1;text=&quot;密 码：&quot;;cls=&quot;static&quot; &#125;</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">loginform.button.oncommand = function(id,event)&#123;</span><br><span class="line">if(loginform.edit.text == &quot;123&quot; and loginform.edit2.text == &quot;456&quot;)&#123;</span><br><span class="line">mainform.static.text = &quot;登录成功。&quot;;</span><br><span class="line">mainform.show(); //主窗口显示</span><br><span class="line">loginform.close();//登录窗口关闭 </span><br><span class="line">&#125;else&#123;</span><br><span class="line">win.msgbox(&quot;用户名密码不正确&quot;,&quot;不对&quot;);</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">loginform.button2.oncommand = function(id,event)&#123;</span><br><span class="line">loginform.close(); //关闭窗口退出程序</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">loginform.show(); //显示登录窗口</span><br><span class="line">win.loopMessage();</span><br></pre></td></tr></table></figure><p><strong>2013.03.23 补充：重要提示：</strong><br>这个程序实例有一个非常重大的逻辑错误。<br>昨天我在论坛里逛的时候发现一个在很早以前就发布的一个登陆窗口示例，地址：<a href="http://bbs.aardio.com/thread-2665-1-1.html">http://bbs.aardio.com/thread-2665-1-1.html</a> 我的登陆窗口实现的思路跟这个示例是相同的。这个帖子中有这样一个讨论：当停留在登陆窗口,不登陆,用工具遍历窗口,查到主窗口句柄,显示主窗口,就可以绕过登陆窗口,直接进入主窗口!<br>绕过登陆窗口的代码如下：</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">import winex;</span><br><span class="line"></span><br><span class="line">var hwnd=winex.find(&quot;AAU_FORM&quot;,&quot;主窗口&quot;）</span><br><span class="line"></span><br><span class="line">win.show(hwnd);</span><br><span class="line">win.loopMessage();</span><br></pre></td></tr></table></figure><p>我自己试了一下，这段代码确实能绕过登陆窗口把主窗口调用显示出来。  这段代码简直就是黑客必备代码啊！  </p><p>于是我对代码做了修改，解决这个问题的思路是把主窗口的“声明”和“构建”放到验证用户正确后才执行。也就是放到：if(loginform.edit.text == “123” and loginform.edit2.text == “456”){ 这句后面。修改后的完整代码如下：</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">import win.ui;</span><br><span class="line"></span><br><span class="line">var loginform = ..win.form( sysmenu=false;text=&quot;登录窗口&quot;;bottom=208;parent=...;right=355;border=&quot;dialog frame&quot;;mode=&quot;popup&quot; )</span><br><span class="line">loginform.add( </span><br><span class="line">button2=&#123; bottom=183;right=262;left=189;top=152;z=6;text=&quot;取消&quot;;cls=&quot;button&quot; &#125;;</span><br><span class="line">edit=&#123; bottom=73;right=253;left=111;top=46;z=3;edge=1;cls=&quot;edit&quot; &#125;;</span><br><span class="line">button=&#123; bottom=185;right=162;left=88;top=153;z=5;text=&quot;登录&quot;;cls=&quot;button&quot; &#125;;</span><br><span class="line">static=&#123; bottom=70;text=&quot;用户名：&quot;;left=62;right=120;top=51;z=1;transparent=1;cls=&quot;static&quot; &#125;;</span><br><span class="line">edit2=&#123; password=1;bottom=123;right=252;left=112;multiline=1;top=92;z=4;edge=1;cls=&quot;edit&quot; &#125;;</span><br><span class="line">static2=&#123; bottom=130;text=&quot;密 码：&quot;;left=63;right=161;top=97;z=2;transparent=1;cls=&quot;static&quot; &#125;</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">loginform.button.oncommand = function(id,event)&#123;</span><br><span class="line">if(loginform.edit.text == &quot;123&quot; and loginform.edit2.text == &quot;456&quot;)&#123;</span><br><span class="line">var mainform = ..win.form( mode=&quot;popup&quot;;right=599;bottom=399;text=&quot;主窗口&quot;;border=&quot;dialog frame&quot; )</span><br><span class="line">mainform.add( </span><br><span class="line">static=&#123; bottom=165;right=402;left=144;top=85;z=1;transparent=1;cls=&quot;static&quot; &#125;</span><br><span class="line">)</span><br><span class="line">mainform.static.text = &quot;登录成功。&quot;;</span><br><span class="line">mainform.show(); //主窗口显示</span><br><span class="line">loginform.close();//登录窗口关闭 </span><br><span class="line">&#125;else&#123;</span><br><span class="line">win.msgbox(&quot;用户名密码不正确&quot;,&quot;不对&quot;);</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">loginform.button2.oncommand = function(id,event)&#123;</span><br><span class="line">loginform.close(); //关闭窗口退出程序</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">loginform.show(); //显示登录窗口</span><br><span class="line">win.loopMessage();</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> 客户端开发 </category>
+          
+          <category> aardio </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> aardio </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>aardio-多个文本框内容批量清空方法</title>
+      <link href="/posts/2024/08/4f7bba5f.html"/>
+      <url>/posts/2024/08/4f7bba5f.html</url>
+      
+        <content type="html"><![CDATA[<p>不多说，直接上代码：</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">import win.ui;</span><br><span class="line">/*DSG&#123;&#123;*/</span><br><span class="line">var winform = win.form(text=&quot;aardio form&quot;;right=426;bottom=118)</span><br><span class="line">winform.add(</span><br><span class="line">button=&#123;cls=&quot;button&quot;;text=&quot;清空文本框&quot;;left=168;top=71;right=244;bottom=105;z=5&#125;;</span><br><span class="line">edit1=&#123;cls=&quot;edit&quot;;text=&quot;edit1&quot;;left=79;top=31;right=144;bottom=57;edge=1;z=1&#125;;</span><br><span class="line">edit2=&#123;cls=&quot;edit&quot;;text=&quot;edit2&quot;;left=163;top=31;right=228;bottom=57;edge=1;z=2&#125;;</span><br><span class="line">edit3=&#123;cls=&quot;edit&quot;;text=&quot;edit3&quot;;left=238;top=31;right=303;bottom=57;edge=1;z=3&#125;;</span><br><span class="line">edit4=&#123;cls=&quot;edit&quot;;text=&quot;edit4&quot;;left=336;top=31;right=401;bottom=57;edge=1;z=4&#125;</span><br><span class="line">)</span><br><span class="line">/*&#125;&#125;*/</span><br><span class="line"></span><br><span class="line">//edit 加入数组</span><br><span class="line">var tab=&#123;winform.edit1;winform.edit2;winform.edit3;winform.edit4&#125;</span><br><span class="line"></span><br><span class="line">winform.button.oncommand = function(id,event)&#123;</span><br><span class="line">//winform.msgbox( winform.button.text );</span><br><span class="line">for(i=1;4;1)&#123;</span><br><span class="line">tab[i].text=&quot;&quot;;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">winform.show() </span><br><span class="line">win.loopMessage();</span><br></pre></td></tr></table></figure><span id="more"></span>]]></content>
+      
+      
+      <categories>
+          
+          <category> 客户端开发 </category>
+          
+          <category> aardio </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> aardio </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>aardio-判断文本编辑框控件edit的文本内容是否已修改</title>
+      <link href="/posts/2024/08/96e66e63.html"/>
+      <url>/posts/2024/08/96e66e63.html</url>
+      
+        <content type="html"><![CDATA[<p>只要增加或减少了字符，都会返回true，即使是把增加的内容又删除了与原内容没变。<br>适用于判断文档是否需要保存。</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">import win.ui;</span><br><span class="line">/*DSG&#123;&#123;*/</span><br><span class="line">var winform = win.form(text=&quot;aardio基本控件编程演示范例&quot;;right=297;bottom=231)</span><br><span class="line">winform.add(</span><br><span class="line">button=&#123;cls=&quot;button&quot;;text=&quot;文本内容是否已修改&quot;;left=67;top=171;right=247;bottom=205;z=2&#125;;</span><br><span class="line">edit=&#123;cls=&quot;edit&quot;;text=&quot;简码编程www.jianma123.com&quot;;left=15;top=15;right=283;bottom=152;autohscroll=false;edge=1;multiline=1;vscroll=1;z=1&#125;</span><br><span class="line">)</span><br><span class="line">/*&#125;&#125;*/</span><br><span class="line"></span><br><span class="line">winform.button.oncommand = function(id,event)&#123;</span><br><span class="line">    winform.msgbox(winform.edit.modified,&quot;是否已修改:&quot;);//文本内容是否已修改</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">winform.show() </span><br><span class="line">win.loopMessage();</span><br></pre></td></tr></table></figure><span id="more"></span>]]></content>
+      
+      
+      <categories>
+          
+          <category> 客户端开发 </category>
+          
+          <category> aardio </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> aardio </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>aardio-监视外部窗口的创建销毁</title>
       <link href="/posts/2024/08/ba5eaa66.html"/>
       <url>/posts/2024/08/ba5eaa66.html</url>
@@ -1461,7 +1542,7 @@
       <link href="/posts/2022/12/4d8c9542.html"/>
       <url>/posts/2022/12/4d8c9542.html</url>
       
-        <content type="html"><![CDATA[<p>1个可以用于微信聊天的ChatGPT机器人<br>GitHub地址：<a href="https://github.com/fuergaosi233/wechat-chatgpt">https://github.com/fuergaosi233/wechat-chatgpt</a></p><p>支持特性</p><blockquote><p>通过微信在微信上使用ChatGPT<br>支持OpenAI帐户池<br>支持使用代理登录<br>在消息接收时模拟</p></blockquote><p>我这边已经部署成功并成功运行，如有疑问可邮件联系 <a href="mailto:&#100;&#111;&#x6e;&#103;&#x37;&#48;&#54;&#64;&#x67;&#109;&#x61;&#105;&#x6c;&#x2e;&#99;&#x6f;&#x6d;">&#100;&#111;&#x6e;&#103;&#x37;&#48;&#54;&#64;&#x67;&#109;&#x61;&#105;&#x6c;&#x2e;&#99;&#x6f;&#x6d;</a> </p><span id="more"></span>]]></content>
+        <content type="html"><![CDATA[<p>1个可以用于微信聊天的ChatGPT机器人<br>GitHub地址：<a href="https://github.com/fuergaosi233/wechat-chatgpt">https://github.com/fuergaosi233/wechat-chatgpt</a></p><p>支持特性</p><blockquote><p>通过微信在微信上使用ChatGPT<br>支持OpenAI帐户池<br>支持使用代理登录<br>在消息接收时模拟</p></blockquote><p>我这边已经部署成功并成功运行，如有疑问可邮件联系 <a href="mailto:&#x64;&#111;&#x6e;&#x67;&#55;&#48;&#54;&#x40;&#103;&#109;&#97;&#105;&#x6c;&#x2e;&#99;&#111;&#x6d;">&#x64;&#111;&#x6e;&#x67;&#55;&#48;&#54;&#x40;&#103;&#109;&#97;&#105;&#x6c;&#x2e;&#99;&#111;&#x6d;</a> </p><span id="more"></span>]]></content>
       
       
       <categories>
@@ -3450,9 +3531,9 @@
       
         <tags>
             
-            <tag> Hexo </tag>
-            
             <tag> Node </tag>
+            
+            <tag> Hexo </tag>
             
             <tag> Git </tag>
             
