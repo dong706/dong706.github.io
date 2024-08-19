@@ -4,6 +4,325 @@
   
     
     <entry>
+      <title>aardio-htmlayout 修改 file 控件按钮文字</title>
+      <link href="/posts/2024/08/b94012fd.html"/>
+      <url>/posts/2024/08/b94012fd.html</url>
+      
+        <content type="html"><![CDATA[<p>CSS演示：  </p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">/*文件选择 type=file-path*/</span><br><span class="line">@set std-file-selector&#123;</span><br><span class="line">:root&#123;width:214px;height:24px;line-height:24px;padding:0px;margin:0px;border:1px solid @mCtlborder;background: @mCtlbackground;color:@mText3;&#125;</span><br><span class="line">:root &gt; caption&#123;padding:0px 0px 0px 24px;height:12px;foreground-repeat:no-repeat;foreground-position: 4px 50%;&#125;</span><br><span class="line">:root:empty &gt; caption &#123;padding:0px 0px 0px 6px;color:@mText4;&#125;</span><br><span class="line">:root &gt; button&#123;margin:0;padding:0;width:36px;height:18px;line-height:24px;color:@mText3;border:none;border-left: 1px solid @mline;&#125;</span><br><span class="line">:root &gt; button &gt; text &#123;content: &quot;删除&quot;;&#125;</span><br><span class="line">:root:empty &gt; button &gt; text &#123;content: &quot;选择&quot;;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>控件代码:<br><code>&lt;input type=&quot;file-path&quot; filter=&quot;压缩文件:*.tar.gz;&quot; /&gt; </code> </p><span id="more"></span><p>通过控件下的 button &gt; text 的 content 属性来替换文字，</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">:root &gt; button &gt; text &#123;content: &quot;删除&quot;;&#125;</span><br><span class="line">:root:empty &gt; button &gt; text &#123;content: &quot;选择&quot;;&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> 客户端开发 </category>
+          
+          <category> aardio </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> aardio </tag>
+            
+            <tag> htmlayout </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>aardio-HTMLayout behavior 大全</title>
+      <link href="/posts/2024/08/8fd1f033.html"/>
+      <url>/posts/2024/08/8fd1f033.html</url>
+      
+        <content type="html"><![CDATA[<p>这是能找到的最全的 htmlayout behavior 了，如有遗漏欢迎补全！！！</p><p>behavior:none</p><p>behavior:gird  //网格控件<br>behavior:sortable-grid<br>behavior:virtual-grid<br>behavior:sample-data-source //virtual-grid 数据源<br>behavior:colum-resizer // table 列宽调整 table 标记内可以使用 fixedrows=”1”指定首行不随滚动条移动</p><p>behavior:tree //树形视图控件<br>behavior: tree-checkmarks;<br>-option- - 表示一个列表项.<br>-optgroup- - 列表项分组<br>属性<br>size=”N” N 是大于 1 的数，指定显示行数，显示 1 行时为下拉列表，显示多行列表框<br>checkmarks - 是否显示复选框，其外观在 master CSS 中定义，可在 CSS 中自行义外观</p><p>behavior:select //列表框<br>behavior:dropdown-select //才是下拉框 size=1<br>behavior:editable-select //带复选框的列表<br>behavior:select scroller //滚动选择列表<br>size=“N” - N 是大于 1 的数，指定显示行数，显示 1 行时为下拉列表，显示多行列表框<br>multiple 是否允许选中多个列表项<br>multiple=“checks” - 显示复选框<br>editable - 如果为真，标题子节点 caption 将应用 behavior:edit，并且控件的 value 属性值也指向 edit 控件的当前值。<br>novalue=”text” - 没有选中项时显示的默认值</p><p>behavior:scroller //滚动条 type=”vscrollbar” type=”hscrollbar”<br>behavior: scroll-bar;<br>behavior:shell-icon //图标 需要指定文件名字或类型 filename=”.jpg”<br>behavior:file-icon; -icon-size:”large”; //文件图标及默认大小设置<br>behavior:path //显示路径 overflow-x:hidden;white-space:nowrap; //必须一起用<br>behavior:path-select //文件路径选框 path-select 用于本地程序他的值只是一个文件路径 - 并且可以编程修改。<br>type=”folder-path”<br>type=”file-path”<br>filter=”filename-filter” - 定义文件类型，多个类型分组用’;’分隔，每个类型分组使用 ‘:’分隔标题以及后缀名列表。<br>behavior:file //文件上传控件 标准 file 控件， 放在 form enctype=”multipart/form-data” 里面可用于远程提交文件。<br>behavior:sizer //调整大小<br>behavior:~ sizer;-resize: vertical; //限制方向</p><p>behavior:splitter cursor:w-resize; cursor:n-resize; //分隔条<br>behavior:slider //滑块 type=”vslider”垂直方向 type=”hslider” 水平方向<br>属性<br>value - integer, 初始值.<br>min - integer, 最小数值<br>max - integer, 最大数值<br>step - integer, 步进值,默认为 1<br>buddy - string, 同步显示控件值的节点 ID</p><p>behavior:accesskeys actions; //快捷键<br>示例：<br>accesskey=”^E”<br>accesskey=”!NUMPAD7”<br>accesskey=”!DECIMAL”<br>behavior:chart //图表</p><p>behavior:expandable-list //折叠列表<br>behavior:collapsible-list //折叠列表<br>behavior:collapsible-by-icon //折叠列表 Toggle ‘state’ to ‘open’ and ‘close’.class = icon</p><p>behavior:tabs //选项卡</p><p>ltTabs.xcall(“select”,”选项卡名字”); //选择一个页面<br>ltTabs.xcall(“close”,”选项卡名字”); //关闭一个页面<br>ltTabs.xcall(“open “,”选项卡标题”,”框架页网址”,”选项卡名字”); //打开一个页面<br>ltTabs.xcall(“create”,”选项卡标题”,”选项卡名字”,”子页面 HTML”); //使用 HTML 代码新建一个页面</p><p>behavior:progress //进度条<br>value=float - 进度值<br>maxvalue=float - 最大值<br>-bar:”clip”; - 进度条会剪切显示前景图 （始终不改变原图大小）<br>behavior:clock //时钟<br>behavior:graphin-clock<br>behavior:calendar //日历<br>behavior:date //日期 value=”today”<br>behavior:time //时间 no-seconds value=”now”<br>behavior:frame //框架<br>behavior:frame-set  //rows=”*,100px” cols=”*,*“<br>behavior:history<br>behavior:pager<br>属性<br>src=”url.html” - 框架内加载网页地址<br>content-style=”url.css” - 添加样式到框架页面<br>可以在 CSS 中使用 :busy 状态指定正在加载框架时的样式</p><p>方法：<br>ltEle.xcall(“load”, url:string) - 在框架中加载指定地址网页<br>ltEle.xcall(“clear”) - 清空框架</p><p>behavior:select-buddy<br>role=”destination”<br>action=”move-all” move-selected revoke-selected revoke-all</p><p>behavior:url; type=”url”<br>behavior:hyperlink //超链接 -target:”sandbox”; onHyperlinkClick 事件较特殊，必须写在 sinking 过程里<br>behavior:clickable //无焦点按钮<br>behavior:button //按钮 value=”caption” - 按钮标题<br>behavior:radio //单选框<br>behavior:switch //单选按钮 鼠标左键按下时（而不是放开时）切换选中状态。<br>behavior:check //复选框<br>behavior:password //密码框 password-char=”占位符”<br>behavior: masked-edit; //type=”masked” mask=”( ### ) ### - ####”<br>behavior:number //数字框<br>behavior:decimal ;-format=”fdigits:2; leading-zero:true;”<br>behavior:currency //货币数值输入框控件</p><p>属性<br>value=float - 初始值<br>size=integer - 控件宽度<br>min - 最小值<br>max - 最大值<br>step - 滚动选框步进值，指定了此属性会显示滚动选框<br>format - 数值显示格式，支持下面的字段，使用 ‘;’分隔多个字段:<br>grouping - number, ‘千位’分隔符间隔数<br>fdigits - number, 小数位置<br>leading-zero - true/false, 是否显示前导 0<br>decimal-sep - 小数分隔符<br>grouping-sep - 千位分隔符<br>negative-sign - true/false, true - 是否显示负号<br>currency - 货币符号<br>currency-after - 货币符号是否显示在数值后面</p><p>currency 控件会自动更新下面两个属性<br>invalid - 当前输入了无效的值<br>negative - 负数</p><p>自定义函数<br>ltEle.xcall(“min”): int - 返回最小值<br>ltEle.xcall(“min”, v:int) - 设置最小值<br>ltEle.xcall(“max”): int - 返回最大值<br>ltEle.xcall(“max”, v:int) - 设置最大值<br>ltEle.xcall(“step”): int - 返回步进值<br>ltEle.xcall(“step”, v:int|undefined) - 设置|或清除步进值，设置了该值以后后会显示滚动选框<br>behavior:edit //可编辑 tpye =”text”<br>value=“text” - 文本框初始值<br>size=integer - 文本框宽度<br>maxlength=integer -可包含的最大字符数<br>filter=“filter-expr” - 限制输入的字符表达式，可指定单个字符或指定字符范围，例如 “.@0<del>9a</del>zA~Z”表示允许所有数字字母, ‘.’ 以及 ‘@’. 可以使用 ‘^’ 前缀排除字符. 例如“^.,-” 允许所有除 ‘.’, ‘,’ 和 ‘-‘ 以外的字符。<br>novalue=“text” - 文本框为空时显示的默认值，在 CSS 中可以使用:empty 指定显示默认值的样式。</p><p>支持的快捷键：<br>LEFT, CTRL+LEFT, SHIFT+LEFT, CTRL+SHIFT+LEFT<br>RIGHT, CTRL+RIGHT, SHIFT+RIGHT, CTRL+SHIFT+RIGHT<br>HOME, SHIFT+HOME<br>END, SHIFT+END<br>BACKSPACE, ALT+BACKSPACE, CTRL+BACKSPACE<br>CTRL+A<br>DELETE, SHIFT+DELETE, CTRL+DELETE<br>INSERT, SHIFT+INSERT, CTRL+INSERT<br>CTRL+X<br>CTRL+V<br>CTRL+Z<br>CTRL+(LEFT)SHIFT 以及 CTRL+(RIGHT)SHIFT</p><p>自定义函数<br>ltEle.xcall(“selectionStart”): int - 返回选区开始位置<br>ltEle.xcall(“selectionEnd”): int - 返回选区结束位置<br>ltEle.xcall(“setSelection”, start:int, end:int):void - 设置选区<br>ltEle.xcall(“selectionText”): string - 返回选中文本<br>ltEle.xcall(“insertText”, text: string):void - 在光标处插入文本<br>ltEle.xcall(“appendText”, text: string):void - 追加文本<br>ltEle.xcall(“undo”, false): bool - 是否可以撤消操作<br>ltEle.xcall(“undo”, true) - 撤消操作<br>ltEle.xcall(“cut”, false): bool - 是否可以剪切<br>ltEle.xcall(“cut”, true) - 剪切操作<br>ltEle.xcall(“copy”, false): bool - 是否可复制<br>ltEle.xcall(“copy”, true) - 复制操作<br>ltEle.xcall(“paste”, false): bool - 是否可粘贴<br>ltEle.xcall(“paste”, true) - 粘贴操作;<br>ltEle.xcall(“selectAll”): bool - 当前是否已全选文本<br>ltEle.xcall(“selectAll”, true) - 全选文本</p><p>behavior:htmlarea //超文本框 tabindex=0<br>behavior:plaintext //文本框</p><p>toolbar=”widget.toolbar”</p><p>content-style=”content.css”</p><p>allow-clipboard-images</p><p>objects-list=”ul#current-objects”</p><p><strong>behavior:richtext</strong>//</p><p>属性：<br>value=“text” - 文本框初始值<br>maxlength=integer -可包含的最大字符数<br>filter=“filter-expr” - 限制输入的字符表达式，可指定单个字符或指定字符范围，例如 “.@0<del>9a</del>zA~Z”表示允许所有数字字母, ‘.’ 以及 ‘@’. 可以使用 ‘^’ 前缀排除字符. 例如“^.,-” 允许所有除 ‘.’, ‘,’ 和 ‘-‘ 以外的字符。<br>novalue=“text” - 文本框为空时显示的默认值，<br>在 CSS 中可以使用:empty 指定显示默认值的样式。readonly 指定该属性则显示为只读模式。<br>自定义函数<br>ltEle.xcall(“selectionStart”): int - 返回选区开始位置<br>ltEle.xcall(“selectionEnd”): int - 返回选区结束位置<br>ltEle.xcall(“setSelection”, start:int, end:int):void - 设置选区<br>ltEle.xcall(“selectionText”): string - 返回选中文本<br>ltEle.xcall(“insertText”, text: string):void - 在光标处插入文本<br>ltEle.xcall(“appendText”, text: string):void - 追加文本<br>ltEle.xcall(“canUndo”): bool - 是否可以撤消操作<br>ltEle.xcall(“doUndo”) - 撤消操作<br>ltEle.xcall(“canRedo”): bool - 是否可以重做操作<br>ltEle.xcall(“doRedo”) - 重做操作<br>ltEle.xcall(“canCut”): bool - 是否可以剪切<br>ltEle.xcall(“doCut”) - 剪切操作<br>ltEle.xcall(“canCopy”): bool - 是否可复制<br>ltEle.xcall(“doCopy”) - 复制操作<br>ltEle.xcall(“canPaste”): bool - 是否可粘贴<br>ltEle.xcall(“doPaste”) - 粘贴操作;<br>ltEle.xcall(“canSelectAll”): bool - 当前是否已全选文本<br>ltEle.xcall(“canSelectAll”) - 全选文本</p><p>behavior:form //表单<br>button name=”Submit” type=”submit”<br>button name=”Reset” type=”reset”<br>属性<br>action=“url” - 提交地址<br>target=“frame-name” - 目标框架<br>method=“get” | “post” - 提交方法<br>enctype=“application/x-www-form-urlencoded” | “multipart/form-data” - 编码类型</p><p>方法：<br>ltEle.xcall(“submit”) - 提交表单<br>ltEle.xcall(“reset”) - 重置表单</p><p>behavior:hover-click</p><p>behavior:menu //菜单  type=”menu” align-popup=”right”<br>behavior:menu-bar //菜单栏 子节点中的-li-节点或 HTML 属性中指定了 role=”menu-item”作为菜单项处理<br>behavior:popup-menu //弹出菜单 仅仅是单纯的弹出菜单，接收的事件也是菜单事件，没有控件选中值的概念。<br>属性<br>menu=css-selector - 使用 CSS 选择器指定要弹出的菜单，如果不指定此属性则使用子节点中的第一个 menu 或-popup-子节点<br>align-popup= left | top | right | bottom 用于指定菜单的弹出方向，默认是 bottom，也可以在 CSS 自定义属性中指定此值<br>behavior:popup-selector //弹出菜单下拉框<br>属性<br>menu=“css-selector” - 使用 CSS 选择器指定要弹出的菜单，如果不指定此属性则使用子节点中的第一个-menu-或-popup-子节点<br>value=“string” - 初始值,菜单的 li 节点可以使用 value 属性指定值，点击菜单项时复制值到控件的-caption-标题节点,</p><p>behavior:dropdown //弹出框<br>behavior:popup //弹框<br>behavior:light-box-dialog //模态弹框</p><p>role=’ok-button’  确定按钮</p><p>role=’cancel-button’ 取消按钮</p><p>ltEle.xcall(“show”)</p><p>ltEle.xcall(“hide”)</p><p>behavior:windowSizer //窗口缩放</p><p>sizer-command:hitTopleft  hitLeft  hitBottomleft  hitTop  hitBottom   hitTopright  hitRight   hitBottomright</p><p>HTML behavior:font-size; //字体<br>HTML[zoom=”1” font-size:xx-small;<br>HTML[zoom=”2”font-size:x-small;<br>HTML[zoom=”3” font-size:small;<br>HTML[zoom=”4” font-size:medium;<br>HTML[zoom=”5” font-size:large;<br>HTML[zoom=”6” font-size:x-large;<br>HTML[zoom=”7” font-size:xx-large;<br>behavior:gripper //拖拽 accept-drop:selector( div.toolbar ); drop:insert;</p><p>behavior:selectionBox  //鼠标选框</p><p>behavior:marquee //跑马灯<br>-marquee: horizontal; vertical<br>-marquee-direction: forward;<br>-marquee-style: scroll; alternate slide<br>-marquee-play-count:1; /* playing once */<br>-marquee-speed:slow normal fast</p><p>behavior:reflection //水中倒影<br>-reflection-opacity-start: 0.4;<br>-reflection-opacity-end: 0.0;<br>-reflection-blur-radius: 3;</p><p>behavior:magnifier //鱼眼特效<br>magnify=’widget[type=”button”,table’ magnification=4.0 magnification-step=0.3 radius-x=300 radius-y=100<br>~ actions<br>~ richtext-current-objects</p><p><strong>command</strong><br>command=”window-caption”<br>command=”window-close”<br>command=”window-min”<br>command=”window-max”<br>command=”window-restore”<br>-command:disabled</p><p>edit richtext: //编辑框 文本框右键<br>behavior:edit:undo Ctrl+Z<br>behavior:edit:cut Ctrl+X<br>behavior:edit:copy Ctrl+C<br>behavior:edit:paste Ctrl+V<br>behavior:edit:selectall Ctrl+A</p><p>richtext：<br>richtext:paste-plain-text HTML 转换为文本<br>richtext:paste-text-as-html 粘贴 HTML 代码<br>richtext:paste-html-no-tables 粘贴 HTML 格式(移除表格)<br>richtext:merge-cells 合并单元格 Backspace<br>richtext:split-cells-by-rows Ctrl+1 拆分行<br>richtext:split-cells-by-cols Ctrl+2 拆分列<br>richtext:strong<br>richtext:em<br>richtext:code<br>richtext:p<br>richtext:h1 h2 h3 h4 h5 h6<br>richtext:pre<br>richtext:li-ul<br>richtext:li-ol<br>richtext:indent-dec<br>richtext:indent-inc<br>richtext:show-rulers<br>用法：<br>command=”behavior:edit:undo”<br>command=”richtext:undo”<br>快捷键配合 class=”accesskey”</p><p>这是能找到的最全的 htmlayout behavior 了，如有遗漏欢迎补全！！！</p><p><strong>role:</strong></p><p>role=”option”</p><p>role=”default-button”<br>role=”cancel-button”</p><p>role=”source”<br>role=”destination”</p><p>role=”dropdown”</p><p>role:”menu-item”</p><p>role=”page-tab-list”<br>role=”page-tab”</p><p>popup[role=tooltip]<br>popup[role=”overflow-tooltip”]</p><p>//右键菜单</p><p>.with-context-menu{<strong>context-menu:selector</strong>(menu#for-htmlarea);</p><p>.with-context-menu-ext{context-menu: url(c-menu.htm)</p><p>option:nth-child(odd){context-menu: selector(menu#option-odd);</p><p><strong>标签相关：</strong></p><p><strong><code>&lt;widget&gt;</code></strong><br>该标记是类似于 <code>&lt;input&gt; &lt;select&gt;</code> 的内联块标记.<br><code>&lt;widget&gt;</code> 基本类似 <code>&lt;input&gt;</code>,区别是可以扩展 type 属性,<br>除了可以使用标准库的类型 (input 节点可以使用的类型,例如: text, checkbox, radio, 等等. )<br>type 属性也可以定义为下面的值:<br>  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;widget type=&quot;select&quot;&gt; - 列表框;  </span><br><span class="line">&lt;widget type=&quot;dropdown-select&quot;&gt; - 下拉列表;  </span><br><span class="line">&lt;widget type=&quot;textarea&quot;&gt; - 文本框;  </span><br><span class="line">&lt;widget type=&quot;htmlarea&quot;&gt; - HTML 控件.  </span><br><span class="line">&lt;widget&gt; 必须与闭合标记 &lt;/widget&gt; 配对使用.</span><br></pre></td></tr></table></figure><br>根据 HTML 规范，input 节点会被包含在一个匿名的文本容器中,例如:<br><code>&lt;anonymous-text-container&gt;&lt;input …/&gt;&lt;/anonymous-text-container&gt;</code><br>而 widget 则不会这么做, 这样使用%或%%时计算相对高度时不会导致不必要的混淆．</p><p><strong><code>&lt;popup&gt;</code></strong><br>该标记是 block 样式显示的块标记( 类似<code>&lt;div&gt;</code> ),<br>用于定义可在页面上弹出显示的节点, 默认的 popup 是隐藏不显示的.<br>一个常用的功能是使用<code>&lt;popup&gt; </code>显示复杂些的工具提示(tooltips)</p><p>详细使用请参考官方 demo：<br><a href="http://www.terrainformatica.com/htmlayout/HTMLayoutDemo.zip">http://www.terrainformatica.com/htmlayout/HTMLayoutDemo.zip</a>  </p><p>原文地址：<a href="https://www.btbat.com/1130.html">https://www.btbat.com/1130.html</a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 客户端开发 </category>
+          
+          <category> aardio </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> aardio </tag>
+            
+            <tag> htmlayout </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>aardio-[Mr.R出品]精心收集整理 htmlayout 参考手册</title>
+      <link href="/posts/2024/08/48f44e22.html"/>
+      <url>/posts/2024/08/48f44e22.html</url>
+      
+        <content type="html"><![CDATA[<img src="https://fastly.jsdelivr.net/gh/dong706/dong706.github.io@latest/images/pasted-200.png" alt="">   R 大历时一个多月收集整理的 htmlayout 参考手册  需要的自取！！！  若有遗漏或错误 欢迎指正！！！  <span id="more"></span><p>下载地址: <a href="https://pan.baidu.com/s/1y63IYKqXI6TTthJx2jDV5Q?pwd=2bkn">htmlayout参考手册</a> </p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 客户端开发i </category>
+          
+          <category> aardio </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> aardio </tag>
+            
+            <tag> htmlayout </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>aardio-htmlayout &amp; Aardio 按钮事件实现方法总结（2）</title>
+      <link href="/posts/2024/08/ef35bd6b.html"/>
+      <url>/posts/2024/08/ef35bd6b.html</url>
+      
+        <content type="html"><![CDATA[<p>效果图：<br><img src="https://fastly.jsdelivr.net/gh/dong706/dong706.github.io@latest/images/pasted-199.png" alt=""><br>实例代码：</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">import win.ui;</span><br><span class="line">import web.layout; //导入 layout</span><br><span class="line">import web.layout.behavior.windowCommand;</span><br><span class="line">import process;</span><br><span class="line">mainForm = win.form(text=&quot;aardio 工程&quot;;right=359;bottom=669;border=&quot;none&quot;)</span><br><span class="line">mainForm.add()</span><br><span class="line">wbLayout = web.layout( mainForm )  </span><br><span class="line">if( _STUDIO_INVOKED )&#123;  //开启 layout 调试</span><br><span class="line">import web.layout.debug;</span><br><span class="line">wbLayout.attachEventHandler( web.layout.debug );</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">html = /**R 大技术站</span><br><span class="line"></span><br><span class="line">&lt;style type=&quot;text/css&quot;&gt;</span><br><span class="line">@set std-button&#123;</span><br><span class="line">:root&#123;padding:0 8 0 8;line-height:24px;border:1px solid #ccc;cursor: pointer;transition: none;color:#fff;&#125;</span><br><span class="line">:root:hover&#123;background:#999;&#125;</span><br><span class="line">:root:active&#123;background:#999;&#125;</span><br><span class="line">&#125;</span><br><span class="line">button&#123;background: #c1c1c1;width:120px;height:32px;margin-top:10px;margin-left:50%% - 60px;&#125;</span><br><span class="line">#close_btn&#123;background:#009688;&#125;</span><br><span class="line">    #open_btn&#123;background:#FF5722;&#125;</span><br><span class="line">    button[name=&quot;name_btn&quot;]&#123;background:#1E9FFF;&#125;</span><br><span class="line">    #none_btn&#123;background:#2F4056;&#125;</span><br><span class="line">&lt;/style&gt;</span><br><span class="line">&lt;button&gt;按钮一&lt;/button&gt;</span><br><span class="line">&lt;button id=&quot;close_btn&quot;&gt;按钮 close&lt;/button&gt;</span><br><span class="line">&lt;button id=&quot;open_btn&quot;&gt;按钮 open&lt;/button&gt;</span><br><span class="line">&lt;button name=&quot;name_btn&quot;&gt;按钮 name&lt;/button&gt;</span><br><span class="line">&lt;button id=&quot;none_btn&quot;&gt;按钮 none&lt;/button&gt;</span><br><span class="line"> </span><br><span class="line"> **/</span><br><span class="line"> </span><br><span class="line">wbLayout.html = html;</span><br><span class="line"> </span><br><span class="line">wbLayout.onButtonClick =  &#123;</span><br><span class="line">close_btn = function (ltTarget,ltOwner,reason,behaviorParams)&#123;</span><br><span class="line">mainForm.close()  //关闭窗口</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">[&quot;open_btn&quot;] = function (ltTarget,ltOwner,reason,behaviorParams)&#123;</span><br><span class="line">process.execute(&quot;http://www.btbat.com&quot;);  //打开网页</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">name_btn  = function (ltTarget,ltOwner,reason,behaviorParams)&#123;</span><br><span class="line">mainForm.close()  //关闭窗口</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">default = function (ltTarget,ltOwner,reason,behaviorParams)&#123;</span><br><span class="line">mainForm.close()  //关闭窗口</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">mainForm.show() </span><br><span class="line">return win.loopMessage(); </span><br></pre></td></tr></table></figure><p>实例说明：<br>这次我们在 html 中加入了 5 个 button 按钮控件，<br>上期说了，button 控件自带 behavior 特效；</p><p>这 5 个按钮分别是：</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;button&gt;按钮一&lt;/button&gt; // 无 ID 参考上一节内容</span><br><span class="line">&lt;button id=&quot;close_btn&quot;&gt;按钮 close&lt;/button&gt;  //设置 id 并指定事件 </span><br><span class="line">&lt;button id=&quot;open_btn&quot;&gt;按钮 open&lt;/button&gt;  //设置 id 并指定事件 </span><br><span class="line">&lt;button name=&quot;name_btn&quot;&gt;按钮 name&lt;/button&gt;  //设置 name 并指定事件</span><br><span class="line">&lt;button id=&quot;none_btn&quot;&gt;按钮 none&lt;/button&gt;  // 设置 id 没指定事件</span><br></pre></td></tr></table></figure><p>我们通过：<br>close_btn = function （… //指定事件<br>[“open_btn”] = function （… //指定事件</p><p>不同写法，效果一样，同时用 name 值也可以指定事件的。<br>然而虽然“按钮 none”也指定了 id，却没有指定事件，<br>其效果就和“按钮一”一样了，都会执行 default 默认事件；<br>PS：当然一般不需要写 default 事件的。<br>通过这样的方法，就可以方便的我们统一处理具有相同事件的控件。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 客户端开发 </category>
+          
+          <category> aardio </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> aardio </tag>
+            
+            <tag> htmlayout </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>aardio-HTMLayout 各种控件CSS样式</title>
+      <link href="/posts/2024/08/ff31078a.html"/>
+      <url>/posts/2024/08/ff31078a.html</url>
+      
+        <content type="html"><![CDATA[<p>效果图:<br><img src="https://fastly.jsdelivr.net/gh/dong706/dong706.github.io@latest/images/pasted-191.png" alt=""> </p><p>CSS代码:</p><span id="more"></span><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">/*编辑框 type=text*/</span><br><span class="line">@set std-edit&#123;</span><br><span class="line">:root&#123;width:208px;height:18px;line-height:18px;margin:0;padding:3;border:1px solid @mCtlborder;color:@mText3;background: @mCtlbackground;&#125;</span><br><span class="line"> :root:focus&#123;color: @mText4;&#125;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">/*单选框 type=radio*/</span><br><span class="line">@set std-radio&#123;</span><br><span class="line">:root&#123;width:16px;height:16px;line-height:16px;border:1px solid @mCtlborder;background: @mCtlbackground;</span><br><span class="line">cursor:pointer;white-space:nowrap;vertical-align:baseline;border-radius: 999px;&#125;</span><br><span class="line">:root:active&#123;foreground-image:url(../images/radio.png); foreground-repeat:no-repeat;foreground-position:50% 50%;&#125;</span><br><span class="line">:root:checked&#123;foreground-image:url(../images/radio.png); foreground-repeat:no-repeat;foreground-position:50% 50%;&#125;</span><br><span class="line">:root:disabled&#123;foreground-image:url(../images/radio.png); foreground-repeat:no-repeat;foreground-position:50% 50%;foreground-image-transformation:colorize(@mText4);&#125;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">@set std-checkbox&#123;</span><br><span class="line">:root&#123;width:16px;height:16px;border:1px solid @mCtlborder;background: @mCtlbackground;</span><br><span class="line">cursor:pointer;vertical-align:middle;&#125;</span><br><span class="line">:root:active&#123;foreground-image:url(../images/checked.png); foreground-repeat:no-repeat;foreground-position:50% 50%;&#125;</span><br><span class="line">:root:checked&#123;foreground-image:url(../images/checked.png); foreground-repeat:no-repeat;foreground-position:50% 50%;&#125;</span><br><span class="line">:root[mixed]&#123;foreground-image:url(../images/check_mixed.png); foreground-repeat:no-repeat;foreground-position:50% 50%;&#125;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">/*按钮 type=button*/</span><br><span class="line">@set std-button&#123;</span><br><span class="line">:root&#123;padding:0 8 0 8;line-height:24px;border:1px solid @mCtlborder;background: @mCtlbtnbg;cursor: pointer;transition: none;color:@mText3;&#125;</span><br><span class="line">:root:hover&#123;background:@mCtlHover;&#125;</span><br><span class="line">:root:active&#123;background:@mCtlHover;&#125;</span><br><span class="line">:root:disabled&#123;color:@mText4;&#125;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">/*数字选择按钮 type=number*/</span><br><span class="line">@set std-number-edit&#123;</span><br><span class="line">:root&#123;width:min-intrinsic;height: 24px;text-align: right;border:1px solid @mCtlborder;background: @mCtlbackground;color: @mText3;&#125;</span><br><span class="line">:root:focus&#123;color: @mText4;&#125;</span><br><span class="line">:root &gt; button&#123;margin: 0 -2px -2px *;border:none;background:none;width:8px;foreground-repeat:no-repeat;foreground-image-transformation:colorize(@mText4);&#125;</span><br><span class="line">:root &gt; button.minus&#123;foreground-image:url(../images/select.png);foreground-position:50% 40%;&#125;</span><br><span class="line">:root &gt; button.plus&#123;foreground-image:url(../images/select_top.png);foreground-position:50% 60%;&#125;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">/*文件选择 type=file-path*/</span><br><span class="line">@set std-file-selector&#123;</span><br><span class="line">:root&#123;width:214px;height:24px;line-height:24px;padding:0px;margin:0px;border:1px solid @mCtlborder;background: @mCtlbackground;color:@mText3;&#125;</span><br><span class="line">:root &gt; caption&#123;padding:0px 0px 0px 24px;height:12px;foreground-repeat:no-repeat;foreground-position: 4px 50%;&#125;</span><br><span class="line">:root:empty &gt; caption &#123;padding:0px 0px 0px 6px;color:@mText4;&#125;</span><br><span class="line">:root &gt; button&#123;margin:0;padding:0;width:36px;height:18px;line-height:24px;color:@mText3;border:none;border-left: 1px solid @mline;&#125;</span><br><span class="line">:root &gt; button &gt; text &#123;content: &quot;删除&quot;;&#125;</span><br><span class="line">:root:empty &gt; button &gt; text &#123;content: &quot;选择&quot;;&#125;</span><br><span class="line">&#125;</span><br><span class="line">/*下拉列表框 type=select*/</span><br><span class="line">@set std-select-dropdown&#123;</span><br><span class="line">:root&#123;width: max-intrinsic;height:24px;line-height:24px;padding:0;background:@mCtlbackground;color:@mText4;border:1px solid @mCtlborder;&#125;</span><br><span class="line">:root &gt; caption&#123;padding:0 4 0 4;margin:0;color: @mText3;foreground-image:url(../images/select.png);</span><br><span class="line">foreground-repeat:no-repeat;foreground-position-right:4px;foreground-position-top:50%;</span><br><span class="line">foreground-image-transformation:colorize(@mText4);cursor: pointer;&#125;</span><br><span class="line">:root &gt; button&#123;width:0px;</span><br><span class="line">border:none;background:none;display:none;&#125;</span><br><span class="line">:root &gt; option&#123;padding:2 4 2 4; color:@mText3;&#125;</span><br><span class="line">:root:focus &gt; caption&#123;color:@mText5;foreground-image-transformation:colorize(@mText5);&#125;</span><br><span class="line">/*:root &gt; popup option:checked&#123;background:@mText3;color:@mText5;&#125;*/</span><br><span class="line">:root &gt; popup option:current&#123;color:@mText5;&#125;</span><br><span class="line">:root &gt; popup option&#123;color: @mText3;cursor: pointer;&#125;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">/*文本框 textarea*/</span><br><span class="line">@set std-textarea&#123;</span><br><span class="line">:root&#123;background:@mCtlbackground;color:@mText4;border:1px solid @mCtlborder;overflow-x:none;vertical-scrollbar: mini_scrollbar;&#125;</span><br><span class="line">/*:root:focus&#123;text-selection: @mText5 @mTextH;&#125;*/</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">/*文本框日历*/</span><br><span class="line">@set std-calendar&#123;</span><br><span class="line">:root&#123;background:@mCtlbackground;&#125;</span><br><span class="line">tr&#123;height:16px;line-height:16px;&#125;</span><br><span class="line">span.today-legend &#123;display: none;&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">/*日期*/</span><br><span class="line">@set std-date&#123;</span><br><span class="line">:root&#123;width:min-intrinsic;background:@mCtlbackground;color:@mText3;border:1px solid @mCtlborder;&#125;</span><br><span class="line">:root &gt; caption&#123;padding-left:3px;height:24px;line-height:24px;&#125;</span><br><span class="line">:root &gt; button&#123;border:none;background:none;width:8px;</span><br><span class="line">foreground-image:url(../images/select.png);foreground-repeat:no-repeat;</span><br><span class="line">foreground-position:50% 50%;foreground-image-transformation:colorize(@mText4);&#125;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line">/*title 提示框*/</span><br><span class="line">popup[role=&quot;tooltip&quot;]&#123;font-size:12px; overflow:none; padding:5px;margin:5px;background:@mCtlbackground&#125;</span><br></pre></td></tr></table></figure><p>图片素材：</p><img src="https://fastly.jsdelivr.net/gh/dong706/dong706.github.io@latest/images/pasted-195.png" alt=""> <img src="https://fastly.jsdelivr.net/gh/dong706/dong706.github.io@latest/images/pasted-196.png" alt=""> <img src="https://fastly.jsdelivr.net/gh/dong706/dong706.github.io@latest/images/pasted-197.png" alt=""> <img src="https://fastly.jsdelivr.net/gh/dong706/dong706.github.io@latest/images/pasted-198.png" alt=""> <p>原文链接：<a href="https://www.btbat.com/1121.html">https://www.btbat.com/1121.html</a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 客户端开发 </category>
+          
+          <category> aardio </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> aardio </tag>
+            
+            <tag> htmlayout </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>aardio-HTMLayout 模板 在aardio的简单应用</title>
+      <link href="/posts/2024/08/fbde38d1.html"/>
+      <url>/posts/2024/08/fbde38d1.html</url>
+      
+        <content type="html"><![CDATA[<p>简单说明：<br>html 中的 为自定义变量，用于载入展示数据，<br>通过 string.loadcode(ul,data) 载入变量。<br>可以有多个变量，例如：  </p><p><code>string.loadcode(ul,data,path,name)</code></p><p>示例代码：</p><span id="more"></span><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">var winform = win.form(text=&quot;aardio form&quot;;right=759;bottom=469)</span><br><span class="line">winform.add(</span><br><span class="line">修改数据=&#123;cls=&quot;button&quot;;text=&quot;修改数据&quot;;left=62;top=201;right=167;bottom=240;z=1&#125;;</span><br><span class="line">删除数据=&#123;cls=&quot;button&quot;;text=&quot;删除数据&quot;;left=62;top=284;right=169;bottom=324;z=3&#125;;</span><br><span class="line">增加数据=&#123;cls=&quot;button&quot;;text=&quot;增加数据&quot;;left=62;top=242;right=166;bottom=279;z=2&#125;</span><br><span class="line">)</span><br><span class="line">io.open()</span><br><span class="line">import web.layout</span><br><span class="line">var wb = web.layout( winform )</span><br><span class="line"> </span><br><span class="line">var ul = /**</span><br><span class="line">&lt;? var data = ...; ?&gt;</span><br><span class="line">&lt;ul&gt;</span><br><span class="line">&lt;? for(i=1;#data;1)&#123; ?&gt;</span><br><span class="line">    &lt;li&gt;</span><br><span class="line">       &lt;?= data[i] ?&gt;</span><br><span class="line">    &lt;/li&gt;</span><br><span class="line">&lt;? &#125; ?&gt;</span><br><span class="line">&lt;/ul&gt;</span><br><span class="line">**/</span><br><span class="line"> </span><br><span class="line">data = &#123;&quot;安卓&quot;;&quot;苹果&quot;;&quot;安卓&quot;;&#125;   //测试数据</span><br><span class="line"> </span><br><span class="line">wb.html = string.loadcode(ul,data)</span><br><span class="line"> </span><br><span class="line">winform.修改数据.oncommand = function(id,event)&#123;  </span><br><span class="line">data =&#123;&quot;windows&quot;;&quot;android&quot;&#125;</span><br><span class="line">wb.html = string.loadcode(ul,data)</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">winform.增加数据.oncommand = function(id,event)&#123;</span><br><span class="line">data1 =&#123;&quot;mac&quot;;&quot;unix&quot;&#125;</span><br><span class="line">data = table.concat(data,data1)</span><br><span class="line">wb.html = string.loadcode(ul,data)</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">winform.删除数据.oncommand = function(id,event)&#123;</span><br><span class="line">value = table.remove (data ,#data)</span><br><span class="line">wb.html = string.loadcode(ul,data)</span><br><span class="line"> </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> 客户端开发 </category>
+          
+          <category> aardio </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> aardio </tag>
+            
+            <tag> htmlayout </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>aardio-Htmlayout 滚动弹幕效果</title>
+      <link href="/posts/2024/08/89b3b457.html"/>
+      <url>/posts/2024/08/89b3b457.html</url>
+      
+        <content type="html"><![CDATA[<p>重点代码：</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"> #CSS 代码</span><br><span class="line">  html,body&#123; height:100%; margin:0; &#125;</span><br><span class="line"> </span><br><span class="line">  #container&#123;</span><br><span class="line">      position:absolute;</span><br><span class="line">      right:300px;</span><br><span class="line">      transition:right(linear,3s);</span><br><span class="line">  &#125;</span><br><span class="line">  #container[move]&#123;</span><br><span class="line">      right:50px;</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line"> </span><br><span class="line">#Html 代码</span><br><span class="line">  《div id=&quot;container&quot;&gt;</span><br><span class="line">      我是弹幕！！！</span><br><span class="line">  div》</span><br><span class="line">  </span><br><span class="line">#Aardio 代码</span><br><span class="line">wb.getEle(&quot;container&quot;).move = &quot;&quot; //选择元素并设置初始滚动值！</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> 客户端开发 </category>
+          
+          <category> aardio </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> aardio </tag>
+            
+            <tag> htmlayout </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>aardio-htmlayout 进度条</title>
+      <link href="/posts/2024/08/10c97e63.html"/>
+      <url>/posts/2024/08/10c97e63.html</url>
+      
+        <content type="html"><![CDATA[<p>代码说明：</p><p>代码使用了 progress 控件，和自定义 div 两种方式实现了进度条。<br>非常简单，欢迎大家参考！！！</p><p>示例代码：</p><span id="more"></span><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">import win.ui;</span><br><span class="line">import web.layout; //导入layout</span><br><span class="line">import web.layout.behavior.windowCommand;</span><br><span class="line">import console</span><br><span class="line">mainForm = win.form(text=&quot;aardio工程&quot;;right=359;bottom=669;border=&quot;none&quot;)</span><br><span class="line">mainForm.add()</span><br><span class="line">wbLayout = web.layout( mainForm  )  </span><br><span class="line">if( _STUDIO_INVOKED )&#123;  //开启layout调试</span><br><span class="line">import web.layout.debug;</span><br><span class="line">wbLayout.attachEventHandler( web.layout.debug );</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">html = /** </span><br><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">&lt;meta charset=&quot;utf-8&quot; /&gt; </span><br><span class="line">&lt;title&gt;R大技术站&lt;/title&gt;</span><br><span class="line">&lt;style type=&quot;text/css&quot;&gt;</span><br><span class="line">body&#123;font-family: &quot;宋体&quot;;font-size: 12px;&#125;</span><br><span class="line">/*图片样式*/</span><br><span class="line">#pro&#123;width:200px;height:10;border-radius:10px;display:inline-block;vertical-align:middle; </span><br><span class="line">background-image: url(layout\progress_b.png);background-position: 4px 4px 4px 4px;background-repeat: expand stretch-middle;</span><br><span class="line">foreground-image: url(layout\progress_f.png);foreground-position: 4px 4px 4px 4px;foreground-repeat: expand stretch-middle;&#125;</span><br><span class="line">/*div样式line*/</span><br><span class="line">.line&#123;width:200px;height:12px;line-height:12px;border:2px solid #4DBF7D;border-radius:8px;&#125;</span><br><span class="line">.inline&#123;float:left;min-width:20px;height:12px;line-height:12px;background-color:#4DBF7D;overflow:hidden;border-radius:8px;&#125;</span><br><span class="line">.inline a&#123;float:right;padding-right:5px;color:#fff;&#125;</span><br><span class="line">/*div样式line1*/</span><br><span class="line">.line1&#123;width:200px;height:13px;line-height:12px;&#125;</span><br><span class="line">.inline1&#123;float:left;min-width:20px;width:20px;height:13px;padding-right:5px;background-color:#2187e7;border-radius:14px;&#125;</span><br><span class="line">.inline1 a&#123;float:right;padding-right:5px;color:#fff;&#125;</span><br><span class="line">/*数值调节 */</span><br><span class="line">    #val&#123;width:50px;value-changed!:</span><br><span class="line">     $1(input#pro):value = self:value,</span><br><span class="line">    $1(input#def):value = self:value,</span><br><span class="line">    $1(.inline)::width = self:value * 2,</span><br><span class="line">    $1(.inline1)::width = self:value * 2,</span><br><span class="line">    $(.linetext):value =  self:value + &quot;%&quot;; </span><br><span class="line">    &#125;</span><br><span class="line">&lt;/style&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;p&gt;默认样式: &lt;input id=&quot;def&quot; type=&quot;progress&quot; value=&quot;10&quot;/&gt;  &lt;/p&gt;</span><br><span class="line">&lt;p&gt;图片样式: &lt;input id=&quot;pro&quot; type=&quot;progress&quot; value=&quot;10&quot;/&gt;&lt;/p&gt;</span><br><span class="line">&lt;p&gt;DIV样式: &lt;div .line&gt;&lt;div .inline&gt;&lt;a .linetext&gt;&lt;/a&gt;&lt;/div&gt;&lt;/div&gt;&lt;/p&gt;</span><br><span class="line">&lt;p&gt;DIV样式: &lt;div .line1&gt;&lt;div .inline1&gt;&lt;a .linetext&gt;&lt;/a&gt;&lt;/div&gt;&lt;div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/p&gt;</span><br><span class="line">    </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&lt;p&gt;数值调节: &lt;input #val type=&quot;number&quot; value=10 maxvalue=100 minvalue=0 step=&quot;1&quot; /&gt; &lt;/p&gt;</span><br><span class="line"></span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br><span class="line"> **/</span><br><span class="line"> </span><br><span class="line">wbLayout.html = html;  //加载页面</span><br><span class="line">  </span><br><span class="line">mainForm.show() </span><br><span class="line">return win.loopMessage(); </span><br></pre></td></tr></table></figure><p>示例样式：<br><img src="https://fastly.jsdelivr.net/gh/dong706/dong706.github.io@latest/images/pasted-190.png" alt=""> </p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 客户端开发 </category>
+          
+          <category> aardio </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> aardio </tag>
+            
+            <tag> htmlayout </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>aardio-htmlayout 利用csss!动态实现推荐、等级效果</title>
+      <link href="/posts/2024/08/20027f6d.html"/>
+      <url>/posts/2024/08/20027f6d.html</url>
+      
+        <content type="html"><![CDATA[<p>效果预览：<br><img src="https://fastly.jsdelivr.net/gh/dong706/dong706.github.io@latest/images/pasted-189.png" alt=""> </p><p>源代码：</p><!-- more ><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">import win.ui;</span><br><span class="line">import web.layout; //导入 layout</span><br><span class="line">import web.layout.behavior.windowCommand;</span><br><span class="line">import console</span><br><span class="line">mainForm = win.form(text=&quot;aardio 工程&quot;;right=359;bottom=669;border=&quot;none&quot;)</span><br><span class="line">mainForm.add()</span><br><span class="line">wbLayout = web.layout( mainForm  )  </span><br><span class="line">if( _STUDIO_INVOKED )&#123;  //开启 layout 调试</span><br><span class="line">import web.layout.debug;</span><br><span class="line">wbLayout.attachEventHandler( web.layout.debug );</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">html = /** </span><br><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">&lt;meta charset=&quot;utf-8&quot; /&gt; </span><br><span class="line">&lt;title&gt;R 大技术站&lt;/title&gt;</span><br><span class="line">&lt;style type=&quot;text/css&quot;&gt;</span><br><span class="line">body&#123;font-family: &quot;宋体&quot;;font-size: 12px;&#125;</span><br><span class="line">/* 我的 level */</span><br><span class="line">    .star span[level] &#123;</span><br><span class="line">display: inline-block; width:14px; height: 18px;</span><br><span class="line">foreground-image: url(res/star.png) repeat-x;</span><br><span class="line">assigned!: self::width = self.level * 14,; </span><br><span class="line">&#125;</span><br><span class="line">&lt;/style&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;p&gt;&lt;div .star&gt;等级: &lt;span level=1&gt;&lt;/span&gt;&lt;/div&gt;&lt;/p&gt;</span><br><span class="line">&lt;p&gt;&lt;div .star&gt;等级: &lt;span level=2&gt;&lt;/span&gt;&lt;/div&gt;&lt;/p&gt;</span><br><span class="line">&lt;p&gt;&lt;div .star&gt;等级: &lt;span level=3&gt;&lt;/span&gt;&lt;/div&gt;&lt;/p&gt;</span><br><span class="line">&lt;p&gt;&lt;div .star&gt;等级: &lt;span level=4&gt;&lt;/span&gt;&lt;/div&gt;&lt;/p&gt;</span><br><span class="line">&lt;p&gt;&lt;div .star&gt;等级: &lt;span level=5&gt;&lt;/span&gt;&lt;/div&gt;&lt;/p&gt;</span><br><span class="line">&lt;p&gt;&lt;div .star&gt;推荐: &lt;span level=10&gt;&lt;/span&gt;&lt;/div&gt;&lt;/p&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br><span class="line"> **/</span><br><span class="line"> </span><br><span class="line">wbLayout.html = html;  //加载页面</span><br><span class="line">  </span><br><span class="line">mainForm.show() </span><br><span class="line">return win.loopMessage(); </span><br></pre></td></tr></table></figure><p>原文链接： <a href="https://www.btbat.com/1151.html">https://www.btbat.com/1151.html</a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 客户端开发 </category>
+          
+          <category> aardio </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> aardio </tag>
+            
+            <tag> htmlayout </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>aardio-HTMLayout 纯CSSS! TIPS弹窗 自动显示隐藏</title>
+      <link href="/posts/2024/08/aab33fc6.html"/>
+      <url>/posts/2024/08/aab33fc6.html</url>
+      
+        <content type="html"><![CDATA[<p>特性：  </p><ul><li> 纯CSS &amp; CSSS！打造；  </li><li> 支持更换图标、文字等；  </li><li> 自动显示 2秒后自动隐藏；  </li><li> 非常适合做提示信息框；    </li></ul><p>源代码:</p><span id="more"></span><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">import win.ui;</span><br><span class="line">/*DSG&#123;&#123;*/</span><br><span class="line">mainForm = win.form(text=&quot;tipsbox by Mr.R&quot;;right=759;bottom=469;)</span><br><span class="line">mainForm.add()</span><br><span class="line">/*&#125;&#125;*/</span><br><span class="line"></span><br><span class="line">import web.layout; </span><br><span class="line">import web.layout.behavior.windowCommand;</span><br><span class="line"></span><br><span class="line">wbLayout = web.layout( mainForm )  </span><br><span class="line">wbLayout.html = /**</span><br><span class="line">&lt;!doctype html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;style type=&quot;text/css&quot;&gt;</span><br><span class="line">    html,body&#123; height:100%; margin:0; &#125; </span><br><span class="line">    body widget &#123; size:*;   &#125;</span><br><span class="line">    body&#123;size-changed!:</span><br><span class="line">            $1(#show_msg).fade = &quot;true&quot; ,</span><br><span class="line">            $1(#show_msg):value = self.box-border-width() + &quot;,&quot; + self.box-border-height();&#125;</span><br><span class="line">    #show_msg&#123;</span><br><span class="line">            position: absolute;</span><br><span class="line">                    top:50%%;left:50%%;                 </span><br><span class="line">                    width: calc(text-width(self:value)); </span><br><span class="line">                    max-width:400px;                    </span><br><span class="line">                        height:85px;line-height:85px;</span><br><span class="line">                        padding:0 30 0 80;</span><br><span class="line">                        flow:horizontal;        </span><br><span class="line">                        background:#ccc;</span><br><span class="line">                        border-radius:15px;</span><br><span class="line">                        foreground-image:url(res\fill.png);</span><br><span class="line">                        foreground-repeat:no-repeat;</span><br><span class="line">                        foreground-position:30px 50%;                        </span><br><span class="line">                        color:2c2c2c;font-size: 18px;</span><br><span class="line">                        display:none;opacity: 0;</span><br><span class="line">                        overflow: hidden;&#125;</span><br><span class="line">#show_msg[tips = &quot;yes&quot;]&#123;   </span><br><span class="line">        foreground-image:url(res\fill_w.png);  </span><br><span class="line">        background:#b82525;color:#fff;</span><br><span class="line">&#125;</span><br><span class="line">#show_msg[fade = &quot;true&quot;]&#123;</span><br><span class="line">        assigned!: </span><br><span class="line">                self::opacity = 0.01, </span><br><span class="line">                self::display = &quot;block&quot;, </span><br><span class="line">                self.start-animation();</span><br><span class="line">        animation-step!: </span><br><span class="line">                self::opacity &lt; 1.0  ?</span><br><span class="line">                ( self::opacity = self::opacity + 0.1, return 15 )#</span><br><span class="line">                ( self.fade = &quot;close&quot;, return cancel );</span><br><span class="line">        &#125;</span><br><span class="line">#show_msg[fade = &quot;close&quot;]&#123;</span><br><span class="line">        assigned!: </span><br><span class="line">                self.start-timer(2000); </span><br><span class="line">        timer!: </span><br><span class="line">                self::opacity = 1.0, </span><br><span class="line">                self::display = &quot;block&quot;,</span><br><span class="line">        self.start-animation();</span><br><span class="line">    animation-step!: </span><br><span class="line">                self::opacity &gt; 0 ?</span><br><span class="line">            ( self::opacity = self::opacity - 0.1, return 15)#</span><br><span class="line">            (self.fade = none,self::display =&quot;none&quot;,self::opacity =9,return cancel);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">button &#123;width:48px;height:28px;border:1px solid #999;background:#fff;border-radius: 5px;padding:0 8 0 8;margin:10px;&#125;</span><br><span class="line">#btn1&#123;click!: $1(#show_msg).fade = &quot;true&quot; ,$1(#show_msg).tips = none,$1(#show_msg):value = &quot;这里是文字&quot;;&#125;</span><br><span class="line">#btn2&#123;click!: $1(#show_msg).tips = &quot;yes&quot; , $1(#show_msg).fade = &quot;true&quot; ,$1(#show_msg):value = &quot;厉害了我的哥&quot;;&#125;</span><br><span class="line">    &lt;/style&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line"></span><br><span class="line">        &lt;div&gt; </span><br><span class="line">                &lt;button #btn1 value = &quot;默认&quot; /&gt;</span><br><span class="line">                &lt;button #btn2 value = &quot;更换图标&quot; /&gt;</span><br><span class="line">        &lt;div&gt;</span><br><span class="line">    &lt;div #show_msg&gt;这是默认文字&lt;/div&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br><span class="line">**/</span><br><span class="line"> </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">mainForm.show() </span><br><span class="line">return win.loopMessage(); </span><br><span class="line"></span><br></pre></td></tr></table></figure><p>原文链接：<a href="https://www.btbat.com/1078.html">https://www.btbat.com/1078.html</a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 客户端开发 </category>
+          
+          <category> aardio </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> aardio </tag>
+            
+            <tag> htmlayout </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>aardio-皮肤引擎(HTMLayout)特性</title>
+      <link href="/posts/2024/08/9cec52b.html"/>
+      <url>/posts/2024/08/9cec52b.html</url>
+      
+        <content type="html"><![CDATA[<p>HTMLayout特性包括界面结构、CSS支持、交互相关扩展、CSSS! 脚本、截获事件、获取元素等，详情请点击:</p><p><a href="/aardio/HTMLLayoutDocMx3.html">皮肤引擎HTMLayout特性</a></p><span id="more"></span>]]></content>
+      
+      
+      <categories>
+          
+          <category> 客户端开发 </category>
+          
+          <category> aardio </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> aardio </tag>
+            
+            <tag> htmlayout </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>aardio-让Button按钮实现[单击]和[长按]功能</title>
       <link href="/posts/2024/08/46ae9d4b.html"/>
       <url>/posts/2024/08/46ae9d4b.html</url>
@@ -1690,7 +2009,7 @@
       <link href="/posts/2022/12/4d8c9542.html"/>
       <url>/posts/2022/12/4d8c9542.html</url>
       
-        <content type="html"><![CDATA[<p>1个可以用于微信聊天的ChatGPT机器人<br>GitHub地址：<a href="https://github.com/fuergaosi233/wechat-chatgpt">https://github.com/fuergaosi233/wechat-chatgpt</a></p><p>支持特性</p><blockquote><p>通过微信在微信上使用ChatGPT<br>支持OpenAI帐户池<br>支持使用代理登录<br>在消息接收时模拟</p></blockquote><p>我这边已经部署成功并成功运行，如有疑问可邮件联系 <a href="mailto:&#x64;&#111;&#110;&#x67;&#x37;&#x30;&#x36;&#64;&#x67;&#109;&#97;&#x69;&#108;&#46;&#x63;&#x6f;&#109;">&#x64;&#111;&#110;&#x67;&#x37;&#x30;&#x36;&#64;&#x67;&#109;&#97;&#x69;&#108;&#46;&#x63;&#x6f;&#109;</a> </p><span id="more"></span>]]></content>
+        <content type="html"><![CDATA[<p>1个可以用于微信聊天的ChatGPT机器人<br>GitHub地址：<a href="https://github.com/fuergaosi233/wechat-chatgpt">https://github.com/fuergaosi233/wechat-chatgpt</a></p><p>支持特性</p><blockquote><p>通过微信在微信上使用ChatGPT<br>支持OpenAI帐户池<br>支持使用代理登录<br>在消息接收时模拟</p></blockquote><p>我这边已经部署成功并成功运行，如有疑问可邮件联系 <a href="mailto:&#x64;&#x6f;&#110;&#103;&#55;&#48;&#54;&#64;&#x67;&#x6d;&#97;&#105;&#108;&#46;&#99;&#111;&#109;">&#x64;&#x6f;&#110;&#103;&#55;&#48;&#54;&#64;&#x67;&#x6d;&#97;&#105;&#108;&#46;&#99;&#111;&#109;</a> </p><span id="more"></span>]]></content>
       
       
       <categories>

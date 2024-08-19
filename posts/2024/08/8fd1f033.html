@@ -1,0 +1,285 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>aardio-HTMLayout behavior 大全 | 叶落花开的博客</title><meta name="keywords" content="aardio,htmlayout"><meta name="author" content="叶落花开"><meta name="copyright" content="叶落花开"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="这是能找到的最全的 htmlayout behavior 了，如有遗漏欢迎补全！！！ behavior:none behavior:gird  &#x2F;&#x2F;网格控件behavior:sortable-gridbehavior:virtual-gridbehavior:sample-data-source &#x2F;&#x2F;virtual-grid 数据源behavior:colum-resizer &#x2F;&#x2F; table 列">
+<meta property="og:type" content="article">
+<meta property="og:title" content="aardio-HTMLayout behavior 大全">
+<meta property="og:url" content="https://www.yeluohuakai.com/posts/2024/08/8fd1f033.html">
+<meta property="og:site_name" content="叶落花开的博客">
+<meta property="og:description" content="这是能找到的最全的 htmlayout behavior 了，如有遗漏欢迎补全！！！ behavior:none behavior:gird  &#x2F;&#x2F;网格控件behavior:sortable-gridbehavior:virtual-gridbehavior:sample-data-source &#x2F;&#x2F;virtual-grid 数据源behavior:colum-resizer &#x2F;&#x2F; table 列">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-08-18T13:44:00.000Z">
+<meta property="article:modified_time" content="2024-08-18T13:51:48.643Z">
+<meta property="article:author" content="叶落花开">
+<meta property="article:tag" content="aardio">
+<meta property="article:tag" content="htmlayout">
+<meta name="twitter:card" content="summary"><link rel="shortcut icon" href="/favicon.png"><link rel="canonical" href="https://www.yeluohuakai.com/posts/2024/08/8fd1f033"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//www.google-analytics.com" crossorigin=""/><link rel="preconnect" href="//hm.baidu.com"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?2f8a615b51582cf280e790200f3527e6";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script><script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-LB2ZMBR4ZN"></script><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-LB2ZMBR4ZN');
+</script><script>(function(){
+var el = document.createElement("script");
+el.src = "https://lf1-cdn-tos.bytegoofy.com/goofy/ttzz/push.js?18da2b25537eeea1b5c8819ad9a03fc2279abb7e5ff9fdb01a2409cbd77b8f1db3e414cba65c376eba389ba56d9ee0846cad2206506a6529fe6ee21a7373effb434c445cf6444b10ea9756ea44e128a6";
+el.id = "ttzz";
+var s = document.getElementsByTagName("script")[0];
+s.parentNode.insertBefore(el, s);
+})(window)
+</script><script async="async" crossorigin="anonymous" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6673854567363222"></script><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":false,"highlightLang":false,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://fastly.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.js',
+      css: 'https://fastly.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'aardio-HTMLayout behavior 大全',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2024-08-18 21:51:48'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/index_code.css"><meta name="generator" content="Hexo 6.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/loading.gif" data-original="/img/ava.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data is-center"><div class="data-item"><a href="/archives/"><div class="headline">文章</div><div class="length-num">178</div></a></div><div class="data-item"><a href="/tags/"><div class="headline">标签</div><div class="length-num">71</div></a></div><div class="data-item"><a href="/categories/"><div class="headline">分类</div><div class="length-num">22</div></a></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" target="_blank" rel="noopener" href="https://support.qq.com/product/377343"><i class="fa-fw fa fa-paper-plane"></i><span> 反馈</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">叶落花开的博客</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" target="_blank" rel="noopener" href="https://support.qq.com/product/377343"><i class="fa-fw fa fa-paper-plane"></i><span> 反馈</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">aardio-HTMLayout behavior 大全</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-08-18T13:44:00.000Z" title="发表于 2024-08-18 21:44:00">2024-08-18</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-08-18T13:51:48.643Z" title="更新于 2024-08-18 21:51:48">2024-08-18</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%AE%A2%E6%88%B7%E7%AB%AF%E5%BC%80%E5%8F%91/">客户端开发</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%AE%A2%E6%88%B7%E7%AB%AF%E5%BC%80%E5%8F%91/aardio/">aardio</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span id="" data-flag-title="aardio-HTMLayout behavior 大全"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="twikoo_visitors"></span></span></div></div></div><article class="post-content" id="article-container"><p>这是能找到的最全的 htmlayout behavior 了，如有遗漏欢迎补全！！！</p>
+<p>behavior:none</p>
+<p>behavior:gird  //网格控件<br>behavior:sortable-grid<br>behavior:virtual-grid<br>behavior:sample-data-source //virtual-grid 数据源<br>behavior:colum-resizer // table 列宽调整 table 标记内可以使用 fixedrows=”1”指定首行不随滚动条移动</p>
+<p>behavior:tree //树形视图控件<br>behavior: tree-checkmarks;<br>-option- - 表示一个列表项.<br>-optgroup- - 列表项分组<br>属性<br>size=”N” N 是大于 1 的数，指定显示行数，显示 1 行时为下拉列表，显示多行列表框<br>checkmarks - 是否显示复选框，其外观在 master CSS 中定义，可在 CSS 中自行义外观</p>
+<p>behavior:select //列表框<br>behavior:dropdown-select //才是下拉框 size=1<br>behavior:editable-select //带复选框的列表<br>behavior:select scroller //滚动选择列表<br>size=“N” - N 是大于 1 的数，指定显示行数，显示 1 行时为下拉列表，显示多行列表框<br>multiple 是否允许选中多个列表项<br>multiple=“checks” - 显示复选框<br>editable - 如果为真，标题子节点 caption 将应用 behavior:edit，并且控件的 value 属性值也指向 edit 控件的当前值。<br>novalue=”text” - 没有选中项时显示的默认值</p>
+<p>behavior:scroller //滚动条 type=”vscrollbar” type=”hscrollbar”<br>behavior: scroll-bar;<br>behavior:shell-icon //图标 需要指定文件名字或类型 filename=”.jpg”<br>behavior:file-icon; -icon-size:”large”; //文件图标及默认大小设置<br>behavior:path //显示路径 overflow-x:hidden;white-space:nowrap; //必须一起用<br>behavior:path-select //文件路径选框 path-select 用于本地程序他的值只是一个文件路径 - 并且可以编程修改。<br>type=”folder-path”<br>type=”file-path”<br>filter=”filename-filter” - 定义文件类型，多个类型分组用’;’分隔，每个类型分组使用 ‘:’分隔标题以及后缀名列表。<br>behavior:file //文件上传控件 标准 file 控件， 放在 form enctype=”multipart/form-data” 里面可用于远程提交文件。<br>behavior:sizer //调整大小<br>behavior:~ sizer;-resize: vertical; //限制方向</p>
+<p>behavior:splitter cursor:w-resize; cursor:n-resize; //分隔条<br>behavior:slider //滑块 type=”vslider”垂直方向 type=”hslider” 水平方向<br>属性<br>value - integer, 初始值.<br>min - integer, 最小数值<br>max - integer, 最大数值<br>step - integer, 步进值,默认为 1<br>buddy - string, 同步显示控件值的节点 ID</p>
+<p>behavior:accesskeys actions; //快捷键<br>示例：<br>accesskey=”^E”<br>accesskey=”!NUMPAD7”<br>accesskey=”!DECIMAL”<br>behavior:chart //图表</p>
+<p>behavior:expandable-list //折叠列表<br>behavior:collapsible-list //折叠列表<br>behavior:collapsible-by-icon //折叠列表 Toggle ‘state’ to ‘open’ and ‘close’.class = icon</p>
+<p>behavior:tabs //选项卡</p>
+<p>ltTabs.xcall(“select”,”选项卡名字”); //选择一个页面<br>ltTabs.xcall(“close”,”选项卡名字”); //关闭一个页面<br>ltTabs.xcall(“open “,”选项卡标题”,”框架页网址”,”选项卡名字”); //打开一个页面<br>ltTabs.xcall(“create”,”选项卡标题”,”选项卡名字”,”子页面 HTML”); //使用 HTML 代码新建一个页面</p>
+<p>behavior:progress //进度条<br>value=float - 进度值<br>maxvalue=float - 最大值<br>-bar:”clip”; - 进度条会剪切显示前景图 （始终不改变原图大小）<br>behavior:clock //时钟<br>behavior:graphin-clock<br>behavior:calendar //日历<br>behavior:date //日期 value=”today”<br>behavior:time //时间 no-seconds value=”now”<br>behavior:frame //框架<br>behavior:frame-set  //rows=”*,100px” cols=”*,*“<br>behavior:history<br>behavior:pager<br>属性<br>src=”url.html” - 框架内加载网页地址<br>content-style=”url.css” - 添加样式到框架页面<br>可以在 CSS 中使用 :busy 状态指定正在加载框架时的样式</p>
+<p>方法：<br>ltEle.xcall(“load”, url:string) - 在框架中加载指定地址网页<br>ltEle.xcall(“clear”) - 清空框架</p>
+<p>behavior:select-buddy<br>role=”destination”<br>action=”move-all” move-selected revoke-selected revoke-all</p>
+<p>behavior:url; type=”url”<br>behavior:hyperlink //超链接 -target:”sandbox”; onHyperlinkClick 事件较特殊，必须写在 sinking 过程里<br>behavior:clickable //无焦点按钮<br>behavior:button //按钮 value=”caption” - 按钮标题<br>behavior:radio //单选框<br>behavior:switch //单选按钮 鼠标左键按下时（而不是放开时）切换选中状态。<br>behavior:check //复选框<br>behavior:password //密码框 password-char=”占位符”<br>behavior: masked-edit; //type=”masked” mask=”( ### ) ### - ####”<br>behavior:number //数字框<br>behavior:decimal ;-format=”fdigits:2; leading-zero:true;”<br>behavior:currency //货币数值输入框控件</p>
+<p>属性<br>value=float - 初始值<br>size=integer - 控件宽度<br>min - 最小值<br>max - 最大值<br>step - 滚动选框步进值，指定了此属性会显示滚动选框<br>format - 数值显示格式，支持下面的字段，使用 ‘;’分隔多个字段:<br>grouping - number, ‘千位’分隔符间隔数<br>fdigits - number, 小数位置<br>leading-zero - true/false, 是否显示前导 0<br>decimal-sep - 小数分隔符<br>grouping-sep - 千位分隔符<br>negative-sign - true/false, true - 是否显示负号<br>currency - 货币符号<br>currency-after - 货币符号是否显示在数值后面</p>
+<p>currency 控件会自动更新下面两个属性<br>invalid - 当前输入了无效的值<br>negative - 负数</p>
+<p>自定义函数<br>ltEle.xcall(“min”): int - 返回最小值<br>ltEle.xcall(“min”, v:int) - 设置最小值<br>ltEle.xcall(“max”): int - 返回最大值<br>ltEle.xcall(“max”, v:int) - 设置最大值<br>ltEle.xcall(“step”): int - 返回步进值<br>ltEle.xcall(“step”, v:int|undefined) - 设置|或清除步进值，设置了该值以后后会显示滚动选框<br>behavior:edit //可编辑 tpye =”text”<br>value=“text” - 文本框初始值<br>size=integer - 文本框宽度<br>maxlength=integer -可包含的最大字符数<br>filter=“filter-expr” - 限制输入的字符表达式，可指定单个字符或指定字符范围，例如 “.@0<del>9a</del>zA~Z”表示允许所有数字字母, ‘.’ 以及 ‘@’. 可以使用 ‘^’ 前缀排除字符. 例如“^.,-” 允许所有除 ‘.’, ‘,’ 和 ‘-‘ 以外的字符。<br>novalue=“text” - 文本框为空时显示的默认值，在 CSS 中可以使用:empty 指定显示默认值的样式。</p>
+<p>支持的快捷键：<br>LEFT, CTRL+LEFT, SHIFT+LEFT, CTRL+SHIFT+LEFT<br>RIGHT, CTRL+RIGHT, SHIFT+RIGHT, CTRL+SHIFT+RIGHT<br>HOME, SHIFT+HOME<br>END, SHIFT+END<br>BACKSPACE, ALT+BACKSPACE, CTRL+BACKSPACE<br>CTRL+A<br>DELETE, SHIFT+DELETE, CTRL+DELETE<br>INSERT, SHIFT+INSERT, CTRL+INSERT<br>CTRL+X<br>CTRL+V<br>CTRL+Z<br>CTRL+(LEFT)SHIFT 以及 CTRL+(RIGHT)SHIFT</p>
+<p>自定义函数<br>ltEle.xcall(“selectionStart”): int - 返回选区开始位置<br>ltEle.xcall(“selectionEnd”): int - 返回选区结束位置<br>ltEle.xcall(“setSelection”, start:int, end:int):void - 设置选区<br>ltEle.xcall(“selectionText”): string - 返回选中文本<br>ltEle.xcall(“insertText”, text: string):void - 在光标处插入文本<br>ltEle.xcall(“appendText”, text: string):void - 追加文本<br>ltEle.xcall(“undo”, false): bool - 是否可以撤消操作<br>ltEle.xcall(“undo”, true) - 撤消操作<br>ltEle.xcall(“cut”, false): bool - 是否可以剪切<br>ltEle.xcall(“cut”, true) - 剪切操作<br>ltEle.xcall(“copy”, false): bool - 是否可复制<br>ltEle.xcall(“copy”, true) - 复制操作<br>ltEle.xcall(“paste”, false): bool - 是否可粘贴<br>ltEle.xcall(“paste”, true) - 粘贴操作;<br>ltEle.xcall(“selectAll”): bool - 当前是否已全选文本<br>ltEle.xcall(“selectAll”, true) - 全选文本</p>
+<p>behavior:htmlarea //超文本框 tabindex=0<br>behavior:plaintext //文本框</p>
+<p>toolbar=”widget.toolbar”</p>
+<p>content-style=”content.css”</p>
+<p>allow-clipboard-images</p>
+<p>objects-list=”ul#current-objects”</p>
+<p><strong>behavior:richtext</strong>//</p>
+<p>属性：<br>value=“text” - 文本框初始值<br>maxlength=integer -可包含的最大字符数<br>filter=“filter-expr” - 限制输入的字符表达式，可指定单个字符或指定字符范围，例如 “.@0<del>9a</del>zA~Z”表示允许所有数字字母, ‘.’ 以及 ‘@’. 可以使用 ‘^’ 前缀排除字符. 例如“^.,-” 允许所有除 ‘.’, ‘,’ 和 ‘-‘ 以外的字符。<br>novalue=“text” - 文本框为空时显示的默认值，<br>在 CSS 中可以使用:empty 指定显示默认值的样式。readonly 指定该属性则显示为只读模式。<br>自定义函数<br>ltEle.xcall(“selectionStart”): int - 返回选区开始位置<br>ltEle.xcall(“selectionEnd”): int - 返回选区结束位置<br>ltEle.xcall(“setSelection”, start:int, end:int):void - 设置选区<br>ltEle.xcall(“selectionText”): string - 返回选中文本<br>ltEle.xcall(“insertText”, text: string):void - 在光标处插入文本<br>ltEle.xcall(“appendText”, text: string):void - 追加文本<br>ltEle.xcall(“canUndo”): bool - 是否可以撤消操作<br>ltEle.xcall(“doUndo”) - 撤消操作<br>ltEle.xcall(“canRedo”): bool - 是否可以重做操作<br>ltEle.xcall(“doRedo”) - 重做操作<br>ltEle.xcall(“canCut”): bool - 是否可以剪切<br>ltEle.xcall(“doCut”) - 剪切操作<br>ltEle.xcall(“canCopy”): bool - 是否可复制<br>ltEle.xcall(“doCopy”) - 复制操作<br>ltEle.xcall(“canPaste”): bool - 是否可粘贴<br>ltEle.xcall(“doPaste”) - 粘贴操作;<br>ltEle.xcall(“canSelectAll”): bool - 当前是否已全选文本<br>ltEle.xcall(“canSelectAll”) - 全选文本</p>
+<p>behavior:form //表单<br>button name=”Submit” type=”submit”<br>button name=”Reset” type=”reset”<br>属性<br>action=“url” - 提交地址<br>target=“frame-name” - 目标框架<br>method=“get” | “post” - 提交方法<br>enctype=“application/x-www-form-urlencoded” | “multipart/form-data” - 编码类型</p>
+<p>方法：<br>ltEle.xcall(“submit”) - 提交表单<br>ltEle.xcall(“reset”) - 重置表单</p>
+<p>behavior:hover-click</p>
+<p>behavior:menu //菜单  type=”menu” align-popup=”right”<br>behavior:menu-bar //菜单栏 子节点中的-li-节点或 HTML 属性中指定了 role=”menu-item”作为菜单项处理<br>behavior:popup-menu //弹出菜单 仅仅是单纯的弹出菜单，接收的事件也是菜单事件，没有控件选中值的概念。<br>属性<br>menu=css-selector - 使用 CSS 选择器指定要弹出的菜单，如果不指定此属性则使用子节点中的第一个 menu 或-popup-子节点<br>align-popup= left | top | right | bottom 用于指定菜单的弹出方向，默认是 bottom，也可以在 CSS 自定义属性中指定此值<br>behavior:popup-selector //弹出菜单下拉框<br>属性<br>menu=“css-selector” - 使用 CSS 选择器指定要弹出的菜单，如果不指定此属性则使用子节点中的第一个-menu-或-popup-子节点<br>value=“string” - 初始值,菜单的 li 节点可以使用 value 属性指定值，点击菜单项时复制值到控件的-caption-标题节点,</p>
+<p>behavior:dropdown //弹出框<br>behavior:popup //弹框<br>behavior:light-box-dialog //模态弹框</p>
+<p>role=’ok-button’  确定按钮</p>
+<p>role=’cancel-button’ 取消按钮</p>
+<p>ltEle.xcall(“show”)</p>
+<p>ltEle.xcall(“hide”)</p>
+<p>behavior:windowSizer //窗口缩放</p>
+<p>sizer-command:hitTopleft  hitLeft  hitBottomleft  hitTop  hitBottom   hitTopright  hitRight   hitBottomright</p>
+<p>HTML behavior:font-size; //字体<br>HTML[zoom=”1” font-size:xx-small;<br>HTML[zoom=”2”font-size:x-small;<br>HTML[zoom=”3” font-size:small;<br>HTML[zoom=”4” font-size:medium;<br>HTML[zoom=”5” font-size:large;<br>HTML[zoom=”6” font-size:x-large;<br>HTML[zoom=”7” font-size:xx-large;<br>behavior:gripper //拖拽 accept-drop:selector( div.toolbar ); drop:insert;</p>
+<p>behavior:selectionBox  //鼠标选框</p>
+<p>behavior:marquee //跑马灯<br>-marquee: horizontal; vertical<br>-marquee-direction: forward;<br>-marquee-style: scroll; alternate slide<br>-marquee-play-count:1; /* playing once */<br>-marquee-speed:slow normal fast</p>
+<p>behavior:reflection //水中倒影<br>-reflection-opacity-start: 0.4;<br>-reflection-opacity-end: 0.0;<br>-reflection-blur-radius: 3;</p>
+<p>behavior:magnifier //鱼眼特效<br>magnify=’widget[type=”button”,table’ magnification=4.0 magnification-step=0.3 radius-x=300 radius-y=100<br>~ actions<br>~ richtext-current-objects</p>
+<p><strong>command</strong><br>command=”window-caption”<br>command=”window-close”<br>command=”window-min”<br>command=”window-max”<br>command=”window-restore”<br>-command:disabled</p>
+<p>edit richtext: //编辑框 文本框右键<br>behavior:edit:undo Ctrl+Z<br>behavior:edit:cut Ctrl+X<br>behavior:edit:copy Ctrl+C<br>behavior:edit:paste Ctrl+V<br>behavior:edit:selectall Ctrl+A</p>
+<p>richtext：<br>richtext:paste-plain-text HTML 转换为文本<br>richtext:paste-text-as-html 粘贴 HTML 代码<br>richtext:paste-html-no-tables 粘贴 HTML 格式(移除表格)<br>richtext:merge-cells 合并单元格 Backspace<br>richtext:split-cells-by-rows Ctrl+1 拆分行<br>richtext:split-cells-by-cols Ctrl+2 拆分列<br>richtext:strong<br>richtext:em<br>richtext:code<br>richtext:p<br>richtext:h1 h2 h3 h4 h5 h6<br>richtext:pre<br>richtext:li-ul<br>richtext:li-ol<br>richtext:indent-dec<br>richtext:indent-inc<br>richtext:show-rulers<br>用法：<br>command=”behavior:edit:undo”<br>command=”richtext:undo”<br>快捷键配合 class=”accesskey”</p>
+<p>这是能找到的最全的 htmlayout behavior 了，如有遗漏欢迎补全！！！</p>
+<p><strong>role:</strong></p>
+<p>role=”option”</p>
+<p>role=”default-button”<br>role=”cancel-button”</p>
+<p>role=”source”<br>role=”destination”</p>
+<p>role=”dropdown”</p>
+<p>role:”menu-item”</p>
+<p>role=”page-tab-list”<br>role=”page-tab”</p>
+<p>popup[role=tooltip]<br>popup[role=”overflow-tooltip”]</p>
+<p>//右键菜单</p>
+<p>.with-context-menu{<strong>context-menu:selector</strong>(menu#for-htmlarea);</p>
+<p>.with-context-menu-ext{context-menu: url(c-menu.htm)</p>
+<p>option:nth-child(odd){context-menu: selector(menu#option-odd);</p>
+<p><strong>标签相关：</strong></p>
+<p><strong><code>&lt;widget&gt;</code></strong><br>该标记是类似于 <code>&lt;input&gt; &lt;select&gt;</code> 的内联块标记.<br><code>&lt;widget&gt;</code> 基本类似 <code>&lt;input&gt;</code>,区别是可以扩展 type 属性,<br>除了可以使用标准库的类型 (input 节点可以使用的类型,例如: text, checkbox, radio, 等等. )<br>type 属性也可以定义为下面的值:<br>  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;widget type=&quot;select&quot;&gt; - 列表框;  </span><br><span class="line">&lt;widget type=&quot;dropdown-select&quot;&gt; - 下拉列表;  </span><br><span class="line">&lt;widget type=&quot;textarea&quot;&gt; - 文本框;  </span><br><span class="line">&lt;widget type=&quot;htmlarea&quot;&gt; - HTML 控件.  </span><br><span class="line">&lt;widget&gt; 必须与闭合标记 &lt;/widget&gt; 配对使用.</span><br></pre></td></tr></table></figure><br>根据 HTML 规范，input 节点会被包含在一个匿名的文本容器中,例如:<br><code>&lt;anonymous-text-container&gt;&lt;input …/&gt;&lt;/anonymous-text-container&gt;</code><br>而 widget 则不会这么做, 这样使用%或%%时计算相对高度时不会导致不必要的混淆．</p>
+<p><strong><code>&lt;popup&gt;</code></strong><br>该标记是 block 样式显示的块标记( 类似<code>&lt;div&gt;</code> ),<br>用于定义可在页面上弹出显示的节点, 默认的 popup 是隐藏不显示的.<br>一个常用的功能是使用<code>&lt;popup&gt; </code>显示复杂些的工具提示(tooltips)</p>
+<p>详细使用请参考官方 demo：<br><a target="_blank" rel="noopener" href="http://www.terrainformatica.com/htmlayout/HTMLayoutDemo.zip">http://www.terrainformatica.com/htmlayout/HTMLayoutDemo.zip</a>  </p>
+<p>原文地址：<a target="_blank" rel="noopener" href="https://www.btbat.com/1130.html">https://www.btbat.com/1130.html</a></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">叶落花开</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://www.yeluohuakai.com/posts/2024/08/8fd1f033.html">https://www.yeluohuakai.com/posts/2024/08/8fd1f033.html</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://www.yeluohuakai.com" target="_blank">叶落花开的博客</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/aardio/">aardio</a><a class="post-meta__tags" href="/tags/htmlayout/">htmlayout</a></div><div class="post_share"><div class="social-share" data-image="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://fastly.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/posts/2024/08/b94012fd.html"><img class="prev-cover" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">aardio-htmlayout 修改 file 控件按钮文字</div></div></a></div><div class="next-post pull-right"><a href="/posts/2024/08/48f44e22.html"><img class="next-cover" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">aardio-[Mr.R出品]精心收集整理 htmlayout 参考手册</div></div></a></div></nav><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/loading.gif" data-original="/img/ava.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">叶落花开</div><div class="author-info__description">持续学习，记录后端技术、web技术，以及对认知、技术变现的思考。</div></div><div class="card-info-data is-center"><div class="card-info-data-item"><a href="/archives/"><div class="headline">文章</div><div class="length-num">178</div></a></div><div class="card-info-data-item"><a href="/tags/"><div class="headline">标签</div><div class="length-num">71</div></a></div><div class="card-info-data-item"><a href="/categories/"><div class="headline">分类</div><div class="length-num">22</div></a></div></div></div><div class="card-widget user-map" id="user-map"><div class="item-headline"><i class="fas fa-link"></i><span>友情链接</span></div><div class="item-content"><ul class="entry"><li><a href="/bszs" title="各大高校博士招生信息">各大高校博士招生信息</a></li><li><a target="_blank" rel="noopener" href="https://www.xiaoxinsoft.com" title="小新软件服务">小新软件安装服务</a></li></ul></div></div><div class="sticky_layout"></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 By 叶落花开</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">本地搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://fastly.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>(()=>{
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'freecloud-0gzubvbebcf38cf6',
+      region: '',
+      onCommentLoaded: function () {
+        btf.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.vemoji)'))
+      }
+    }, null))
+  }
+
+  const getCount = () => {
+    twikoo.getCommentsCount({
+      envId: 'freecloud-0gzubvbebcf38cf6',
+      region: '',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(function (res) {
+      document.getElementById('twikoo-count').innerText = res[0].count
+    }).catch(function (err) {
+      console.error(err);
+    });
+  }
+
+  const runFn = () => {
+    init()
+    
+  }
+
+  const loadTwikoo = () => {
+    if (typeof twikoo === 'object') {
+      setTimeout(runFn,0)
+      return
+    } 
+    getScript('https://fastly.jsdelivr.net/npm/twikoo/dist/twikoo.all.min.js').then(runFn)
+  }
+
+  if ('Twikoo' === 'Twikoo' || !false) {
+    if (false) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo()
+  } else {
+    window.loadOtherComment = () => {
+      loadTwikoo()
+    }
+  }
+})()</script></div><script id="canvas_nest" defer="defer" color="0,0,255" opacity="0.7" zIndex="-1" count="99" mobile="false" src="https://fastly.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-nest.min.js"></script></div>
+        <style>
+            [bg-lazy] {
+                background-image: none !important;
+                background-color: #eee !important;
+            }
+        </style>
+        <script>
+            window.imageLazyLoadSetting = {
+                isSPA: false,
+                preloadRatio: 1,
+                processImages: null,
+            };
+        </script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script><script>!function(r){r.imageLazyLoadSetting.processImages=t;var e=r.imageLazyLoadSetting.isSPA,n=r.imageLazyLoadSetting.preloadRatio||1,c=a();function a(){var t=Array.prototype.slice.call(document.querySelectorAll("img[data-original]")),e=Array.prototype.slice.call(document.querySelectorAll("[bg-lazy]"));return t.concat(e)}function t(){e&&(c=a());for(var t,o=0;o<c.length;o++)0<=(t=(t=c[o]).getBoundingClientRect()).bottom&&0<=t.left&&t.top<=(r.innerHeight*n||document.documentElement.clientHeight*n)&&function(){var t,e,n,a,i=c[o];e=function(){c=c.filter(function(t){return i!==t}),r.imageLazyLoadSetting.onImageLoaded&&r.imageLazyLoadSetting.onImageLoaded(i)},(t=i).hasAttribute("bg-lazy")?(t.removeAttribute("bg-lazy"),e&&e()):(n=new Image,a=t.getAttribute("data-original"),n.onload=function(){t.src=a,t.removeAttribute("data-original"),e&&e()},t.src!==a&&(n.src=a))}()}function i(){clearTimeout(t.tId),t.tId=setTimeout(t,500)}t(),document.addEventListener("scroll",i),r.addEventListener("resize",i),r.addEventListener("orientationchange",i)}(this);</script></body></html>
