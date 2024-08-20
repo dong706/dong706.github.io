@@ -1,0 +1,229 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>aardio-国密算法SM4库-加解密 | 叶落花开的博客</title><meta name="keywords" content="aardio,国密算法"><meta name="author" content="叶落花开"><meta name="copyright" content="叶落花开"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="aardio-SM4库源码:">
+<meta property="og:type" content="article">
+<meta property="og:title" content="aardio-国密算法SM4库-加解密">
+<meta property="og:url" content="https://www.yeluohuakai.com/posts/2024/08/7c8e411f.html">
+<meta property="og:site_name" content="叶落花开的博客">
+<meta property="og:description" content="aardio-SM4库源码:">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-08-20T00:20:00.000Z">
+<meta property="article:modified_time" content="2024-08-20T00:25:07.791Z">
+<meta property="article:author" content="叶落花开">
+<meta property="article:tag" content="aardio">
+<meta property="article:tag" content="国密算法">
+<meta name="twitter:card" content="summary"><link rel="shortcut icon" href="/favicon.png"><link rel="canonical" href="https://www.yeluohuakai.com/posts/2024/08/7c8e411f"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//www.google-analytics.com" crossorigin=""/><link rel="preconnect" href="//hm.baidu.com"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?2f8a615b51582cf280e790200f3527e6";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script><script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-LB2ZMBR4ZN"></script><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-LB2ZMBR4ZN');
+</script><script>(function(){
+var el = document.createElement("script");
+el.src = "https://lf1-cdn-tos.bytegoofy.com/goofy/ttzz/push.js?18da2b25537eeea1b5c8819ad9a03fc2279abb7e5ff9fdb01a2409cbd77b8f1db3e414cba65c376eba389ba56d9ee0846cad2206506a6529fe6ee21a7373effb434c445cf6444b10ea9756ea44e128a6";
+el.id = "ttzz";
+var s = document.getElementsByTagName("script")[0];
+s.parentNode.insertBefore(el, s);
+})(window)
+</script><script async="async" crossorigin="anonymous" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6673854567363222"></script><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":false,"highlightLang":false,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://fastly.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.js',
+      css: 'https://fastly.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'aardio-国密算法SM4库-加解密',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2024-08-20 08:25:07'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/index_code.css"><meta name="generator" content="Hexo 6.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/loading.gif" data-original="/img/ava.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data is-center"><div class="data-item"><a href="/archives/"><div class="headline">文章</div><div class="length-num">207</div></a></div><div class="data-item"><a href="/tags/"><div class="headline">标签</div><div class="length-num">74</div></a></div><div class="data-item"><a href="/categories/"><div class="headline">分类</div><div class="length-num">30</div></a></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" target="_blank" rel="noopener" href="https://support.qq.com/product/377343"><i class="fa-fw fa fa-paper-plane"></i><span> 反馈</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">叶落花开的博客</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" target="_blank" rel="noopener" href="https://support.qq.com/product/377343"><i class="fa-fw fa fa-paper-plane"></i><span> 反馈</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">aardio-国密算法SM4库-加解密</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-08-20T00:20:00.000Z" title="发表于 2024-08-20 08:20:00">2024-08-20</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-08-20T00:25:07.791Z" title="更新于 2024-08-20 08:25:07">2024-08-20</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%AE%A2%E6%88%B7%E7%AB%AF%E5%BC%80%E5%8F%91/">客户端开发</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%AE%A2%E6%88%B7%E7%AB%AF%E5%BC%80%E5%8F%91/aardio/">aardio</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%AE%A2%E6%88%B7%E7%AB%AF%E5%BC%80%E5%8F%91/aardio/%E5%8A%A0%E8%A7%A3%E5%AF%86/">加解密</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span id="" data-flag-title="aardio-国密算法SM4库-加解密"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="twikoo_visitors"></span></span></div></div></div><article class="post-content" id="article-container"><p>aardio-SM4库源码:</p>
+<span id="more"></span>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">class SM4&#123;</span><br><span class="line">    ctor( key/*输入构造函数所需要的参数*/ )&#123;</span><br><span class="line">        this.secrykey=key;</span><br><span class="line">    &#125;;</span><br><span class="line">    /* 密钥拓展 */    //key  byte[]</span><br><span class="line">    keyGenerate=function( key) &#123;</span><br><span class="line">        var key_r = &#123;&#125;;//轮密钥rk_i</span><br><span class="line">        var key_temp = &#123;&#125;;</span><br><span class="line">        var box_in, box_out;//盒变换输入输出</span><br><span class="line">        var FK = &#123;0xa3b1bac6, 0x56aa3350, 0x677d9197, 0xb27022dc&#125;;</span><br><span class="line">        var CK = &#123;</span><br><span class="line">                0x00070e15, 0x1c232a31, 0x383f464d, 0x545b6269,</span><br><span class="line">                0x70777e85, 0x8c939aa1, 0xa8afb6bd, 0xc4cbd2d9,</span><br><span class="line">                0xe0e7eef5, 0xfc030a11, 0x181f262d, 0x343b4249,</span><br><span class="line">                0x50575e65, 0x6c737a81, 0x888f969d, 0xa4abb2b9,</span><br><span class="line">                0xc0c7ced5, 0xdce3eaf1, 0xf8ff060d, 0x141b2229,</span><br><span class="line">                0x30373e45, 0x4c535a61, 0x686f767d, 0x848b9299,</span><br><span class="line">                0xa0a7aeb5, 0xbcc3cad1, 0xd8dfe6ed, 0xf4fb0209,</span><br><span class="line">                0x10171e25, 0x2c333a41, 0x484f565d, 0x646b7279</span><br><span class="line">        &#125;;</span><br><span class="line">        //将输入的密钥每32比特合并，并异或FK</span><br><span class="line">        for(i=1;4;1)&#123;</span><br><span class="line">            key_temp[i] = this.jointBytes(key[4 * (i-1)+1], key[4 * (i-1)+2], key[4 * (i-1)+3], key[4 * (i-1)+4]);</span><br><span class="line">            key_temp[i] = key_temp[i] ^ FK[i];</span><br><span class="line">        &#125;</span><br><span class="line">        //32轮密钥拓展</span><br><span class="line">        for (i=1;32;1) &#123;</span><br><span class="line">            box_in = key_temp[2] ^ key_temp[3] ^ key_temp[4] ^ CK[i];</span><br><span class="line">            box_out = this.sBox(box_in);</span><br><span class="line">            key_r[i] = key_temp[1] ^ box_out ^ this.shift(box_out, 13) ^ this.shift(box_out, 23);</span><br><span class="line">            key_temp[1] = key_temp[2];</span><br><span class="line">            key_temp[2] = key_temp[3];</span><br><span class="line">            key_temp[3] = key_temp[4];</span><br><span class="line">            key_temp[4] = key_r[i];</span><br><span class="line">        &#125;</span><br><span class="line">        return key_r;</span><br><span class="line">    &#125;;</span><br><span class="line">    /* 加解密主模块 */</span><br><span class="line">    sm4Main=function ( input, key_r, mod) &#123;</span><br><span class="line">        var text = &#123;&#125;;//32比特字</span><br><span class="line">        //将输入以32比特分组</span><br><span class="line">        for (i=1;4;1) &#123;</span><br><span class="line">            text[i] = this.jointBytes(input[4 * (i-1)+1], input[4 * (i-1)+1 + 1], input[4 * (i-1)+1 + 2], input[4 * (i-1)+1 + 3]);</span><br><span class="line">        &#125;</span><br><span class="line">        var box_input, box_output;//盒变换输入和输出</span><br><span class="line">        for (i=1;32;1) &#123;</span><br><span class="line">            var index = (mod == 0) ? i : (33 - i);//通过改变key_r的顺序改变模式</span><br><span class="line">            box_input = text[2] ^ text[3] ^ text[4] ^ key_r[index];</span><br><span class="line">            box_output = this.sBox(box_input);</span><br><span class="line">            var temp = text[1] ^ box_output ^ this.shift(box_output, 2) ^ this.shift(box_output, 10) ^ this.shift(box_output, 18) ^ this.shift(box_output, 24);</span><br><span class="line">            text[1] = text[2];</span><br><span class="line">            text[2] = text[3];</span><br><span class="line">            text[3] = text[4];</span><br><span class="line">            text[4] = temp;</span><br><span class="line">        &#125;</span><br><span class="line">        var output =&#123;&#125;;//输出</span><br><span class="line">        //将结果的32比特字拆分</span><br><span class="line">        for (i=4;1;-1) &#123;</span><br><span class="line">            ..table.append(output,this.splitInt(text[i]))</span><br><span class="line">        &#125;</span><br><span class="line">        return output;</span><br><span class="line">    &#125;;</span><br><span class="line">    /* 加密 */</span><br><span class="line">    encrypt=function( plaintext) &#123;</span><br><span class="line">           this.key_r=this.keyGenerate(this.secrykey);</span><br><span class="line">        return this.sm4Main(plaintext, this.key_r, 0);</span><br><span class="line">    &#125;;</span><br><span class="line">    encryptBase64=function(plaintext)&#123;</span><br><span class="line">        import crypt</span><br><span class="line">        var cc=this.encrypt(plaintext)</span><br><span class="line">        var s=&quot;&quot;</span><br><span class="line">        for(i=1;#cc;1)&#123;</span><br><span class="line">            s=s++..string.pack(cc[i])</span><br><span class="line">        &#125;</span><br><span class="line">        return crypt.encodeBin(s)</span><br><span class="line">    &#125;;</span><br><span class="line">    /* 解密 */</span><br><span class="line">    decrypt=function( ciphertext) &#123;</span><br><span class="line">        this.key_r=this.keyGenerate(this.secrykey);</span><br><span class="line">        return this.sm4Main(ciphertext, this.key_r, 1);</span><br><span class="line">    &#125;;</span><br><span class="line">    decryptStr=function(ciphertext)&#123;</span><br><span class="line">        import crypt</span><br><span class="line">        var cc=this.decrypt(crypt.decodeBin(ciphertext))</span><br><span class="line">        var s=&quot;&quot;</span><br><span class="line">        for(i=1;#cc;1)&#123;</span><br><span class="line">            s=s++..string.pack(cc[i])</span><br><span class="line">        &#125;</span><br><span class="line">        return s</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    /* 将32比特数拆分成4个8比特数 */</span><br><span class="line">    splitInt=function( n) &#123;</span><br><span class="line">        return &#123;(n &gt;&gt; 24) &amp; 0xFF, (n &gt;&gt; 16)&amp; 0xFF, (n &gt;&gt; 8)&amp; 0xFF,  n&#125;;</span><br><span class="line">    &#125;;</span><br><span class="line">    /* 将4个8比特数合并成32比特数 */</span><br><span class="line">     jointBytes=function( byte_0,  byte_1,  byte_2,  byte_3) &#123;</span><br><span class="line">         var s= ..string.format(&quot;%02x&quot;, byte_0 &amp; 0xFF)++</span><br><span class="line">         ..string.format(&quot;%02x&quot;,byte_1 &amp; 0xFF)++</span><br><span class="line">         ..string.format(&quot;%02x&quot;,byte_2 &amp; 0xFF)++</span><br><span class="line">         ..string.format(&quot;%02x&quot;,byte_3 &amp; 0xFF);</span><br><span class="line">         return tonumber(s,16); </span><br><span class="line">    &#125;;</span><br><span class="line">    </span><br><span class="line">    /* S盒变换 */</span><br><span class="line">    sBox=function( box_input) &#123;</span><br><span class="line">        //s盒的参数</span><br><span class="line">        var SBOX = &#123;</span><br><span class="line">                0xD6, 0x90, 0xE9, 0xFE, 0xCC, 0xE1, 0x3D, 0xB7, 0x16, 0xB6, 0x14, 0xC2, 0x28, 0xFB, 0x2C, 0x05, 0x2B, 0x67, 0x9A,</span><br><span class="line">                0x76, 0x2A, 0xBE, 0x04, 0xC3, 0xAA, 0x44, 0x13, 0x26, 0x49, 0x86, 0x06, 0x99, 0x9C, 0x42, 0x50, 0xF4, 0x91, 0xEF,</span><br><span class="line">                0x98, 0x7A, 0x33, 0x54, 0x0B, 0x43, 0xED, 0xCF, 0xAC, 0x62, 0xE4, 0xB3, 0x1C, 0xA9, 0xC9, 0x08, 0xE8, 0x95, 0x80,</span><br><span class="line">                0xDF, 0x94, 0xFA, 0x75, 0x8F, 0x3F, 0xA6, 0x47, 0x07, 0xA7, 0xFC, 0xF3, 0x73, 0x17, 0xBA, 0x83, 0x59, 0x3C, 0x19,</span><br><span class="line">                0xE6, 0x85, 0x4F, 0xA8, 0x68, 0x6B, 0x81, 0xB2, 0x71, 0x64, 0xDA, 0x8B, 0xF8, 0xEB, 0x0F, 0x4B, 0x70, 0x56, 0x9D,</span><br><span class="line">                0x35, 0x1E, 0x24, 0x0E, 0x5E, 0x63, 0x58, 0xD1, 0xA2, 0x25, 0x22, 0x7C, 0x3B, 0x01, 0x21, 0x78, 0x87, 0xD4, 0x00,</span><br><span class="line">                0x46, 0x57, 0x9F, 0xD3, 0x27, 0x52, 0x4C, 0x36, 0x02, 0xE7, 0xA0, 0xC4, 0xC8, 0x9E, 0xEA, 0xBF, 0x8A, 0xD2, 0x40,</span><br><span class="line">                0xC7, 0x38, 0xB5, 0xA3, 0xF7, 0xF2, 0xCE, 0xF9, 0x61, 0x15, 0xA1, 0xE0, 0xAE, 0x5D, 0xA4, 0x9B, 0x34, 0x1A, 0x55,</span><br><span class="line">                0xAD, 0x93, 0x32, 0x30, 0xF5, 0x8C, 0xB1, 0xE3, 0x1D, 0xF6, 0xE2, 0x2E, 0x82, 0x66, 0xCA, 0x60, 0xC0, 0x29, 0x23,</span><br><span class="line">                0xAB, 0x0D, 0x53, 0x4E, 0x6F, 0xD5, 0xDB, 0x37, 0x45, 0xDE, 0xFD, 0x8E, 0x2F, 0x03, 0xFF, 0x6A, 0x72, 0x6D, 0x6C,</span><br><span class="line">                0x5B, 0x51, 0x8D, 0x1B, 0xAF, 0x92, 0xBB, 0xDD, 0xBC, 0x7F, 0x11, 0xD9, 0x5C, 0x41, 0x1F, 0x10, 0x5A, 0xD8, 0x0A,</span><br><span class="line">                0xC1, 0x31, 0x88, 0xA5, 0xCD, 0x7B, 0xBD, 0x2D, 0x74, 0xD0, 0x12, 0xB8, 0xE5, 0xB4, 0xB0, 0x89, 0x69, 0x97, 0x4A,</span><br><span class="line">                0x0C, 0x96, 0x77, 0x7E, 0x65, 0xB9, 0xF1, 0x09, 0xC5, 0x6E, 0xC6, 0x84, 0x18, 0xF0, 0x7D, 0xEC, 0x3A, 0xDC, 0x4D,</span><br><span class="line">                0x20, 0x79, 0xEE, 0x5F, 0x3E, 0xD7, 0xCB, 0x39, 0x48</span><br><span class="line">        &#125;;</span><br><span class="line">        var temp = this.splitInt(box_input);//拆分32比特数</span><br><span class="line">        var output = &#123;&#125;;//单个盒变换输出</span><br><span class="line">        //盒变换</span><br><span class="line">        for (i=1;4;1) &#123;</span><br><span class="line">            output[i] =  SBOX[(temp[i] &amp; 0xFF)+1];</span><br><span class="line">        &#125;</span><br><span class="line">        //将4个8位字节合并为一个字作为盒变换输出</span><br><span class="line">        return this.jointBytes(output[1], output[2], output[3], output[4]);</span><br><span class="line">    &#125;;</span><br><span class="line">    /* 将input左移n位 */</span><br><span class="line">    shift=function( input,  n) &#123;</span><br><span class="line">        return (input &gt;&gt;&gt; (32 - n)) | (input &lt;&lt; n);</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>网友分享的另一个SM4库，性能要低些，仅供参考。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//SM4 加密解密库 SM4.aardio</span><br><span class="line"></span><br><span class="line">class SM4&#123;</span><br><span class="line">    ctor( key )&#123;</span><br><span class="line">    	this.rk = r_key(key);</span><br><span class="line">	&#125;;</span><br><span class="line">    encrypt = function(inputData)&#123;</span><br><span class="line">    	return  encrypt (inputData,this.rk); </span><br><span class="line">    &#125;</span><br><span class="line">    decrypt = function (inputData)&#123;</span><br><span class="line">        return  decrypt (inputData,this.rk);  </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">namespace SM4 &#123;</span><br><span class="line">    // Expanded SM4 box table</span><br><span class="line">    SM4_BOXES = &#123;</span><br><span class="line">        0xd6; 0x90; 0xe9; 0xfe; 0xcc; 0xe1; 0x3d; 0xb7; 0x16; 0xb6; 0x14; 0xc2; 0x28; 0xfb; 0x2c; 0x05;</span><br><span class="line">        0x2b; 0x67; 0x9a; 0x76; 0x2a; 0xbe; 0x04; 0xc3; 0xaa; 0x44; 0x13; 0x26; 0x49; 0x86; 0x06; 0x99;</span><br><span class="line">        0x9c; 0x42; 0x50; 0xf4; 0x91; 0xef; 0x98; 0x7a; 0x33; 0x54; 0x0b; 0x43; 0xed; 0xcf; 0xac; 0x62;</span><br><span class="line">        0xe4; 0xb3; 0x1c; 0xa9; 0xc9; 0x08; 0xe8; 0x95; 0x80; 0xdf; 0x94; 0xfa; 0x75; 0x8f; 0x3f; 0xa6;</span><br><span class="line">        0x47; 0x07; 0xa7; 0xfc; 0xf3; 0x73; 0x17; 0xba; 0x83; 0x59; 0x3c; 0x19; 0xe6; 0x85; 0x4f; 0xa8;</span><br><span class="line">        0x68; 0x6b; 0x81; 0xb2; 0x71; 0x64; 0xda; 0x8b; 0xf8; 0xeb; 0x0f; 0x4b; 0x70; 0x56; 0x9d; 0x35;</span><br><span class="line">        0x1e; 0x24; 0x0e; 0x5e; 0x63; 0x58; 0xd1; 0xa2; 0x25; 0x22; 0x7c; 0x3b; 0x01; 0x21; 0x78; 0x87;</span><br><span class="line">        0xd4; 0x00; 0x46; 0x57; 0x9f; 0xd3; 0x27; 0x52; 0x4c; 0x36; 0x02; 0xe7; 0xa0; 0xc4; 0xc8; 0x9e;</span><br><span class="line">        0xea; 0xbf; 0x8a; 0xd2; 0x40; 0xc7; 0x38; 0xb5; 0xa3; 0xf7; 0xf2; 0xce; 0xf9; 0x61; 0x15; 0xa1;</span><br><span class="line">        0xe0; 0xae; 0x5d; 0xa4; 0x9b; 0x34; 0x1a; 0x55; 0xad; 0x93; 0x32; 0x30; 0xf5; 0x8c; 0xb1; 0xe3;</span><br><span class="line">        0x1d; 0xf6; 0xe2; 0x2e; 0x82; 0x66; 0xca; 0x60; 0xc0; 0x29; 0x23; 0xab; 0x0d; 0x53; 0x4e; 0x6f;</span><br><span class="line">        0xd5; 0xdb; 0x37; 0x45; 0xde; 0xfd; 0x8e; 0x2f; 0x03; 0xff; 0x6a; 0x72; 0x6d; 0x6c; 0x5b; 0x51;</span><br><span class="line">        0x8d; 0x1b; 0xaf; 0x92; 0xbb; 0xdd; 0xbc; 0x7f; 0x11; 0xd9; 0x5c; 0x41; 0x1f; 0x10; 0x5a; 0xd8;</span><br><span class="line">        0x0a; 0xc1; 0x31; 0x88; 0xa5; 0xcd; 0x7b; 0xbd; 0x2d; 0x74; 0xd0; 0x12; 0xb8; 0xe5; 0xb4; 0xb0;</span><br><span class="line">        0x89; 0x69; 0x97; 0x4a; 0x0c; 0x96; 0x77; 0x7e; 0x65; 0xb9; 0xf1; 0x09; 0xc5; 0x6e; 0xc6; 0x84;</span><br><span class="line">        0x18; 0xf0; 0x7d; 0xec; 0x3a; 0xdc; 0x4d; 0x20; 0x79; 0xee; 0x5f; 0x3e; 0xd7; 0xcb; 0x39; 0x48</span><br><span class="line">    &#125;;</span><br><span class="line">    </span><br><span class="line">    // System parameter</span><br><span class="line">    SM4_FK = &#123;0xa3b1bac6; 0x56aa3350; 0x677d9197; 0xb27022dc&#125;;</span><br><span class="line">        </span><br><span class="line">    // fixed parameter</span><br><span class="line">    SM4_CK = &#123;</span><br><span class="line">        0x00070e15; 0x1c232a31; 0x383f464d; 0x545b6269;</span><br><span class="line">        0x70777e85; 0x8c939aa1; 0xa8afb6bd; 0xc4cbd2d9;</span><br><span class="line">        0xe0e7eef5; 0xfc030a11; 0x181f262d; 0x343b4249;</span><br><span class="line">        0x50575e65; 0x6c737a81; 0x888f969d; 0xa4abb2b9;</span><br><span class="line">        0xc0c7ced5; 0xdce3eaf1; 0xf8ff060d; 0x141b2229;</span><br><span class="line">        0x30373e45; 0x4c535a61; 0x686f767d; 0x848b9299;</span><br><span class="line">        0xa0a7aeb5; 0xbcc3cad1; 0xd8dfe6ed; 0xf4fb0209;</span><br><span class="line">        0x10171e25; 0x2c333a41; 0x484f565d; 0x646b7279</span><br><span class="line">    &#125;;</span><br><span class="line">    </span><br><span class="line">    //8位查S盒</span><br><span class="line">    s_box = function (a) &#123;</span><br><span class="line">       // ah = (a &amp; 0xf0) &gt;&gt;&gt; 4;      //高4位</span><br><span class="line">        //al = a &amp; 0x0f;              //低4位</span><br><span class="line">        //return SM4_BOXES[ah*16+al+1] ;</span><br><span class="line">        return  SM4_BOXES[a + 1]; </span><br><span class="line">    &#125;;</span><br><span class="line">    </span><br><span class="line">    //非线性变换T</span><br><span class="line">    fun_T = function (ta)&#123;</span><br><span class="line">        tb = &#123;</span><br><span class="line">            s_box((ta &amp; 0xff000000) &gt;&gt;&gt; 24);    ///取高8位，进行S盒变换</span><br><span class="line">            s_box((ta &amp; 0x00ff0000) &gt;&gt;&gt; 16);    ///取中高8位，进行S盒变换</span><br><span class="line">            s_box((ta &amp; 0x0000ff00) &gt;&gt;&gt; 8 );    ///取中低8位，进行S盒变换</span><br><span class="line">            s_box(ta &amp; 0x000000ff );         ///取低8位，进行S盒变换</span><br><span class="line">        &#125;</span><br><span class="line">        return tb[1]&lt;&lt;24 | tb[2]&lt;&lt;16 | tb[3]&lt;&lt; 8 | tb[4];    ///连接成32位</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    //循环左移</span><br><span class="line">    bit_rol = function (n,s)&#123; </span><br><span class="line">        return (n &lt;&lt; s) | ( n &gt;&gt;&gt; (32 - s));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    //轮密钥</span><br><span class="line">    r_key = function (key)&#123;</span><br><span class="line">        keyBuf = ..raw.buffer(16,key);</span><br><span class="line">        mk = &#123; //拆分密钥为4个32位数存到初始密钥MK</span><br><span class="line">            (keyBuf[1]&lt;&lt;24 | keyBuf[2]&lt;&lt;16 | keyBuf[3]&lt;&lt;8 | keyBuf[4]); // &amp;0xFFFFFFFF</span><br><span class="line">            (keyBuf[5]&lt;&lt;24 | keyBuf[6]&lt;&lt;16 | keyBuf[7]&lt;&lt;8 | keyBuf[8]);</span><br><span class="line">            (keyBuf[9]&lt;&lt;24 | keyBuf[10]&lt;&lt;16 | keyBuf[11]&lt;&lt;8 | keyBuf[12]);</span><br><span class="line">            (keyBuf[13]&lt;&lt;24 | keyBuf[14]&lt;&lt;16 | keyBuf[15]&lt;&lt;8 | keyBuf[16]);</span><br><span class="line">        &#125;</span><br><span class="line">        tk = &#123;&#125;;  //临时表tk</span><br><span class="line">        for(i=1;4;1)&#123;</span><br><span class="line">            tk[i] = mk[i] ^ SM4_FK[i];   //初始密钥MK和系统参数FK作异或运算得到tk1-tk4</span><br><span class="line">        &#125;</span><br><span class="line">        rk = &#123;&#125;;</span><br><span class="line">        for(i=1;32;1)&#123;    ///轮密钥tk5-tk36</span><br><span class="line">            tb = fun_T( tk[i+1] ^ tk[i+2] ^ tk[i+3] ^ SM4_CK[i] );  //后3个字与固定参数异或，得到的32位的值，再进行变换</span><br><span class="line">            tk[i+4] = tk[i] ^ (tb ^ bit_rol(tb,13) ^ bit_rol(tb,23));  ///得到轮密钥tk5-tk36</span><br><span class="line">            rk[i] = tk[i+4];    //子密钥rk1-32</span><br><span class="line">        &#125;</span><br><span class="line">        return rk;</span><br><span class="line">    &#125;</span><br><span class="line">        </span><br><span class="line">	//线性变换L</span><br><span class="line">    fun_L = function (tb)&#123;</span><br><span class="line">        return (tb ^ bit_rol(tb,2) ^ bit_rol(tb,10) ^ bit_rol(tb,18) ^ bit_rol(tb,24));</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    //尾部填充</span><br><span class="line">    pkcs7_padding = function(data, block=16)&#123;</span><br><span class="line">            var n = block - (#data % block )</span><br><span class="line">            return  data ++ ..string.repeat(n, n));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    //去除尾部填充</span><br><span class="line">    pkcs7_unPadding = function(data)&#123;</span><br><span class="line">        return  ..string.left(data, #data - tonumber(..string.right(data,2),16)*2 );</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    //32次迭代,mode=1加密,mode=0解密</span><br><span class="line">    iterate32 = function (rk,d1,d2,d3,d4,mode = 1)&#123;</span><br><span class="line">        dataTable = &#123;d1,d2,d3,d4&#125;;</span><br><span class="line">        for(i=1;32;1)&#123;</span><br><span class="line">            if(mode=1)&#123;</span><br><span class="line">                a = ((dataTable[i+1] ^ dataTable[i+2] ^ dataTable[i+3]) ^ rk[i]) // &amp;0xFFFFFFFF</span><br><span class="line">            &#125;else &#123;</span><br><span class="line">                a = ((dataTable[i+1] ^ dataTable[i+2] ^ dataTable[i+3]) ^ rk[33-i]) </span><br><span class="line">            &#125;</span><br><span class="line">            dataTable[i+4] = dataTable[i] ^ fun_L(fun_T(a))    ///先T变换再L变换</span><br><span class="line">        &#125;</span><br><span class="line">        return ..string.format(&quot;%08x&quot;,dataTable[36]) ++ ..string.format(&quot;%08x&quot;,dataTable[35]) ++ ..string.format(&quot;%08x&quot;,dataTable[34]) ++ ..string.format(&quot;%08x&quot;,dataTable[33])</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    encrypt = function (inputData,rk)&#123;</span><br><span class="line">        inputData = pkcs7_padding(inputData,16);</span><br><span class="line">        var data = &#123;&#125;;</span><br><span class="line">        inputDataBuf = ..raw.buffer(inputData);</span><br><span class="line">        for(i=0;#inputDataBuf/16 - 1; 1)&#123;</span><br><span class="line">            var a1 = inputDataBuf[i*16+1]&lt;&lt;24 | inputDataBuf[i*16+2]&lt;&lt;16 | inputDataBuf[i*16+3]&lt;&lt;8 | inputDataBuf[i*16+4]; //&amp; 0x0ffffffff</span><br><span class="line">            var a2 = inputDataBuf[i*16+5]&lt;&lt;24 | inputDataBuf[i*16+6]&lt;&lt;16 | inputDataBuf[i*16+7]&lt;&lt;8 | inputDataBuf[i*16+8];</span><br><span class="line">            var a3 = inputDataBuf[i*16+9]&lt;&lt;24 | inputDataBuf[i*16+10]&lt;&lt;16 | inputDataBuf[i*16+11]&lt;&lt;8 | inputDataBuf[i*16+12];</span><br><span class="line">            var a4 = inputDataBuf[i*16+13]&lt;&lt;24 | inputDataBuf[i*16+14]&lt;&lt;16 | inputDataBuf[i*16+15]&lt;&lt;8 | inputDataBuf[i*16+16];</span><br><span class="line">            ..table.push(data, iterate32(rk,a1,a2,a3,a4,1));</span><br><span class="line">        &#125;</span><br><span class="line">        return ..string.join(data); </span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    decrypt = function (inputData,rk)&#123;</span><br><span class="line">        var data = &#123;&#125;;</span><br><span class="line">        for(i=1;#inputData; 32)&#123;</span><br><span class="line">            var a1 = tonumber(..string.slice( inputData,i,i+7),16);</span><br><span class="line">            var a2 = tonumber(..string.slice( inputData,i+8,i+15),16);</span><br><span class="line">            var a3 = tonumber(..string.slice( inputData,i+16,i+23),16);</span><br><span class="line">            var a4 = tonumber(..string.slice( inputData,i+24,i+31),16);</span><br><span class="line">            ..table.push(data, iterate32( rk,a1,a2,a3,a4,0));</span><br><span class="line">        &#125;</span><br><span class="line">        return pkcs7_unPadding(..string.join(data));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>测试该算法的代码：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">import fsys.file</span><br><span class="line">import crypt;</span><br><span class="line">console.open();</span><br><span class="line">key = &quot;abcd123456789012&quot;</span><br><span class="line">inputData = &quot;abcdefghijklmnop123456789012345678&quot;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">var sm = sm4(key)</span><br><span class="line">console.dump(sm.encrypt(inputData))</span><br><span class="line">var tm = time.tick()</span><br><span class="line">for(i=1;10000;1)&#123;</span><br><span class="line">    sm.encrypt(inputData)</span><br><span class="line">&#125;</span><br><span class="line">console.dump(&quot;文件内加密耗时：&quot;++time.tick()-tm)</span><br><span class="line">var odata = sm.encrypt(inputData)</span><br><span class="line"></span><br><span class="line">import SM4</span><br><span class="line">var sm = SM4(key)</span><br><span class="line">console.dump(sm.encrypt(inputData))</span><br><span class="line">var tm = time.tick()</span><br><span class="line">for(i=1;10000;1)&#123;</span><br><span class="line">    sm.encrypt(inputData)</span><br><span class="line">&#125;</span><br><span class="line">console.dump(&quot;库加密耗时：&quot;++time.tick()-tm)</span><br><span class="line"></span><br><span class="line">var sm = sm4(key)</span><br><span class="line">console.dump(sm.decrypt (odata))</span><br><span class="line">var tm = time.tick()</span><br><span class="line">for(i=1;10000;1)&#123;</span><br><span class="line">    sm.decrypt (odata)</span><br><span class="line">&#125;</span><br><span class="line">console.dump(&quot;文件内解密耗时：&quot;++time.tick()-tm)</span><br><span class="line"></span><br><span class="line">var sm = SM4(key)</span><br><span class="line">console.dump(sm.decrypt(odata))</span><br><span class="line">var tm = time.tick()</span><br><span class="line">for(i=1;10000;1)&#123;</span><br><span class="line">    sm.decrypt(odata)</span><br><span class="line">&#125;</span><br><span class="line">console.dump(&quot;库解密耗时：&quot;++time.tick()-tm)</span><br><span class="line"></span><br><span class="line">var tm = time.tick()</span><br><span class="line">for(i=1;10000;1)&#123;</span><br><span class="line">    var sm = sm4(key)</span><br><span class="line">    sm.encrypt(inputData)</span><br><span class="line">&#125;</span><br><span class="line">console.dump(&quot;循环创建对象耗时：&quot;++time.tick()-tm)</span><br><span class="line"></span><br><span class="line">var tm = time.tick()</span><br><span class="line">for(i=1;10000;1)&#123;</span><br><span class="line">    var sm = SM4(key)</span><br><span class="line">    sm.encrypt(inputData)</span><br><span class="line">&#125;</span><br><span class="line">console.dump(&quot;循环创建对象耗时：&quot;++time.tick()-tm)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">console.pause()</span><br></pre></td></tr></table></figure>
+<img src="/img/loading.gif" data-original="https://fastly.jsdelivr.net/gh/dong706/dong706.github.io@latest/images/pasted-215.png" alt=""> 
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">叶落花开</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://www.yeluohuakai.com/posts/2024/08/7c8e411f.html">https://www.yeluohuakai.com/posts/2024/08/7c8e411f.html</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://www.yeluohuakai.com" target="_blank">叶落花开的博客</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/aardio/">aardio</a><a class="post-meta__tags" href="/tags/%E5%9B%BD%E5%AF%86%E7%AE%97%E6%B3%95/">国密算法</a></div><div class="post_share"><div class="social-share" data-image="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://fastly.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/posts/2024/08/ff148a2a.html"><img class="prev-cover" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">aardio-plus美化按钮配色方案</div></div></a></div><div class="next-post pull-right"><a href="/posts/2024/08/6731eb7.html"><img class="next-cover" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">aardio-mongodb的操作Demo</div></div></a></div></nav><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/loading.gif" data-original="/img/ava.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">叶落花开</div><div class="author-info__description">持续学习，记录后端技术、web技术，以及对认知、技术变现的思考。</div></div><div class="card-info-data is-center"><div class="card-info-data-item"><a href="/archives/"><div class="headline">文章</div><div class="length-num">207</div></a></div><div class="card-info-data-item"><a href="/tags/"><div class="headline">标签</div><div class="length-num">74</div></a></div><div class="card-info-data-item"><a href="/categories/"><div class="headline">分类</div><div class="length-num">30</div></a></div></div></div><div class="card-widget user-map" id="user-map"><div class="item-headline"><i class="fas fa-link"></i><span>友情链接</span></div><div class="item-content"><ul class="entry"><li><a href="/bszs" title="各大高校博士招生信息">各大高校博士招生信息</a></li><li><a target="_blank" rel="noopener" href="https://www.xiaoxinsoft.com" title="小新软件服务">小新软件安装服务</a></li></ul></div></div><div class="sticky_layout"></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 By 叶落花开</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">本地搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://fastly.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>(()=>{
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'freecloud-0gzubvbebcf38cf6',
+      region: '',
+      onCommentLoaded: function () {
+        btf.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.vemoji)'))
+      }
+    }, null))
+  }
+
+  const getCount = () => {
+    twikoo.getCommentsCount({
+      envId: 'freecloud-0gzubvbebcf38cf6',
+      region: '',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(function (res) {
+      document.getElementById('twikoo-count').innerText = res[0].count
+    }).catch(function (err) {
+      console.error(err);
+    });
+  }
+
+  const runFn = () => {
+    init()
+    
+  }
+
+  const loadTwikoo = () => {
+    if (typeof twikoo === 'object') {
+      setTimeout(runFn,0)
+      return
+    } 
+    getScript('https://fastly.jsdelivr.net/npm/twikoo/dist/twikoo.all.min.js').then(runFn)
+  }
+
+  if ('Twikoo' === 'Twikoo' || !false) {
+    if (false) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo()
+  } else {
+    window.loadOtherComment = () => {
+      loadTwikoo()
+    }
+  }
+})()</script></div><script id="canvas_nest" defer="defer" color="0,0,255" opacity="0.7" zIndex="-1" count="99" mobile="false" src="https://fastly.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-nest.min.js"></script></div>
+        <style>
+            [bg-lazy] {
+                background-image: none !important;
+                background-color: #eee !important;
+            }
+        </style>
+        <script>
+            window.imageLazyLoadSetting = {
+                isSPA: false,
+                preloadRatio: 1,
+                processImages: null,
+            };
+        </script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script><script>!function(r){r.imageLazyLoadSetting.processImages=t;var e=r.imageLazyLoadSetting.isSPA,n=r.imageLazyLoadSetting.preloadRatio||1,c=a();function a(){var t=Array.prototype.slice.call(document.querySelectorAll("img[data-original]")),e=Array.prototype.slice.call(document.querySelectorAll("[bg-lazy]"));return t.concat(e)}function t(){e&&(c=a());for(var t,o=0;o<c.length;o++)0<=(t=(t=c[o]).getBoundingClientRect()).bottom&&0<=t.left&&t.top<=(r.innerHeight*n||document.documentElement.clientHeight*n)&&function(){var t,e,n,a,i=c[o];e=function(){c=c.filter(function(t){return i!==t}),r.imageLazyLoadSetting.onImageLoaded&&r.imageLazyLoadSetting.onImageLoaded(i)},(t=i).hasAttribute("bg-lazy")?(t.removeAttribute("bg-lazy"),e&&e()):(n=new Image,a=t.getAttribute("data-original"),n.onload=function(){t.src=a,t.removeAttribute("data-original"),e&&e()},t.src!==a&&(n.src=a))}()}function i(){clearTimeout(t.tId),t.tId=setTimeout(t,500)}t(),document.addEventListener("scroll",i),r.addEventListener("resize",i),r.addEventListener("orientationchange",i)}(this);</script></body></html>
