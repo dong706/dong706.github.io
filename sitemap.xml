@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://www.yeluohuakai.com/posts/2024/08/5b063a7e.html</loc>
+    
+    <lastmod>2024-08-26</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://www.yeluohuakai.com/posts/2024/08/2b63effb.html</loc>
     
     <lastmod>2024-08-26</lastmod>
@@ -1523,7 +1532,7 @@
   </url>
   
   <url>
-    <loc>https://www.yeluohuakai.com/bszs/index.html</loc>
+    <loc>https://www.yeluohuakai.com/bszs1/index.html</loc>
     
     <lastmod>2022-11-09</lastmod>
     
@@ -1532,7 +1541,7 @@
   </url>
   
   <url>
-    <loc>https://www.yeluohuakai.com/bszs1/index.html</loc>
+    <loc>https://www.yeluohuakai.com/bszs/index.html</loc>
     
     <lastmod>2022-11-09</lastmod>
     
@@ -1775,7 +1784,7 @@
   </url>
   
   <url>
-    <loc>https://www.yeluohuakai.com/posts/2021/04/eab7b127.html</loc>
+    <loc>https://www.yeluohuakai.com/posts/2021/04/3feb991d.html</loc>
     
     <lastmod>2022-11-09</lastmod>
     
@@ -1784,7 +1793,7 @@
   </url>
   
   <url>
-    <loc>https://www.yeluohuakai.com/posts/2021/04/3feb991d.html</loc>
+    <loc>https://www.yeluohuakai.com/posts/2021/04/eab7b127.html</loc>
     
     <lastmod>2022-11-09</lastmod>
     
@@ -2633,6 +2642,13 @@
   </url>
   
   <url>
+    <loc>https://www.yeluohuakai.com/categories/%E5%AE%A2%E6%88%B7%E7%AB%AF%E5%BC%80%E5%8F%91/aadio/</loc>
+    <lastmod>2024-08-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://www.yeluohuakai.com/categories/%E5%AE%A2%E6%88%B7%E7%AB%AF%E5%BC%80%E5%8F%91/aardio/webform/</loc>
     <lastmod>2024-08-26</lastmod>
     <changefreq>weekly</changefreq>
@@ -2689,6 +2705,13 @@
   </url>
   
   <url>
+    <loc>https://www.yeluohuakai.com/categories/%E5%AE%A2%E6%88%B7%E7%AB%AF%E5%BC%80%E5%8F%91/aadio/winform/</loc>
+    <lastmod>2024-08-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://www.yeluohuakai.com/categories/IT%E6%8A%80%E6%9C%AF/Linux/</loc>
     <lastmod>2024-08-26</lastmod>
     <changefreq>weekly</changefreq>
@@ -2717,6 +2740,13 @@
   </url>
   
   <url>
+    <loc>https://www.yeluohuakai.com/categories/Web%E6%8A%80%E6%9C%AF/Hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E6%95%99%E7%A8%8B/</loc>
+    <lastmod>2024-08-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://www.yeluohuakai.com/categories/%E9%9A%8F%E7%AC%94/</loc>
     <lastmod>2024-08-26</lastmod>
     <changefreq>weekly</changefreq>
@@ -2725,13 +2755,6 @@
   
   <url>
     <loc>https://www.yeluohuakai.com/categories/%E6%9C%8D%E5%8A%A1%E7%AB%AF%E5%BC%80%E5%8F%91/Corba%E5%BC%80%E5%8F%91/</loc>
-    <lastmod>2024-08-26</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.yeluohuakai.com/categories/Web%E6%8A%80%E6%9C%AF/Hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E6%95%99%E7%A8%8B/</loc>
     <lastmod>2024-08-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>

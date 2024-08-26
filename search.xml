@@ -4,6 +4,35 @@
   
     
     <entry>
+      <title>aardio-radiobutton控件怎么分组</title>
+      <link href="/posts/2024/08/5b063a7e.html"/>
+      <url>/posts/2024/08/5b063a7e.html</url>
+      
+        <content type="html"><![CDATA[<p>一个窗体上的多个radio控件，现在只能一个为选中状态，怎么对其进行分组？</p><p>答案：设置group=1和z序即可。<br>代码示例:</p><span id="more"></span><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">import win.ui;</span><br><span class="line">/*DSG&#123;&#123;*/</span><br><span class="line">var winform = ..win.form( bottom=149;parent=...;text=&quot;aardio Form&quot;;right=448 )</span><br><span class="line">winform.add(</span><br><span class="line">radiobutton2=&#123; bottom=46;text=&quot;radiobutton&quot;;left=135;top=29;z=2;right=196;cls=&quot;radiobutton&quot; &#125;;</span><br><span class="line">radiobutton3=&#123; bottom=46;text=&quot;radiobutton&quot;;left=235;top=29;z=3;right=296;cls=&quot;radiobutton&quot; &#125;;</span><br><span class="line">radiobutton5=&#123; checked=1;bottom=98;group=1;right=96;left=35;top=77;z=5;text=&quot;radiobutton&quot;;cls=&quot;radiobutton&quot; &#125;;</span><br><span class="line">radiobutton=&#123; checked=1;bottom=46;group=1;right=95;left=34;top=29;z=1;text=&quot;radiobutton&quot;;cls=&quot;radiobutton&quot; &#125;;</span><br><span class="line">radiobutton4=&#123; bottom=46;text=&quot;radiobutton&quot;;left=336;top=29;z=4;right=397;cls=&quot;radiobutton&quot; &#125;;</span><br><span class="line">radiobutton8=&#123; bottom=94;text=&quot;radiobutton&quot;;left=336;top=77;z=8;right=397;cls=&quot;radiobutton&quot; &#125;;</span><br><span class="line">radiobutton6=&#123; bottom=94;text=&quot;radiobutton&quot;;left=134;top=77;z=6;right=195;cls=&quot;radiobutton&quot; &#125;;</span><br><span class="line">radiobutton7=&#123; bottom=94;text=&quot;radiobutton&quot;;left=234;top=77;z=7;right=295;cls=&quot;radiobutton&quot; &#125;</span><br><span class="line">)</span><br><span class="line">/*&#125;&#125;*/</span><br><span class="line"></span><br><span class="line">winform.show()</span><br><span class="line">win.loopMessage();</span><br></pre></td></tr></table></figure><p>解析：按z序往下顺的，比如<br>radiobutton1的z序是1<br>radiobutton2的z序是2<br>radiobutton3的z序是3<br>radiobutton4的z序是4<br>radiobutton5的z序是5<br>radiobutton6的z序是6<br>那么把z序是1、4的radiobutton1、radiobutton4的“group”属性设为“1”时，<br>z序排在4之前的是一组，4之后的radiobutton就归另一组了。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 客户端开发 </category>
+          
+          <category> aadio </category>
+          
+          <category> winform </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> aardio </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>如何清理docker的Registry私有仓库的镜像文件</title>
       <link href="/posts/2024/08/f56e4b99.html"/>
       <url>/posts/2024/08/f56e4b99.html</url>
@@ -3048,7 +3077,7 @@
       <link href="/posts/2022/12/4d8c9542.html"/>
       <url>/posts/2022/12/4d8c9542.html</url>
       
-        <content type="html"><![CDATA[<p>1个可以用于微信聊天的ChatGPT机器人<br>GitHub地址：<a href="https://github.com/fuergaosi233/wechat-chatgpt">https://github.com/fuergaosi233/wechat-chatgpt</a></p><p>支持特性</p><blockquote><p>通过微信在微信上使用ChatGPT<br>支持OpenAI帐户池<br>支持使用代理登录<br>在消息接收时模拟</p></blockquote><p>我这边已经部署成功并成功运行，如有疑问可邮件联系 <a href="mailto:&#x64;&#x6f;&#x6e;&#103;&#55;&#48;&#x36;&#64;&#103;&#109;&#x61;&#105;&#x6c;&#46;&#99;&#x6f;&#x6d;">&#x64;&#x6f;&#x6e;&#103;&#55;&#48;&#x36;&#64;&#103;&#109;&#x61;&#105;&#x6c;&#46;&#99;&#x6f;&#x6d;</a> </p><span id="more"></span>]]></content>
+        <content type="html"><![CDATA[<p>1个可以用于微信聊天的ChatGPT机器人<br>GitHub地址：<a href="https://github.com/fuergaosi233/wechat-chatgpt">https://github.com/fuergaosi233/wechat-chatgpt</a></p><p>支持特性</p><blockquote><p>通过微信在微信上使用ChatGPT<br>支持OpenAI帐户池<br>支持使用代理登录<br>在消息接收时模拟</p></blockquote><p>我这边已经部署成功并成功运行，如有疑问可邮件联系 <a href="mailto:&#100;&#x6f;&#110;&#x67;&#55;&#48;&#54;&#64;&#103;&#109;&#97;&#x69;&#x6c;&#x2e;&#x63;&#111;&#109;">&#100;&#x6f;&#110;&#x67;&#55;&#48;&#54;&#64;&#103;&#109;&#97;&#x69;&#x6c;&#x2e;&#x63;&#111;&#109;</a> </p><span id="more"></span>]]></content>
       
       
       <categories>
