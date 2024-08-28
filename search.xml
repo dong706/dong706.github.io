@@ -4,6 +4,35 @@
   
     
     <entry>
+      <title>aardio-如何后台打开“我的电脑”</title>
+      <link href="/posts/2024/08/906d0af3.html"/>
+      <url>/posts/2024/08/906d0af3.html</url>
+      
+        <content type="html"><![CDATA[<p>方法1：</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">import winex.desktop;</span><br><span class="line">var lv = winex.desktop.listview;</span><br><span class="line">var index = lv.findItem(&quot;此电脑&quot;);</span><br><span class="line">lv.selected = &#123;index&#125;;</span><br><span class="line">var rect = lv.getItemRect(index);</span><br><span class="line">var pos = (rect.top+20)&lt;&lt;16|(rect.left+20);</span><br><span class="line">::SendMessageInt(lv.hwnd,0x203/*_WM_LBUTTONDBLCLK*/,0,pos);</span><br></pre></td></tr></table></figure><p>方法2：</p><span id="more"></span><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">import winex.desktop;</span><br><span class="line">var lv = winex.desktop.listview;</span><br><span class="line">var index = lv.findItem(&quot;此电脑&quot;);</span><br><span class="line">lv.selected = &#123;index&#125;;</span><br><span class="line">::SendMessageInt(lv.hwnd,0x100/*_WM_KEYDOWN*/,13,0);</span><br></pre></td></tr></table></figure><p>方法3：</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">import process</span><br><span class="line">process.explore(&quot;\\&quot;)</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> 客户端开发 </category>
+          
+          <category> aardio </category>
+          
+          <category> 操作系统 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> aardio </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>aardio-radiobutton控件怎么分组</title>
       <link href="/posts/2024/08/5b063a7e.html"/>
       <url>/posts/2024/08/5b063a7e.html</url>
@@ -3077,7 +3106,7 @@
       <link href="/posts/2022/12/4d8c9542.html"/>
       <url>/posts/2022/12/4d8c9542.html</url>
       
-        <content type="html"><![CDATA[<p>1个可以用于微信聊天的ChatGPT机器人<br>GitHub地址：<a href="https://github.com/fuergaosi233/wechat-chatgpt">https://github.com/fuergaosi233/wechat-chatgpt</a></p><p>支持特性</p><blockquote><p>通过微信在微信上使用ChatGPT<br>支持OpenAI帐户池<br>支持使用代理登录<br>在消息接收时模拟</p></blockquote><p>我这边已经部署成功并成功运行，如有疑问可邮件联系 <a href="mailto:&#100;&#x6f;&#110;&#x67;&#55;&#48;&#54;&#64;&#103;&#109;&#97;&#x69;&#x6c;&#x2e;&#x63;&#111;&#109;">&#100;&#x6f;&#110;&#x67;&#55;&#48;&#54;&#64;&#103;&#109;&#97;&#x69;&#x6c;&#x2e;&#x63;&#111;&#109;</a> </p><span id="more"></span>]]></content>
+        <content type="html"><![CDATA[<p>1个可以用于微信聊天的ChatGPT机器人<br>GitHub地址：<a href="https://github.com/fuergaosi233/wechat-chatgpt">https://github.com/fuergaosi233/wechat-chatgpt</a></p><p>支持特性</p><blockquote><p>通过微信在微信上使用ChatGPT<br>支持OpenAI帐户池<br>支持使用代理登录<br>在消息接收时模拟</p></blockquote><p>我这边已经部署成功并成功运行，如有疑问可邮件联系 <a href="mailto:&#100;&#111;&#x6e;&#103;&#x37;&#48;&#54;&#64;&#x67;&#109;&#x61;&#x69;&#108;&#46;&#99;&#x6f;&#x6d;">&#100;&#111;&#x6e;&#103;&#x37;&#48;&#54;&#64;&#x67;&#109;&#x61;&#x69;&#108;&#46;&#99;&#x6f;&#x6d;</a> </p><span id="more"></span>]]></content>
       
       
       <categories>
