@@ -1,0 +1,485 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>叶落花开的博客 | 叶落花开的博客</title><meta name="keywords" content="后端开发,JAVA开发,web前端开发,持续学习,分享创造"><meta name="author" content="叶落花开"><meta name="copyright" content="叶落花开"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="模式匹配函数      模式匹配函数  请参考：模式匹配语法       查找字符串 i,j &#x3D; string.find(str,&quot;模式串&quot; [,pos]); 使用模式匹配查找字符串并返回起始位置(i),结束位置(j);   第三个参数pos指定搜索开始的位置，这个参数可以省略(使用默认值1);   pos如果为负数，则从右侧倒数计数(-1表示字符串最后一个字符)。">
+<meta property="og:type" content="website">
+<meta property="og:title" content="叶落花开的博客">
+<meta property="og:url" content="https://www.yeluohuakai.com/aardio/pattern-matching.html">
+<meta property="og:site_name" content="叶落花开的博客">
+<meta property="og:description" content="模式匹配函数      模式匹配函数  请参考：模式匹配语法       查找字符串 i,j &#x3D; string.find(str,&quot;模式串&quot; [,pos]); 使用模式匹配查找字符串并返回起始位置(i),结束位置(j);   第三个参数pos指定搜索开始的位置，这个参数可以省略(使用默认值1);   pos如果为负数，则从右侧倒数计数(-1表示字符串最后一个字符)。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-08-28T14:15:17.195Z">
+<meta property="article:modified_time" content="2024-08-28T14:15:17.195Z">
+<meta property="article:author" content="叶落花开">
+<meta property="article:tag" content="后端开发,JAVA开发,web前端开发,持续学习,分享创造">
+<meta name="twitter:card" content="summary"><link rel="shortcut icon" href="/favicon.png"><link rel="canonical" href="https://www.yeluohuakai.com/aardio/pattern-matching"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//www.google-analytics.com" crossorigin=""/><link rel="preconnect" href="//hm.baidu.com"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?2f8a615b51582cf280e790200f3527e6";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script><script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-LB2ZMBR4ZN"></script><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-LB2ZMBR4ZN');
+</script><script>(function(){
+var el = document.createElement("script");
+el.src = "https://lf1-cdn-tos.bytegoofy.com/goofy/ttzz/push.js?18da2b25537eeea1b5c8819ad9a03fc2279abb7e5ff9fdb01a2409cbd77b8f1db3e414cba65c376eba389ba56d9ee0846cad2206506a6529fe6ee21a7373effb434c445cf6444b10ea9756ea44e128a6";
+el.id = "ttzz";
+var s = document.getElementsByTagName("script")[0];
+s.parentNode.insertBefore(el, s);
+})(window)
+</script><script async="async" crossorigin="anonymous" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6673854567363222"></script><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":false,"highlightLang":false,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://fastly.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.js',
+      css: 'https://fastly.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '叶落花开的博客',
+  isPost: false,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2024-08-28 22:15:17'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/index_code.css"><meta name="generator" content="Hexo 6.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/loading.gif" data-original="/img/ava.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data is-center"><div class="data-item"><a href="/archives/"><div class="headline">文章</div><div class="length-num">218</div></a></div><div class="data-item"><a href="/tags/"><div class="headline">标签</div><div class="length-num">76</div></a></div><div class="data-item"><a href="/categories/"><div class="headline">分类</div><div class="length-num">34</div></a></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" target="_blank" rel="noopener" href="https://support.qq.com/product/377343"><i class="fa-fw fa fa-paper-plane"></i><span> 反馈</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">叶落花开的博客</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" target="_blank" rel="noopener" href="https://support.qq.com/product/377343"><i class="fa-fw fa fa-paper-plane"></i><span> 反馈</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="page"><h1 class="page-title"></h1><div id="article-container">
+<!doctype html>
+<html>
+<head><meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>模式匹配函数</title> 
+<link href="../../../style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body><div id="maincontent">
+<h1>模式匹配函数</h1>
+ <div class="desc">请参考：<a href="pattern%20syntax.html">模式匹配语法</a></div>
+  <div>
+  
+<h2><strong>查找字符串</strong><a name="find" id="find"></a></h2>
+<p class="bluefont">i,j = string.find(str,&quot;模式串&quot; [,pos]);</p>
+<p>使用模式匹配查找字符串并返回起始位置(i),结束位置(j);<br>
+  第三个参数pos指定搜索开始的位置，这个参数可以省略(使用默认值1);<br>
+  pos如果为负数，则从右侧倒数计数(-1表示字符串最后一个字符)。<br>
+  </p>
+<p>函数返回匹配字符串的起始位置i，结束位置j。<br>
+  如果查找失败,i,j都返回null值.下面是一个简单的例子:</p>
+<p>如果需要禁用模式语法，请在模式串开始添加@字符。<span class="desc">或参考：<a href="search.html">其他查找函数</a></span><br>
+  <br>
+</p>
+<pre class="code aardio"><code>
+io.open(); <span class="comment">//打开控制台窗口</span><br>
+<p>i,j = string.find(&quot;abc456d&quot; ,&quot;c\d+&quot;);</p>
+<p>if( i ) <span class="comment">//如果找到i为大于0的数值</span><br>
+&nbsp;&nbsp;&nbsp;io.print(&quot;在 'abc456d' 中找到 c\d+&quot;  ，&quot;从&quot; + i + &quot;到&quot; + j);<br>
+</p>
+<p>if(not string.find(&quot;abcd&quot; ,&quot;不可能&quot;) ) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;io.print(&quot;没有从 'abcd' 中找到 '不可能' &quot;);</p>
+</code></pre>
+</div><div>
+<h2>替换字符串</h2>
+<p><strong class="bluefont"><span class="bluefont">str = string.replace (str, pattern, </span></strong><span class="bluefont"><strong>repl</strong><strong class="bluefont"> [, n])</strong></span><br>
+  <br>
+  参数分别为(目标字符串,查找模式字符串,替换字符串,替换次数)。<br>
+  最后一个可选参数指定替换的次数,如果不指定则替换所有的找到的字符串。</p>
+<p>如果需要禁用模式语法，请在模式串开始添加@字符。</p>
+
+<pre class="code aardio"><code>io.open(); <span class="comment">//打开控制台窗口</span> <br>
+<br>
+<span class="comment">//  在模式匹配中 .圆点标记匹配任意字符</span><br>
+str = string.replace(&quot;abcd&quot;,&quot;.&quot;,&quot;k&quot;);<br>
+io.print(str); <span class="comment">//输出kkkk</span><br>
+<br>
+str = string.replace(&quot;abcd&quot;,&quot;.&quot;,&quot;k&quot;,1);<br>
+io.print(str); <span class="comment">//输出kbcd </span></code></pre>
+ <br>
+pattern参数(查找模式字符串)可以使用所有模式匹配语法。 <br>
+<strong>repl</strong>参数则为普通字符串,但是可以用\1,\2,\3..........等表示模式匹配后的捕获分组(即模式串中一个括号中的模式匹配的目标字符串);<br>
+看下面的示例: <br>
+<br>
+<br>
+<pre class="code aardio"><code>io.open(); <span class="comment">//打开控制台窗口</span> <br>
+<br>
+<span class="comment">//在模式匹配中 .圆点标记匹配任意字符。</span><br>
+str = <span class="kw">string</span>.<span class="kw">replace</span><span class="br0">(</span><span class="st0">&quot;abcd&quot;</span>,<span class="st0">&quot;(.)&quot;</span>,<span class="st0">&quot;\1k&quot;</span><span class="br0">)</span>;<br>
+<br>
+io.print (str);<span class="comment"> //结果是akbkckdk</span> </code></pre>
+ </div>
+<div>
+<h2><strong>模式匹配-<span class="info2">分组捕获(capture) </span></strong><br>
+  <br>
+</h2>
+
+<h3><strong>1、在string.find中使用<span class="info2">分组捕获</span></strong></h3>
+<p>string.find会将所有的<strong><span class="info2">分组捕获</span></strong>增加到返回值队列中。<br>
+  我们用一个示例来解释一下.<br>
+  <br>
+  下面是一个简单的例子，除了括号分组没有使用其他的模式语法。 </p>
+<pre class="code aardio"><code>i,j,v,v2 = <span class="kw"> string.find </span><span class="br0">(</span><span class="st0"> &quot;abcd&quot; </span> ,<span class="st0"> &quot;(ab)(cd)&quot; </span><span class="br0">)</span>;<br>
+<br>
+io.open();<br>
+<span class="kw"> io.print </span><span class="br0">(</span>v,v2<span class="br0">)</span>; <span class="comment"><font color="#008000">//</font><font color="#008000">结果为v等于&quot;ab&quot; v2等于&quot;cd&quot; </font></span></code></pre>
+<br>
+再看一个类似的例子，使用了模式语法。<br>
+<br>
+<br>
+<pre class="code aardio"><code>io.open();<br>
+<br>
+pair = <span class="st0"><font color="#800000">&quot;name = value&quot;</font></span><br>
+<br>
+<span class="comment"><font color="#008000">//增加了两个返回值name,value,分别对应查找模式串中的两个括号组成的匹配分组</font></span><br>
+i, j, n, v = <span class="kw"><font color="#0000ff">string.find</font></span><span class="br0">(</span>pair, <span class="st0"><font color="#800000">&quot;(\a+)\s*=\s*(\a+)&quot;</font></span><span class="br0">)</span><br>
+<span class="kw"><font color="#0000ff">io.print</font></span><span class="br0">(</span>i,j,n,v<span class="br0">)</span><span class="comment"><font color="#008000">//&gt; 显示 1 12  name value</font></span></code></pre>
+<h3><strong><br>
+  2、向前引用</strong></h3>
+<p>我们可以在模式中向前引用已经找到的捕获分组，'\d'(d代表1-9的数字)   表示第d个捕获的拷贝。<br>
+  <br>
+</p>
+<pre class="code aardio"><code>
+<p>//假定有一个字符串<br class="comment" />
+str = /* a = &quot;test = 'abc'&quot; */<br>
+str2 = /* a = 'test = &quot;abc&quot;' */</p>
+<p class="comment">/*<br>
+现在的任务是用模式匹配找出 test = 'abc' </p>
+<p class="comment">按照最基本的语法。<br>
+单引号开始的字符串必须用单引号结束，中间允许双引号。<br>
+双引号开始的字符串必须用双引号结束，中间允许单引号。<br>
+所以现在首要的问题是在模式串中向前引用第一次找到的引号。</p>
+<p class="comment">而使用%&quot;&quot;对称匹配又无法适用这种情况,因为字符串也有可能以单引号开始<br>
+*/</p>
+<p class="comment">//第一个引号放到括号里形成一个匹配分组,其捕获结果用\1表示<br>
+//可以看到在模式串的后部分向前引用了\1</p>
+<p>a, b, quote, substr = string.find(str, '([&quot;\'])(.*?)\\1');<br>
+a2, b2, quote2, substr2 = string.find(str2, '([&quot;\'])(.*?)\\1');</p>
+<p>io.open();<br>
+io.print( substr )<span class="comment">//&gt;显示 test = 'abc'</span><br>
+io.print( quote )<span class="comment">//&gt;显示双引号</span><br>
+io.print( substr2 )<span class="comment">//&gt;显示 test = &quot;abc&quot;</span><br>
+io.print( quote2 )<span class="comment">//&gt;显示单引号</span><br>
+</p>
+</code></pre>
+<h3><strong><br>
+  3、在string.</strong><strong class="bluefont">replace</strong><strong>中使用分组捕获</strong></h3>
+<p><strong>str = string.</strong><strong class="bluefont">replace</strong><strong> (str, pattern, repl [,   n])</strong><br>
+  <br>
+  参数分别为(目标字符串,查找模式串,替换字符串,替换次数)。<br>
+  在模找模式串<strong>pattern</strong>中可以使用括号分组，在替换串参数<strong>repl</strong>中可以用\d(d为1到9的数字)引用分组捕获。</p>
+<pre class="code aardio"><code>io.open();<br>
+<br>
+<span class="comment">//重复字符串中的每一个字符.</span><br>
+str = string.replace(&quot;hello&quot;,&quot;(.)&quot;,&quot;\1\1&quot;); <br>
+io.print(str); <span class="comment">//显示hheelllloo</span><br>
+<br>
+<span class="comment">//下面代码互换相邻的字符:</span><br>
+str = string.replace(&quot;hello&quot;, &quot;(.)(.)&quot;, &quot;\2\1&quot;)<br>
+io.print(str);<span class="comment">//显示ehllo</span></code></pre>
+<h3><strong><br>
+  4、在string.</strong><strong class="bluefont">replace</strong><strong>中使用函数处理分组捕获</strong></h3>
+<p><strong>str =   string.</strong><strong class="bluefont">replace</strong><strong> (str, pattern, func [,   n])<br>
+  <br>
+  </strong>string.<span>replace</span>参数的第三个参数也可以是一个函数。<br>
+  string.<span>replace</span>会将所有分组捕获作为func的参数,并且调用func函数,并且用func函数的返回值作为替换串。</p>
+<p> 可以在模式匹配中直接使用函数,是模式匹配中非常有用的一个功能。</p>
+<pre class="code aardio"><code>io.open();
+<p><span class="comment">//如果两个捕获都是数字则相加，否则将位置前后掉换</span><br>
+function captureProc(a,b) &#123; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;io.print(owner,a,b); <span class="comment">//owner显示原始定符串</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;if(tonumber(a) and tonumber(b) ) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return a + b;<span class="comment">//如果两个捕获都是数字则相加</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;else<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return b ++ a;<span class="comment">//否则将位置前后掉换</span><br>
+&#125;</p>
+
+str = string.replace(&quot;abcdef23&quot;,&quot;(.)(.)&quot;,captureProc);<br>
+io.print(str); <span class="comment">//显示badcfe5</span> 
+</code></pre>
+</div><div>
+<h2><strong>string.match 模式匹配  </strong><a name="match" id="match"></a></h2>
+<p class="bluefont">string.match(<strong>str, pattern, pos</strong>)</p>
+<p>第一个参数指定目标字符串，每二个参数指定查找模式串。第三个参数可选指定开始位置<br>
+这个函数与string.find很象。但不会返回匹配的开始位置与结束位置。而仅仅是返回找到的字符串。<br>
+如果在模式串中用圆括号指定匹配分组,则返回值有多个分别对应各个匹配分组的捕获结果。<br>
+分组可以相互嵌套，捕获结果返回的顺序对应模式串中匹配分组的左圆括号出现的前后顺序。<br>
+如果你希望第一个返回值是匹配结果的完整字符串,那么请将整个模式串包含在一对圆括号内。
+</p>
+<pre class="code aardio"><code>var v,v2   = string.match(&quot;abcd&quot;,   &quot;(ab)(cd)&quot;);<br>
+<br>
+io.open( );<br>
+io.print(v,v2); <span class="comment">//&gt;显示v等于&quot;ab&quot; v2等于&quot;cd&quot; </span></code></pre>
+<p> 如果不显式地用括号指定捕获，函数将捕获整个匹配模式。</p>
+<pre class="code aardio"><code>//\d表示数字 \d+表示最长匹配多个数字<br>
+var v = string.match(&quot;abcd1234&quot;, &quot;\d+&quot;);<br>
+<br>
+io.open();<br>
+io.print(v); //&gt;显示v等于&quot;1234&quot;</code></pre>
+</div><div>
+<h2><strong>string.gmatch   全局模式匹配</strong><a name="gmatch" id="gmatch"></a></h2>
+<p><span class="bluefont">func = string.gmatch(<strong>str,   pattern</strong>)</span><br>
+  <br>
+ string.gmatch()创建并返回一个迭代器，可用于for语句中迭代的进行全局查找。<br>
+ 迭代器每执行一次返回一个找到的字符串，如果在模式串中用圆括号指定匹配分组,<br>
+ 则返回值有多个分别对应各个匹配分组的捕获结果。分组可以相互嵌套，捕获结果返<br>
+ 的顺序对应模式串中匹配分组的左圆括号出现的前后顺序。如果你希望第一个返回值<br>
+ 是匹配结果的完整字符串,那么请将整个模式串包含在一对圆括号内。<br>
+</p>
+<pre class="code aardio"><code>io.open();<br>
+<br>
+//for后面的变量对应查找模式串中的括号分组(有几对括号就有几个返回值)<br>
+for str,int in string.gmatch( &quot;abcd=1234 xyz=999&quot;,&quot;(\a+)=(\d+)&quot;)   &#123; <br>
+&nbsp;&nbsp; io.print(str,int);<br> 
+&#125;
+</code></pre>
+<p>string.gmatch 函数比较适合用于泛型 for循环。它可以遍历一个字符串内所有匹配模式的子串。<br>
+调用string.gmatch函数的时候，如果不显式地指定捕获，函数将捕获整个匹配模式。</p>
+<p>实际上string.gmatch的返回值是一个迭代器函数,每调用这个函数一次就会向后查找一个匹配直到查找失败。<br>
+  上面在泛型for中执行string.gmatch的过程实际上可以理解成这样：<br>
+</p>
+<pre class="code aardio"><code>io.open();<br>
+<br>
+f = string.gmatch( &quot;abcd=1234 xyz=999&quot;,&quot;(\a+)=(\d+)&quot;);<br>
+<br>
+str,int = f();<br>
+io.print(str,int);<br>
+<br>
+str,int = f();<br>
+io.print(str,int);</code></pre>
+</div> <div>
+<h2>范例：查找网页源代码中的超链接 </h2>
+<p>下面是一个应用模式匹配的完整示例 - 下载网页并取得网页源代码中的所有超链接：</p>
+<pre class="code aardio"><code>io.open(); //打开控制台窗口
+io.print("请稍候.......")
+
+/*
+大家知道，在web窗体中，我们可以用 wb:eleLinks() 得到所有的链接链（返回一组element，详见教程）
+这需要我们用web窗体打开网页，然后再调用 wb:eleLinks()
+那么，我们有没有更好的办法直接分析源代码，并取得所有的超链接呢？
+有的，如下:
+*/
+
+//首先，我们下载 www.aardio.com 的主页到一个字符串(string对象)中
+
+import inet.whttp;
+http = inet.whttp()
+strHtmlCode = http.get("http://www.aardio.com") 
+http.close()
+
+//然后我们创建一个空的table数组
+links = &#123;&#125; 
+/*
+string.gmatch 全局查找子串，每个括号指定一个分组匹配(对应一个分组捕获,在泛型for中增加一个返回值)
+与 string.match 不同，string.gmatch发现一个完整匹配以后，会继续向后查找
+*/
+pattern = //\s*href\s*=\s*\"?\'?([:\w\./@]+)\"?\'?\s*
+for href in string.gmatch(strHtmlCode, pattern) &#123;
+table.push(links, href) //发现一个超链接，添加到links列表中
+&#125;
+
+/* 
+我们解释一下模式串 "\s*href\s*=\s*\"?\'?([:\w\./@]+)\"?\'?\s*"
+\是转义符 \s表示空白字符 \s*表示空白字符出现一次或多次 \"表示引号( \转义符的使用与普通字符串相同 )
+?表示出现一次或零次 \w表示字母和数字 \.表示.（因为.是特殊字符，所以需要\还原）
+[]是一个自定义的字符类,如[0-9]匹配所有数字 
++是修饰符表示前面的字符出现一次或多次
+*/
+
+import inet.url;
+
+//好了，我们现在得到了所有的超链接，并保存在links列表中了，我们输出看一下
+for i,link in links &#123;  
+var url = inet.url.split(link); 
+if(url && url.scheme == "http" )&#123;
+io.print( "发现一个链接: " , link )
+io.print( "","主机: ",url.host);
+io.print( "","路径: ",url.path); 
+&#125;
+&#125;
+
+execute("pause") //按任意键继续
+
+</code></pre>
+<h3>  </h3>
+<h3>  </h3>
+</div></div></body></html></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/loading.gif" data-original="/img/ava.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">叶落花开</div><div class="author-info__description">持续学习，记录后端技术、web技术，以及对认知、技术变现的思考。</div></div><div class="card-info-data is-center"><div class="card-info-data-item"><a href="/archives/"><div class="headline">文章</div><div class="length-num">218</div></a></div><div class="card-info-data-item"><a href="/tags/"><div class="headline">标签</div><div class="length-num">76</div></a></div><div class="card-info-data-item"><a href="/categories/"><div class="headline">分类</div><div class="length-num">34</div></a></div></div></div><div class="card-widget user-map" id="user-map"><div class="item-headline"><i class="fas fa-link"></i><span>友情链接</span></div><div class="item-content"><ul class="entry"><li><a href="/bszs" title="各大高校博士招生信息">各大高校博士招生信息</a></li><li><a target="_blank" rel="noopener" href="https://www.xiaoxinsoft.com" title="小新软件服务">小新软件安装服务</a></li></ul></div></div><div class="sticky_layout"><div class="card-widget card-categories"><div class="item-headline">
+            <i class="fas fa-folder-open"></i>
+            <span>分类</span>
+            <a class="card-more-btn" href="/categories/" title="查看更多">
+    <i class="fas fa-angle-right"></i></a>
+            </div>
+            <ul class="card-category-list" id="aside-cat-list">
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/IT%E6%8A%80%E6%9C%AF/"><span class="card-category-list-name">IT技术</span><span class="card-category-list-count">32</span></a><ul class="card-category-list child"><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/IT%E6%8A%80%E6%9C%AF/Anki/"><span class="card-category-list-name">Anki</span><span class="card-category-list-count">18</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/IT%E6%8A%80%E6%9C%AF/Linux/"><span class="card-category-list-name">Linux</span><span class="card-category-list-count">6</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/IT%E6%8A%80%E6%9C%AF/Mac/"><span class="card-category-list-name">Mac</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/IT%E6%8A%80%E6%9C%AF/Windows/"><span class="card-category-list-name">Windows</span><span class="card-category-list-count">1</span></a></li></ul></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Web%E6%8A%80%E6%9C%AF/"><span class="card-category-list-name">Web技术</span><span class="card-category-list-count">23</span></a><ul class="card-category-list child"><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Web%E6%8A%80%E6%9C%AF/Electron/"><span class="card-category-list-name">Electron</span><span class="card-category-list-count">2</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Web%E6%8A%80%E6%9C%AF/Hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E6%95%99%E7%A8%8B/"><span class="card-category-list-name">Hexo搭建博客教程</span><span class="card-category-list-count">9</span></a></li></ul></li>
+            </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>标签</span></div><div class="card-tag-cloud"><a href="/tags/Anki/" style="font-size: 1.38em; color: #99a4b4">Anki</a> <a href="/tags/Apache/" style="font-size: 1.1em; color: #999">Apache</a> <a href="/tags/Corba/" style="font-size: 1.3em; color: #99a1ac">Corba</a> <a href="/tags/Docker/" style="font-size: 1.22em; color: #999ea4">Docker</a> <a href="/tags/Electron/" style="font-size: 1.14em; color: #999b9d">Electron</a> <a href="/tags/Git/" style="font-size: 1.1em; color: #999">Git</a> <a href="/tags/Hexo/" style="font-size: 1.34em; color: #99a3b0">Hexo</a> <a href="/tags/JNA/" style="font-size: 1.1em; color: #999">JNA</a> <a href="/tags/JacORB/" style="font-size: 1.26em; color: #999fa8">JacORB</a> <a href="/tags/Java/" style="font-size: 1.42em; color: #99a6b7">Java</a> <a href="/tags/Javascript/" style="font-size: 1.1em; color: #999">Javascript</a> <a href="/tags/Jmeter/" style="font-size: 1.14em; color: #999b9d">Jmeter</a> <a href="/tags/K8s/" style="font-size: 1.34em; color: #99a3b0">K8s</a> <a href="/tags/Kubernetes/" style="font-size: 1.14em; color: #999b9d">Kubernetes</a> <a href="/tags/Kuboard/" style="font-size: 1.1em; color: #999">Kuboard</a> <a href="/tags/Linux/" style="font-size: 1.18em; color: #999ca1">Linux</a> <a href="/tags/Mac/" style="font-size: 1.1em; color: #999">Mac</a> <a href="/tags/Maven/" style="font-size: 1.14em; color: #999b9d">Maven</a> <a href="/tags/MongoDB/" style="font-size: 1.1em; color: #999">MongoDB</a> <a href="/tags/Moviepy/" style="font-size: 1.1em; color: #999">Moviepy</a> <a href="/tags/Node/" style="font-size: 1.14em; color: #999b9d">Node</a> <a href="/tags/Nodejs/" style="font-size: 1.14em; color: #999b9d">Nodejs</a> <a href="/tags/OpenAI/" style="font-size: 1.18em; color: #999ca1">OpenAI</a> <a href="/tags/PMD/" style="font-size: 1.1em; color: #999">PMD</a> <a href="/tags/PV/" style="font-size: 1.1em; color: #999">PV</a> <a href="/tags/PVC/" style="font-size: 1.14em; color: #999b9d">PVC</a> <a href="/tags/RealmSwift/" style="font-size: 1.1em; color: #999">RealmSwift</a> <a href="/tags/Selenium/" style="font-size: 1.1em; color: #999">Selenium</a> <a href="/tags/Service/" style="font-size: 1.1em; color: #999">Service</a> <a href="/tags/Spring/" style="font-size: 1.18em; color: #999ca1">Spring</a> <a href="/tags/SpringBoot/" style="font-size: 1.1em; color: #999">SpringBoot</a> <a href="/tags/SpringMVC/" style="font-size: 1.14em; color: #999b9d">SpringMVC</a> <a href="/tags/Sqlite/" style="font-size: 1.1em; color: #999">Sqlite</a> <a href="/tags/Statefuset/" style="font-size: 1.1em; color: #999">Statefuset</a> <a href="/tags/StorageClass/" style="font-size: 1.14em; color: #999b9d">StorageClass</a> <a href="/tags/Swift/" style="font-size: 1.46em; color: #99a7bb">Swift</a> <a href="/tags/Tomcat/" style="font-size: 1.14em; color: #999b9d">Tomcat</a> <a href="/tags/Word/" style="font-size: 1.1em; color: #999">Word</a> <a href="/tags/aardio/" style="font-size: 1.5em; color: #99a9bf">aardio</a> <a href="/tags/chatGPT/" style="font-size: 1.26em; color: #999fa8">chatGPT</a></div></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站资讯</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">218</div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2024-08-28T14:37:02.694Z"></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 By 叶落花开</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">本地搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://fastly.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>(()=>{
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'freecloud-0gzubvbebcf38cf6',
+      region: '',
+      onCommentLoaded: function () {
+        btf.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.vemoji)'))
+      }
+    }, null))
+  }
+
+  const getCount = () => {
+    twikoo.getCommentsCount({
+      envId: 'freecloud-0gzubvbebcf38cf6',
+      region: '',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(function (res) {
+      document.getElementById('twikoo-count').innerText = res[0].count
+    }).catch(function (err) {
+      console.error(err);
+    });
+  }
+
+  const runFn = () => {
+    init()
+    
+  }
+
+  const loadTwikoo = () => {
+    if (typeof twikoo === 'object') {
+      setTimeout(runFn,0)
+      return
+    } 
+    getScript('https://fastly.jsdelivr.net/npm/twikoo/dist/twikoo.all.min.js').then(runFn)
+  }
+
+  if ('Twikoo' === 'Twikoo' || !false) {
+    if (false) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo()
+  } else {
+    window.loadOtherComment = () => {
+      loadTwikoo()
+    }
+  }
+})()</script></div><script id="canvas_nest" defer="defer" color="0,0,255" opacity="0.7" zIndex="-1" count="99" mobile="false" src="https://fastly.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-nest.min.js"></script></div>
+        <style>
+            [bg-lazy] {
+                background-image: none !important;
+                background-color: #eee !important;
+            }
+        </style>
+        <script>
+            window.imageLazyLoadSetting = {
+                isSPA: false,
+                preloadRatio: 1,
+                processImages: null,
+            };
+        </script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script><script>!function(r){r.imageLazyLoadSetting.processImages=t;var e=r.imageLazyLoadSetting.isSPA,n=r.imageLazyLoadSetting.preloadRatio||1,c=a();function a(){var t=Array.prototype.slice.call(document.querySelectorAll("img[data-original]")),e=Array.prototype.slice.call(document.querySelectorAll("[bg-lazy]"));return t.concat(e)}function t(){e&&(c=a());for(var t,o=0;o<c.length;o++)0<=(t=(t=c[o]).getBoundingClientRect()).bottom&&0<=t.left&&t.top<=(r.innerHeight*n||document.documentElement.clientHeight*n)&&function(){var t,e,n,a,i=c[o];e=function(){c=c.filter(function(t){return i!==t}),r.imageLazyLoadSetting.onImageLoaded&&r.imageLazyLoadSetting.onImageLoaded(i)},(t=i).hasAttribute("bg-lazy")?(t.removeAttribute("bg-lazy"),e&&e()):(n=new Image,a=t.getAttribute("data-original"),n.onload=function(){t.src=a,t.removeAttribute("data-original"),e&&e()},t.src!==a&&(n.src=a))}()}function i(){clearTimeout(t.tId),t.tId=setTimeout(t,500)}t(),document.addEventListener("scroll",i),r.addEventListener("resize",i),r.addEventListener("orientationchange",i)}(this);</script></body></html>

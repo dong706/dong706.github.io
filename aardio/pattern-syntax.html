@@ -1,0 +1,717 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>叶落花开的博客 | 叶落花开的博客</title><meta name="keywords" content="后端开发,JAVA开发,web前端开发,持续学习,分享创造"><meta name="author" content="叶落花开"><meta name="copyright" content="叶落花开"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="模式表达式语法      模式表达式语法  参考:模式匹配函数        模式表达式(Text Pattern Expressions)     模式表达式使用模式匹配语法组成的表达式执行特定语义的文本匹配、以用于文本查找、替换操作。     模式表达式由表示字面值的字符(Literal Characters)、表示特定文本集合的模式(Pattern)、以及表示特定匹配规则的修饰符组">
+<meta property="og:type" content="website">
+<meta property="og:title" content="叶落花开的博客">
+<meta property="og:url" content="https://www.yeluohuakai.com/aardio/pattern-syntax.html">
+<meta property="og:site_name" content="叶落花开的博客">
+<meta property="og:description" content="模式表达式语法      模式表达式语法  参考:模式匹配函数        模式表达式(Text Pattern Expressions)     模式表达式使用模式匹配语法组成的表达式执行特定语义的文本匹配、以用于文本查找、替换操作。     模式表达式由表示字面值的字符(Literal Characters)、表示特定文本集合的模式(Pattern)、以及表示特定匹配规则的修饰符组">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-08-28T14:14:37.701Z">
+<meta property="article:modified_time" content="2024-08-28T14:14:37.701Z">
+<meta property="article:author" content="叶落花开">
+<meta property="article:tag" content="后端开发,JAVA开发,web前端开发,持续学习,分享创造">
+<meta name="twitter:card" content="summary"><link rel="shortcut icon" href="/favicon.png"><link rel="canonical" href="https://www.yeluohuakai.com/aardio/pattern-syntax"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//www.google-analytics.com" crossorigin=""/><link rel="preconnect" href="//hm.baidu.com"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?2f8a615b51582cf280e790200f3527e6";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script><script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-LB2ZMBR4ZN"></script><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-LB2ZMBR4ZN');
+</script><script>(function(){
+var el = document.createElement("script");
+el.src = "https://lf1-cdn-tos.bytegoofy.com/goofy/ttzz/push.js?18da2b25537eeea1b5c8819ad9a03fc2279abb7e5ff9fdb01a2409cbd77b8f1db3e414cba65c376eba389ba56d9ee0846cad2206506a6529fe6ee21a7373effb434c445cf6444b10ea9756ea44e128a6";
+el.id = "ttzz";
+var s = document.getElementsByTagName("script")[0];
+s.parentNode.insertBefore(el, s);
+})(window)
+</script><script async="async" crossorigin="anonymous" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6673854567363222"></script><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":false,"highlightLang":false,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://fastly.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.js',
+      css: 'https://fastly.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '叶落花开的博客',
+  isPost: false,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2024-08-28 22:14:37'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/index_code.css"><meta name="generator" content="Hexo 6.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/loading.gif" data-original="/img/ava.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data is-center"><div class="data-item"><a href="/archives/"><div class="headline">文章</div><div class="length-num">218</div></a></div><div class="data-item"><a href="/tags/"><div class="headline">标签</div><div class="length-num">76</div></a></div><div class="data-item"><a href="/categories/"><div class="headline">分类</div><div class="length-num">34</div></a></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" target="_blank" rel="noopener" href="https://support.qq.com/product/377343"><i class="fa-fw fa fa-paper-plane"></i><span> 反馈</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">叶落花开的博客</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" target="_blank" rel="noopener" href="https://support.qq.com/product/377343"><i class="fa-fw fa fa-paper-plane"></i><span> 反馈</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="page"><h1 class="page-title"></h1><div id="article-container">
+<!doctype html>
+<html>
+<head><meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>模式表达式语法</title> 
+<link href="../../../style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body><div id="maincontent">
+<h1>模式表达式语法</h1>
+ <div class="desc">参考:<a href="pattern%20matching.html">模式匹配函数</a></div>
+  <div>
+    <h2>模式表达式(Text Pattern Expressions)</h2>
+    <p>模式表达式使用模式匹配语法组成的表达式执行特定语义的文本匹配、以用于文本查找、替换操作。<br>
+    模式表达式由表示字面值的字符(Literal Characters)、表示特定文本集合的模式(Pattern)、以及表示特定匹配规则的修饰符组成.</p>
+    <p>注意在aardio的模式匹配中,模式与表达式有不同的语义,<br>
+      在aardio中一个模式表达式中可以包含模式串,也可以包含非模式串,这与传统的模式匹配有较大区别,<br>
+      而模式元可以匹配一个字符,也可以匹配一个串,它们同样是最小的匹配单元,所以aardio中没有元字符一说,只有模式元.<br> 
+    </p>
+  </div><div>
+    
+    <h2>基本概念</h2>
+    <p><strong>1、模式匹配(Pattern matching)</strong></p>
+    <p>使用模式匹配函数、并使用特定的模式语法组成的模式表达式查找匹配有规则的字符串。</p>
+    <p><strong>2、模式表达式(Pattern Expressions)</strong></p>
+    <p>根据模式语法编写的表达式,用来查找匹配有规则的目标字符串。<br>
+      <br>
+    <strong>2、模式串(Pattern String)</strong></p>
+    <p>存放模式表达式的字符串对象。 </p>
+<p><strong>4、模式元(Pattern)</strong></p>
+    <p>模式元是模式表达式中的最小的匹配单元,用于表示特定的字符集合.模式元指模式串中的一个普通字符、或转义后的字符、或用转义符标记的字符类、或一个置于中括号([])中的字符类,或一个置于尖括号(&lt;&gt;)中的串匹配<br>
+    </p>
+    <p><strong>5、模式修饰符(Pattern Modifiers)</strong></p>
+    <p>用于指定模式的匹配次数、匹配规则。. <br>
+    </p>
+    </div><div>
+<h2>模式转义符 </strong></h2>
+<p>在 aardio 模式匹配中『模式转义符』为反斜杆 <code>\</code>。模式串中的 <code>\</code> 用于将表示字面值的普通字符转换为特殊的模式符号。<br>
+对于特定的模式符号,在前面加上转义符 <code>\</code>,可用于表示普通的字面值字符。</p>
+
+<p>转义符的作用:</p>
+<ol>
+  <li>使用<code>\ + 特定字母字符</code>表示特定的<a href="#class">字符类</a>，</li>
+  <li>使用<code>\ + 数字</code>表示向前引用匹配分组（正则表达式中每对括号标明一个匹配分组），</li>
+  <li>使用<code>\ + 标点符号</code>表示标点符号字面值本身（即取消原来的模式语义），例如&ldquo;\\&rdquo;表示&ldquo;\&rdquo;。</li>
+  </ol>
+<p>在aardio中，置于单引号中的字符也可以使用\转义符表示特定意义，例如：\n表示换行。这种字符串转义符与模式转义符有类似的作用,但是用途有较大区别.</p>
+<p>因此模式串置于单引号内时，应在所有\前面再加一个\以表示模式表达式中的转义符。例如模式串：&quot;\w+&quot;，置于单引号中应表示为：'\\w+'。<span class="redfont">一般为避免混淆以及书写方便，模式字符串应置于双引号(")或反引号(`)内（此时\转义符仅适用于模式语义）。</span><br>
+  <br>
+</p>
+    </div>
+    <div>
+      <h2>模式 - 任意字符</h2>
+      <p>圆点'.'<span class="padleft">表示任意单字节字符</span>.<br>
+        <span class="padleft">冒号':'表示任意多字节字符(中文字符)</span>  <br>  
+		<span class="padleft">串匹配里的冒号后面有+,*修饰符 ，例如:"&lt;:+&gt;" 表示任意多字节字符</span> 
+      </p>
+    </div><div>
+<h2><strong>模式 - 字符类 </strong></h2><a name="class" id="class"></a></h2>
+<p>使用&ldquo;\转义符 + 特定字母字符&rdquo;表示特定的字符类， </p>
+<blockquote class="padleft"><code>\a</code> 字母<br>
+  <code>\d</code> 数字<br>
+  <code>\i</code> ASCII 字符( 字节码 &lt; 0x80 )<br>
+  <code>\l</code> 小写字母<br>
+  <code>\p</code> 标点字符<br>
+  <code>\s</code> 空白符<br>
+  <code>\u</code> 大写字母<br>
+  <code>\w</code> 字母和数字、以及下划线<br>
+  <code>\x</code> 十六进制数字<br>
+  <code>\n</code> 
+  换行符<br>
+  <code>\r</code> 回车符 <br>
+  <code>\f</code> 换页符 <code></code>'\x0c'</code><br>
+  <code>\v</code> 匹配一个垂直制表符。等价于 <code></code>'\x0b'</code> <br>
+  <code>\z</code> 表示'\0'<br>
+  注意模式串是纯文本，'\0'表示模式串结束，所以需要用<code>"\z"</code></code>表示<code>'\0'</code>
+  <br>
+  上面字符类的大写形式表示小写所代表的集合的补集<br>
+  <blockquote class="padleft"><br>
+    <code>\A</code> 不是字母的字符<br>
+    <code>\C</code> 不是控制字符的字符<br>
+    <code>\D</code> 不是数字的字符<br>
+    <code>\I</code>
+    不是ASCII字符( <code>字节码 &gt;= 0x80</code> ) <br>
+    <code>\L</code> 不是小写字母的字符<br>
+    <code>\P</code> 不是标点的字符<br>
+    <code>\S</code> 不是空白符的字符<br>
+    <code>\U</code> 不是大写字母的字符<br>
+    <code>\W</code> 不是字母和数字、并且不是下划线的字符<br>
+    <code>\X</code> 不是十六进制数字的字符<br>
+    <code>\N</code> 
+    不是换行符<br>
+    <code>\R</code> 不是回车符 <br>
+    <code>\F</code> 不是换页符<br>
+    <code>\V</code> 不是垂直制表符 <br>
+    <code>\Z</code> 不是<code>'\0'</code>的字符<br>
+    <br>
+    上面字符类的大写形式表示小写所代表的集合的补集, 这些字符类仅匹配单个字节（包含单字节字符，或者宽字符的单个字节）。
+	</blockquote>
+
+  <br>
+  <p>
+  要注意 aardio 字符串如果放在单引号中 <code>\</code> 是『字符串转义符』，
+  也就是说在 aardio 代码中<code>'\\'</code> 表示<code>"\"</code> 。而模式串<code>"\d"</code> 放到单引号中就必须写为 <code>'\\d'</code> 
+  </p>
+</blockquote>
+</div><div>
+ <h2>　模式 - 自定义字符类　　</h2>
+ <p><strong>1、自定义字符类</strong><br>
+   <br>
+   <strong>语法示例:</strong></p>
+ <code>&quot;[abc0-9\n]&quot;</code>
+ <p><br>
+   方括号用来创建自定义的字符类,<br>
+   例如[abcd]匹配一个可能是abcd其中之一的字符。[\a\d_]匹配数字、字母和下划线。<br>
+   我们还可以在两个字符之间用连字符连接表示这两个字符之间范围内的字符集合。例如[0-7]等同于[01234567]。<br>
+   自定义字符集中可以包含UTF8编码的多字节汉字（但不可指定编码范围，有些需求请使用preg正则支持库）。<br>
+   自定义字符集中冒号表示任意中文字符而不是字面值。</p>
+   
+    <p class="imp">在「自定义字符类」里圆点表示字面值,而不是表示任意匹配,
+但是冒号表示任意中文字符而不是字面值。</p>
+ <h3><br>
+   2、自定义字符类补集</h3>
+ <p><strong>语法示例</strong></p>
+ <code>&quot;[^abc0-9\n]&quot;</code>
+ <p></p>
+ <p>  在字符集的开始处使用 `^&prime; 表示其补集,'[^0-7]' 匹配任何不是八进制数字的字符； '[^\n]' 匹配任何非换行符户的字符。
+   
+ </p>
+  <p class="imp">在「自定义字符类补集」里圆点表示字面值,「自定义字符类补集」中使用中文字符或:无意义(即使不匹配中文字符也可以匹配二进制字节)。</p>
+ 
+
+</div><div> 
+<h2><strong>模式 - 字符串</strong>匹配<a name="string" id="string"></a></h2>
+<h3>1、字符串匹配</h3>
+<p>语法示例:</p>
+<code>&lt;abc0-9\n\d+:+&gt;</code>
+<br>
+  <br>
+  尖括号匹配一组有序的字符串而不是单个字符。<br>
+  例如&lt;hello&gt;匹配hello单词。而不是hello其中的一个字符。<br>
+  <br>
+</p>
+<p>在串匹配的尖括号内部也可以使用字符类，或者自定义的字符类，其语法类似使用[]定义字符类的用法。<br>
+例如:&lt;\aA-Z&gt; <br>
+</p>
+<p>你也可以在串匹配中插入用中括号来定义的自定义字符类，如下：<br>
+  &lt;[a-z0-9]&gt;
+	
+    <br>
+在串匹配内可以使用圆点表示任意单字节字符,使用冒号表示任意多字节字符（汉字）.<br>
+而在中括号定义的字符类内圆点仅表示字面值.<br>
+<br> 
+可在串匹配内使用'+'或'*'限定修饰符表示贪婪匹配,可使用逻辑修饰符'|'<br>
+但是不能在尖括号内部使用其他修饰符,不能使用问号来定义惰性匹配.<br>
+<br> 
+不能在尖括号内部使用圆括号来定义捕获组.</p>
+ 
+<h3><br>
+  2、反义串匹配</h3>
+<p>示例语法:</p>
+<code>&lt;^a-zA-Z\d*&gt;</code>
+<p>例如 &lt;^hello&gt; 匹配所有不是hello并且<span class="imp">等长</span>的字符串.如果是在串的结束,则允许至少匹配一个字符.<br>
+  <br>
+</p>
+<h3>3、原始串匹配</h3>
+<p>示例语法:</p>
+<pre>&lt;@任意内容@&gt;</pre>
+<p>例如 &lt;@a-zbc@&gt; 匹配&quot;a-zbc&quot;,而不能匹配&quot;abc&quot; </p>
+<p>@表示在尖括号内部禁用模式语法.这是aardio模式语法中非常有用的一个功能,它可以在一个查找串中对部分字符串禁用模式语法.<br>
+  <br> 
+  例如我们查找A,B,C三段文本组成的块，其中A为开始段,而C为结束段,B是任意字符,<br>
+  我们用&quot;.+&quot;的模式串表示中间的B段,而A和C包含大量的标点符号,我们不希望在这两处使用模式语法,只是希望直接查找开始文本与结束文本.</p>
+<p>这在批量处理文本时经常遇到,要么细心的组织表达式,或者编写大量的代码来实现该逻辑,先查出开始段，再找出...............总之是很麻烦的一件事。</p>
+<p>在模式匹配中使用临时禁用模式语法的@字符,能彻底的解决这一问题,使模式语法的使用更为简单,功能更为强大.当然,因为可以按需禁用模式语法,查找速度也会显著的提升.</p>
+</div>
+<div>
+  <h2><strong>模式元匹配修饰符 </strong><br>
+</h2>
+<p>修饰符用于指定一个模式元的匹配次数、或是否消费字符宽度</p>
+<table class="dataintable">
+  <tr>
+    <th>修饰符</th>
+    <th>说明</th>
+  </tr>
+  <tr>
+    <td><em>pattern</em>{min,max}<br></td>
+    <td>匹配前一模式最少min次，最多max次 <br>
+      可以省略其中一个参数，或者仅用一个参数限定匹配长度,例如:<br>
+      <em>pattern</em>{min,} <br>
+      <em>pattern</em>{,max} <br>
+      <em>pattern</em>{len}</td>
+  </tr>
+  <tr>
+    <td><em>pattern</em>+</td>
+    <td>匹配<em>pattern</em>模式1次或多次,等价于{1,}</td>
+  </tr>
+  <tr>
+    <td><em>pattern</em>*</td>
+    <td>匹配<em>pattern</em>模式0次或多次,类似{0,}</td>
+  </tr> 
+  <tr>
+    <td><em>pattern</em>？</td>
+    <td>匹配<em>pattern</em>模式0次或1次,类似{0,1}</td>
+  </tr> 
+  <tr>
+    <td><em>pattern</em>?=</td>
+    <td>向右预测式零宽断言，测试<em>pattern</em>模式是否可匹配1次，不消费任何字符宽度</td>
+  </tr> 
+  <tr>
+    <td><em>pattern</em>?!</td>
+    <td>向右预测式零宽断言（逻辑取反），测试<em>pattern</em>模式是否不匹配至少1次，不消费任何字符宽度</td>
+  </tr> 
+</table>
+<p><strong>贪婪匹配</strong>:又称之为<span class="bluefont">最长匹配,</span>{min,max},+,* 等可匹配1次以上的修饰符默认都会在指定语义下尽可能获得最长的匹配结果，除非在这几个修饰符后面再加一个?号将其转换为惰性匹配。</p>
+
+</div><div>
+<h2>对匹配次数修饰符指定惰性匹配</h2>
+<p>惰性匹配:指在限定符后面附加一个问号(?),以表示使用最短匹配.又称之为非贪婪匹配.<br>
+  例如，对于字符串 &quot;aaaaaa&quot;，'a+?'   将匹配单个 &quot;a&quot;，而 'a+' 将匹配所有 'a'。<br>
+  <br>
+</p>
+<pre class="code aardio"><code> io.open();
+<p>str = &quot;a1234z&quot;</p>
+<p>str2 = string.match(str, &quot;a\d*?&quot;) <br>
+io.print(str,&quot;a\d*?&quot;,str2);<span class="comment"> /*附加?号表示最短匹配*/</span></p>
+<p>str2 = string.match(str, &quot;a\d*&quot;) <br>
+io.print(str,&quot;a\d*&quot;,str2); <span class="comment">/*默认最长匹配*/</span><br>
+</p>
+<p>str2 = string.match(str, &quot;a\d+\d&quot;) <br>
+io.print(str,&quot;a\d+\d&quot;,str2);<span class="comment">/*最长匹配*/</span></p>
+<p>str2 = string.match(str, &quot;a\d+?\d&quot;) <br>
+io.print(str,&quot;a\d+?\d&quot;,str2);<span class="comment">/*显示a12,附加?号表示最短匹配 */</span></p>
+<p>str2 = string.match(str, &quot;a\d&#123;2,3&#125;&quot;) <br>
+io.print(str,&quot;a\d&#123;2,3&#125;&quot;, str2); <span class="comment">/*显示a123， 也是最长匹配*/</span><br>
+</p>
+str2 = string.match(str, &quot;a\d&#123;2,3&#125;?&quot;) <br>
+io.print(str,&quot;a\d&#123;2,3&#125;?&quot;,str2); <span class="comment">/*显示a12，附加?号表示最短匹配*/</span></code></pre>
+
+  </div>
+
+ <div>
+<h2><strong>边界断言</strong></h2><a name="string" id="boundary"></a>
+<p><strong>语法:</strong></p>
+<pre>!<em>pattern</em></pre>
+<br> 
+  <p>
+  边界断言用一个感叹号加一个自定义的<span class="bluefont">模式元</span>组成，用于判断当前位置是从不满足该匹配条件切换到满足该条件的字符串分界。边界断言是一种零宽断言（Zero-width Assertions）语法，匹配时只是做断言检测，但并不消费任何字符宽度，也就是说下一次匹配仍然是从当前位置开始。
+  </p>
+  
+  <div class="info">该语法类似正则表达式的Lookaround(Lookahead and Lookbehind)特性，可以用正则表达式描述类似的语义如下：<span class="string">"(?&lt;!<em>pattern</em>)(?=<em>pattern</em>)"</span>  可以理解为一个向左回顾式零宽断言（逻辑取反） + 向右预测式零宽断言。
+  （ 本文档没有沿用：“负向向后零宽断言” - 这类找不到方向感的术语，请厘清边界的前后方向、"look"着的前后方向、以及逻辑正反向 ）。
+  </div><br>
+  <br>
+  例如 "!\w([a-zA-Z]\w*)" 表示单词边界.该边界左侧不能是字母数字，右侧必须是字母数字,并且必须以字母开头，下面看一个完整的正则与模式匹配对比的示例:<br>  
+  <br>
+</p>
+<pre class="code aardio"><code> 
+<span class="kw">import</span> console; 
+
+<span class="comment">//测试字符串</span>
+<span class="kw">var</span> str = "abc 3ddeadsfasd dfa123 qerqwe"
+
+<span class="kw">import</span> preg; 
+
+<span class="comment">//正则表达式向后、向前零宽断言</span>
+<span class="kw">var</span> regex = preg("(?&lt;!\w)(?=\w)([a-zA-Z]\w*)");  
+<span class="kw">for</span> word <span class="kw">in</span> regex.gmatch( str  ) &#123; 
+console.log("正则表达式：", word )
+&#125;
+regex.free();
+
+<span class="comment">//模式匹配边界断言</span>
+<span class="kw">for</span> word <span class="kw">in</span> string.gmatch( str,"!\w([a-zA-Z]\w*)") &#123; 
+console.log("模式匹配：", word )
+&#125;
+
+console.pause();
+
+</code></pre>
+ <p>可以看到正则表达式、模式匹配的匹配结果是一样的，模式匹配的写法虽然简洁 - 但功能没有正则表达式的零宽断言那么强大（只能用于表达式的最小单位：模式元）。</p>
+</div>
+<div>
+  <h2>模式元 逻辑修饰符</h2>
+  <p>在一个或多个模式元(不能都是普通字符)中间添加一个'|'字符以表示匹配其中任意一个模式,称之为<b>逻辑或匹配</b>.<br>
+    <b>逻辑或匹配</b>返回其中最早匹配成功的一个匹配结果.注意'|'两侧不能都是普通字符，'A|B'可以用'[AB]'表示就可以了。<br>
+	<br>
+注意逻辑或操作符匹配成功后不会回退，例如：<br>
+<blockquote class="padleft">
+string.match("https://","^&lt;http&gt;|&lt;https&gt;|\:")  将不会匹配成功，匹配时&lt;http>匹配成功，而s不匹配\:，匹配将会失败。<br>
+<br>
+我们需要修改为 string.match("https://","^&lt;https&gt;|&lt;http&gt;|\:") 这样 http:,https: 开头的网址都能匹配成功, 如果要忽略大小写，需要改为 string.match("https://","^&lt;@@https@&gt;|&lt;@@http@&gt;|\:") 。
+</blockquote>
+<div class="tip">小提示：标准库里有个更简单的函数 inet.url.is(url)可以直接判断一个字符串是不是网址。</div>
+
+    <br>
+    在一个或多个模式元(不能都是普通字符)中间添加一个'&amp;'字符以表示匹配其中所与模式,称之为<b>逻辑与匹配</b> 注意'&amp;'两侧不能都是普通字符，'A&amp;B'这样写是无意义的。<br>
+    <br><b>逻辑与匹配</b>返回其中最长匹配结果.参与匹配的模式元中包含串,返回结果将按最长的串返回匹配结果.</p>
+  <p>与其他修饰符不同,逻辑修饰符可以连接任意多个模式元( 逻辑修饰符两侧不能都是普通字符 )，下面是一个示例</p>
+  <pre class="code aardio"><code> <p style="font-family: Consolas">io.open()
+
+</font><font color="#008000">//匹配结尾不能为英文标点或中文字符，返回值应当为null
+</font><font color="#000000">abc&nbsp;=&nbsp;&nbsp;string.match(&nbsp;</font><font color="#800000">"123ABC."</font><font color="#000000">,</font><font color="#800000">".+\P&\i$"</font><font color="#000000">)
+
+</font><font color="#008000">//匹配结尾不能为英文标点或中文字符，返回值应当为"456cde"
+</font><font color="#000000">cde&nbsp;=&nbsp;&nbsp;string.match(&nbsp;</font><font color="#800000">"456cde"</font><font color="#000000">,</font><font color="#800000">".+\P&\i$"</font><font color="#000000">)
+io.print(&nbsp;abc&nbsp;,cde)&nbsp;
+</font><font color="#0000ff">execute</font><font color="#000000">(</font><font color="#800000">"pause"</font><font color="#000000">)
+&nbsp;&nbsp;</font></p> 
+</code></pre>
+
+</div>
+
+<div>
+<h2><strong>修饰符% 对称匹配</strong><br>
+</h2>
+<p>% 用来匹配两个对称的模式元及其位置区间内包含的字符串,例如<span class="string">'%()'</span>匹配以`(&prime;开始， 以 `)&prime;结束的字符串:,而<span class="string">'%&quot;&quot;'</span>匹配以引号开始， 以引号结束的字符串:<br>
+</p>
+<pre class="code aardio"><code>str = 'a = <span class="st0"><font color="#800000">(a(b)cd)</font></span>  ' <span class="comment">//字符串如果包含双引号则应放在单引号中</span><br>
+<br>
+str2 = <span class="kw"><font color="#0000ff">string</font></span>.match<span class="br0">(</span>str, '%<font color="#800000">()</font>'<span class="br0">)</span> <br>
+<br>
+io.open()<span class="br0"></span>;<br>
+io.print(str2); <span class="comment"><font color="#008000">//</font><font color="#008000">显示 </font><font color="#800000">(a(b)cd)</font></span><br>
+<br>
+</code></pre>
+<p>对于匹配也可以在后面附加问号(?)以表示惰性匹配(最短匹配),例如:</p>
+<pre class="code aardio"><code>str = 'a = <span class="st0"><font color="#800000">(a(b)cd)</font></span> ' <span class="comment">//字符串如果包含双引号则应放在单引号中</span><br>
+<br>
+str2 = <span class="kw"><font color="#0000ff">string</font></span>.match<span class="br0">(</span>str, '%<font color="#800000">()</font>?'<span class="br0">)</span> <br>
+<br>
+io.open()<span class="br0"></span>;<br>
+io.print(str2); <span class="comment"><font color="#008000">//显示 </font><font color="#800000"> (b) </font></span><br>
+<br>
+<br>
+</code></pre>
+</div><div>
+<h2><strong>起止限定符</strong></h2>
+<p>&nbsp;</p>
+<table class="dataintable">
+  <tr>
+    <th>限定符</th>
+    <th>说明</th>
+  </tr>
+  <tr>
+    <td><strong>^</strong></td>
+    <td>模式串必须从文本的开始处匹配</td>
+  </tr>
+  <tr>
+    <td><strong>$</strong></td>
+    <td>模式串必须匹配至文本结束处</td>
+  </tr>
+</table>
+<p>起止限定符也属于零宽断言语法（测试匹配条件，但是不消费字符宽度），下面是示例:<br>
+<pre class="code aardio"><code>import win;
+str = "1234"
+
+if( string.find(str, "^\d") ) &#123; 
+win.msgbox(str + " 字符串以数字开始")
+&#125;
+
+if( string.find(str, "^[+-]?\d+$") ) &#123;
+win.msgbox(str + " 字符串是一个整数")
+&#125;</code></pre>
+</p>
+</p>
+</div>
+<div>
+<h2>修饰符@ 禁用模式语法 </h2>
+<h3>1、全局禁用模式语法</h3>
+<p>aardio提供一系列用于模式匹配的函数，例如<a href="pattern%20matching.html#match">string.find</a> <a href="pattern%20matching.html#match">string.match</a> <a href="pattern%20matching.html#gmatch">string.gmatch</a> 等等。<br>
+  默认的，查找替换的字符串都会使用模式语法进行解析，如果我们需要禁用默认的模式语义，可以在模式串前面添加'@'字符禁用模式语法，而使用更快速的文本查找替换功能（这时候替换对象只能是字符串，不能用函数，表等作为替换参数）。<br>
+  <br>
+  <strong>例如：</strong>
+<pre>str = string.match(&quot;a\d&quot;, &quot;@a\d&quot;);</pre>
+ <br>
+ 这里的\d不是表示数字，仅仅是表示\d，等价于:<br>
+<pre>str = string.match(&quot;a\d&quot;, &quot;a\\d&quot;)。 </pre><br>
+如果在模式串前增加两个"@"字符，表示禁用模式匹配并忽略大小写，实现上aardio会将其转换为"&lt;@@.....@&gt;"
+</p>
+<h3><br>
+  2、局部禁用模式语法</h3>
+<p>也可在模式表达式的一个串匹配中禁用模式语法,<br>
+  串匹配以'&lt;@'开始,并以'@&gt;'结束则表示进行原始的字符串比较,并在此子串中忽略所有模式语法.<br>
+</p>
+<pre>str = string.match(&quot;a\d&quot;, &quot;[a-z]&lt;@\d@&gt;&quot;)。 
+
+</pre>
+<br>
+如果串匹配以两个@@字符开始,即以'&lt;@@'开始,并以'@&gt;'结束,则表示进行原始的文本比较(不包含'\0'),忽略所有模式语法,并且忽略大小写<br>
+<br>
+<br>
+参考: <a href="#string">串匹配</a></div>
+<div>
+<h2><strong>捕获组（capture group）</strong><span class="info2"></span></h2>
+<p><span class="info2">
+    将模式串的一部分用圆括号 () 括起来可以指定一个匹配分组,<br>
+</span><span class="imp">匹配分组不能使用任何限定符进行修饰</span>，可使用空的分组即"()"返回一个索引值。<span class="info2"> <br>
+<br>
+()可以包含() ，也可以包含[] 或 {}、&lt;&gt;等。<br>
+而[]{}&lt;&gt;等指定的模式元不能用任何括号表示模式语义(表示字面值、或用转义符转义为字面值除外) <br>
+<br>
+我们可以在模式中使用'\d'(d代表1-9的数字) 表示第d个捕获分组。</span></p>
+<p>对于<a href="pattern%20matching.html#match">string.match</a> <a href="pattern%20matching.html#gmatch">string.gmatch</a> 等模式匹配函数,每个用括号显式指定的分组都会增加一个返回值.</p>
+  </div>
+   <div>
+     <h2>限制</h2>
+     <p>1、你不能在尖括号包含的匹配串内使用圆括号指定捕获分组，但是可以使用中括号定义字符类。     <br>
+       2、你不能对一个用圆括号指定的捕获分组使用模式修饰符来指定匹配行为、匹配次数等。<br>
+       3、在中括号指定的自定义字符类内圆点与冒号表示字面值(无模式语义)。
+       <br>
+     </p>
+  </div> 
+  <div>
+    <h2>字符串转义符、模式转义符的区别</h2>
+    <p>请参考:<a href="../../../the%20language/datatype/datatype.html#varstring">字符串</a> <br>
+      <br>
+放在单引号中的字符串支持&quot;\&quot;转义符,例如'\n'表示换行符.<br> 
+这称为字符串转义符,字符串转义符是发生在编译过程中的.<br>
+<br>
+而模式表达式是一个字符串,即模式串,模式串中也支持&quot;\&quot;转义符,而这是发生在运行时的.<br>
+例如模式串&quot;\a&quot;,用转义字符串来表示就是'\\a'<br>
+<br>
+无论你写'\\a' 还是 &quot;\a&quot; 这都是编译过程中的事,它们的数据是一样的,当然也是同样的模式串.<br>
+<br> 
+最好将模式串置于双引号中,这样仅支持模式转义符,可以避免不必要的混淆.
+<br>
+    </p>
+  </div> 
+  <div>
+<h2><strong>模式表达式与正则表达式的区别<span class="info2"></span></strong></h2>
+<p>模式匹配与aardio语言完全融为一体，很多标准库的函数默认就支持模式匹配语法。<br>
+  模式表达式基本的语法参考了正则表达式的语法，但比正则表达式更简单、运行速度也更快。
+  实际上在aardio的设计中一直在尽可能的运用大家现有的、传统的知识和书写习惯，以降低学习成本。当我们在不同语言、不同技术间切换时，很多不必要的差异会导致不必要的混乱、不必要的记忆成本。aardio在设计的每一个细节上都努力避免这一点。当然，我们仍然要注意正则表达式与模式匹配的一些区别，例如：<br>
+</p>
+  <p> 
+  正则表达式一个强大的功能就是可以对圆括号指定的捕获组指定匹配次数,而模式匹配并不支持此功能,模式匹配只能对表达式中的最小单位“模式元”使用修饰符设定匹配次数。
+  为了可以对一个子字符串设定匹配次数 - 模式匹配提供了<a href="#string">串匹配</a>语法。
+  <br><br>
+  但是模式匹配在串匹配可以使用'@'字符全局禁用、或局部串禁用模式语法，或指定局部串忽略大小写，正则表达式无此功能，这个功能在匹配大段的文本时尤其有用。<br>
+  <br> 
+  模式匹配%表示成对出现的符号及包含的字符串，正则表达式没有类似的语法。<br>
+  <br>
+  模式匹配提供<a href="#boundary">边界断言</a>功能可以实现简单的自定义零宽断言以及边界测试，正则表达式使用\b表示单词边界，另外正则表达式提供更强大的自定义零宽断言（Lookaround）。<br>
+  
+  <br>
+  正则表达式中\u表示unicode编码，而模式匹配中\u表示大写字符，\l表示小写字符  。<br>
+</p>
+  <p> 
+  模式匹配与正则的最大匹别是正则表达式强大且复杂，模式匹配更简单、小、轻、快，并易于掌握和使用。<br>
+  Jamie Zawinski有一句名言被很多正则表达式的资料所引用：“Some people, when confronted with a problem, think “I know, I’ll use regular expressions.” Now they have two problems”<br>
+  很多时候我们要避免这种“正则表达式甜蜜陷阱”，避免执着于用正则表达式解决复杂问题，把正则表达式实现的过于复杂。把所有的需求试图用一个正则表达式去解决，这是一种非常原始的“写命令行”的思维，并不是一个良好的编写程序解决问题的思路。<br><br>
+  
+  很多时候更好的解决方案是去编写程序，在aardio中文本分析是非常方便的，<br>
+  例如标准库中string.xml的源码可以看看，里面虽然用到了模式匹配，但并非指望一两个模式匹配就能搞定这种复杂的文本分析。
+  其它的可以看看bencoding.decoder，string.database等等支持库，这些里面基本没有使用或很少使用模式匹配。<br><br>
+  
+  我们经常看到新手在询问我这个文本分析的想法怎么用一个模式匹配解决？解决了以后我现在有新的更复杂的想法了，我该怎么把模式表达式改的更复杂以解决新的问题？
+  实际上当你把模式匹配越写越复杂的时候，你就要提醒自己可能掉入“正则表达式甜蜜陷阱”了。<br><br>
+  
+  
+  那么aardio中的模式匹配之所以设计的比正则表达式简单，其用意也正在于此。<br>
+  一些新手会纠结：“你都说了跟正则表达式基本语法一样了，那么我用正则的这个那个功能，你模式匹配里没有”，其实没有必要去纠结这个。
+  aardio中也提供了正则表达式的良好支持，例如string.regex,<a target="_blank" rel="noopener" href="http://bbs.aardio.com/forum.php?mod=viewthread&tid=8910&from=portal">preg</a> 等正则表达式支持库。
+  </p> 
+  
+  
+  
+  </div><div>
+<h2>模式表达式-效率优化</h2>
+<p><strong>1、惰性匹配比贪婪匹配更快</strong><br>
+  <br>
+  在匹配次数修饰符后面加上&quot;?&quot;总是会更快.这一点非常重要。实际上贪婪匹配是由无数的惰性匹配组成的，请把模式匹配想象为吃豆子游戏。惰性匹配相当于吃到一粒豆子就停了。而贪婪匹配则不停的吃更多的豆子，直到吃完所有的豆子找不到新的豆子为止，可以想象贪婪匹配是多么低效了。<br>
+</p>
+<p><strong>2、限制严格的模式表达式比一个限制宽松的模式更快。</strong></p>
+<p><strong>3、严格限制模式表达式匹配的开始字符可以显著提升效率。</strong></p>
+<p>例如模式表达式&quot;(.*)test&quot; 用来获取test以前的全部字符<br>
+  上面的算法从目标串的第一个字符开始匹配直到字符串结束，<br>
+  如果没有找到,则从目标串的第二个字符开始再次查找。<br>
+这样的查找效率是很低的。</p>
+<p>解决办法是加上限定符&quot;^(.*)test&quot; 限定仅与目标串的开始字符匹配。</p>
+<p><strong>4、尽可能不要使用可能匹配空字符串的模式表达式。</strong><br>
+  <br>
+  例如&quot;\a*&quot;，因为可以出现零次则空字符串也是符合条件的。<br>
+  应尽量避免使用。并且永远不要在模式串开始处使用。</p> 
+</div></div></body>
+</html>
+
+</div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/loading.gif" data-original="/img/ava.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">叶落花开</div><div class="author-info__description">持续学习，记录后端技术、web技术，以及对认知、技术变现的思考。</div></div><div class="card-info-data is-center"><div class="card-info-data-item"><a href="/archives/"><div class="headline">文章</div><div class="length-num">218</div></a></div><div class="card-info-data-item"><a href="/tags/"><div class="headline">标签</div><div class="length-num">76</div></a></div><div class="card-info-data-item"><a href="/categories/"><div class="headline">分类</div><div class="length-num">34</div></a></div></div></div><div class="card-widget user-map" id="user-map"><div class="item-headline"><i class="fas fa-link"></i><span>友情链接</span></div><div class="item-content"><ul class="entry"><li><a href="/bszs" title="各大高校博士招生信息">各大高校博士招生信息</a></li><li><a target="_blank" rel="noopener" href="https://www.xiaoxinsoft.com" title="小新软件服务">小新软件安装服务</a></li></ul></div></div><div class="sticky_layout"><div class="card-widget card-categories"><div class="item-headline">
+            <i class="fas fa-folder-open"></i>
+            <span>分类</span>
+            <a class="card-more-btn" href="/categories/" title="查看更多">
+    <i class="fas fa-angle-right"></i></a>
+            </div>
+            <ul class="card-category-list" id="aside-cat-list">
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/IT%E6%8A%80%E6%9C%AF/"><span class="card-category-list-name">IT技术</span><span class="card-category-list-count">32</span></a><ul class="card-category-list child"><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/IT%E6%8A%80%E6%9C%AF/Anki/"><span class="card-category-list-name">Anki</span><span class="card-category-list-count">18</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/IT%E6%8A%80%E6%9C%AF/Linux/"><span class="card-category-list-name">Linux</span><span class="card-category-list-count">6</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/IT%E6%8A%80%E6%9C%AF/Mac/"><span class="card-category-list-name">Mac</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/IT%E6%8A%80%E6%9C%AF/Windows/"><span class="card-category-list-name">Windows</span><span class="card-category-list-count">1</span></a></li></ul></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Web%E6%8A%80%E6%9C%AF/"><span class="card-category-list-name">Web技术</span><span class="card-category-list-count">23</span></a><ul class="card-category-list child"><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Web%E6%8A%80%E6%9C%AF/Electron/"><span class="card-category-list-name">Electron</span><span class="card-category-list-count">2</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Web%E6%8A%80%E6%9C%AF/Hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E6%95%99%E7%A8%8B/"><span class="card-category-list-name">Hexo搭建博客教程</span><span class="card-category-list-count">9</span></a></li></ul></li>
+            </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>标签</span></div><div class="card-tag-cloud"><a href="/tags/Anki/" style="font-size: 1.38em; color: #99a4b4">Anki</a> <a href="/tags/Apache/" style="font-size: 1.1em; color: #999">Apache</a> <a href="/tags/Corba/" style="font-size: 1.3em; color: #99a1ac">Corba</a> <a href="/tags/Docker/" style="font-size: 1.22em; color: #999ea4">Docker</a> <a href="/tags/Electron/" style="font-size: 1.14em; color: #999b9d">Electron</a> <a href="/tags/Git/" style="font-size: 1.1em; color: #999">Git</a> <a href="/tags/Hexo/" style="font-size: 1.34em; color: #99a3b0">Hexo</a> <a href="/tags/JNA/" style="font-size: 1.1em; color: #999">JNA</a> <a href="/tags/JacORB/" style="font-size: 1.26em; color: #999fa8">JacORB</a> <a href="/tags/Java/" style="font-size: 1.42em; color: #99a6b7">Java</a> <a href="/tags/Javascript/" style="font-size: 1.1em; color: #999">Javascript</a> <a href="/tags/Jmeter/" style="font-size: 1.14em; color: #999b9d">Jmeter</a> <a href="/tags/K8s/" style="font-size: 1.34em; color: #99a3b0">K8s</a> <a href="/tags/Kubernetes/" style="font-size: 1.14em; color: #999b9d">Kubernetes</a> <a href="/tags/Kuboard/" style="font-size: 1.1em; color: #999">Kuboard</a> <a href="/tags/Linux/" style="font-size: 1.18em; color: #999ca1">Linux</a> <a href="/tags/Mac/" style="font-size: 1.1em; color: #999">Mac</a> <a href="/tags/Maven/" style="font-size: 1.14em; color: #999b9d">Maven</a> <a href="/tags/MongoDB/" style="font-size: 1.1em; color: #999">MongoDB</a> <a href="/tags/Moviepy/" style="font-size: 1.1em; color: #999">Moviepy</a> <a href="/tags/Node/" style="font-size: 1.14em; color: #999b9d">Node</a> <a href="/tags/Nodejs/" style="font-size: 1.14em; color: #999b9d">Nodejs</a> <a href="/tags/OpenAI/" style="font-size: 1.18em; color: #999ca1">OpenAI</a> <a href="/tags/PMD/" style="font-size: 1.1em; color: #999">PMD</a> <a href="/tags/PV/" style="font-size: 1.1em; color: #999">PV</a> <a href="/tags/PVC/" style="font-size: 1.14em; color: #999b9d">PVC</a> <a href="/tags/RealmSwift/" style="font-size: 1.1em; color: #999">RealmSwift</a> <a href="/tags/Selenium/" style="font-size: 1.1em; color: #999">Selenium</a> <a href="/tags/Service/" style="font-size: 1.1em; color: #999">Service</a> <a href="/tags/Spring/" style="font-size: 1.18em; color: #999ca1">Spring</a> <a href="/tags/SpringBoot/" style="font-size: 1.1em; color: #999">SpringBoot</a> <a href="/tags/SpringMVC/" style="font-size: 1.14em; color: #999b9d">SpringMVC</a> <a href="/tags/Sqlite/" style="font-size: 1.1em; color: #999">Sqlite</a> <a href="/tags/Statefuset/" style="font-size: 1.1em; color: #999">Statefuset</a> <a href="/tags/StorageClass/" style="font-size: 1.14em; color: #999b9d">StorageClass</a> <a href="/tags/Swift/" style="font-size: 1.46em; color: #99a7bb">Swift</a> <a href="/tags/Tomcat/" style="font-size: 1.14em; color: #999b9d">Tomcat</a> <a href="/tags/Word/" style="font-size: 1.1em; color: #999">Word</a> <a href="/tags/aardio/" style="font-size: 1.5em; color: #99a9bf">aardio</a> <a href="/tags/chatGPT/" style="font-size: 1.26em; color: #999fa8">chatGPT</a></div></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站资讯</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">218</div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2024-08-28T14:37:02.694Z"></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 By 叶落花开</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">本地搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://fastly.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>(()=>{
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'freecloud-0gzubvbebcf38cf6',
+      region: '',
+      onCommentLoaded: function () {
+        btf.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.vemoji)'))
+      }
+    }, null))
+  }
+
+  const getCount = () => {
+    twikoo.getCommentsCount({
+      envId: 'freecloud-0gzubvbebcf38cf6',
+      region: '',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(function (res) {
+      document.getElementById('twikoo-count').innerText = res[0].count
+    }).catch(function (err) {
+      console.error(err);
+    });
+  }
+
+  const runFn = () => {
+    init()
+    
+  }
+
+  const loadTwikoo = () => {
+    if (typeof twikoo === 'object') {
+      setTimeout(runFn,0)
+      return
+    } 
+    getScript('https://fastly.jsdelivr.net/npm/twikoo/dist/twikoo.all.min.js').then(runFn)
+  }
+
+  if ('Twikoo' === 'Twikoo' || !false) {
+    if (false) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo()
+  } else {
+    window.loadOtherComment = () => {
+      loadTwikoo()
+    }
+  }
+})()</script></div><script id="canvas_nest" defer="defer" color="0,0,255" opacity="0.7" zIndex="-1" count="99" mobile="false" src="https://fastly.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-nest.min.js"></script></div>
+        <style>
+            [bg-lazy] {
+                background-image: none !important;
+                background-color: #eee !important;
+            }
+        </style>
+        <script>
+            window.imageLazyLoadSetting = {
+                isSPA: false,
+                preloadRatio: 1,
+                processImages: null,
+            };
+        </script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script><script>!function(r){r.imageLazyLoadSetting.processImages=t;var e=r.imageLazyLoadSetting.isSPA,n=r.imageLazyLoadSetting.preloadRatio||1,c=a();function a(){var t=Array.prototype.slice.call(document.querySelectorAll("img[data-original]")),e=Array.prototype.slice.call(document.querySelectorAll("[bg-lazy]"));return t.concat(e)}function t(){e&&(c=a());for(var t,o=0;o<c.length;o++)0<=(t=(t=c[o]).getBoundingClientRect()).bottom&&0<=t.left&&t.top<=(r.innerHeight*n||document.documentElement.clientHeight*n)&&function(){var t,e,n,a,i=c[o];e=function(){c=c.filter(function(t){return i!==t}),r.imageLazyLoadSetting.onImageLoaded&&r.imageLazyLoadSetting.onImageLoaded(i)},(t=i).hasAttribute("bg-lazy")?(t.removeAttribute("bg-lazy"),e&&e()):(n=new Image,a=t.getAttribute("data-original"),n.onload=function(){t.src=a,t.removeAttribute("data-original"),e&&e()},t.src!==a&&(n.src=a))}()}function i(){clearTimeout(t.tId),t.tId=setTimeout(t,500)}t(),document.addEventListener("scroll",i),r.addEventListener("resize",i),r.addEventListener("orientationchange",i)}(this);</script></body></html>
