@@ -4,6 +4,35 @@
   
     
     <entry>
+      <title>k8s集群如何动态修改NodePort 的端口范围</title>
+      <link href="/posts/2024/08/8d2aaf55.html"/>
+      <url>/posts/2024/08/8d2aaf55.html</url>
+      
+        <content type="html"><![CDATA[<p>在一个已经部署好的 Kubernetes 集群中，动态修改 <code>NodePort</code> 的端口范围需要修改 Kubernetes API Server 的启动参数，并重新启动 API Server。具体步骤如下：</p><h3 id="1-修改-Kubernetes-API-Server-配置"><a href="#1-修改-Kubernetes-API-Server-配置" class="headerlink" title="1. 修改 Kubernetes API Server 配置"></a>1. 修改 Kubernetes API Server 配置</h3><p>对于基于 kubeadm 部署的集群，API Server 的配置文件通常位于 <code>/etc/kubernetes/manifests/kube-apiserver.yaml</code> 中。这是一个静态 Pod 配置文件。</p><ul><li>使用 <code>kubectl</code> 或 SSH 连接到控制节点。</li><li>打开 <code>/etc/kubernetes/manifests/kube-apiserver.yaml</code> 文件。  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo vi /etc/kubernetes/manifests/kube-apiserver.yaml</span><br><span class="line"></span><br></pre></td></tr></table></figure></li><li>  找到 <code>command</code> 或 <code>args</code> 部分，添加或修改 <code>--service-node-port-range</code> 参数。例如，要将范围修改为 1-65535，可以添加以下内容：</li></ul><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">- --service-node-port-range=1-65535</span><br><span class="line"></span><br></pre></td></tr></table></figure><span id="more"></span><pre><code>例如：</code></pre><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">containers:</span><br><span class="line">- command:</span><br><span class="line">  - kube-apiserver</span><br><span class="line">  - --advertise-address=192.168.0.1</span><br><span class="line">  - --allow-privileged=true</span><br><span class="line">  - --service-node-port-range=20000-40000</span><br><span class="line">  # ... 其他参数</span><br><span class="line"></span><br></pre></td></tr></table></figure><h3 id="2-保存并退出编辑"><a href="#2-保存并退出编辑" class="headerlink" title="2. 保存并退出编辑"></a>2. 保存并退出编辑</h3><p>保存文件并退出编辑器。</p><h3 id="3-Kubernetes-API-Server-自动重启"><a href="#3-Kubernetes-API-Server-自动重启" class="headerlink" title="3. Kubernetes API Server 自动重启"></a>3. Kubernetes API Server 自动重启</h3><p>由于 <code>/etc/kubernetes/manifests/kube-apiserver.yaml</code> 是一个静态 Pod 配置文件，修改后 Kubernetes 会自动检测到变更，并重新启动 API Server。你可以通过运行以下命令来验证 API Server 是否成功重启：</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">kubectl get pods -n kube-system | grep kube-apiserver</span><br><span class="line"></span><br></pre></td></tr></table></figure><h3 id="4-验证更改"><a href="#4-验证更改" class="headerlink" title="4. 验证更改"></a>4. 验证更改</h3><p>一旦 API Server 重新启动，你可以通过以下方式验证更改是否生效：</p><ul><li>创建一个 <code>NodePort</code> 类型的 Service，并检查其分配的端口号是否在新的范围内。</li><li>  使用以下命令检查 <code>NodePort</code> 范围：</li></ul><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">kubectl get configmap -n kube-system kubeadm-config -o yaml | grep service-node-port-range</span><br><span class="line"></span><br></pre></td></tr></table></figure><p>如果你使用其他工具（如 <code>kops</code>、<code>rke</code> 等）部署了 Kubernetes，则需要按照相应工具的方式修改 API Server 的配置。</p><p><strong>注意：</strong> 动态修改 <code>NodePort</code> 范围会影响集群的服务暴露策略。建议在进行修改前确认所有相关服务的影响，并在生产环境中进行充分测试。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 服务端开发 </category>
+          
+          <category> 容器技术 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> K8s </tag>
+            
+            <tag> kubernetes </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>aardio-从零开始学aardio笔记：reduce详解</title>
       <link href="/posts/2024/08/9f6450e7.html"/>
       <url>/posts/2024/08/9f6450e7.html</url>
@@ -3189,7 +3218,7 @@
       <link href="/posts/2022/12/4d8c9542.html"/>
       <url>/posts/2022/12/4d8c9542.html</url>
       
-        <content type="html"><![CDATA[<p>1个可以用于微信聊天的ChatGPT机器人<br>GitHub地址：<a href="https://github.com/fuergaosi233/wechat-chatgpt">https://github.com/fuergaosi233/wechat-chatgpt</a></p><p>支持特性</p><blockquote><p>通过微信在微信上使用ChatGPT<br>支持OpenAI帐户池<br>支持使用代理登录<br>在消息接收时模拟</p></blockquote><p>我这边已经部署成功并成功运行，如有疑问可邮件联系 <a href="mailto:&#100;&#111;&#x6e;&#103;&#55;&#x30;&#54;&#x40;&#x67;&#x6d;&#x61;&#105;&#x6c;&#x2e;&#99;&#111;&#x6d;">&#100;&#111;&#x6e;&#103;&#55;&#x30;&#54;&#x40;&#x67;&#x6d;&#x61;&#105;&#x6c;&#x2e;&#99;&#111;&#x6d;</a> </p><span id="more"></span>]]></content>
+        <content type="html"><![CDATA[<p>1个可以用于微信聊天的ChatGPT机器人<br>GitHub地址：<a href="https://github.com/fuergaosi233/wechat-chatgpt">https://github.com/fuergaosi233/wechat-chatgpt</a></p><p>支持特性</p><blockquote><p>通过微信在微信上使用ChatGPT<br>支持OpenAI帐户池<br>支持使用代理登录<br>在消息接收时模拟</p></blockquote><p>我这边已经部署成功并成功运行，如有疑问可邮件联系 <a href="mailto:&#100;&#111;&#x6e;&#103;&#x37;&#x30;&#54;&#x40;&#x67;&#109;&#97;&#105;&#x6c;&#x2e;&#99;&#x6f;&#x6d;">&#100;&#111;&#x6e;&#103;&#x37;&#x30;&#54;&#x40;&#x67;&#109;&#97;&#105;&#x6c;&#x2e;&#99;&#x6f;&#x6d;</a> </p><span id="more"></span>]]></content>
       
       
       <categories>
@@ -4481,9 +4510,9 @@
       
         <tags>
             
-            <tag> Tomcat </tag>
-            
             <tag> K8s </tag>
+            
+            <tag> Tomcat </tag>
             
             <tag> Docker </tag>
             
