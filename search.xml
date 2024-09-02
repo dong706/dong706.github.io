@@ -4,6 +4,64 @@
   
     
     <entry>
+      <title>aardio-如何获得置顶窗口的句柄</title>
+      <link href="/posts/2024/09/d7ceec30.html"/>
+      <url>/posts/2024/09/d7ceec30.html</url>
+      
+        <content type="html"><![CDATA[<p>置顶窗口并不一定只有一个，可能有多个，所以不存在 win.getTopmost() 之类的函数。</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">import win;</span><br><span class="line">var hwnd = win.GetWindow( win.getForeground(),0x0/*_GW_HWNDFIRST*/)</span><br></pre></td></tr></table></figure><p>上面的代码可以获取顶部窗口，但不一定是你想要的。<br>查找窗口最好使用 winex.find() winex.findEx() 等函数。</p><p>获取指定窗口句柄的另一个方法：</p><span id="more"></span><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">import winex;</span><br><span class="line">//返回顶层桌面可见并含有_WS_EX_TOPMOST样式的窗口</span><br><span class="line">io.open()</span><br><span class="line">winex.enumTop(</span><br><span class="line">    function(hwnd)&#123;</span><br><span class="line">     var text = win.getText(hwnd)</span><br><span class="line">     if (text!==&quot;&quot; &amp;&amp; win.isVisible(hwnd) &amp;&amp; win.getStyleEx(hwnd,0x8/*_WS_EX_TOPMOST*/))</span><br><span class="line">        io.print(&quot;顶层窗口&quot;,winex.getText(hwnd))</span><br><span class="line">    &#125;</span><br><span class="line">)</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> 客户端开发 </category>
+          
+          <category> aardio </category>
+          
+          <category> winform </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> aardio </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>aardio-用edge浏览器打开网页并控制元素</title>
+      <link href="/posts/2024/09/573195fb.html"/>
+      <url>/posts/2024/09/573195fb.html</url>
+      
+        <content type="html"><![CDATA[<p>源码：</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">import console;</span><br><span class="line">console.showLoading(&quot; 正在启动 SeleniumBasic &quot;);</span><br><span class="line"> </span><br><span class="line">import dotNet.seleniumBasic;</span><br><span class="line">var SeleniumBasic = dotNet.seleniumBasic;</span><br><span class="line"></span><br><span class="line">var wd = SeleniumBasic.CreateDefaultWebDriver();</span><br><span class="line">if(!wd) error(&quot;初始化或配置环境失败&quot;,2) </span><br><span class="line"></span><br><span class="line">//打开网站</span><br><span class="line">wd.Url = &quot;https://www.baidu.com&quot;</span><br><span class="line"></span><br><span class="line">//查找表单</span><br><span class="line">var form = wd.FindElementById(&quot;form&quot;)</span><br><span class="line"></span><br><span class="line">//查找输入框</span><br><span class="line">var keyword = form.FindElementById(&quot;kw&quot;)</span><br><span class="line"></span><br><span class="line">//清空输入框，aardio 不能像 VB 那样省略函数调用后的括号</span><br><span class="line">keyword.Clear();</span><br><span class="line"></span><br><span class="line">//发送字符串    </span><br><span class="line">keyword.SendKeys(&quot;aardio&quot;);</span><br><span class="line"></span><br><span class="line">//自动点击按钮</span><br><span class="line">var button = form.FindElementById(&quot;su&quot;);</span><br><span class="line">button.Click();</span><br><span class="line"></span><br><span class="line">//重开控制台以前置控制台窗口，然后等待按键    </span><br><span class="line">console.close();</span><br><span class="line">console.pause(,&quot;按任意键退出浏览器&quot;);</span><br><span class="line"></span><br><span class="line">//退出浏览器</span><br><span class="line">wd.Quit();</span><br></pre></td></tr></table></figure><span id="more"></span><p>参考原文链接：<a href="https://www.aardio.net/read-269.html">https://www.aardio.net/read-269.html</a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 客户端开发 </category>
+          
+          <category> aardio </category>
+          
+          <category> webform </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> aardio </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>aardio-如何保证程序唯一运行：原子窗体</title>
       <link href="/posts/2024/09/287bcf68.html"/>
       <url>/posts/2024/09/287bcf68.html</url>
@@ -3392,7 +3450,7 @@
       <link href="/posts/2022/12/4d8c9542.html"/>
       <url>/posts/2022/12/4d8c9542.html</url>
       
-        <content type="html"><![CDATA[<p>1个可以用于微信聊天的ChatGPT机器人<br>GitHub地址：<a href="https://github.com/fuergaosi233/wechat-chatgpt">https://github.com/fuergaosi233/wechat-chatgpt</a></p><p>支持特性</p><blockquote><p>通过微信在微信上使用ChatGPT<br>支持OpenAI帐户池<br>支持使用代理登录<br>在消息接收时模拟</p></blockquote><p>我这边已经部署成功并成功运行，如有疑问可邮件联系 <a href="mailto:&#100;&#111;&#110;&#x67;&#x37;&#x30;&#54;&#64;&#103;&#x6d;&#x61;&#105;&#108;&#x2e;&#x63;&#111;&#x6d;">&#100;&#111;&#110;&#x67;&#x37;&#x30;&#54;&#64;&#103;&#x6d;&#x61;&#105;&#108;&#x2e;&#x63;&#111;&#x6d;</a> </p><span id="more"></span>]]></content>
+        <content type="html"><![CDATA[<p>1个可以用于微信聊天的ChatGPT机器人<br>GitHub地址：<a href="https://github.com/fuergaosi233/wechat-chatgpt">https://github.com/fuergaosi233/wechat-chatgpt</a></p><p>支持特性</p><blockquote><p>通过微信在微信上使用ChatGPT<br>支持OpenAI帐户池<br>支持使用代理登录<br>在消息接收时模拟</p></blockquote><p>我这边已经部署成功并成功运行，如有疑问可邮件联系 <a href="mailto:&#100;&#x6f;&#x6e;&#x67;&#x37;&#x30;&#54;&#64;&#x67;&#109;&#97;&#x69;&#108;&#46;&#x63;&#111;&#x6d;">&#100;&#x6f;&#x6e;&#x67;&#x37;&#x30;&#54;&#64;&#x67;&#109;&#97;&#x69;&#108;&#46;&#x63;&#111;&#x6d;</a> </p><span id="more"></span>]]></content>
       
       
       <categories>
