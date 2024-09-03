@@ -4,6 +4,37 @@
   
     
     <entry>
+      <title>aardio-如何设置窗体悬浮在桌面（设置桌面为父窗口）</title>
+      <link href="/posts/2024/09/bc3cfeae.html"/>
+      <url>/posts/2024/09/bc3cfeae.html</url>
+      
+        <content type="html"><![CDATA[<p>要求窗口悬浮在桌面，但是其他软件可以覆盖，不影响使用，当按下win+d可以正常显示窗体，应该如何实现？</p><p>设置窗口的父窗口为桌面窗口即可：</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">import win.ui;</span><br><span class="line">/*DSG&#123;&#123;*/</span><br><span class="line">var winform = win.form(text=&quot;aardio form&quot;;right=759;bottom=469;bgcolor=8388736)</span><br><span class="line">winform.add()</span><br><span class="line">/*&#125;&#125;*/</span><br><span class="line"> </span><br><span class="line">import winex.desktop</span><br><span class="line">var desk = winex.desktop.listview.hwnd</span><br><span class="line">win.setParent(winform.hwnd, desk)</span><br><span class="line"> </span><br><span class="line">winform.show();</span><br><span class="line">win.loopMessage();</span><br></pre></td></tr></table></figure><p>从这个代码中，我们还能学习到aardio里桌面的句柄是<code>winex.desktop.listview.hwnd</code>.</p><p>快捷键代码：</p><span id="more"></span><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">winform.reghotkey( function(id,mod,vk)&#123; //注册热键按 Ctrl+D</span><br><span class="line">    if(win.getForeground()=winform.hwnd)&#123;</span><br><span class="line">        //io.print(&quot;收到快捷键命令&quot;)</span><br><span class="line">        winform.show()</span><br><span class="line">    &#125;</span><br><span class="line">&#125;,0x2/*_MOD_CONTROL*/,&#x27;D&#x27;#)</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> 客户端开发 </category>
+          
+          <category> aardio </category>
+          
+          <category> winform </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> aardio </tag>
+            
+            <tag> winex </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>aardio-如何获得置顶窗口的句柄</title>
       <link href="/posts/2024/09/d7ceec30.html"/>
       <url>/posts/2024/09/d7ceec30.html</url>
@@ -3450,7 +3481,7 @@
       <link href="/posts/2022/12/4d8c9542.html"/>
       <url>/posts/2022/12/4d8c9542.html</url>
       
-        <content type="html"><![CDATA[<p>1个可以用于微信聊天的ChatGPT机器人<br>GitHub地址：<a href="https://github.com/fuergaosi233/wechat-chatgpt">https://github.com/fuergaosi233/wechat-chatgpt</a></p><p>支持特性</p><blockquote><p>通过微信在微信上使用ChatGPT<br>支持OpenAI帐户池<br>支持使用代理登录<br>在消息接收时模拟</p></blockquote><p>我这边已经部署成功并成功运行，如有疑问可邮件联系 <a href="mailto:&#100;&#x6f;&#x6e;&#x67;&#x37;&#x30;&#54;&#64;&#x67;&#109;&#97;&#x69;&#108;&#46;&#x63;&#111;&#x6d;">&#100;&#x6f;&#x6e;&#x67;&#x37;&#x30;&#54;&#64;&#x67;&#109;&#97;&#x69;&#108;&#46;&#x63;&#111;&#x6d;</a> </p><span id="more"></span>]]></content>
+        <content type="html"><![CDATA[<p>1个可以用于微信聊天的ChatGPT机器人<br>GitHub地址：<a href="https://github.com/fuergaosi233/wechat-chatgpt">https://github.com/fuergaosi233/wechat-chatgpt</a></p><p>支持特性</p><blockquote><p>通过微信在微信上使用ChatGPT<br>支持OpenAI帐户池<br>支持使用代理登录<br>在消息接收时模拟</p></blockquote><p>我这边已经部署成功并成功运行，如有疑问可邮件联系 <a href="mailto:&#x64;&#x6f;&#x6e;&#x67;&#x37;&#48;&#x36;&#64;&#x67;&#x6d;&#x61;&#x69;&#108;&#46;&#99;&#x6f;&#109;">&#x64;&#x6f;&#x6e;&#x67;&#x37;&#48;&#x36;&#64;&#x67;&#x6d;&#x61;&#x69;&#108;&#46;&#99;&#x6f;&#109;</a> </p><span id="more"></span>]]></content>
       
       
       <categories>
