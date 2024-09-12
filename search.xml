@@ -4,6 +4,64 @@
   
     
     <entry>
+      <title>IOS模拟器无法使用Apple ID登录解决办法</title>
+      <link href="/posts/2024/09/31f9f56.html"/>
+      <url>/posts/2024/09/31f9f56.html</url>
+      
+        <content type="html"><![CDATA[<p>我正在使用 CloudKit 开发 iOS 应用程序。我使用新创建的 Apple ID 在模拟器中进行测试。这个 Apple ID 在我的浏览器中登录时工作正常。但是，当尝试在我的模拟器中使用它时，它一直告诉我用户名/密码不正确。（当然，我确保用户名密码是正确的）</p><p>该怎么解决呢？</p><p>很简单，在网页上登录iCloud <a href="https://www.icloud.com/">https://www.icloud.com/</a> （国内用户是登录<a href="https://www.icloud.com.cn/">https://www.icloud.com.cn</a> ），并接受了登录后的条款和条件，然后就可以在模拟器中连接我的AppleID。</p><p>希望能解决你的问题！</p><!-- more ->]]></content>
+      
+      
+      <categories>
+          
+          <category> 客户端开发 </category>
+          
+          <category> Swift </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Swift </tag>
+            
+            <tag> icloud </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>xcode13 building for iOS Simulator, but linking in dylib built for iOS 报错解决办法</title>
+      <link href="/posts/2024/09/c59f7787.html"/>
+      <url>/posts/2024/09/c59f7787.html</url>
+      
+        <content type="html"><![CDATA[<p>   因为苹果M1芯片用的是arm64的架构，而之前的mac是用的英特尔芯片。<br>    所以要在 TARGET -&gt; Architectures -&gt; Excluded Architectures -&gt; 添加arm64<br>    同时在 pod项目里，也要 PROJECT -&gt; Architectures -&gt; Excluded Architectures -&gt; 添加arm64<br>    之前一直没解决是因为没有在pod项目里也添加arm64  。</p><img src="https://fastly.jsdelivr.net/gh/dong706/dong706.github.io@latest/images/pasted-220.png" alt=""> <p>然后clean一下项目，重新编译启动就可以了。<br>当然，因为直接配置的pods项目，所以可能在执行pod install时，会被覆盖掉，还需要重新设置，所以也可以不用直接配置，而是在podfile文件末尾添加以下脚本：然后执行pod install 命令。</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">post_install do |installer|</span><br><span class="line">    installer.pods_project.targets.each do |target|</span><br><span class="line">        target.build_configurations.each do |config|</span><br><span class="line">            config.build_settings[&quot;EXCLUDED_ARCHS[sdk=iphonesimulator*]&quot;] = &quot;arm64&quot;</span><br><span class="line">        end</span><br><span class="line">    end</span><br><span class="line">end</span><br></pre></td></tr></table></figure><span id="more"></span>]]></content>
+      
+      
+      <categories>
+          
+          <category> 客户端开发 </category>
+          
+          <category> Swift </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Swfit </tag>
+            
+            <tag> xcode </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Xcode问题记录-File not found: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/arc/libarclite_iphoneos.a</title>
       <link href="/posts/2024/09/2019abfa.html"/>
       <url>/posts/2024/09/2019abfa.html</url>
@@ -3752,7 +3810,7 @@
       <link href="/posts/2022/12/4d8c9542.html"/>
       <url>/posts/2022/12/4d8c9542.html</url>
       
-        <content type="html"><![CDATA[<p>1个可以用于微信聊天的ChatGPT机器人<br>GitHub地址：<a href="https://github.com/fuergaosi233/wechat-chatgpt">https://github.com/fuergaosi233/wechat-chatgpt</a></p><p>支持特性</p><blockquote><p>通过微信在微信上使用ChatGPT<br>支持OpenAI帐户池<br>支持使用代理登录<br>在消息接收时模拟</p></blockquote><p>我这边已经部署成功并成功运行，如有疑问可邮件联系 <a href="mailto:&#100;&#x6f;&#110;&#103;&#55;&#x30;&#x36;&#64;&#x67;&#x6d;&#97;&#105;&#x6c;&#x2e;&#99;&#111;&#x6d;">&#100;&#x6f;&#110;&#103;&#55;&#x30;&#x36;&#64;&#x67;&#x6d;&#97;&#105;&#x6c;&#x2e;&#99;&#111;&#x6d;</a> </p><span id="more"></span>]]></content>
+        <content type="html"><![CDATA[<p>1个可以用于微信聊天的ChatGPT机器人<br>GitHub地址：<a href="https://github.com/fuergaosi233/wechat-chatgpt">https://github.com/fuergaosi233/wechat-chatgpt</a></p><p>支持特性</p><blockquote><p>通过微信在微信上使用ChatGPT<br>支持OpenAI帐户池<br>支持使用代理登录<br>在消息接收时模拟</p></blockquote><p>我这边已经部署成功并成功运行，如有疑问可邮件联系 <a href="mailto:&#100;&#x6f;&#x6e;&#x67;&#55;&#48;&#x36;&#64;&#103;&#x6d;&#x61;&#x69;&#108;&#x2e;&#x63;&#111;&#109;">&#100;&#x6f;&#x6e;&#x67;&#55;&#48;&#x36;&#64;&#103;&#x6d;&#x61;&#x69;&#108;&#x2e;&#x63;&#111;&#109;</a> </p><span id="more"></span>]]></content>
       
       
       <categories>
