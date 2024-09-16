@@ -4,11 +4,40 @@
   
     
     <entry>
+      <title>Swift-SwiftRealm中实现多表联合查询</title>
+      <link href="/posts/2024/09/2a61baa7.html"/>
+      <url>/posts/2024/09/2a61baa7.html</url>
+      
+        <content type="html"><![CDATA[<p>在Realm数据库中，直接进行像SQL那样的JOIN操作是不支持的，因为Realm设计为一个轻量级的、易于使用的数据库，它侧重于对象关系映射（ORM）而非复杂的查询语言。然而，你可以通过以下几种方式在Realm中模拟联合查询（JOIN）的效果：</p><h3 id="1-使用链接对象（Linking-Objects）"><a href="#1-使用链接对象（Linking-Objects）" class="headerlink" title="1. 使用链接对象（Linking Objects）"></a>1. 使用链接对象（Linking Objects）</h3><p>如果你的模型之间存在关联，你可以在Realm模型中定义链接对象（Linking Objects）来引用其他模型的对象。这样，当你查询一个模型时，可以间接地访问到与之关联的其他模型的数据。</p><p>假设有两个模型<code>Person</code>和<code>Dog</code>，其中<code>Person</code>有一个或多个<code>Dog</code>，可以这样定义模型：</p><span id="more"></span><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">import RealmSwift  </span><br><span class="line">  </span><br><span class="line">class Dog: Object &#123;  </span><br><span class="line">    @objc dynamic var name = &quot;&quot;  </span><br><span class="line">    @objc dynamic var ownerId: ObjectIdentifier?  </span><br><span class="line">  </span><br><span class="line">    // 反向链接到Person，这不是必需的，但有助于从Dog访问Person  </span><br><span class="line">    let owners = LinkingObjects(fromType: Person.self, property: &quot;dogs&quot;)  </span><br><span class="line">&#125;  </span><br><span class="line">  </span><br><span class="line">class Person: Object &#123;  </span><br><span class="line">    @objc dynamic var name = &quot;&quot;  </span><br><span class="line">    let dogs = List&lt;Dog&gt;()  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>注意：上面的<code>ownerId</code>字段和<code>LinkingObjects</code>属性是可选的，具体取决于你的需求。如果你只是想从<code>Person</code>访问<code>Dog</code>，那么<code>dogs</code>列表就足够了。</p><h3 id="2-使用查询结果手动组合数据"><a href="#2-使用查询结果手动组合数据" class="headerlink" title="2. 使用查询结果手动组合数据"></a>2. 使用查询结果手动组合数据</h3><p>如果你需要更复杂的查询，可能需要先从Realm中查询出需要的数据，然后在Swift代码中手动组合这些数据。</p><p>例如，如果你想要获取所有拥有特定品种狗的人的名字，你可以首先查询出这些狗，然后遍历这些狗来找到它们的主人：</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">let realm = try! Realm()  </span><br><span class="line">  </span><br><span class="line">// 假设我们要找所有拥有&quot;Golden Retriever&quot;品种狗的人  </span><br><span class="line">let dogs = realm.objects(Dog.self).filter(&quot;name CONTAINS &#x27;Golden Retriever&#x27;&quot;)  </span><br><span class="line">  </span><br><span class="line">var ownersNames = [String]()  </span><br><span class="line">for dog in dogs &#123;  </span><br><span class="line">    if let owner = dog.owners.first &#123; // 假设每个狗只有一个主人，或者我们只关心第一个主人  </span><br><span class="line">        ownersNames.append(owner.name)  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;  </span><br><span class="line">  </span><br><span class="line">// ownersNames 现在包含了所有拥有&quot;Golden Retriever&quot;品种狗的人的名字</span><br></pre></td></tr></table></figure><p>注意：上面的<code>owners</code>属性是基于<code>LinkingObjects</code>的，但在这个例子中，我们实际上更可能直接从<code>Dog</code>的<code>ownerId</code>（如果它是一个指向<code>Person</code>的引用）来查询<code>Person</code>对象。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 客户端开发 </category>
+          
+          <category> Swift开发 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Swift </tag>
+            
+            <tag> SwiftRealm </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Swift-MBProgressHUD和SVProgressHUD各自的缺点及解决方案</title>
       <link href="/posts/2024/09/134580b7.html"/>
       <url>/posts/2024/09/134580b7.html</url>
       
-        <content type="html"><![CDATA[<p>MBProgressHUD和SVProgressHUD各自都有缺点：<br>当A页面进入B页面，B页面查询数据时，报错需要弹出toast弹窗，并退出B页面到A页面。一般toast弹窗是现实在keywindow上的，但是kewindow是B页面，而由于自动返回A页面，B页面销毁了，就看不到这个toast弹窗了。使用MBProgressHUD时就会遇到该问题。有的app为了解决这个问题人为延迟推出B页面，这样降低用户的体验流畅度，不完美。另一种采用SVProgressHUD来实现，它是异步时弹窗，显示调用弹窗和实际显示弹窗有一个时间差，正好在B页面调用弹窗，在回到A页面时，弹窗出来，所以能显示出来。我们遇到过一个问题，一个请求后台在十几毫秒内返回，蒙层弹窗还没有出来请求回来了，并且取消弹窗，实际上SVProgressHUD还没有出来，导致后面没有取消处理了，一直在哪里转圈了。  </p><p>最佳解决方案是创建一个优先级高于当前级别的window显示蒙层和动画。  </p><span id="more"></span><p>当然若搞不定最佳的window解决方案，只能规避两者的缺点两个库都是使用当弹toast弹窗时用MBProgressHUD，当弹模态弹窗时用MBProgressHUD。当然的window解决方案也有它的不完美，就是弹出widndow弹窗时，键盘若在显示时可能消失，widndow弹窗消失时，键盘恢复原来位置。如：在输入手机号达到11位，会自动去后台查询该手机号是否存在，当然在查询期间要弹窗widndow透明蒙层，防止在查询手机号时用户修改了手机号，导致数据不一致，并且是程序自动触发，查询成功后页面会出现变化，当然存在手机号出错，用户修改手机号的场景，所以光标还要在手机号输入框，并且激活键盘状态。这时第一就会出现查询期间键盘消失，查询结束键盘恢复的问题。当发送一个请求回来立即发送另一个请求，并且这两个请求都弹出了蒙层，会出现页面闪烁的问题。所以没有绝对的完美，要以满足用户的功能为主，小细节也可以接受。并且MBProgressHUD（实时）和SVProgressHUD（延时）都是加在keywindow上的，无法系统的控制tabbar按钮切换。总之，window解决方案虽然存在影响键盘的小问题，也不失为更完美的解决方案。</p>]]></content>
+        <content type="html"><![CDATA[<p>MBProgressHUD和SVProgressHUD各自都有缺点：    </p><p>当A页面进入B页面，B页面查询数据时，报错需要弹出toast弹窗，并退出B页面到A页面。一般toast弹窗是现实在keywindow上的，但是kewindow是B页面，而由于自动返回A页面，B页面销毁了，就看不到这个toast弹窗了。使用MBProgressHUD时就会遇到该问题。有的app为了解决这个问题人为延迟推出B页面，这样降低用户的体验流畅度，不完美。</p><p>另一种采用SVProgressHUD来实现，它是异步时弹窗，显示调用弹窗和实际显示弹窗有一个时间差，正好在B页面调用弹窗，在回到A页面时，弹窗出来，所以能显示出来。我们遇到过一个问题，一个请求后台在十几毫秒内返回，蒙层弹窗还没有出来请求回来了，并且取消弹窗，实际上SVProgressHUD还没有出来，导致后面没有取消处理了，一直在哪里转圈了。  </p><p>最佳解决方案是创建一个优先级高于当前级别的window显示蒙层和动画。  </p><span id="more"></span><p>当然若搞不定最佳的window解决方案，只能规避两者的缺点两个库都是使用当弹toast弹窗时用MBProgressHUD，当弹模态弹窗时用MBProgressHUD。当然的window解决方案也有它的不完美，就是弹出widndow弹窗时，键盘若在显示时可能消失，widndow弹窗消失时，键盘恢复原来位置。</p><p>如：在输入手机号达到11位，会自动去后台查询该手机号是否存在，当然在查询期间要弹窗widndow透明蒙层，防止在查询手机号时用户修改了手机号，导致数据不一致，并且是程序自动触发，查询成功后页面会出现变化，当然存在手机号出错，用户修改手机号的场景，所以光标还要在手机号输入框，并且激活键盘状态。这时第一就会出现查询期间键盘消失，查询结束键盘恢复的问题。当发送一个请求回来立即发送另一个请求，并且这两个请求都弹出了蒙层，会出现页面闪烁的问题。所以没有绝对的完美，要以满足用户的功能为主，小细节也可以接受。并且MBProgressHUD（实时）和SVProgressHUD（延时）都是加在keywindow上的，无法系统的控制tabbar按钮切换。</p><p>总之，window解决方案虽然存在影响键盘的小问题，也不失为更完美的解决方案。</p>]]></content>
       
       
       <categories>
@@ -3897,7 +3926,7 @@
       <link href="/posts/2022/12/4d8c9542.html"/>
       <url>/posts/2022/12/4d8c9542.html</url>
       
-        <content type="html"><![CDATA[<p>1个可以用于微信聊天的ChatGPT机器人<br>GitHub地址：<a href="https://github.com/fuergaosi233/wechat-chatgpt">https://github.com/fuergaosi233/wechat-chatgpt</a></p><p>支持特性</p><blockquote><p>通过微信在微信上使用ChatGPT<br>支持OpenAI帐户池<br>支持使用代理登录<br>在消息接收时模拟</p></blockquote><p>我这边已经部署成功并成功运行，如有疑问可邮件联系 <a href="mailto:&#100;&#111;&#x6e;&#103;&#x37;&#x30;&#54;&#64;&#x67;&#109;&#97;&#105;&#x6c;&#x2e;&#x63;&#111;&#109;">&#100;&#111;&#x6e;&#103;&#x37;&#x30;&#54;&#64;&#x67;&#109;&#97;&#105;&#x6c;&#x2e;&#x63;&#111;&#109;</a> </p><span id="more"></span>]]></content>
+        <content type="html"><![CDATA[<p>1个可以用于微信聊天的ChatGPT机器人<br>GitHub地址：<a href="https://github.com/fuergaosi233/wechat-chatgpt">https://github.com/fuergaosi233/wechat-chatgpt</a></p><p>支持特性</p><blockquote><p>通过微信在微信上使用ChatGPT<br>支持OpenAI帐户池<br>支持使用代理登录<br>在消息接收时模拟</p></blockquote><p>我这边已经部署成功并成功运行，如有疑问可邮件联系 <a href="mailto:&#x64;&#x6f;&#x6e;&#x67;&#55;&#48;&#54;&#x40;&#103;&#x6d;&#97;&#x69;&#x6c;&#46;&#99;&#x6f;&#109;">&#x64;&#x6f;&#x6e;&#x67;&#55;&#48;&#54;&#x40;&#103;&#x6d;&#97;&#x69;&#x6c;&#46;&#99;&#x6f;&#109;</a> </p><span id="more"></span>]]></content>
       
       
       <categories>
