@@ -4,6 +4,37 @@
   
     
     <entry>
+      <title>RealmSwift:如何正确创建一对一关系？</title>
+      <link href="/posts/2024/09/3eb09049.html"/>
+      <url>/posts/2024/09/3eb09049.html</url>
+      
+        <content type="html"><![CDATA[<p>RealmSwift是一种流行的移动端数据库解决方案，它提供了一种简单且高效的方式来存储和管理移动应用程序的数据。在RealmSwift中，创建一对一关系可以通过以下步骤来实现：</p><ol><li>定义数据模型：首先，需要定义两个数据模型类，分别表示关系中的两个对象。例如，我们可以创建一个Person类和一个Address类来表示人和他们的地址。</li></ol><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">class Person: Object &#123;</span><br><span class="line">    @objc dynamic var name = &quot;&quot;</span><br><span class="line">    @objc dynamic var age = 0</span><br><span class="line">    @objc dynamic var address: Address?</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class Address: Object &#123;</span><br><span class="line">    @objc dynamic var street = &quot;&quot;</span><br><span class="line">    @objc dynamic var city = &quot;&quot;</span><br><span class="line">    @objc dynamic var person: Person?</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><span id="more"></span>  <ol start="2"><li><p>建立关联：在Person类和Address类中，使用<code>@objc dynamic var</code>关键字声明一个属性，用于建立两个对象之间的关联。在Person类中，我们声明了一个名为address的可选属性，表示一个人可以有一个地址。在Address类中，我们声明了一个名为person的可选属性，表示一个地址可以属于一个人。</p></li><li><p>创建和保存对象：要创建一对一关系，我们可以先创建Person对象和Address对象，然后将它们关联起来。</p></li></ol><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">let person = Person()</span><br><span class="line">person.name = &quot;John&quot;</span><br><span class="line">person.age = 30</span><br><span class="line"></span><br><span class="line">let address = Address()</span><br><span class="line">address.street = &quot;123 Main St&quot;</span><br><span class="line">address.city = &quot;New York&quot;</span><br><span class="line"></span><br><span class="line">person.address = address</span><br><span class="line">address.person = person</span><br><span class="line"></span><br><span class="line">// 保存对象到数据库</span><br><span class="line">let realm = try! Realm()</span><br><span class="line">try! realm.write &#123;</span><br><span class="line">    realm.add(person)</span><br><span class="line">    realm.add(address)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><ol start="4"><li>查询关联对象：要查询关联对象，可以使用Realm提供的查询语法。</li></ol><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">let realm = try! Realm()</span><br><span class="line">let persons = realm.objects(Person.self)</span><br><span class="line">for person in persons &#123;</span><br><span class="line">    if let address = person.address &#123;</span><br><span class="line">        print(&quot;Person: \(person.name), Address: \(address.street), \(address.city)&quot;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>这样，我们就成功地创建了一个一对一关系，并且可以通过查询来获取关联对象的信息。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 客户端开发 </category>
+          
+          <category> Swift开发 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Swift </tag>
+            
+            <tag> Realm </tag>
+            
+            <tag> SwiftRealm </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Realm数据库入门</title>
       <link href="/posts/2024/09/33816da1.html"/>
       <url>/posts/2024/09/33816da1.html</url>
@@ -3967,7 +3998,7 @@
       <link href="/posts/2022/12/4d8c9542.html"/>
       <url>/posts/2022/12/4d8c9542.html</url>
       
-        <content type="html"><![CDATA[<p>1个可以用于微信聊天的ChatGPT机器人<br>GitHub地址：<a href="https://github.com/fuergaosi233/wechat-chatgpt">https://github.com/fuergaosi233/wechat-chatgpt</a></p><p>支持特性</p><blockquote><p>通过微信在微信上使用ChatGPT<br>支持OpenAI帐户池<br>支持使用代理登录<br>在消息接收时模拟</p></blockquote><p>我这边已经部署成功并成功运行，如有疑问可邮件联系 <a href="mailto:&#x64;&#111;&#110;&#x67;&#x37;&#48;&#x36;&#64;&#x67;&#109;&#97;&#105;&#x6c;&#46;&#99;&#x6f;&#x6d;">&#x64;&#111;&#110;&#x67;&#x37;&#48;&#x36;&#64;&#x67;&#109;&#97;&#105;&#x6c;&#46;&#99;&#x6f;&#x6d;</a> </p><span id="more"></span>]]></content>
+        <content type="html"><![CDATA[<p>1个可以用于微信聊天的ChatGPT机器人<br>GitHub地址：<a href="https://github.com/fuergaosi233/wechat-chatgpt">https://github.com/fuergaosi233/wechat-chatgpt</a></p><p>支持特性</p><blockquote><p>通过微信在微信上使用ChatGPT<br>支持OpenAI帐户池<br>支持使用代理登录<br>在消息接收时模拟</p></blockquote><p>我这边已经部署成功并成功运行，如有疑问可邮件联系 <a href="mailto:&#100;&#x6f;&#110;&#x67;&#x37;&#x30;&#x36;&#64;&#x67;&#109;&#x61;&#105;&#x6c;&#x2e;&#x63;&#x6f;&#109;">&#100;&#x6f;&#110;&#x67;&#x37;&#x30;&#x36;&#64;&#x67;&#109;&#x61;&#105;&#x6c;&#x2e;&#x63;&#x6f;&#109;</a> </p><span id="more"></span>]]></content>
       
       
       <categories>
