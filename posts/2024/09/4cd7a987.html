@@ -1,0 +1,401 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>RealmSwift使用入门教程 | 叶落花开的博客</title><meta name="keywords" content="Swift,Realm,RealmSwift"><meta name="author" content="叶落花开"><meta name="copyright" content="叶落花开"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="打开一个 Realm   向构造函数传递一个配置对象，这个配置对象指明了如何访问 Realm 配置对象指明了 Realm 数据库是位于什么地方   本地文件系统的 URL   Realm 对象服务器的 URL, 同时还会包括访问的一些验证数据   一个位于内存中的 Realm 标识符    后台刷新在 iOS 8 后，若使用了后台刷新的特性，并且涉及了 Realm, 则需要注意了 App 内的文件">
+<meta property="og:type" content="article">
+<meta property="og:title" content="RealmSwift使用入门教程">
+<meta property="og:url" content="https://www.yeluohuakai.com/posts/2024/09/4cd7a987.html">
+<meta property="og:site_name" content="叶落花开的博客">
+<meta property="og:description" content="打开一个 Realm   向构造函数传递一个配置对象，这个配置对象指明了如何访问 Realm 配置对象指明了 Realm 数据库是位于什么地方   本地文件系统的 URL   Realm 对象服务器的 URL, 同时还会包括访问的一些验证数据   一个位于内存中的 Realm 标识符    后台刷新在 iOS 8 后，若使用了后台刷新的特性，并且涉及了 Realm, 则需要注意了 App 内的文件">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-09-17T23:03:00.000Z">
+<meta property="article:modified_time" content="2024-09-17T23:17:40.973Z">
+<meta property="article:author" content="叶落花开">
+<meta property="article:tag" content="Swift">
+<meta property="article:tag" content="Realm">
+<meta property="article:tag" content="RealmSwift">
+<meta name="twitter:card" content="summary"><link rel="shortcut icon" href="/favicon.png"><link rel="canonical" href="https://www.yeluohuakai.com/posts/2024/09/4cd7a987"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//www.google-analytics.com" crossorigin=""/><link rel="preconnect" href="//hm.baidu.com"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?2f8a615b51582cf280e790200f3527e6";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script><script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-LB2ZMBR4ZN"></script><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-LB2ZMBR4ZN');
+</script><script>(function(){
+var el = document.createElement("script");
+el.src = "https://lf1-cdn-tos.bytegoofy.com/goofy/ttzz/push.js?18da2b25537eeea1b5c8819ad9a03fc2279abb7e5ff9fdb01a2409cbd77b8f1db3e414cba65c376eba389ba56d9ee0846cad2206506a6529fe6ee21a7373effb434c445cf6444b10ea9756ea44e128a6";
+el.id = "ttzz";
+var s = document.getElementsByTagName("script")[0];
+s.parentNode.insertBefore(el, s);
+})(window)
+</script><script async="async" crossorigin="anonymous" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6673854567363222"></script><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":false,"highlightLang":false,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://fastly.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.js',
+      css: 'https://fastly.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'RealmSwift使用入门教程',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-09-18 07:17:40'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/index_code.css"><meta name="generator" content="Hexo 6.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/loading.gif" data-original="/img/ava.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data is-center"><div class="data-item"><a href="/archives/"><div class="headline">文章</div><div class="length-num">246</div></a></div><div class="data-item"><a href="/tags/"><div class="headline">标签</div><div class="length-num">94</div></a></div><div class="data-item"><a href="/categories/"><div class="headline">分类</div><div class="length-num">33</div></a></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" target="_blank" rel="noopener" href="https://support.qq.com/product/377343"><i class="fa-fw fa fa-paper-plane"></i><span> 反馈</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">叶落花开的博客</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" target="_blank" rel="noopener" href="https://support.qq.com/product/377343"><i class="fa-fw fa fa-paper-plane"></i><span> 反馈</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">RealmSwift使用入门教程</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-09-17T23:03:00.000Z" title="发表于 2024-09-18 07:03:00">2024-09-18</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-09-17T23:17:40.973Z" title="更新于 2024-09-18 07:17:40">2024-09-18</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%AE%A2%E6%88%B7%E7%AB%AF%E5%BC%80%E5%8F%91/">客户端开发</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%AE%A2%E6%88%B7%E7%AB%AF%E5%BC%80%E5%8F%91/Swift%E5%BC%80%E5%8F%91/">Swift开发</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span id="" data-flag-title="RealmSwift使用入门教程"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="twikoo_visitors"></span></span></div></div></div><article class="post-content" id="article-container"><h2 id="打开一个-Realm"><a href="#打开一个-Realm" class="headerlink" title="打开一个 Realm"></a>打开一个 Realm</h2><ul>
+<li>  向构造函数传递一个配置对象，这个配置对象指明了如何访问 Realm</li>
+<li>配置对象指明了 Realm 数据库是位于什么地方<ul>
+<li>  本地文件系统的 URL</li>
+<li>  Realm 对象服务器的 URL, 同时还会包括访问的一些验证数据</li>
+<li>  一个位于内存中的 Realm 标识符</li>
+</ul>
+</li>
+</ul>
+<h2 id="后台刷新"><a href="#后台刷新" class="headerlink" title="后台刷新"></a>后台刷新</h2><p>在 iOS 8 后，若使用了后台刷新的特性，并且涉及了 Realm, 则需要注意了</p>
+<p>App 内的文件在设备锁屏下，会使用 <code>NSFileProtection</code> 自动加密，对 Realm 数据库进行打开操作会抛出异常</p>
+<p>因此，需要降低 Realm 数据库文件和它的辅助文件的保护等级，同时，也可以选择使用 Realm 自带的加密方式</p>
+<p>降低保护等级，从相关文件的上一层文件夹入手</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">let realm = try! Realm()</span><br><span class="line"></span><br><span class="line">// Get our Realm file&#x27;s parent directory</span><br><span class="line">let folderPath = realm.configuration.fileURL!.deletingLastPathComponent().path</span><br><span class="line"></span><br><span class="line">// Disable file protection for this directory</span><br><span class="line">try! FileManager.default.setAttributes([FileAttributeKey(rawValue: NSFileProtectionKey): NSFileProtectionNone],</span><br><span class="line">                                       ofItemAtPath: folderPath)</span><br></pre></td></tr></table></figure>
+<span id="more"></span>
+
+<h2 id="打开一个默认-Realm"><a href="#打开一个默认-Realm" class="headerlink" title="打开一个默认 Realm"></a>打开一个默认 Realm</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">let realm = try! Realm()</span><br></pre></td></tr></table></figure>
+
+<h2 id="设置-Realm-的配置"><a href="#设置-Realm-的配置" class="headerlink" title="设置 Realm 的配置"></a>设置 Realm 的配置</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Realm(configuration: config)</span><br></pre></td></tr></table></figure>
+
+<p>或</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// 设置默认的配置</span><br><span class="line">Realm.Configuration.defaultConfiguration = config</span><br></pre></td></tr></table></figure>
+
+<h2 id="错误处理"><a href="#错误处理" class="headerlink" title="错误处理"></a>错误处理</h2><p>在实践中，发生异常的时刻总是会在第一次在某一个线程中，创建一个 Realm 实例。随后，在相同的线程中访问 Realm 实例总会成功，因为会复用缓存的实例</p>
+<p>捕获异常，使用 Swift 的捕获机制就好</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">do &#123;</span><br><span class="line">  let realm = try Realm()</span><br><span class="line">&#125; catch let error as NSError &#123;</span><br><span class="line">  // handle error</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Realm-的文件"><a href="#Realm-的文件" class="headerlink" title="Realm 的文件"></a>Realm 的文件</h2><ul>
+<li>  <code>.realm</code> 主文件</li>
+<li>  <code>.realm.lock</code> 与资源锁相关</li>
+<li>  <code>.realm.management</code> 进程间通信的锁相关文件</li>
+<li>  <code>.realm.note</code> A named pipe for notifications?</li>
+</ul>
+<h2 id="压缩-Realm"><a href="#压缩-Realm" class="headerlink" title="压缩 Realm"></a>压缩 Realm</h2><p>Realm 的架构意味着，它的文件大小会比它最后包含的数据大小要大，这与 Realm 的高性能，并行和安全的优点有关</p>
+<p>为了避免在扩充 Realm 文件时经常调用耗时的系统操作，Realm 文件在运行时默认不会压缩</p>
+<p>当然，可以通过 Configuration 来控制压缩</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">let config = Realm.Configuration(shouldCompactOnLaunch: &#123; totalBytes, usedBytes in</span><br><span class="line">    // totalBytes refers to the size of the file on disk in bytes (data + free space)</span><br><span class="line">    // usedBytes refers to the number of bytes used by data in the file</span><br><span class="line"></span><br><span class="line">    // Compact if the file is over 100MB in size and less than 50% &#x27;used&#x27;</span><br><span class="line">    let oneHundredMB = 100 * 1024 * 1024</span><br><span class="line">    return (totalBytes &gt; oneHundredMB) &amp;&amp; (Double(usedBytes) / Double(totalBytes)) &lt; 0.5</span><br><span class="line">&#125;)</span><br><span class="line">do &#123;</span><br><span class="line">    // Realm is compacted on the first open if the configuration block conditions were met.</span><br><span class="line">    let realm = try Realm(configuration: config)</span><br><span class="line">&#125; catch &#123;</span><br><span class="line">    // handle error compacting or opening Realm</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>要注意的是：</p>
+<ul>
+<li>  实现原理就是通过创建一个文件，重新写入数据，之后再把源文件替换掉，所以，这可能是一个很耗时的操作</li>
+<li>  即使压缩的条件满足了，但如果另一个线程正在访问 Reaml, 压缩操作将会跳过不执行</li>
+</ul>
+<h2 id="删除-Realm-文件"><a href="#删除-Realm-文件" class="headerlink" title="删除 Realm 文件"></a>删除 Realm 文件</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">autoreleasepool &#123;</span><br><span class="line">    // all Realm usage here</span><br><span class="line">&#125;</span><br><span class="line">let realmURL = Realm.Configuration.defaultConfiguration.fileURL!</span><br><span class="line">let realmURLs = [</span><br><span class="line">    realmURL,</span><br><span class="line">    realmURL.appendingPathExtension(&quot;lock&quot;),</span><br><span class="line">    realmURL.appendingPathExtension(&quot;note&quot;),</span><br><span class="line">    realmURL.appendingPathExtension(&quot;management&quot;)</span><br><span class="line">]</span><br><span class="line">for URL in realmURLs &#123;</span><br><span class="line">    do &#123;</span><br><span class="line">        try FileManager.default.removeItem(at: URL)</span><br><span class="line">    &#125; catch &#123;</span><br><span class="line">        // handle error</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="数据模型"><a href="#数据模型" class="headerlink" title="数据模型"></a>数据模型</h2><h3 id="定义-Model"><a href="#定义-Model" class="headerlink" title="定义 Model"></a>定义 Model</h3><p>使用 Swift 定义的 Realm 的数据模型是通过类属性来实现，像普通 Swift 类一样使用，只要继承了 <code>Object</code> 类，或者另一个数据模型类</p>
+<h3 id="限制"><a href="#限制" class="headerlink" title="限制"></a>限制</h3><p>主要的限制就是，数据模型的实例，只能在创建它的线程中使用</p>
+<h3 id="Model-的定义必须合法"><a href="#Model-的定义必须合法" class="headerlink" title="Model 的定义必须合法"></a>Model 的定义必须合法</h3><p>Realm 将会在代码运行时，转换所有的 Model, 因此，它们必须是合法的，即使有些模型并没有使用到</p>
+<h3 id="所有必选项属性都需要有默认值"><a href="#所有必选项属性都需要有默认值" class="headerlink" title="所有必选项属性都需要有默认值"></a>所有必选项属性都需要有默认值</h3><p>在 Swift 中使用 Realm, <code>Swift.reflect(_:)</code> 将会被调用来了解关于 Model 的信息，这就要求，Model 的 <code>init()</code> 方法必须能成功调用</p>
+<h2 id="支持的类型"><a href="#支持的类型" class="headerlink" title="支持的类型"></a>支持的类型</h2><ul>
+<li>  <code>Bool</code></li>
+<li>  <code>Int</code></li>
+<li>  <code>Int8</code></li>
+<li>  <code>Int16</code></li>
+<li>  <code>Int32</code></li>
+<li>  <code>Int64</code></li>
+<li>  <code>Double</code></li>
+<li>  <code>Float</code></li>
+<li>  <code>String</code></li>
+<li>  <code>Date</code></li>
+<li>  <code>Data</code></li>
+</ul>
+<blockquote>
+<p><code>CGFloat</code> 不鼓励使用，因为这不是与平台无关的类型</p>
+<p><code>String</code>, <code>Date</code>, <code>Data</code> 类型的属性，可以是 optional 若要存储 optional 的数字类型，需要使用 <code>RealmOptional</code></p>
+</blockquote>
+<h2 id="主键"><a href="#主键" class="headerlink" title="主键"></a>主键</h2><p>定义一个主键可以提升查找和更新数据的性能，主键一旦设置了就不可以更改</p>
+<p>定义主键直接覆盖 <code>Object.primaryKey()</code> 方法</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">class Person: Object &#123;</span><br><span class="line">    @objc dynamic var id = 0</span><br><span class="line">    @objc dynamic var name = &quot;&quot;</span><br><span class="line"></span><br><span class="line">    override static func primaryKey() -&gt; String? &#123;</span><br><span class="line">        return &quot;id&quot;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="索引-Indexing-properties"><a href="#索引-Indexing-properties" class="headerlink" title="索引 Indexing properties[]"></a>索引 Indexing properties[]</h2><p>cons</p>
+<ul>
+<li>  写速度稍微下降</li>
+<li>  Realm 文件稍微大一点，因为要存储索引</li>
+</ul>
+<p>pros</p>
+<ul>
+<li>  让使用比较操作符的查询速度加快</li>
+</ul>
+<p>支持建立索引的数据类型</p>
+<ul>
+<li>  <code>String</code></li>
+<li>  integer</li>
+<li>  <code>Bool</code></li>
+<li>  <code>Date</code></li>
+</ul>
+<p>使用索引，直接覆盖 <code>Object.indexedProperties()</code> 方法</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">class Book: Object &#123;</span><br><span class="line">    @objc dynamic var price = 0</span><br><span class="line">    @objc dynamic var title = &quot;&quot;</span><br><span class="line"></span><br><span class="line">    override static func indexedProperties() -&gt; [String] &#123;</span><br><span class="line">        return [&quot;title&quot;]</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="忽略属性"><a href="#忽略属性" class="headerlink" title="忽略属性"></a>忽略属性<a target="_blank" rel="noopener" href="https://monsoir.github.io/Notes/iOS/Realm.html#%E5%BF%BD%E7%95%A5%E5%B1%9E%E6%80%A7"></a></h2><p>若不想某些属性整合到 Realm, 就可以通过覆盖 <code>Object.ignoreProperties()</code> 方法</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">class Person: Object &#123;</span><br><span class="line">    @objc dynamic var tmpID = 0</span><br><span class="line">    var name: String &#123; // read-only properties are automatically ignored</span><br><span class="line">        return &quot;\(firstName) \(lastName)&quot;</span><br><span class="line">    &#125;</span><br><span class="line">    @objc dynamic var firstName = &quot;&quot;</span><br><span class="line">    @objc dynamic var lastName = &quot;&quot;</span><br><span class="line"></span><br><span class="line">    override static func ignoredProperties() -&gt; [String] &#123;</span><br><span class="line">        return [&quot;tmpID&quot;]</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这些被忽略的属性</p>
+<ul>
+<li>  将使用 ivars 来进行支持，可以随便定义它们的 setter 和 getter</li>
+<li>  不会响应与 Realm 相关的特性，但仍然可以被 KVO</li>
+</ul>
+<h2 id="模型数据自动刷新"><a href="#模型数据自动刷新" class="headerlink" title="模型数据自动刷新"></a>模型数据自动刷新</h2><p>如果 UI 以来模型数据的话，可以订阅 Realm notifications 来监控数据的更新状态</p>
+<h2 id="集合类型"><a href="#集合类型" class="headerlink" title="集合类型"></a>集合类型</h2><ul>
+<li>  <code>Results</code> 从查询中获取到的结果</li>
+<li>  <code>List</code> 表示模型的”对多”关系</li>
+<li>  <code>LinkingObjects</code> 表示模型间的反向关系</li>
+<li>  <code>RealmCollection</code> Realm 集合类型需要实现的一个协议</li>
+<li>  <code>AnyRealmCollection</code> 一个无类型的类，用来向具体的集合类型传递方法调用</li>
+</ul>
+<h2 id="写操作"><a href="#写操作" class="headerlink" title="写操作"></a>写操作</h2><blockquote>
+<p>所有对模型数据的更改（添加，修改，删除），都必须在一个写事务中进行</p>
+</blockquote>
+<p>通过模型数据类创建的实例，在添加到 Realm 之前，可以像普通的 Swift 类实例一样浪，但当添加到 Realm 时，必须通过一个写事务</p>
+<ul>
+<li>  由于写事务会产生不可忽略的开销，因此需要尽可能减少写入数据</li>
+<li>  Realm 的写操作都是<strong>同步的</strong></li>
+<li>  写操作会在 <code>beginWrite()</code> 时自动刷新，所以不会产生竞争条件???</li>
+<li>  因为写操作会堵塞当前线程，所以最佳实践是将写操作搬到一个独立的线程中进行</li>
+<li>  读操作并不会由于写事务的进行而被堵塞，除非有多个写事务同时需要进行</li>
+</ul>
+<h2 id="更新数据"><a href="#更新数据" class="headerlink" title="更新数据"></a>更新数据</h2><p>更新数据有两种方式</p>
+<ul>
+<li>  直接在写事务中对属性进行赋值</li>
+<li>  KVC</li>
+</ul>
+<h2 id="通过主键来更新数据"><a href="#通过主键来更新数据" class="headerlink" title="通过主键来更新数据"></a>通过主键来更新数据</h2><p>基于主键对数据进行更新或添加，调用 <code>Realm().add(_:update:)</code>, 重点在于 <code>update</code> 这个参数</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// Creating a book with the same primary key as a previously saved book</span><br><span class="line">let cheeseBook = Book()</span><br><span class="line">cheeseBook.title = &quot;Cheese recipes&quot;</span><br><span class="line">cheeseBook.price = 9000</span><br><span class="line">cheeseBook.id = 1</span><br><span class="line"></span><br><span class="line">// Updating book with id = 1</span><br><span class="line">try! realm.write &#123;</span><br><span class="line">    realm.add(cheeseBook, update: true)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>通过这种方式更新数据，可以只传入需要更新的数据，而不是整个对象</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// Assuming a &quot;Book&quot; with a primary key of `1` already exists.</span><br><span class="line">try! realm.write &#123;</span><br><span class="line">    realm.create(Book.self, value: [&quot;id&quot;: 1, &quot;price&quot;: 9000.0], update: true)</span><br><span class="line">    // the book&#x27;s `title` property will remain unchanged.</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>对于没有定义主键的模型，不可以基于主键来添加或更新数据</p>
+</blockquote>
+<h2 id="查询"><a href="#查询" class="headerlink" title="查询"></a>查询</h2><ul>
+<li>查询操作返回一个 <code>Results</code> 实例<ul>
+<li>  这个实例大抵与 Swift 的 <code>Array</code> 相同，不同之处在于，<code>Results</code> 中的元素类型都必须是一致的</li>
+</ul>
+</li>
+<li>  所有的查询操作，属性访问，都是懒加载的</li>
+<li>  <code>Results</code> 中的数据并不是数据的一份副本，所以对 <code>Results</code> 中的数据进行修改（需要在写事务中），都会直接影响到持久性存储中的数据</li>
+<li>  当查询操作执行之后，或一个通知 block 被添加之后，<code>Results</code> 中的数据将与最新数据保持同步</li>
+</ul>
+<p>最简单的查询，返回所有数据</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">let dogs = realm.objects(Dog.self)</span><br></pre></td></tr></table></figure>
+
+<h2 id="过滤"><a href="#过滤" class="headerlink" title="过滤"></a>过滤</h2><p>过滤调用方法 <code>Results().filter(_:...)</code></p>
+<p>过滤条件使用的是字符串，与 <code>NSPredicate</code> 大抵相同</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// Query using a predicate string</span><br><span class="line">var tanDogs = realm.objects(Dog.self).filter(&quot;color = &#x27;tan&#x27; AND name BEGINSWITH &#x27;B&#x27;&quot;)</span><br><span class="line"></span><br><span class="line">// Query using an NSPredicate</span><br><span class="line">let predicate = NSPredicate(format: &quot;color = %@ AND name BEGINSWITH %@&quot;, &quot;tan&quot;, &quot;B&quot;)</span><br><span class="line">tanDogs = realm.objects(Dog.self).filter(predicate)</span><br></pre></td></tr></table></figure>
+
+<h2 id="排序"><a href="#排序" class="headerlink" title="排序"></a>排序</h2><h2 id="链式查询"><a href="#链式查询" class="headerlink" title="链式查询"></a>链式查询</h2><h2 id="分页读取"><a href="#分页读取" class="headerlink" title="分页读取"></a>分页读取</h2><p>在其他的数据库中，通常使用 <code>LIMIT</code> 关键字限制一次读取的数据量，达到了分页的效果</p>
+<p>而在 Realm 中，由于懒加载的特性，直接拿 <code>Results</code> 读取就可以了</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// Loop through the first 5 Dog objects</span><br><span class="line">// restricting the number of objects read from disk</span><br><span class="line">let dogs = try! Realm().objects(Dog.self)</span><br><span class="line">for i in 0..&lt;5 &#123;</span><br><span class="line">    let dog = dogs[i]</span><br><span class="line">    // ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="通知"><a href="#通知" class="headerlink" title="通知"></a>通知<a target="_blank" rel="noopener" href="https://monsoir.github.io/Notes/iOS/Realm.html#%E9%80%9A%E7%9F%A5"></a></h2><p>可以注册一个监听器来接受通知，这些通知将会在 Realm 发生改变，或者 Realm 中的实体发生了变化是发出</p>
+<ul>
+<li>  Realm notifications Realm 作为一个整体发生改变时发出</li>
+<li>  collection notifications 单独的一个实例发生修改，添加或删除时发出</li>
+</ul>
+<p>当一个通知的 token 还在被强引用着时，通知就会发出，所以，当需要获取通知时，必须保持对 token 的强引用，否则，通知将会被取消订阅</p>
+<p>通知将会在它们注册订阅者的线程上进行发送，并且这个线程必须要有一个 RunLoop - 如果在主线程外的线程订阅通知，则需要负责对该线程创建一个 RunLoop</p>
+<p>通知的发送是异步的，发送时机在对应的写事务 commit 之后进行</p>
+<p>由于同时是通过 RunLoop 来尽心传递，所以通知可能会被该 RunLoop 中的其他活动延迟。当通知不能被立即传递时，多个写事务中的变化可能会合并成一个通知</p>
+<h3 id="Realm"><a href="#Realm" class="headerlink" title="Realm"></a>Realm</h3><p>通知可以被注册到一整个 Realm 中，每一次某个 Realm 中的写事务提交后，通知都会被传递</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// Observe Realm Notifications</span><br><span class="line">let token = realm.addNotificationBlock &#123; notification, realm in</span><br><span class="line">    viewController.updateUI()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// later</span><br><span class="line">token.stop()</span><br></pre></td></tr></table></figure>
+
+<h3 id="集合通知"><a href="#集合通知" class="headerlink" title="集合通知"></a>集合通知</h3><p>集合通知中不会包含整个对应的 Realm, 但包含对数据变化的跟详细的叙述，如添加，删除，更改</p>
+<p>集合通知也是异步传递，通知中的参数首先是最原始的结果，后面就是对添加，删除，更新数据的进一步说明，这些变化可以通过 <code>RealmCollectionChange</code> 参数进行获取，其中包括了 <code>deletions</code>, <code>insertions</code>, <code>modifications</code></p>
+<p>通知将会涵盖对实例属性的一切修改，以及一对一，一对多关系的变化，但不会包含反向关系的变化</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">class ViewController: UITableViewController &#123;</span><br><span class="line">    var notificationToken: NotificationToken? = nil</span><br><span class="line"></span><br><span class="line">    override func viewDidLoad() &#123;</span><br><span class="line">        super.viewDidLoad()</span><br><span class="line">        let realm = try! Realm()</span><br><span class="line">        let results = realm.objects(Person.self).filter(&quot;age &gt; 5&quot;)</span><br><span class="line"></span><br><span class="line">        // Observe Results Notifications</span><br><span class="line">        notificationToken = results.addNotificationBlock &#123; [weak self] (changes: RealmCollectionChange) in</span><br><span class="line">            guard let tableView = self?.tableView else &#123; return &#125;</span><br><span class="line">            switch changes &#123;</span><br><span class="line">            case .initial:</span><br><span class="line">                // Results are now populated and can be accessed without blocking the UI</span><br><span class="line">                tableView.reloadData()</span><br><span class="line">            case .update(_, let deletions, let insertions, let modifications):</span><br><span class="line">                // Query results have changed, so apply them to the UITableView</span><br><span class="line">                tableView.beginUpdates()</span><br><span class="line">                tableView.insertRows(at: insertions.map(&#123; IndexPath(row: $0, section: 0) &#125;),</span><br><span class="line">                                     with: .automatic)</span><br><span class="line">                tableView.deleteRows(at: deletions.map(&#123; IndexPath(row: $0, section: 0)&#125;),</span><br><span class="line">                                     with: .automatic)</span><br><span class="line">                tableView.reloadRows(at: modifications.map(&#123; IndexPath(row: $0, section: 0) &#125;),</span><br><span class="line">                                     with: .automatic)</span><br><span class="line">                tableView.endUpdates()</span><br><span class="line">            case .error(let error):</span><br><span class="line">                // An error occurred while opening the Realm file on the background worker thread</span><br><span class="line">                fatalError(&quot;\(error)&quot;)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    deinit &#123;</span><br><span class="line">        notificationToken?.stop()</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="对象通知"><a href="#对象通知" class="headerlink" title="对象通知"></a>对象通知</h3><p>Realm 支持对象级别的通知。这意味着，可以为某一个特定的 Realm 数据模型注册通知</p>
+<p>当这个数据模型实例被删除之后，通知回调将不会在被调用</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">class StepCounter: Object &#123;</span><br><span class="line">    @objc dynamic var steps = 0</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">let stepCounter = StepCounter()</span><br><span class="line">let realm = try! Realm()</span><br><span class="line">try! realm.write &#123;</span><br><span class="line">    realm.add(stepCounter)</span><br><span class="line">&#125;</span><br><span class="line">var token : NotificationToken?</span><br><span class="line">token = stepCounter.addNotificationBlock &#123; change in</span><br><span class="line">    switch change &#123;</span><br><span class="line">    case .change(let properties):</span><br><span class="line">        for property in properties &#123;</span><br><span class="line">            if property.name == &quot;steps&quot; &amp;&amp; property.newValue as! Int &gt; 1000 &#123;</span><br><span class="line">                print(&quot;Congratulations, you&#x27;ve exceeded 1000 steps.&quot;)</span><br><span class="line">                token = nil</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    case .error(let error):</span><br><span class="line">        print(&quot;An error occurred: \(error)&quot;)</span><br><span class="line">    case .deleted:</span><br><span class="line">        print(&quot;The object was deleted.&quot;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="界面驱动存储"><a href="#界面驱动存储" class="headerlink" title="界面驱动存储"></a>界面驱动存储</h2><p>Realm 中的通知总是异步传送的，所以并不会堵塞主线程。但在某些情况下，数据的变化需要在主线程中同步进行，并立即反应到 UI 上</p>
+<p>其中一种情况就是为 table view 添加一个条目，同时需要为 table view 的数据源添加一条数据，此时，通知的异步在这里并不恰当，因为异步的通知反馈将会导致 App 崩溃，因为 table view 的条目与数据源中的数据不一致</p>
+<p>此时，我们将使用 <code>Realm.commitWrite(withoutNotifying:)</code></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// Add fine-grained notification block</span><br><span class="line">token = collection.addNotificationBlock &#123; changes in</span><br><span class="line">    switch changes &#123;</span><br><span class="line">    case .initial:</span><br><span class="line">        tableView.reloadData()</span><br><span class="line">    case .update(_, let deletions, let insertions, let modifications):</span><br><span class="line">        // Query results have changed, so apply them to the UITableView</span><br><span class="line">        tableView.beginUpdates()</span><br><span class="line">        tableView.insertRows(at: insertions.map(&#123; IndexPath(row: $0, section: 0) &#125;),</span><br><span class="line">                             with: .automatic)</span><br><span class="line">        tableView.deleteRows(at: deletions.map(&#123; IndexPath(row: $0, section: 0)&#125;),</span><br><span class="line">                             with: .automatic)</span><br><span class="line">        tableView.reloadRows(at: modifications.map(&#123; IndexPath(row: $0, section: 0) &#125;),</span><br><span class="line">                             with: .automatic)</span><br><span class="line">        tableView.endUpdates()</span><br><span class="line">    case .error(let error):</span><br><span class="line">        // handle error</span><br><span class="line">        ()</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">func insertItem() throws &#123;</span><br><span class="line">     // Perform an interface-driven write on the main thread:</span><br><span class="line">     collection.realm!.beginWrite()</span><br><span class="line">     collection.insert(Item(), at: 0)</span><br><span class="line">     // And mirror it instantly in the UI</span><br><span class="line">     tableView.insertRows(at: [IndexPath(row: 0, section: 0)], with: .automatic)</span><br><span class="line">     // Making sure the change notification doesn&#x27;t apply the change a second time</span><br><span class="line">     try collection.realm!.commitWrite(withoutNotifying: [token])</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="References"><a href="#References" class="headerlink" title="References"></a>References</h2><ul>
+<li>  <a target="_blank" rel="noopener" href="https://realm.io/docs/swift/latest/">https://realm.io/docs/swift/latest/</a></li>
+</ul>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">叶落花开</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://www.yeluohuakai.com/posts/2024/09/4cd7a987.html">https://www.yeluohuakai.com/posts/2024/09/4cd7a987.html</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://www.yeluohuakai.com" target="_blank">叶落花开的博客</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Swift/">Swift</a><a class="post-meta__tags" href="/tags/Realm/">Realm</a><a class="post-meta__tags" href="/tags/RealmSwift/">RealmSwift</a></div><div class="post_share"><div class="social-share" data-image="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://fastly.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/posts/2024/09/3eb09049.html"><img class="next-cover" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">RealmSwift:如何正确创建一对一关系？</div></div></a></div></nav><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/loading.gif" data-original="/img/ava.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">叶落花开</div><div class="author-info__description">持续学习，记录后端技术、web技术，以及对认知、技术变现的思考。</div></div><div class="card-info-data is-center"><div class="card-info-data-item"><a href="/archives/"><div class="headline">文章</div><div class="length-num">246</div></a></div><div class="card-info-data-item"><a href="/tags/"><div class="headline">标签</div><div class="length-num">94</div></a></div><div class="card-info-data-item"><a href="/categories/"><div class="headline">分类</div><div class="length-num">33</div></a></div></div></div><div class="card-widget user-map" id="user-map"><div class="item-headline"><i class="fas fa-link"></i><span>友情链接</span></div><div class="item-content"><ul class="entry"><li><a href="/bszs" title="各大高校博士招生信息">各大高校博士招生信息</a></li><li><a target="_blank" rel="noopener" href="https://www.xiaoxinsoft.com" title="小新软件服务">小新软件安装服务</a></li></ul></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%89%93%E5%BC%80%E4%B8%80%E4%B8%AA-Realm"><span class="toc-number">1.</span> <span class="toc-text">打开一个 Realm</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%8E%E5%8F%B0%E5%88%B7%E6%96%B0"><span class="toc-number">2.</span> <span class="toc-text">后台刷新</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%89%93%E5%BC%80%E4%B8%80%E4%B8%AA%E9%BB%98%E8%AE%A4-Realm"><span class="toc-number">3.</span> <span class="toc-text">打开一个默认 Realm</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%BE%E7%BD%AE-Realm-%E7%9A%84%E9%85%8D%E7%BD%AE"><span class="toc-number">4.</span> <span class="toc-text">设置 Realm 的配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%94%99%E8%AF%AF%E5%A4%84%E7%90%86"><span class="toc-number">5.</span> <span class="toc-text">错误处理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Realm-%E7%9A%84%E6%96%87%E4%BB%B6"><span class="toc-number">6.</span> <span class="toc-text">Realm 的文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8E%8B%E7%BC%A9-Realm"><span class="toc-number">7.</span> <span class="toc-text">压缩 Realm</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%A0%E9%99%A4-Realm-%E6%96%87%E4%BB%B6"><span class="toc-number">8.</span> <span class="toc-text">删除 Realm 文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E6%A8%A1%E5%9E%8B"><span class="toc-number">9.</span> <span class="toc-text">数据模型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89-Model"><span class="toc-number">9.1.</span> <span class="toc-text">定义 Model</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%99%90%E5%88%B6"><span class="toc-number">9.2.</span> <span class="toc-text">限制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Model-%E7%9A%84%E5%AE%9A%E4%B9%89%E5%BF%85%E9%A1%BB%E5%90%88%E6%B3%95"><span class="toc-number">9.3.</span> <span class="toc-text">Model 的定义必须合法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%89%80%E6%9C%89%E5%BF%85%E9%80%89%E9%A1%B9%E5%B1%9E%E6%80%A7%E9%83%BD%E9%9C%80%E8%A6%81%E6%9C%89%E9%BB%98%E8%AE%A4%E5%80%BC"><span class="toc-number">9.4.</span> <span class="toc-text">所有必选项属性都需要有默认值</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%94%AF%E6%8C%81%E7%9A%84%E7%B1%BB%E5%9E%8B"><span class="toc-number">10.</span> <span class="toc-text">支持的类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BB%E9%94%AE"><span class="toc-number">11.</span> <span class="toc-text">主键</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B4%A2%E5%BC%95-Indexing-properties"><span class="toc-number">12.</span> <span class="toc-text">索引 Indexing properties[]</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BF%BD%E7%95%A5%E5%B1%9E%E6%80%A7"><span class="toc-number">13.</span> <span class="toc-text">忽略属性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A8%A1%E5%9E%8B%E6%95%B0%E6%8D%AE%E8%87%AA%E5%8A%A8%E5%88%B7%E6%96%B0"><span class="toc-number">14.</span> <span class="toc-text">模型数据自动刷新</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9B%86%E5%90%88%E7%B1%BB%E5%9E%8B"><span class="toc-number">15.</span> <span class="toc-text">集合类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%86%99%E6%93%8D%E4%BD%9C"><span class="toc-number">16.</span> <span class="toc-text">写操作</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9B%B4%E6%96%B0%E6%95%B0%E6%8D%AE"><span class="toc-number">17.</span> <span class="toc-text">更新数据</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%80%9A%E8%BF%87%E4%B8%BB%E9%94%AE%E6%9D%A5%E6%9B%B4%E6%96%B0%E6%95%B0%E6%8D%AE"><span class="toc-number">18.</span> <span class="toc-text">通过主键来更新数据</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9F%A5%E8%AF%A2"><span class="toc-number">19.</span> <span class="toc-text">查询</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%87%E6%BB%A4"><span class="toc-number">20.</span> <span class="toc-text">过滤</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8E%92%E5%BA%8F"><span class="toc-number">21.</span> <span class="toc-text">排序</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%93%BE%E5%BC%8F%E6%9F%A5%E8%AF%A2"><span class="toc-number">22.</span> <span class="toc-text">链式查询</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%86%E9%A1%B5%E8%AF%BB%E5%8F%96"><span class="toc-number">23.</span> <span class="toc-text">分页读取</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%80%9A%E7%9F%A5"><span class="toc-number">24.</span> <span class="toc-text">通知</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Realm"><span class="toc-number">24.1.</span> <span class="toc-text">Realm</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9B%86%E5%90%88%E9%80%9A%E7%9F%A5"><span class="toc-number">24.2.</span> <span class="toc-text">集合通知</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%B9%E8%B1%A1%E9%80%9A%E7%9F%A5"><span class="toc-number">24.3.</span> <span class="toc-text">对象通知</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%95%8C%E9%9D%A2%E9%A9%B1%E5%8A%A8%E5%AD%98%E5%82%A8"><span class="toc-number">25.</span> <span class="toc-text">界面驱动存储</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#References"><span class="toc-number">26.</span> <span class="toc-text">References</span></a></li></ol></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 By 叶落花开</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">本地搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://fastly.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>(()=>{
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'freecloud-0gzubvbebcf38cf6',
+      region: '',
+      onCommentLoaded: function () {
+        btf.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.vemoji)'))
+      }
+    }, null))
+  }
+
+  const getCount = () => {
+    twikoo.getCommentsCount({
+      envId: 'freecloud-0gzubvbebcf38cf6',
+      region: '',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(function (res) {
+      document.getElementById('twikoo-count').innerText = res[0].count
+    }).catch(function (err) {
+      console.error(err);
+    });
+  }
+
+  const runFn = () => {
+    init()
+    
+  }
+
+  const loadTwikoo = () => {
+    if (typeof twikoo === 'object') {
+      setTimeout(runFn,0)
+      return
+    } 
+    getScript('https://fastly.jsdelivr.net/npm/twikoo/dist/twikoo.all.min.js').then(runFn)
+  }
+
+  if ('Twikoo' === 'Twikoo' || !false) {
+    if (false) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo()
+  } else {
+    window.loadOtherComment = () => {
+      loadTwikoo()
+    }
+  }
+})()</script></div><script id="canvas_nest" defer="defer" color="0,0,255" opacity="0.7" zIndex="-1" count="99" mobile="false" src="https://fastly.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-nest.min.js"></script></div>
+        <style>
+            [bg-lazy] {
+                background-image: none !important;
+                background-color: #eee !important;
+            }
+        </style>
+        <script>
+            window.imageLazyLoadSetting = {
+                isSPA: false,
+                preloadRatio: 1,
+                processImages: null,
+            };
+        </script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script><script>!function(r){r.imageLazyLoadSetting.processImages=t;var e=r.imageLazyLoadSetting.isSPA,n=r.imageLazyLoadSetting.preloadRatio||1,c=a();function a(){var t=Array.prototype.slice.call(document.querySelectorAll("img[data-original]")),e=Array.prototype.slice.call(document.querySelectorAll("[bg-lazy]"));return t.concat(e)}function t(){e&&(c=a());for(var t,o=0;o<c.length;o++)0<=(t=(t=c[o]).getBoundingClientRect()).bottom&&0<=t.left&&t.top<=(r.innerHeight*n||document.documentElement.clientHeight*n)&&function(){var t,e,n,a,i=c[o];e=function(){c=c.filter(function(t){return i!==t}),r.imageLazyLoadSetting.onImageLoaded&&r.imageLazyLoadSetting.onImageLoaded(i)},(t=i).hasAttribute("bg-lazy")?(t.removeAttribute("bg-lazy"),e&&e()):(n=new Image,a=t.getAttribute("data-original"),n.onload=function(){t.src=a,t.removeAttribute("data-original"),e&&e()},t.src!==a&&(n.src=a))}()}function i(){clearTimeout(t.tId),t.tId=setTimeout(t,500)}t(),document.addEventListener("scroll",i),r.addEventListener("resize",i),r.addEventListener("orientationchange",i)}(this);</script></body></html>
