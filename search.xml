@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>国内用户一键安装Docker并配置镜像源</title>
+      <link href="/posts/2024/09/4d4367cb.html"/>
+      <url>/posts/2024/09/4d4367cb.html</url>
+      
+        <content type="html"><![CDATA[<p>Debian/Ubuntu从软件源一键安装<br>安装Docker</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">apt install -y docker.io  docker-compose</span><br></pre></td></tr></table></figure><p>自启动Docker</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">systemctl enable --now docker</span><br></pre></td></tr></table></figure><p>Docker官方一键安装脚本<br>使用官方源安装（国内直接访问较慢）</p><span id="more"></span><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">curl -fsSL https://get.docker.com | bash</span><br></pre></td></tr></table></figure><p>使用阿里源安装</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">curl -fsSL https://get.docker.com | bash -s docker --mirror Aliyun</span><br></pre></td></tr></table></figure><p>使用中国区Azure源安装</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">curl -fsSL https://get.docker.com | bash -s docker --mirror AzureChinaCloud</span><br></pre></td></tr></table></figure><p>自启动Docker</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">systemctl enable --now docker</span><br></pre></td></tr></table></figure><p>一键安装最新版Docker Compose：</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">COMPOSE_VERSION=`git ls-remote https://github.com/docker/compose | grep refs/tags | grep -oP &quot;[0-9]+\.[0-9][0-9]+\.[0-9]+$&quot; | sort --version-sort | tail -n 1`</span><br><span class="line">sh -c &quot;curl -L https://github.com/docker/compose/releases/download/v$&#123;COMPOSE_VERSION&#125;/docker-compose-`uname -s`-`uname -m` &gt; /usr/local/bin/docker-compose&quot;</span><br><span class="line">chmod +x /usr/local/bin/docker-compose</span><br></pre></td></tr></table></figure><p>配置国内镜像源</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mkdir -p /etc/docker</span><br><span class="line">tee /etc/docker/daemon.json &lt;&lt;-&#x27;EOF&#x27;</span><br><span class="line">&#123;</span><br><span class="line">  &quot;registry-mirrors&quot;: [</span><br><span class="line">    &quot;https://dockerproxy.com&quot;,</span><br><span class="line">    &quot;https://docker.m.daocloud.io&quot;,</span><br><span class="line">    &quot;https://ypzju6vq.mirror.aliyuncs.com&quot;</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br><span class="line">EOF</span><br><span class="line"></span><br><span class="line">systemctl daemon-reload</span><br><span class="line">systemctl restart docker</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> 服务端开发 </category>
+          
+          <category> 容器技术 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Docker </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Swift - Realm数据库的使用详解（附样例）</title>
       <link href="/posts/2024/09/b294a51a.html"/>
       <url>/posts/2024/09/b294a51a.html</url>
@@ -4118,7 +4145,7 @@
       <link href="/posts/2022/12/4d8c9542.html"/>
       <url>/posts/2022/12/4d8c9542.html</url>
       
-        <content type="html"><![CDATA[<p>1个可以用于微信聊天的ChatGPT机器人<br>GitHub地址：<a href="https://github.com/fuergaosi233/wechat-chatgpt">https://github.com/fuergaosi233/wechat-chatgpt</a></p><p>支持特性</p><blockquote><p>通过微信在微信上使用ChatGPT<br>支持OpenAI帐户池<br>支持使用代理登录<br>在消息接收时模拟</p></blockquote><p>我这边已经部署成功并成功运行，如有疑问可邮件联系 <a href="mailto:&#100;&#111;&#x6e;&#103;&#55;&#48;&#54;&#x40;&#x67;&#x6d;&#x61;&#x69;&#x6c;&#x2e;&#x63;&#111;&#109;">&#100;&#111;&#x6e;&#103;&#55;&#48;&#54;&#x40;&#x67;&#x6d;&#x61;&#x69;&#x6c;&#x2e;&#x63;&#111;&#109;</a> </p><span id="more"></span>]]></content>
+        <content type="html"><![CDATA[<p>1个可以用于微信聊天的ChatGPT机器人<br>GitHub地址：<a href="https://github.com/fuergaosi233/wechat-chatgpt">https://github.com/fuergaosi233/wechat-chatgpt</a></p><p>支持特性</p><blockquote><p>通过微信在微信上使用ChatGPT<br>支持OpenAI帐户池<br>支持使用代理登录<br>在消息接收时模拟</p></blockquote><p>我这边已经部署成功并成功运行，如有疑问可邮件联系 <a href="mailto:&#100;&#111;&#110;&#x67;&#x37;&#x30;&#54;&#x40;&#103;&#109;&#x61;&#x69;&#108;&#46;&#x63;&#x6f;&#109;">&#100;&#111;&#110;&#x67;&#x37;&#x30;&#54;&#x40;&#103;&#109;&#x61;&#x69;&#108;&#46;&#x63;&#x6f;&#109;</a> </p><span id="more"></span>]]></content>
       
       
       <categories>
@@ -5412,9 +5439,9 @@
             
             <tag> K8s </tag>
             
-            <tag> Tomcat </tag>
-            
             <tag> Docker </tag>
+            
+            <tag> Tomcat </tag>
             
         </tags>
       
