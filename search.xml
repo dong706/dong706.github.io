@@ -4,6 +4,66 @@
   
     
     <entry>
+      <title>RealmSwift用法小结：增删改查实例</title>
+      <link href="/posts/2024/09/c4d6eb7.html"/>
+      <url>/posts/2024/09/c4d6eb7.html</url>
+      
+        <content type="html"><![CDATA[<p>增删改都太简单了，这里不赘述了。详情可以看<a href="https://realm.io/cn/docs/swift/latest/#creating-objects">官方文档</a><br>1.简单查询</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">let result : Results&lt;ProjectItp&gt; = realm.objects(ProjectItp.self).filter(&quot;NSPredicate:xxxx&quot;)</span><br><span class="line"></span><br><span class="line">filter传入的参数是一个NSPredicate，可以上网了解一下这个NSPredicate</span><br><span class="line">简单地举几个例子</span><br><span class="line">[c] 表示忽略大小写,该符号可以用于==[c] !=[c] BEGINSWITH[c] CONTAINS[c] ENDSWITH[c] LIKE[c]</span><br><span class="line"></span><br><span class="line">//用AND 或者 &amp;&amp; 连接都可以</span><br><span class="line">filter(&quot;lastname == &#x27;fancy&#x27; &amp;&amp; l_id == 123456 &amp;&amp; active == true&quot;)</span><br><span class="line">filter(&quot;lastname == &#x27;fancy&#x27; AND l_id == 123456&quot;)</span><br><span class="line"></span><br><span class="line">// 字符串比较可以用以下类型 ==、!=、BEGINSWITH、CONTAINS 和 ENDSWITH</span><br><span class="line">filter(&quot;lastname  CONTAINS  &#x27;fancy&#x27; )</span><br><span class="line">//忽略大小写</span><br><span class="line">filter(&quot;lastname  CONTAINS[c]  &#x27;fancy&#x27; )</span><br></pre></td></tr></table></figure><p>太多了，如果要看更详细的 参考官方文档-查询</p><p>接下来展示几个例子，在文档中仅是简单提及或者没有提及，且无任何示例代码的查询<br>2.结果集排序</p><span id="more"></span><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// 对颜色为棕黄色、名字以 &quot;B&quot; 开头的狗狗进行排序</span><br><span class="line">let sortedDogs = realm.objects(Dog.self).filter(&quot;color = &#x27;tan&#x27; AND name BEGINSWITH &#x27;B&#x27;&quot;).sorted(byKeyPath: &quot;name&quot;)</span><br><span class="line">//对象属性 可以支持使用`.`符号链接到属性的属性，如果是List则不行</span><br><span class="line">let ownersByDogAge = dogOwners.sorted(byKeyPath: &quot;dog.age&quot;)</span><br><span class="line">//对多个属性按照优先级进行排序</span><br><span class="line">let sortedDogs = realm.objects(Dog.self).sorted(by: [SortDescriptor(keyPath: &quot;param1&quot;),SortDescriptor(keyPath: &quot;param2&quot;, ascending: true)])</span><br></pre></td></tr></table></figure><p>3.去重</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//可以传入多个属性， 示例中只传了一个属性</span><br><span class="line">let result : Results&lt;Dog&gt; = realm.objects(Dog.self).filter(&quot;appUserId == \(currentUserId) &amp;&amp; projectId == \(currentProjectId)&quot;).distinct(by: [&quot;favoriteId&quot;])</span><br></pre></td></tr></table></figure><p>4.求和</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">var sumPercent : Int = realm.objects(Dog.self).filter(&quot;appUserId == \(currentUserId)&quot;).sum(ofProperty: &quot;percentage&quot;)</span><br></pre></td></tr></table></figure><p>5.查询数量</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">var count : Int = realm.objects(Dog.self).filter(&quot;appUserId == \(currentUserId)&quot;).count</span><br></pre></td></tr></table></figure><p>6.相似查询</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//对于 String 属性而言，LIKE 操作符可以用来比较左端属性和右端表达式：? 和 * 可用作通配符，其中 ? 可以匹配任意一个字符，* 匹配 0 个及其以上的字符。例如：value LIKE &#x27;?bc*&#x27; 可以匹配到诸如 “abcde” 和 “cbc” 之类的字符串；</span><br><span class="line">//以上文字 从文档中照搬 应该蛮好理解的吧</span><br></pre></td></tr></table></figure><p>7.子查询SUBQUERY</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//假设有如下数据模型</span><br><span class="line">struct Student &#123;</span><br><span class="line">var id = 0</span><br><span class="line">var name = &quot;&quot;</span><br><span class="line">var score = 0</span><br><span class="line">var courses : List&lt;Course&gt; = List&lt;Course&gt;()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">struct Course &#123;</span><br><span class="line">var cid = 0</span><br><span class="line">var cname = &quot;&quot; //如高数1，高数2，大学英语1，大学物理1</span><br><span class="line">&#125;</span><br><span class="line">//查询任务如下：查询出所有学生中高数课数量&gt;2的学生</span><br><span class="line">realm.objects(Student.self).filter(&quot;SUBQUERY(courses, $course, $course.name contains &#x27;高数&#x27;).@count &gt; 2&quot;)</span><br><span class="line">//其中$course,这个是一个遍历时使用的变量名称，可以用任意变量名代替，相应的后面也要改</span><br><span class="line">//如：</span><br><span class="line">realm.objects(Student.self).filter(&quot;SUBQUERY(courses, $c, $c.name contains &#x27;高数&#x27;).@count &gt; 2&quot;)</span><br></pre></td></tr></table></figure><p>8.聚集表达式</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//使用例7中的数据模型</span><br><span class="line">//查询任务如下： 课程总数大于5的学生</span><br><span class="line">realm.objects(Student.self).filter(&quot;courses.@count &gt; 5&quot;)</span><br><span class="line">//其它的@min、@max、@sum 和 @avg我还没想到有什么用</span><br><span class="line">//查询所有课程中编号最大值 &gt; 100的学生</span><br><span class="line">realm.objects(Student.self).filter(&quot;courses.@max.cid &gt; 100&quot;)</span><br><span class="line"></span><br><span class="line">//如果要查询最大值 最小值 总数及平均值 应该使用如下代码：</span><br><span class="line">var max : Int? = result.max(ofProperty: &quot;score&quot;)</span><br><span class="line">var min : Int? = result.min(ofProperty: &quot;score&quot;)</span><br><span class="line">var sum : Int? = result.sum(ofProperty: &quot;score&quot;)</span><br><span class="line">var average : Int? = result.average(ofProperty: &quot;score&quot;)</span><br></pre></td></tr></table></figure><p>9.关键字 ANY, ALL and NONE<br>以下摘自文档</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//查找 所有朋友中有年龄小于14岁的人</span><br><span class="line">let teens = realm.objects(Contact.self).filtered(&#x27;ANY friends.age &lt; 14&#x27;);</span><br><span class="line"></span><br><span class="line">//查找 所有朋友的年龄都大于21岁的人</span><br><span class="line">let adults = realm.objects(Contact.self).filtered(&#x27;ALL friends.age &gt; 21&#x27;);</span><br></pre></td></tr></table></figure><p>10.其他</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//查询owner叫bob的车</span><br><span class="line">realm.objects(Car.self).filtered(&#x27;owner.name ==[c] &quot;bob&quot;&#x27;)</span><br><span class="line">//查询拥有至少一辆honda牌汽车的人</span><br><span class="line">realm.objects(Person.self).filtered(&#x27;cars.make ==[c] &quot;honda&quot;&#x27;)</span><br><span class="line">//反向查询拥有至少一辆honda牌汽车的人</span><br><span class="line">realm.objects(Person.self).filtered(&#x27;@links.Car.owner.make ==[c] &quot;honda&quot;&#x27;)</span><br><span class="line">//反向查询汽车均价3w以上的的人</span><br><span class="line">realm.objects(Person.self).filtered(&#x27;@links.Car.owner.@avg.price &gt; 30000&#x27;)</span><br><span class="line">//查询汽车等于3辆的人</span><br><span class="line">realm.objects(Person.self).filtered(&#x27;cars.@count == 3&#x27;)</span><br><span class="line">//反向查询拥有至少一辆honda牌并且价格大于3w的汽车的人</span><br><span class="line">realm.objects(Person.self).filtered(&#x27;SUBQUERY(@links.Car.owner, $x, $x.make ==[c] &quot;honda&quot; &amp;&amp; $x.price &gt; 30000).@count &gt; 1&#x27;)</span><br><span class="line">//查找谁的汽车全都是honda牌的</span><br><span class="line">realm.objects(Person.self).filtered(&#x27;ALL @links.Car.owner.make ==[c] &quot;honda&quot;&#x27;)</span><br><span class="line">//查找没有引入链接的人</span><br><span class="line">realm.objects(Person.self).filtered(&#x27;@links.@count == 0&#x27;)</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> 服务端开发 </category>
+          
+          <category> Swift开发 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Swift </tag>
+            
+            <tag> Realm </tag>
+            
+            <tag> RealmSwift </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>linux环境离线安装docker服务和docker-buildx插件</title>
+      <link href="/posts/2024/09/5cde54fc.html"/>
+      <url>/posts/2024/09/5cde54fc.html</url>
+      
+        <content type="html"><![CDATA[<h2 id="一、docker-离线安装"><a href="#一、docker-离线安装" class="headerlink" title="一、docker 离线安装"></a>一、docker 离线安装</h2><h3 id="1-下载压缩包"><a href="#1-下载压缩包" class="headerlink" title="1 下载压缩包"></a>1 下载压缩包</h3><p>官网下载地址：<a href="https://download.docker.com/linux/static/stable/x86/_64/">https://download.docker.com/linux/static/stable/x86\_64/</a><br>选择适合的版本，这里以docker-27.2.1.tgz 进行示意。</p><h3 id="2-上传压缩包并解压"><a href="#2-上传压缩包并解压" class="headerlink" title="2 上传压缩包并解压"></a>2 上传压缩包并解压</h3><p>把下载好的docker-27.2.1.tgz，上传到<a href="https://so.csdn.net/so/search?q=linux%E6%9C%8D%E5%8A%A1%E5%99%A8&spm=1001.2101.3001.7020">linux服务器</a>任意路径后，执行解压：</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">tar zxvf docker-27.2.1.tgz</span><br><span class="line"></span><br></pre></td></tr></table></figure><span id="more"></span><h3 id="3-部署docker"><a href="#3-部署docker" class="headerlink" title="3 部署docker"></a>3 部署docker</h3><p>在解压路径下执行：</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cp docker/* /usr/bin/</span><br><span class="line"></span><br></pre></td></tr></table></figure><h3 id="4-验证安装结果"><a href="#4-验证安装结果" class="headerlink" title="4 验证安装结果"></a>4 验证安装结果</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker -v</span><br><span class="line"></span><br></pre></td></tr></table></figure><h3 id="5-设置docker开机自启"><a href="#5-设置docker开机自启" class="headerlink" title="5 设置docker开机自启"></a>5 设置docker开机自启</h3><h4 id="5-1-注册docker服务"><a href="#5-1-注册docker服务" class="headerlink" title="5.1 注册docker服务"></a>5.1 注册docker服务</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">vi /etc/systemd/system/docker.service</span><br><span class="line"></span><br></pre></td></tr></table></figure><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[Unit]</span><br><span class="line">Description=Docker Application Container Engine</span><br><span class="line">Documentation=https://docs.docker.com</span><br><span class="line"># BindsTo=containerd.service</span><br><span class="line"># After=network-online.target firewalld.service containerd.service</span><br><span class="line">After=network-online.target firewalld.service</span><br><span class="line">Wants=network-online.target</span><br><span class="line"># Requires=docker.socket</span><br><span class="line"></span><br><span class="line">[Service]</span><br><span class="line">Type=notify</span><br><span class="line"># the default is not to use systemd for cgroups because the delegate issues still</span><br><span class="line"># exists and systemd currently does not support the cgroup feature set required</span><br><span class="line"># for containers run by docker</span><br><span class="line"># ExecStart=/usr/bin/dockerd -H fd:// --containerd=/run/containerd/containerd.sock</span><br><span class="line">ExecStart=/usr/bin/dockerd</span><br><span class="line">ExecReload=/bin/kill -s HUP $MAINPID</span><br><span class="line">TimeoutSec=0</span><br><span class="line">RestartSec=2</span><br><span class="line">Restart=always</span><br><span class="line"></span><br><span class="line"># Note that StartLimit* options were moved from &quot;Service&quot; to &quot;Unit&quot; in systemd 229.</span><br><span class="line"># Both the old, and new location are accepted by systemd 229 and up, so using the old location</span><br><span class="line"># to make them work for either version of systemd.</span><br><span class="line">StartLimitBurst=3</span><br><span class="line"></span><br><span class="line"># Note that StartLimitInterval was renamed to StartLimitIntervalSec in systemd 230.</span><br><span class="line"># Both the old, and new name are accepted by systemd 230 and up, so using the old name to make</span><br><span class="line"># this option work for either version of systemd.</span><br><span class="line">StartLimitInterval=60s</span><br><span class="line"></span><br><span class="line"># Having non-zero Limit*s causes performance problems due to accounting overhead</span><br><span class="line"># in the kernel. We recommend using cgroups to do container-local accounting.</span><br><span class="line">LimitNOFILE=infinity</span><br><span class="line">LimitNPROC=infinity</span><br><span class="line">LimitCORE=infinity</span><br><span class="line"></span><br><span class="line"># Comment TasksMax if your systemd version does not support it.</span><br><span class="line"># Only systemd 226 and above support this option.</span><br><span class="line"># TasksMax=infinity</span><br><span class="line"></span><br><span class="line"># set delegate yes so that systemd does not reset the cgroups of docker containers</span><br><span class="line">Delegate=yes</span><br><span class="line"></span><br><span class="line"># kill only the docker process, not all processes in the cgroup</span><br><span class="line">KillMode=process</span><br><span class="line"></span><br><span class="line">[Install]</span><br><span class="line">WantedBy=multi-user.target</span><br><span class="line"></span><br></pre></td></tr></table></figure><p>保存服务配置文件并退出vim</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">:wq</span><br></pre></td></tr></table></figure><h4 id="5-2-启动服务"><a href="#5-2-启动服务" class="headerlink" title="5.2 启动服务"></a>5.2 启动服务</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 给启动配置添加执行权限</span><br><span class="line">chmod +x /etc/systemd/system/docker.service</span><br><span class="line"># 重载Unit服务配置</span><br><span class="line">systemctl daemon-reload</span><br><span class="line"># 添加 docker 开机自启</span><br><span class="line">systemctl enable docker</span><br><span class="line"># 启动 docker</span><br><span class="line">systemctl start docker</span><br><span class="line"></span><br></pre></td></tr></table></figure><p><strong>注意：如果你的服务已经启动，一定要先停止，否则启动失败，此时 systemctl start docker 无法停止，需要手动 kill掉</strong></p><h2 id="二、docker-buidlx-插件离线安装"><a href="#二、docker-buidlx-插件离线安装" class="headerlink" title="二、docker-buidlx 插件离线安装"></a>二、docker-buidlx 插件离线安装</h2><h3 id="1-手动创建docker插件目录"><a href="#1-手动创建docker插件目录" class="headerlink" title="1 手动创建docker插件目录"></a>1 手动创建docker插件目录</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mkdir -p /usr/local/lib/docker/cli-plugins/</span><br></pre></td></tr></table></figure><h3 id="2-下载docker-buildx到插件目录并授权"><a href="#2-下载docker-buildx到插件目录并授权" class="headerlink" title="2 下载docker-buildx到插件目录并授权"></a>2 下载docker-buildx到插件目录并授权</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">curl -Lo /usr/local/lib/docker/cli-plugins/docker-buildx https://github.com/docker/buildx/releases/download/v0.17.1/buildx-v0.17.1.linux-amd64</span><br><span class="line"></span><br><span class="line"># 赋予可执行权限</span><br><span class="line">chmod +x /usr/local/lib/docker/cli-plugins/docker-buildx </span><br></pre></td></tr></table></figure><h3 id="3-验证buildx"><a href="#3-验证buildx" class="headerlink" title="3 验证buildx"></a>3 验证buildx</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker buildx ls</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> 服务端开发 </category>
+          
+          <category> 容器技术 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Docker </tag>
+            
+            <tag> K8s </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>国内用户一键安装Docker并配置镜像源</title>
       <link href="/posts/2024/09/4d4367cb.html"/>
       <url>/posts/2024/09/4d4367cb.html</url>
@@ -4145,7 +4205,7 @@
       <link href="/posts/2022/12/4d8c9542.html"/>
       <url>/posts/2022/12/4d8c9542.html</url>
       
-        <content type="html"><![CDATA[<p>1个可以用于微信聊天的ChatGPT机器人<br>GitHub地址：<a href="https://github.com/fuergaosi233/wechat-chatgpt">https://github.com/fuergaosi233/wechat-chatgpt</a></p><p>支持特性</p><blockquote><p>通过微信在微信上使用ChatGPT<br>支持OpenAI帐户池<br>支持使用代理登录<br>在消息接收时模拟</p></blockquote><p>我这边已经部署成功并成功运行，如有疑问可邮件联系 <a href="mailto:&#100;&#111;&#x6e;&#x67;&#x37;&#48;&#54;&#64;&#x67;&#109;&#x61;&#105;&#108;&#x2e;&#x63;&#x6f;&#109;">&#100;&#111;&#x6e;&#x67;&#x37;&#48;&#54;&#64;&#x67;&#109;&#x61;&#105;&#108;&#x2e;&#x63;&#x6f;&#109;</a> </p><span id="more"></span>]]></content>
+        <content type="html"><![CDATA[<p>1个可以用于微信聊天的ChatGPT机器人<br>GitHub地址：<a href="https://github.com/fuergaosi233/wechat-chatgpt">https://github.com/fuergaosi233/wechat-chatgpt</a></p><p>支持特性</p><blockquote><p>通过微信在微信上使用ChatGPT<br>支持OpenAI帐户池<br>支持使用代理登录<br>在消息接收时模拟</p></blockquote><p>我这边已经部署成功并成功运行，如有疑问可邮件联系 <a href="mailto:&#100;&#111;&#110;&#103;&#x37;&#x30;&#54;&#x40;&#103;&#109;&#97;&#105;&#x6c;&#46;&#x63;&#111;&#109;">&#100;&#111;&#110;&#103;&#x37;&#x30;&#54;&#x40;&#103;&#109;&#97;&#105;&#x6c;&#46;&#x63;&#111;&#109;</a> </p><span id="more"></span>]]></content>
       
       
       <categories>
@@ -5437,9 +5497,9 @@
       
         <tags>
             
-            <tag> K8s </tag>
-            
             <tag> Docker </tag>
+            
+            <tag> K8s </tag>
             
             <tag> Tomcat </tag>
             
@@ -5499,9 +5559,9 @@
       
         <tags>
             
-            <tag> K8s </tag>
-            
             <tag> Docker </tag>
+            
+            <tag> K8s </tag>
             
             <tag> 容器技术 </tag>
             
@@ -5592,9 +5652,9 @@
       
         <tags>
             
-            <tag> K8s </tag>
-            
             <tag> Docker </tag>
+            
+            <tag> K8s </tag>
             
         </tags>
       
@@ -5652,9 +5712,9 @@
             
             <tag> Kubernetes </tag>
             
-            <tag> K8s </tag>
-            
             <tag> Docker </tag>
+            
+            <tag> K8s </tag>
             
         </tags>
       
