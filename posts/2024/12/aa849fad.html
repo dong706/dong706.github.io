@@ -1,0 +1,261 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>Python 版本管理工具选择与 Pyenv 使用说明 | 叶落花开的博客</title><meta name="keywords" content="python,pyenv"><meta name="author" content="叶落花开"><meta name="copyright" content="叶落花开"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Python 版本管理工具的主要作用是帮助开发者在同一台机器上管理多个 Python 版本和环境。这对于开发和部署不同项目非常有用，因为不同项目可能依赖不同的 Python 版本或者不同的包版本。具体来说，Python 版本管理工具应有以下功能： （1）避免依赖冲突，不同的项目可能依赖不同版本的库，使用版本管理工具可以创建独立的虚拟环境，避免依赖冲突。 （2）简化开发流程，开发者可以轻松地在不同的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python 版本管理工具选择与 Pyenv 使用说明">
+<meta property="og:url" content="https://www.yeluohuakai.com/posts/2024/12/aa849fad.html">
+<meta property="og:site_name" content="叶落花开的博客">
+<meta property="og:description" content="Python 版本管理工具的主要作用是帮助开发者在同一台机器上管理多个 Python 版本和环境。这对于开发和部署不同项目非常有用，因为不同项目可能依赖不同的 Python 版本或者不同的包版本。具体来说，Python 版本管理工具应有以下功能： （1）避免依赖冲突，不同的项目可能依赖不同版本的库，使用版本管理工具可以创建独立的虚拟环境，避免依赖冲突。 （2）简化开发流程，开发者可以轻松地在不同的">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-12-15T14:13:00.000Z">
+<meta property="article:modified_time" content="2024-12-15T14:17:44.844Z">
+<meta property="article:author" content="叶落花开">
+<meta property="article:tag" content="python">
+<meta property="article:tag" content="pyenv">
+<meta name="twitter:card" content="summary"><link rel="shortcut icon" href="/favicon.png"><link rel="canonical" href="https://www.yeluohuakai.com/posts/2024/12/aa849fad"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//www.google-analytics.com" crossorigin=""/><link rel="preconnect" href="//hm.baidu.com"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?2f8a615b51582cf280e790200f3527e6";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script><script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-LB2ZMBR4ZN"></script><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-LB2ZMBR4ZN');
+</script><script>(function(){
+var el = document.createElement("script");
+el.src = "https://lf1-cdn-tos.bytegoofy.com/goofy/ttzz/push.js?18da2b25537eeea1b5c8819ad9a03fc2279abb7e5ff9fdb01a2409cbd77b8f1db3e414cba65c376eba389ba56d9ee0846cad2206506a6529fe6ee21a7373effb434c445cf6444b10ea9756ea44e128a6";
+el.id = "ttzz";
+var s = document.getElementsByTagName("script")[0];
+s.parentNode.insertBefore(el, s);
+})(window)
+</script><script async="async" crossorigin="anonymous" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6673854567363222"></script><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":false,"highlightLang":false,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://fastly.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.js',
+      css: 'https://fastly.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Python 版本管理工具选择与 Pyenv 使用说明',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-12-15 22:17:44'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/index_code.css"><meta name="generator" content="Hexo 6.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/loading.gif" data-original="/img/ava.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data is-center"><div class="data-item"><a href="/archives/"><div class="headline">文章</div><div class="length-num">256</div></a></div><div class="data-item"><a href="/tags/"><div class="headline">标签</div><div class="length-num">99</div></a></div><div class="data-item"><a href="/categories/"><div class="headline">分类</div><div class="length-num">34</div></a></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" target="_blank" rel="noopener" href="https://support.qq.com/product/377343"><i class="fa-fw fa fa-paper-plane"></i><span> 反馈</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">叶落花开的博客</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" target="_blank" rel="noopener" href="https://support.qq.com/product/377343"><i class="fa-fw fa fa-paper-plane"></i><span> 反馈</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">Python 版本管理工具选择与 Pyenv 使用说明</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-12-15T14:13:00.000Z" title="发表于 2024-12-15 22:13:00">2024-12-15</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-12-15T14:17:44.844Z" title="更新于 2024-12-15 22:17:44">2024-12-15</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%9C%8D%E5%8A%A1%E7%AB%AF%E5%BC%80%E5%8F%91/">服务端开发</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%9C%8D%E5%8A%A1%E7%AB%AF%E5%BC%80%E5%8F%91/Python/">Python</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span id="" data-flag-title="Python 版本管理工具选择与 Pyenv 使用说明"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="twikoo_visitors"></span></span></div></div></div><article class="post-content" id="article-container"><p>Python 版本管理工具的主要作用是帮助开发者在同一台机器上管理多个 Python 版本和环境。这对于开发和部署不同项目非常有用，因为不同项目可能依赖不同的 Python 版本或者不同的包版本。具体来说，Python 版本管理工具应有以下功能：</p>
+<p>（1）避免依赖冲突，不同的项目可能依赖不同版本的库，使用版本管理工具可以创建独立的虚拟环境，避免依赖冲突。</p>
+<p>（2）简化开发流程，开发者可以轻松地在不同的 Python 版本之间切换，而不需要重新安装或配置 Python。</p>
+<p>（3）便于部署，减少冲突。在开发环境中使用与生产环境相同的 Python 版本和依赖，可以减少部署时出现的问题。</p>
+<p>（4）共享环境配置，提高开发环境一致性。可以将环境配置文件（如 <code>requirements.txt</code> 或 <code>pyproject.toml</code>）共享给团队成员，确保大家使用相同的开发环境。</p>
+<h2 id="一、工具选择"><a href="#一、工具选择" class="headerlink" title="一、工具选择"></a>一、工具选择</h2><p>常见的管理工具有 Pyenv 和 Conda。Pyenv 是当前最流行的 Python 版本管理工具，支持多种 Python 版本，如 CPython、Anaconda、PyPy 等，功能全面且简单易用。Conda 最初由 Anaconda, Inc. 开发，主要用于 Python 和 R 编程语言的软件包（含 Python）及环境管理，特别适合跨平台、多语言项目，Python 版本管理只是其一小部分功能，若仅用于管理 Python 版本，Conda 有些大材小用，且系统较复杂、学习成本略高。相比之下，Pyenv 是常规项目 Python 版本管理的最优选择。</p>
+<p>以下详细介绍 Pyenv 的使用方法。</p>
+<h2 id="二、Pyenv-安装"><a href="#二、Pyenv-安装" class="headerlink" title="二、Pyenv 安装"></a>二、Pyenv 安装</h2><p><strong>建议：</strong> 先卸载系统内置的 Python，否则可能导致 pyenv 设置不生效。</p>
+<h3 id="1-Windows"><a href="#1-Windows" class="headerlink" title="1. Windows"></a>1. Windows</h3><p>pyenv 本身是为 Unix 系统设计的。你可以使用 <a target="_blank" rel="noopener" href="https://github.com/pyenv-win/pyenv-win">pyenv-win</a> 这个项目，它是 pyenv 的 Windows 版本。</p>
+<p>你需要在 PowerShell 中执行以下命令安装 pyenv-win：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Invoke-WebRequest -UseBasicParsing -Uri &quot;https://raw.githubusercontent.com/pyenv-win/pyenv-win/master/pyenv-win/install-pyenv-win.ps1&quot; -OutFile &quot;./install-pyenv-win.ps1&quot;; &amp;&quot;./install-pyenv-win.ps1&quot;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>重新打开 PowerShell，运行 pyenv –version 检查安装是否成功。</p>
+<h3 id="2-Linux"><a href="#2-Linux" class="headerlink" title="2. Linux"></a>2. Linux</h3><p>你可以使用以下命令来安装 <code>pyenv</code>：</p>
+<span id="more"></span>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">curl https://pyenv.run | bash</span><br></pre></td></tr></table></figure>
+
+<p>之后再将 pyenv 配置到环境变量中并使之生效，执行如下命令：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">echo &#x27;export PYENV_ROOT=&quot;$HOME/.pyenv&quot;&#x27; &gt;&gt; ~/.bashrc</span><br><span class="line">echo &#x27;command -v pyenv &gt;/dev/null || export PATH=&quot;$PYENV_ROOT/bin:$PATH&quot;&#x27; &gt;&gt; ~/.bashrc</span><br><span class="line">echo &#x27;eval &quot;$(pyenv init -)&quot;&#x27; &gt;&gt; ~/.bashrc</span><br><span class="line">source ~/.bashrc</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>上述配置仅能使 pyenv 在 bash 环境生效，更多 shell 环境配置请参考：<a target="_blank" rel="noopener" href="https://github.com/pyenv/pyenv?tab=readme-ov-file#set-up-your-shell-environment-for-pyenv">Set up your shell environment for Pyenv</a>。配置的本质在于将$PYENV_ROOT 下的 shims 和 bin 目录配置到 PATH 变量中，且 shims 需配置在前。配置后的 PATH 如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[root@2e7669577b11 /]# echo $PATH</span><br><span class="line">/root/.pyenv/shims:/root/.pyenv/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="三、Pyenv-基本用法"><a href="#三、Pyenv-基本用法" class="headerlink" title="三、Pyenv 基本用法"></a>三、Pyenv 基本用法</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">## 查看帮助文档</span><br><span class="line">pyenv</span><br><span class="line"></span><br><span class="line">## 查看某个命令帮助文档</span><br><span class="line">pyenv install --help</span><br><span class="line"></span><br><span class="line">## 查看版本</span><br><span class="line">pyenv version</span><br><span class="line"></span><br><span class="line">## 检查 Python 是否正常运行</span><br><span class="line">python -c &quot;import sys; print(sys.executable)&quot;</span><br><span class="line"></span><br><span class="line">## 查看已安装的 Python 版本</span><br><span class="line">pyenv versions</span><br><span class="line"></span><br><span class="line">## 查看当前使用的 Python 版本</span><br><span class="line">pyenv version</span><br><span class="line"></span><br><span class="line">## 查看所有可用的 Python 版</span><br><span class="line">pyenv install --list </span><br><span class="line"></span><br><span class="line">## 安装指定版本</span><br><span class="line">pyenv install 3.9.1</span><br><span class="line"></span><br><span class="line">## 验证</span><br><span class="line">python --version</span><br><span class="line"></span><br><span class="line">## 卸载指定版本</span><br><span class="line">pyenv uninstall 3.9.1</span><br><span class="line"></span><br><span class="line">## 全局指定 Python 版本（影响所有项目）</span><br><span class="line">pyenv global 3.9.1 </span><br><span class="line"></span><br><span class="line">## 局部指定 Python 版本（仅影响当前项目目录），指定后在当前项目目录内创建 .python-version 文件，保存版本信息</span><br><span class="line">## 优先级高于 global</span><br><span class="line">pyenv local 3.9.1</span><br><span class="line"></span><br><span class="line">## 会话级指定 Python 版本（影响所有项目）</span><br><span class="line">pyenv shell 3.9.1 </span><br><span class="line"></span><br><span class="line">## 查看 python 的安装目录</span><br><span class="line">pyenv which python</span><br><span class="line"></span><br><span class="line">## 重新生成 pyenv 的 shims 目录中的可执行文件</span><br><span class="line">pyenv rehash </span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>Python 安装常见问题，可参考：<a target="_blank" rel="noopener" href="https://github.com/pyenv/pyenv/wiki/Common-build-problems">Python common build problems</a></p>
+<h2 id="四、Pyenv-核心原理-Shims"><a href="#四、Pyenv-核心原理-Shims" class="headerlink" title="四、Pyenv 核心原理 -Shims"></a>四、Pyenv 核心原理 -Shims</h2><p>pyenv 通过 Shims 实现了对不同 Python 版本的透明管理和切换。</p>
+<h3 id="1-工作原理"><a href="#1-工作原理" class="headerlink" title="1. 工作原理"></a>1. 工作原理</h3><p>上述环境配置中，在 PATH 环境变量最前面插入一个 shims 目录，<code>$(pyenv root)/shims:$(pyenv root)/bin:/usr/local/bin:/usr/bin:/bin</code>。通过一个称为 rehashing 的过程，pyenv 在该目录中维护垫片，以匹配每个已安装的 Python 版本中的每个 Python 命令，如： python、pip 等。</p>
+<p>Shims 是轻量级可执行文件，它只是将你的命令传递给 pyenv。因此，在安装了 pyenv 的情况下，当你运行 pip 时，你的操作系统将执行以下操作：</p>
+<p>（1）搜索 PATH 环境变量，寻找 pip 可执行文件</p>
+<p>（2）在 $(pyenv root)/shims 中找到 pip</p>
+<p>（3）运行名为 pip 的 shim，它将命令传递给 pyenv</p>
+<h3 id="2-作用"><a href="#2-作用" class="headerlink" title="2. 作用"></a>2. 作用</h3><p>（1）通过使用 Shims，pyenv 可以实现对不同项目使用不同 Python 版本的灵活管理，而不需要手动修改环境变量或路径。</p>
+<p>（2）你可以方便地在全局、目录级别甚至是 shell 会话级别设置或切换 Python 版本，极大地方便了开发和测试工作。</p>
+<h3 id="3-示例"><a href="#3-示例" class="headerlink" title="3. 示例"></a>3. 示例</h3><p>（1）假设你在项目 A 中使用 Python 3.8，而在项目 B 中使用 Python 3.9。通过 pyenv 和 Shims，你可以在项目目录中分别设置 Python 版本：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 在项目 A 目录中</span><br><span class="line">pyenv local 3.8.10</span><br><span class="line"></span><br><span class="line"># 在项目 B 目录中</span><br><span class="line">pyenv local 3.9.5</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>（2）当你在项目 A 目录中运行 <code>python</code> 命令时，Shims 会确保调用的是 Python 3.8.10，而在项目 B 目录中则会调用 Python 3.9.5。</p>
+<p>通过这种方式，Shims 实现了对不同 Python 版本的透明管理和切换。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">叶落花开</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://www.yeluohuakai.com/posts/2024/12/aa849fad.html">https://www.yeluohuakai.com/posts/2024/12/aa849fad.html</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://www.yeluohuakai.com" target="_blank">叶落花开的博客</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/python/">python</a><a class="post-meta__tags" href="/tags/pyenv/">pyenv</a></div><div class="post_share"><div class="social-share" data-image="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://fastly.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/posts/2024/12/c6300ff5.html"><img class="next-cover" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">【pyenv】解决 pyenv install 国内下载缓慢的问题</div></div></a></div></nav><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/loading.gif" data-original="/img/ava.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">叶落花开</div><div class="author-info__description">持续学习，记录后端技术、web技术，以及对认知、技术变现的思考。</div></div><div class="card-info-data is-center"><div class="card-info-data-item"><a href="/archives/"><div class="headline">文章</div><div class="length-num">256</div></a></div><div class="card-info-data-item"><a href="/tags/"><div class="headline">标签</div><div class="length-num">99</div></a></div><div class="card-info-data-item"><a href="/categories/"><div class="headline">分类</div><div class="length-num">34</div></a></div></div></div><div class="card-widget user-map" id="user-map"><div class="item-headline"><i class="fas fa-link"></i><span>友情链接</span></div><div class="item-content"><ul class="entry"><li><a href="/bszs" title="各大高校博士招生信息">各大高校博士招生信息</a></li><li><a target="_blank" rel="noopener" href="https://www.xiaoxinsoft.com" title="小新软件服务">小新软件安装服务</a></li></ul></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E5%B7%A5%E5%85%B7%E9%80%89%E6%8B%A9"><span class="toc-number">1.</span> <span class="toc-text">一、工具选择</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81Pyenv-%E5%AE%89%E8%A3%85"><span class="toc-number">2.</span> <span class="toc-text">二、Pyenv 安装</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-Windows"><span class="toc-number">2.1.</span> <span class="toc-text">1. Windows</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-Linux"><span class="toc-number">2.2.</span> <span class="toc-text">2. Linux</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81Pyenv-%E5%9F%BA%E6%9C%AC%E7%94%A8%E6%B3%95"><span class="toc-number">3.</span> <span class="toc-text">三、Pyenv 基本用法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81Pyenv-%E6%A0%B8%E5%BF%83%E5%8E%9F%E7%90%86-Shims"><span class="toc-number">4.</span> <span class="toc-text">四、Pyenv 核心原理 -Shims</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86"><span class="toc-number">4.1.</span> <span class="toc-text">1. 工作原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E4%BD%9C%E7%94%A8"><span class="toc-number">4.2.</span> <span class="toc-text">2. 作用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E7%A4%BA%E4%BE%8B"><span class="toc-number">4.3.</span> <span class="toc-text">3. 示例</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 By 叶落花开</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">本地搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://fastly.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>(()=>{
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'freecloud-0gzubvbebcf38cf6',
+      region: '',
+      onCommentLoaded: function () {
+        btf.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.vemoji)'))
+      }
+    }, null))
+  }
+
+  const getCount = () => {
+    twikoo.getCommentsCount({
+      envId: 'freecloud-0gzubvbebcf38cf6',
+      region: '',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(function (res) {
+      document.getElementById('twikoo-count').innerText = res[0].count
+    }).catch(function (err) {
+      console.error(err);
+    });
+  }
+
+  const runFn = () => {
+    init()
+    
+  }
+
+  const loadTwikoo = () => {
+    if (typeof twikoo === 'object') {
+      setTimeout(runFn,0)
+      return
+    } 
+    getScript('https://fastly.jsdelivr.net/npm/twikoo/dist/twikoo.all.min.js').then(runFn)
+  }
+
+  if ('Twikoo' === 'Twikoo' || !false) {
+    if (false) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo()
+  } else {
+    window.loadOtherComment = () => {
+      loadTwikoo()
+    }
+  }
+})()</script></div><script id="canvas_nest" defer="defer" color="0,0,255" opacity="0.7" zIndex="-1" count="99" mobile="false" src="https://fastly.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-nest.min.js"></script></div>
+        <style>
+            [bg-lazy] {
+                background-image: none !important;
+                background-color: #eee !important;
+            }
+        </style>
+        <script>
+            window.imageLazyLoadSetting = {
+                isSPA: false,
+                preloadRatio: 1,
+                processImages: null,
+            };
+        </script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script><script>!function(r){r.imageLazyLoadSetting.processImages=t;var e=r.imageLazyLoadSetting.isSPA,n=r.imageLazyLoadSetting.preloadRatio||1,c=a();function a(){var t=Array.prototype.slice.call(document.querySelectorAll("img[data-original]")),e=Array.prototype.slice.call(document.querySelectorAll("[bg-lazy]"));return t.concat(e)}function t(){e&&(c=a());for(var t,o=0;o<c.length;o++)0<=(t=(t=c[o]).getBoundingClientRect()).bottom&&0<=t.left&&t.top<=(r.innerHeight*n||document.documentElement.clientHeight*n)&&function(){var t,e,n,a,i=c[o];e=function(){c=c.filter(function(t){return i!==t}),r.imageLazyLoadSetting.onImageLoaded&&r.imageLazyLoadSetting.onImageLoaded(i)},(t=i).hasAttribute("bg-lazy")?(t.removeAttribute("bg-lazy"),e&&e()):(n=new Image,a=t.getAttribute("data-original"),n.onload=function(){t.src=a,t.removeAttribute("data-original"),e&&e()},t.src!==a&&(n.src=a))}()}function i(){clearTimeout(t.tId),t.tId=setTimeout(t,500)}t(),document.addEventListener("scroll",i),r.addEventListener("resize",i),r.addEventListener("orientationchange",i)}(this);</script></body></html>
