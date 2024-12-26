@@ -4,6 +4,37 @@
   
     
     <entry>
+      <title>aardio-计算控件里的文字宽度以动态调整控件宽度</title>
+      <link href="/posts/2024/12/fff7ba76.html"/>
+      <url>/posts/2024/12/fff7ba76.html</url>
+      
+        <content type="html"><![CDATA[<p>在aardio里，如何计算winform里一个static控件里的文字的实际宽度，然后动态调整控件宽度为文字展示宽度呢？<br>直接上代码：</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">import win.ui;</span><br><span class="line">import win;</span><br><span class="line"></span><br><span class="line">// 创建窗口</span><br><span class="line">var winform = win.form(text=&quot;Static控件宽度调整&quot;;right=600;bottom=400)</span><br><span class="line"></span><br><span class="line">// 添加一个static控件</span><br><span class="line">var static = winform.add(</span><br><span class="line">    static=&#123;cls=&quot;static&quot;;text=&quot;这是一个static控件&quot;;left=50;top=50;right=200;bottom=80&#125;</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line">// 获取static控件的字体</span><br><span class="line">var hFont = static.sendMessage(0x0031 /* WM_GETFONT */, 0, 0);</span><br><span class="line"></span><br><span class="line">// 创建graphics对象</span><br><span class="line">var graphics = win.graphics(winform.hwnd);</span><br><span class="line"></span><br><span class="line">// 选择字体</span><br><span class="line">graphics.selectObject(hFont);</span><br><span class="line"></span><br><span class="line">// 计算文字的宽度</span><br><span class="line">var textWidth = graphics.measureString(static.text).cx;</span><br><span class="line"></span><br><span class="line">// 调整static控件的宽度</span><br><span class="line">static.setPos(, , textWidth + 10); // 加10是为了留一些边距</span><br><span class="line"></span><br><span class="line">// 显示窗口</span><br><span class="line">winform.show();</span><br><span class="line">win.loopMessage();</span><br></pre></td></tr></table></figure><span id="more"></span>]]></content>
+      
+      
+      <categories>
+          
+          <category> 客户端开发 </category>
+          
+          <category> aardio </category>
+          
+          <category> winform </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> aardio </tag>
+            
+            <tag> winform </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Python 版本管理工具选择与 Pyenv 使用说明</title>
       <link href="/posts/2024/12/aa849fad.html"/>
       <url>/posts/2024/12/aa849fad.html</url>
@@ -606,9 +637,9 @@
       
         <tags>
             
-            <tag> swift </tag>
-            
             <tag> pod </tag>
+            
+            <tag> swift </tag>
             
         </tags>
       
@@ -4315,7 +4346,7 @@
       <link href="/posts/2022/12/4d8c9542.html"/>
       <url>/posts/2022/12/4d8c9542.html</url>
       
-        <content type="html"><![CDATA[<p>1个可以用于微信聊天的ChatGPT机器人<br>GitHub地址：<a href="https://github.com/fuergaosi233/wechat-chatgpt">https://github.com/fuergaosi233/wechat-chatgpt</a></p><p>支持特性</p><blockquote><p>通过微信在微信上使用ChatGPT<br>支持OpenAI帐户池<br>支持使用代理登录<br>在消息接收时模拟</p></blockquote><p>我这边已经部署成功并成功运行，如有疑问可邮件联系 <a href="mailto:&#x64;&#111;&#110;&#x67;&#x37;&#48;&#54;&#x40;&#x67;&#x6d;&#x61;&#105;&#x6c;&#x2e;&#99;&#x6f;&#x6d;">&#x64;&#111;&#110;&#x67;&#x37;&#48;&#54;&#x40;&#x67;&#x6d;&#x61;&#105;&#x6c;&#x2e;&#99;&#x6f;&#x6d;</a> </p><span id="more"></span>]]></content>
+        <content type="html"><![CDATA[<p>1个可以用于微信聊天的ChatGPT机器人<br>GitHub地址：<a href="https://github.com/fuergaosi233/wechat-chatgpt">https://github.com/fuergaosi233/wechat-chatgpt</a></p><p>支持特性</p><blockquote><p>通过微信在微信上使用ChatGPT<br>支持OpenAI帐户池<br>支持使用代理登录<br>在消息接收时模拟</p></blockquote><p>我这边已经部署成功并成功运行，如有疑问可邮件联系 <a href="mailto:&#100;&#x6f;&#110;&#x67;&#x37;&#48;&#54;&#64;&#103;&#109;&#97;&#105;&#108;&#x2e;&#x63;&#x6f;&#109;">&#100;&#x6f;&#110;&#x67;&#x37;&#48;&#54;&#64;&#103;&#109;&#97;&#105;&#108;&#x2e;&#x63;&#x6f;&#109;</a> </p><span id="more"></span>]]></content>
       
       
       <categories>
