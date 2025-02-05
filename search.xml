@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>禁止谷歌浏览器 Google Chrome 自动更新</title>
+      <link href="/posts/2025/02/395aebb8.html"/>
+      <url>/posts/2025/02/395aebb8.html</url>
+      
+        <content type="html"><![CDATA[<p>1.修改 C:\Windows\System32\drivers\etc\hosts 文件，在最后加</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">127.0.0.1 update.googleapis.com</span><br></pre></td></tr></table></figure><p>然后保存。</p><p>2.敲击<code>win+r</code> ，输入<code>cmd</code>打开命令行，输入<code>ipconfig /flushdns</code>刷新 dns 即可。</p><p>3.打开chrome界面，提示：</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">检查更新时出错：更新检查错误：无法与服务器建立连接 。（错误代码为：7: 0X80072EFD）。</span><br></pre></td></tr></table></figure><p>大功告成！</p><span id="more"></span>]]></content>
+      
+      
+      <categories>
+          
+          <category> IT技术 </category>
+          
+          <category> Windows </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> chrome </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>aardio-计算控件里的文字宽度以动态调整控件宽度</title>
       <link href="/posts/2024/12/fff7ba76.html"/>
       <url>/posts/2024/12/fff7ba76.html</url>
@@ -4346,7 +4373,7 @@
       <link href="/posts/2022/12/4d8c9542.html"/>
       <url>/posts/2022/12/4d8c9542.html</url>
       
-        <content type="html"><![CDATA[<p>1个可以用于微信聊天的ChatGPT机器人<br>GitHub地址：<a href="https://github.com/fuergaosi233/wechat-chatgpt">https://github.com/fuergaosi233/wechat-chatgpt</a></p><p>支持特性</p><blockquote><p>通过微信在微信上使用ChatGPT<br>支持OpenAI帐户池<br>支持使用代理登录<br>在消息接收时模拟</p></blockquote><p>我这边已经部署成功并成功运行，如有疑问可邮件联系 <a href="mailto:&#100;&#x6f;&#110;&#x67;&#x37;&#48;&#54;&#64;&#103;&#109;&#97;&#105;&#108;&#x2e;&#x63;&#x6f;&#109;">&#100;&#x6f;&#110;&#x67;&#x37;&#48;&#54;&#64;&#103;&#109;&#97;&#105;&#108;&#x2e;&#x63;&#x6f;&#109;</a> </p><span id="more"></span>]]></content>
+        <content type="html"><![CDATA[<p>1个可以用于微信聊天的ChatGPT机器人<br>GitHub地址：<a href="https://github.com/fuergaosi233/wechat-chatgpt">https://github.com/fuergaosi233/wechat-chatgpt</a></p><p>支持特性</p><blockquote><p>通过微信在微信上使用ChatGPT<br>支持OpenAI帐户池<br>支持使用代理登录<br>在消息接收时模拟</p></blockquote><p>我这边已经部署成功并成功运行，如有疑问可邮件联系 <a href="mailto:&#x64;&#111;&#110;&#x67;&#55;&#48;&#x36;&#x40;&#x67;&#109;&#x61;&#x69;&#x6c;&#x2e;&#99;&#x6f;&#109;">&#x64;&#111;&#110;&#x67;&#55;&#48;&#x36;&#x40;&#x67;&#109;&#x61;&#x69;&#x6c;&#x2e;&#99;&#x6f;&#109;</a> </p><span id="more"></span>]]></content>
       
       
       <categories>
