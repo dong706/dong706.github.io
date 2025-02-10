@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>华为云昇腾云服务与Chatbox—DeepSeek“服务器繁忙”简单好用的替代方案(仅供深度思考，不支持联网)</title>
+      <link href="/posts/2025/02/af7cdb44.html"/>
+      <url>/posts/2025/02/af7cdb44.html</url>
+      
+        <content type="html"><![CDATA[<p>前言：本帖旨在向大家分享一个现今DeppSeek因用户众多和遭受巨量攻击等原因导致无法正常使用的替代方案，楼主不懂AI，所以只提供操作步骤，希望能够解决大家急于使用DeepSeek的需求问题。此方法操作非常简单，只需下载一个软件在设置中输入对应设置文字即可，欢迎感兴趣的大家进行尝试。</p><blockquote><blockquote><p>涉及网址：<br>一、API提供方 [<a href="https://siliconflow.cn/zh-cn/siliconcloud">https://siliconflow.cn/zh-cn/siliconcloud SiliconCloud</a>] <br>二、对话使用软件(windos、iOS、Android均可使用)： [<br><a href="https://chatboxai.app/zh">https://chatboxai.app/zh Chatbox AI官网：办公学习的AI好助手，全平台AI客户端，官方免费下载</a>]   </p></blockquote></blockquote><p>使用步骤：<br>一、SiliconCloud的API密钥准备<br>1.通过他人分享的邀请链接在SiliconCloud中注册并登录账户，可获得14元平台配额，相当于2000万tokens </p><p><a href="https://cloud.siliconflow.cn/i/0PpEhFRl">https://cloud.siliconflow.cn/i/0PpEhFRl</a>  </p><span id="more"></span><p>2.进入API密钥界面，点击新建API密钥后，“密钥描述”可填可不填，点击新建密钥，即可完成密钥准备工作<br><img src="https://img.nga.178.com/attachments/mon_202502/02/-7Q1a1-4ja2ZfT3cSxs-xd.jpg"><br><img src="https://img.nga.178.com/attachments/mon_202502/02/-7Q1a1-d20pKhT3cSsg-63.jpg">  </p><p><code>只需要api调用的就不需要下载chatbox了</code><br>二、Chatbox下载工作  <br>在上方提供的第二个网址中下载并安装 Chatbox </p><p>三、接入API<br>1.打开Chatbox，在 设置界面中进行操作<br><img src="https://img.nga.178.com/attachments/mon_202502/02/-7Q1a1-c748KyT1kShr-sg.jpg"><br>2.在 模型提供方中选择添加自定义提供方<br><img src="https://img.nga.178.com/attachments/mon_202502/02/-7Q1a1-3t8nK18T3cSom-e1.jpg"><br>3.具体设置，可将以下内容复制粘贴至对应位置<br>(1)名称(此项可自定义)：SiliconCloud<br>(2)API域名：[<br><a href="https://api.siliconflow.cn/">https://api.siliconflow.cn/</a>]<br>(3)API路径：/v1/chat/completions<br>(4)API密钥：请在API密钥页面中点击复制已新建好的密钥并粘贴<br>(5)模型(此项建议复制粘贴后再点一下系统自动给出的选项，以免出错无法成功接入)：deepseek-ai/DeepSeek-R1<br><img src="https://img.nga.178.com/attachments/mon_202502/02/-7Q1a1-kvtfK2iT3cSoq-sb.jpg">  </p><p>以上步骤完成后，不出问题就可以直接与DeepSeek-R1进行对话了，实际使用效果与DeeSeek-R1的网页端和APP基本一致，可通过分享SiliconCloud邀请链接获得免费额度  </p><p>−自己的邀请链接获取方法 …</p><p>在Silicon网站中找到“我的邀请”，点击“复制邀请链接”即可!</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 服务端开发 </category>
+          
+          <category> 人工智能 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> deepseek </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>禁止谷歌浏览器 Google Chrome 自动更新</title>
       <link href="/posts/2025/02/395aebb8.html"/>
       <url>/posts/2025/02/395aebb8.html</url>
@@ -4373,7 +4400,7 @@
       <link href="/posts/2022/12/4d8c9542.html"/>
       <url>/posts/2022/12/4d8c9542.html</url>
       
-        <content type="html"><![CDATA[<p>1个可以用于微信聊天的ChatGPT机器人<br>GitHub地址：<a href="https://github.com/fuergaosi233/wechat-chatgpt">https://github.com/fuergaosi233/wechat-chatgpt</a></p><p>支持特性</p><blockquote><p>通过微信在微信上使用ChatGPT<br>支持OpenAI帐户池<br>支持使用代理登录<br>在消息接收时模拟</p></blockquote><p>我这边已经部署成功并成功运行，如有疑问可邮件联系 <a href="mailto:&#100;&#x6f;&#110;&#x67;&#x37;&#48;&#54;&#64;&#103;&#109;&#x61;&#105;&#108;&#46;&#x63;&#x6f;&#109;">&#100;&#x6f;&#110;&#x67;&#x37;&#48;&#54;&#64;&#103;&#109;&#x61;&#105;&#108;&#46;&#x63;&#x6f;&#109;</a> </p><span id="more"></span>]]></content>
+        <content type="html"><![CDATA[<p>1个可以用于微信聊天的ChatGPT机器人<br>GitHub地址：<a href="https://github.com/fuergaosi233/wechat-chatgpt">https://github.com/fuergaosi233/wechat-chatgpt</a></p><p>支持特性</p><blockquote><p>通过微信在微信上使用ChatGPT<br>支持OpenAI帐户池<br>支持使用代理登录<br>在消息接收时模拟</p></blockquote><p>我这边已经部署成功并成功运行，如有疑问可邮件联系 <a href="mailto:&#x64;&#x6f;&#x6e;&#x67;&#55;&#x30;&#x36;&#x40;&#x67;&#x6d;&#97;&#x69;&#x6c;&#x2e;&#99;&#111;&#109;">&#x64;&#x6f;&#x6e;&#x67;&#55;&#x30;&#x36;&#x40;&#x67;&#x6d;&#97;&#x69;&#x6c;&#x2e;&#99;&#111;&#109;</a> </p><span id="more"></span>]]></content>
       
       
       <categories>
