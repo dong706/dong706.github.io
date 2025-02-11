@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>ios开发xcode问题解决集锦</title>
+      <link href="/posts/2025/02/b4a638a6.html"/>
+      <url>/posts/2025/02/b4a638a6.html</url>
+      
+        <content type="html"><![CDATA[<p>在开发ios app的过程中，xcode经常搞出各种问题，在这里记录下问题和解决措施。 </p><h3 id="The-app-ID-cannot-be-registered-to-your-development-team"><a href="#The-app-ID-cannot-be-registered-to-your-development-team" class="headerlink" title="The app ID cannot be registered to your development team"></a>The app ID cannot be registered to your development team</h3><p>导入github新下载的项目时，提示如下错误：</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">The app ID &quot;com.myDomain.myApp&quot; cannot be registered to your development team. Change your bundle identifier to a unique string to try again.</span><br></pre></td></tr></table></figure><span id="more"></span><img src="https://fastly.jsdelivr.net/gh/dong706/dong706.github.io@latest/images/pasted-231.png" alt=""> <p>百思不得其解，最后发现将Bundle id修改下就行。 </p><h3 id="line-132-ARCHS-unbound-variable"><a href="#line-132-ARCHS-unbound-variable" class="headerlink" title="line 132: ARCHS[@]: unbound variable"></a>line 132: ARCHS[@]: unbound variable</h3><p>在在Target-Build Settings-Excluded Architectures中进行如下设置：</p><img src="https://fastly.jsdelivr.net/gh/dong706/dong706.github.io@latest/images/pasted-232.png" alt=""> <p>参考链接：   <a href="https://stackoverflow.com/questions/64474801/archs-unbound-variable-in-xcode-12">https://stackoverflow.com/questions/64474801/archs-unbound-variable-in-xcode-12</a></p><h3 id="xcode-SDK-does-not-contain-‘libarclite‘"><a href="#xcode-SDK-does-not-contain-‘libarclite‘" class="headerlink" title="xcode SDK does not contain ‘libarclite‘"></a>xcode SDK does not contain ‘libarclite‘</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">SDK does not contain &#x27;libarclite&#x27; at the path &#x27;/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/arc/libarclite_iphonesimulator.a&#x27;; try increasing the minimum deployment target</span><br></pre></td></tr></table></figure><p>解决方法<br>Pods–TARGETS 设置iOS11.2以上版本即可。<br><img src="https://fastly.jsdelivr.net/gh/dong706/dong706.github.io@latest/images/pasted-233.png" alt=""> </p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 客户端开发 </category>
+          
+          <category> Swift开发 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> swift </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>教你在自己电脑上安装你一个Deepseek</title>
       <link href="/posts/2025/02/644870bf.html"/>
       <url>/posts/2025/02/644870bf.html</url>
@@ -4427,7 +4454,7 @@
       <link href="/posts/2022/12/4d8c9542.html"/>
       <url>/posts/2022/12/4d8c9542.html</url>
       
-        <content type="html"><![CDATA[<p>1个可以用于微信聊天的ChatGPT机器人<br>GitHub地址：<a href="https://github.com/fuergaosi233/wechat-chatgpt">https://github.com/fuergaosi233/wechat-chatgpt</a></p><p>支持特性</p><blockquote><p>通过微信在微信上使用ChatGPT<br>支持OpenAI帐户池<br>支持使用代理登录<br>在消息接收时模拟</p></blockquote><p>我这边已经部署成功并成功运行，如有疑问可邮件联系 <a href="mailto:&#x64;&#111;&#110;&#x67;&#x37;&#48;&#54;&#x40;&#x67;&#109;&#97;&#x69;&#x6c;&#x2e;&#x63;&#x6f;&#x6d;">&#x64;&#111;&#110;&#x67;&#x37;&#48;&#54;&#x40;&#x67;&#109;&#97;&#x69;&#x6c;&#x2e;&#x63;&#x6f;&#x6d;</a> </p><span id="more"></span>]]></content>
+        <content type="html"><![CDATA[<p>1个可以用于微信聊天的ChatGPT机器人<br>GitHub地址：<a href="https://github.com/fuergaosi233/wechat-chatgpt">https://github.com/fuergaosi233/wechat-chatgpt</a></p><p>支持特性</p><blockquote><p>通过微信在微信上使用ChatGPT<br>支持OpenAI帐户池<br>支持使用代理登录<br>在消息接收时模拟</p></blockquote><p>我这边已经部署成功并成功运行，如有疑问可邮件联系 <a href="mailto:&#x64;&#x6f;&#x6e;&#103;&#x37;&#48;&#54;&#x40;&#x67;&#x6d;&#x61;&#105;&#x6c;&#x2e;&#x63;&#x6f;&#x6d;">&#x64;&#x6f;&#x6e;&#103;&#x37;&#48;&#54;&#x40;&#x67;&#x6d;&#x61;&#105;&#x6c;&#x2e;&#x63;&#x6f;&#x6d;</a> </p><span id="more"></span>]]></content>
       
       
       <categories>
