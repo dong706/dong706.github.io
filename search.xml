@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>Swift开发-使用自带api朗读英语单词（美音或英音）</title>
+      <link href="/posts/2025/02/85153b44.html"/>
+      <url>/posts/2025/02/85153b44.html</url>
+      
+        <content type="html"><![CDATA[<p>在 Swift 开发中，iOS 系统提供了 <strong>AVFoundation</strong> 框架的 <code>AVSpeechSynthesizer</code> 类，可以通过设置 <code>AVSpeechSynthesisVoice</code> 的语音标识符（Voice Identifier）来选择美式英语（en-US）或英式英语（en-GB）发音。以下是具体实现方法：</p><hr><h3 id="1-使用-AVSpeechSynthesizer-实现语音合成"><a href="#1-使用-AVSpeechSynthesizer-实现语音合成" class="headerlink" title="1. 使用 AVSpeechSynthesizer 实现语音合成"></a>1. <strong>使用 <code>AVSpeechSynthesizer</code> 实现语音合成</strong></h3><p>通过 <code>AVSpeechSynthesizer</code> 可以将文本转换为语音，并通过 <code>AVSpeechSynthesisVoice</code> 指定发音类型：</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">import AVFoundation</span><br><span class="line"></span><br><span class="line">let synthesizer = AVSpeechSynthesizer()</span><br><span class="line"></span><br><span class="line">// 输入需要发音的单词</span><br><span class="line">let word = &quot;swift&quot;</span><br><span class="line"></span><br><span class="line">// 创建语音内容</span><br><span class="line">let utterance = AVSpeechUtterance(string: word)</span><br><span class="line"></span><br><span class="line">// 设置语音类型（美音或英音）</span><br><span class="line">if let voice = AVSpeechSynthesisVoice(language: &quot;en-US&quot;) &#123; // 美音</span><br><span class="line">    utterance.voice = voice</span><br><span class="line">&#125; else if let voice = AVSpeechSynthesisVoice(language: &quot;en-GB&quot;) &#123; // 英音</span><br><span class="line">    utterance.voice = voice</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 播放发音</span><br><span class="line">synthesizer.speak(utterance)</span><br></pre></td></tr></table></figure><span id="more"></span><h3 id="2-扩展：设置发音的其他参数"><a href="#2-扩展：设置发音的其他参数" class="headerlink" title="2. 扩展：设置发音的其他参数"></a>2. <strong>扩展：设置发音的其他参数</strong></h3><p>还可以调整语速、音调等参数：</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">utterance.rate = 0.5 // 语速（0.0~1.0）</span><br><span class="line">utterance.pitchMultiplier = 1.2 // 音调（0.5~2.0）</span><br><span class="line">utterance.volume = 1.0 // 音量（0.0~1.0）</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> 客户端开发 </category>
+          
+          <category> Swift开发 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Swift </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>2万常用英语单词词频统计</title>
       <link href="/posts/2025/02/c61c104d.html"/>
       <url>/posts/2025/02/c61c104d.html</url>
@@ -4483,7 +4510,7 @@
       <link href="/posts/2022/12/4d8c9542.html"/>
       <url>/posts/2022/12/4d8c9542.html</url>
       
-        <content type="html"><![CDATA[<p>1个可以用于微信聊天的ChatGPT机器人<br>GitHub地址：<a href="https://github.com/fuergaosi233/wechat-chatgpt">https://github.com/fuergaosi233/wechat-chatgpt</a></p><p>支持特性</p><blockquote><p>通过微信在微信上使用ChatGPT<br>支持OpenAI帐户池<br>支持使用代理登录<br>在消息接收时模拟</p></blockquote><p>我这边已经部署成功并成功运行，如有疑问可邮件联系 <a href="mailto:&#x64;&#111;&#x6e;&#103;&#55;&#48;&#54;&#x40;&#x67;&#x6d;&#97;&#x69;&#x6c;&#46;&#99;&#111;&#x6d;">&#x64;&#111;&#x6e;&#103;&#55;&#48;&#54;&#x40;&#x67;&#x6d;&#97;&#x69;&#x6c;&#46;&#99;&#111;&#x6d;</a> </p><span id="more"></span>]]></content>
+        <content type="html"><![CDATA[<p>1个可以用于微信聊天的ChatGPT机器人<br>GitHub地址：<a href="https://github.com/fuergaosi233/wechat-chatgpt">https://github.com/fuergaosi233/wechat-chatgpt</a></p><p>支持特性</p><blockquote><p>通过微信在微信上使用ChatGPT<br>支持OpenAI帐户池<br>支持使用代理登录<br>在消息接收时模拟</p></blockquote><p>我这边已经部署成功并成功运行，如有疑问可邮件联系 <a href="mailto:&#100;&#111;&#x6e;&#103;&#x37;&#48;&#54;&#x40;&#x67;&#109;&#97;&#105;&#x6c;&#46;&#99;&#111;&#x6d;">&#100;&#111;&#x6e;&#103;&#x37;&#48;&#54;&#x40;&#x67;&#109;&#97;&#105;&#x6c;&#46;&#99;&#111;&#x6d;</a> </p><span id="more"></span>]]></content>
       
       
       <categories>
