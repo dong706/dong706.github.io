@@ -4,6 +4,35 @@
   
     
     <entry>
+      <title>k8s里flannel启动报错:memory.memsw.limit_in_bytes: no such file or directory: unknown</title>
+      <link href="/posts/2025/02/e80071f5.html"/>
+      <url>/posts/2025/02/e80071f5.html</url>
+      
+        <content type="html"><![CDATA[<p>k8s的flannel启动报错,查看日志：</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">kubectl describe pod kube-flannel-ds-v9j5t -n kube-flannel</span><br><span class="line"></span><br><span class="line">  Normal   Pulled     39m (x4 over 40m)    kubelet            Container image &quot;docker.io/rancher/mirrored-flannelcni-flannel:v0.20.2&quot; already present on machine</span><br><span class="line">  Normal   Created    39m (x4 over 40m)    kubelet            Created container kube-flannel</span><br><span class="line">  Warning  Failed     39m (x4 over 40m)    kubelet            Error: failed to create containerd task: failed to create shim task: OCI runtime create failed: runc create failed: unable to start container process: error during container init: error setting cgroup config for procHooks process: open /sys/fs/cgroup/memory/kubepods.slice/kubepods-burstable.slice/kubepods-burstable-podfe68f366_ef34_4535_9366_51041b92f3bf.slice/cri-containerd-kube-flannel.scope/memory.memsw.limit_in_bytes: no such file or directory: unknown</span><br><span class="line">  Warning  BackOff    40s (x186 over 40m)  kubelet            Back-off restarting failed container</span><br></pre></td></tr></table></figure><p>我们还不知道确切的原因，但它目前发生在 containerd.io 版本：1.6.13 中。</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ containerd --version</span><br><span class="line">containerd containerd.io 1.6.13 78f51771157abb6c9ed224c22013cdf09962315d</span><br></pre></td></tr></table></figure><p>解决方法是从版本 1.6.13 重新安装到版本 1.6.12-1。</p><span id="more"></span><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ sudo apt remove containerd.io -y</span><br><span class="line">$ sudo apt install containerd.io=1.6.12-1 -y</span><br></pre></td></tr></table></figure><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ kubectl get pods --all-namespaces</span><br><span class="line">NAMESPACE      NAME                              READY   STATUS             RESTARTS        AGE</span><br><span class="line">kube-flannel   kube-flannel-ds-pzdw6             1/1     Running            0               6s</span><br><span class="line">kube-flannel   kube-flannel-ds-s844k             1/1     Running            0               6s</span><br><span class="line">kube-flannel   kube-flannel-ds-wqzjq             1/1     Running            0               6s</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> 服务端开发 </category>
+          
+          <category> 容器技术 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Kubernetes </tag>
+            
+            <tag> flannel </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Mac安装完mysql命令不可用解决方案</title>
       <link href="/posts/2025/02/65fffece.html"/>
       <url>/posts/2025/02/65fffece.html</url>
@@ -4597,7 +4626,7 @@
       <link href="/posts/2022/12/4d8c9542.html"/>
       <url>/posts/2022/12/4d8c9542.html</url>
       
-        <content type="html"><![CDATA[<p>1个可以用于微信聊天的ChatGPT机器人<br>GitHub地址：<a href="https://github.com/fuergaosi233/wechat-chatgpt">https://github.com/fuergaosi233/wechat-chatgpt</a></p><p>支持特性</p><blockquote><p>通过微信在微信上使用ChatGPT<br>支持OpenAI帐户池<br>支持使用代理登录<br>在消息接收时模拟</p></blockquote><p>我这边已经部署成功并成功运行，如有疑问可邮件联系 <a href="mailto:&#100;&#x6f;&#110;&#x67;&#55;&#x30;&#x36;&#64;&#103;&#109;&#x61;&#x69;&#x6c;&#x2e;&#99;&#111;&#109;">&#100;&#x6f;&#110;&#x67;&#55;&#x30;&#x36;&#64;&#103;&#109;&#x61;&#x69;&#x6c;&#x2e;&#99;&#111;&#109;</a> </p><span id="more"></span>]]></content>
+        <content type="html"><![CDATA[<p>1个可以用于微信聊天的ChatGPT机器人<br>GitHub地址：<a href="https://github.com/fuergaosi233/wechat-chatgpt">https://github.com/fuergaosi233/wechat-chatgpt</a></p><p>支持特性</p><blockquote><p>通过微信在微信上使用ChatGPT<br>支持OpenAI帐户池<br>支持使用代理登录<br>在消息接收时模拟</p></blockquote><p>我这边已经部署成功并成功运行，如有疑问可邮件联系 <a href="mailto:&#x64;&#x6f;&#x6e;&#103;&#x37;&#x30;&#54;&#64;&#103;&#109;&#97;&#x69;&#108;&#46;&#x63;&#x6f;&#x6d;">&#x64;&#x6f;&#x6e;&#103;&#x37;&#x30;&#54;&#64;&#103;&#109;&#97;&#x69;&#108;&#46;&#x63;&#x6f;&#x6d;</a> </p><span id="more"></span>]]></content>
       
       
       <categories>
